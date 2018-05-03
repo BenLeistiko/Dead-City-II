@@ -1,4 +1,4 @@
-package graphics;
+package gamePlay;
 
 import processing.core.PApplet;
 
