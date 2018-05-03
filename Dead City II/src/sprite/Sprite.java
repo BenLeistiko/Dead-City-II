@@ -1,4 +1,4 @@
-package gamePlay;
+package sprite;
 
 import interfaces.Drawable;
 
