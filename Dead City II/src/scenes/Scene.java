@@ -1,4 +1,4 @@
-package gamePlay;
+package scenes;
 
 import interfaces.Drawable;
 

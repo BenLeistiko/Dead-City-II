@@ -1,4 +1,4 @@
-package sprite;
+package sprites;
 
 import interfaces.Clickable;
 import interfaces.Typeable;

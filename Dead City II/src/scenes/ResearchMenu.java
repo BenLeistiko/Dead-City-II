@@ -1,4 +1,4 @@
-package gamePlay;
+package scenes;
 
 public class ResearchMenu extends Scene {
 

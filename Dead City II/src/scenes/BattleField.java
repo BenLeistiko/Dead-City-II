@@ -1,4 +1,4 @@
-package gamePlay;
+package scenes;
 
 public class BattleField extends Scene {
 

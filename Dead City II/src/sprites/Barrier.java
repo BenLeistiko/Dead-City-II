@@ -1,4 +1,4 @@
-package sprite;
+package sprites;
 
 public class Barrier extends Sprite {
 
