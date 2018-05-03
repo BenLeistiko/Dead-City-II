@@ -39,7 +39,7 @@
   </interface>  
   <interface id="5" language="java" name="interfaces.Slotable" project="Dead City II" 
     file="/Dead City II/src/interfaces/Slotable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="579" y="42"/>    
+    <position height="-1" width="-1" x="584" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </interface>  
   <interface id="6" language="java" name="interfaces.Typeable" project="Dead City II" 
     file="/Dead City II/src/interfaces/Typeable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="695" y="39"/>    
+    <position height="-1" width="-1" x="778" y="109"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="gamePlay.DrawingSurface" project="Dead City II" 
     file="/Dead City II/src/gamePlay/DrawingSurface.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="967" y="254"/>    
+    <position height="81" width="116" x="838" y="361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,57 +120,57 @@
   </class>  
   <class id="14" language="java" name="gamePlay.Button" project="Dead City II" 
     file="/Dead City II/src/gamePlay/Button.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="313" y="575"/>    
+    <position height="-1" width="-1" x="509" y="449"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="gamePlay.Inventory" project="Dead City II" 
-    file="/Dead City II/src/gamePlay/Inventory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="832" y="450"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <realization id="16">    
+  <package id="15" language="java" name="gamePlay" project="Dead City II" file="/Dead City II/src/gamePlay" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="132" width="212" x="858" y="69"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="16" language="java" name="interfaces" project="Dead City II" file="/Dead City II/src/interfaces" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="199" x="877" y="227"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <realization id="17">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="18">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <realization id="17">    
-    <bendpoint x="542" y="515"/>    
+  <generalization id="19">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <realization id="20">    
     <bendpoint x="501" y="264"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <generalization id="18">    
+  <generalization id="21">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="22">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <realization id="19">    
+  <realization id="23">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <realization id="21">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <realization id="22">    
+  <realization id="24">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <realization id="24">    
+  <realization id="25">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
