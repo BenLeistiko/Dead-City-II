@@ -12,19 +12,22 @@ public abstract class Weapon implements Slotable {
 	
 	public Weapon(double damage) {
 		this.damage = damage;
-		
-		
-		
-		
+			
 	}
-	
-	
-	public abstract void attack(double x, double y); 
 	
 	
 	
 	public void upgrade(int upgradeAmt) {
 		damage+=upgradeAmt;
+	}
+
+
+	public double getDamage() {
+		return damage;
+	}
+
+	public void setDamage(double damage) {
+		this.damage = damage;
 	}
 
 
