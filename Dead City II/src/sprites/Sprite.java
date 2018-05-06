@@ -51,7 +51,6 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return hits;
 	}
 
-	
 	public void moveByAmount(double x, double y) {
 		this.x+=x;
 		this.y+=y;
