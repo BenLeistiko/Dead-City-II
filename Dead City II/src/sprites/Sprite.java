@@ -26,7 +26,13 @@ import interfaces.Drawable;
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
 	private boolean isVisible;
+	private ArrayList<Sprite> sprites;
 	
+	public Sprite(double x, double y, double w, double h, boolean visiblity, ArrayList<Sprite> sprites) {
+		super(x,y,w,h);
+		this.sprites = sprites;
+		isVisible = visiblity;
+	}
 	public Sprite(double x, double y, double w, double h, boolean visiblity) {
 		super(x,y,w,h);
 
@@ -40,7 +46,7 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	}
 	
 	public boolean collides(Sprite s) {
-		if(this.intersects(s)) {
+		if(this.intersects(s) && this != s) {
 			return true;
 		} else {
 			return false;	
@@ -48,6 +54,18 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 
 	}
 
+	public ArrayList<Sprite> collides() {
+		ArrayList<Sprite> hits = new ArrayList<Sprite>();
+
+		for(Sprite s: sprites) {
+			if(this.collides(s)) {
+				hits.add(s);
+			}
+		}
+
+		return hits;
+	}
+	
 	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
 		ArrayList<Sprite> hits = new ArrayList<Sprite>();
 
@@ -58,6 +76,13 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		}
 
 		return hits;
+	}
+	
+	public boolean isAbove(Sprite other) {
+		if(this.getY()+this.getHeight() > other.getY()) {
+			return true;
+		}
+		return false;
 	}
 
 	public void moveByAmount(double x, double y) {
