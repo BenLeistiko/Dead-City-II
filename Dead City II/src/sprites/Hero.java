@@ -2,6 +2,7 @@ package sprites;
 
 import interfaces.Clickable;
 import interfaces.Typeable;
+import items.Weapon;
 import processing.core.PApplet;
 
 public class Hero extends Creature implements Clickable, Typeable {
@@ -10,15 +11,15 @@ public class Hero extends Creature implements Clickable, Typeable {
 		super(x, y, w, h);
 	}
 
-	@Override
 	public void keyPressed(PApplet marker) {
-		// TODO Auto-generated method stub
-		
+		if(marker.keyCode == 68) {
+			
+			
+		}
 	}
 
-	@Override
 	public void keyReleased(PApplet marker) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

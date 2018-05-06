@@ -26,7 +26,7 @@ import interfaces.Drawable;
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
 	private boolean isVisible;
-
+	
 	public Sprite(int x, int y, int w, int h, boolean visiblity) {
 		super(x,y,w,h);
 
@@ -93,4 +93,6 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public boolean isVisible() {
 		return isVisible;
 	}
+	
+	
 }
