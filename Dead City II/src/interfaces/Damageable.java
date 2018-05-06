@@ -1,5 +1,8 @@
 package interfaces;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 public interface Damageable {
 	
 	/**
@@ -12,5 +15,7 @@ public interface Damageable {
 	 * @param damage - the amount of damage to deal
 	 */
 	public void takeDamage(double damage);
-
+	
+	public Rectangle2D getLocationRect();
+	
 }

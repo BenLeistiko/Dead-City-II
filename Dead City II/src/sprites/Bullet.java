@@ -7,14 +7,20 @@ import processing.core.PApplet;
 
 public class Bullet extends Sprite implements Destructive {
 
-	public Bullet(int x, int y, int w, int h) {
+	private double damage;
+	private vX
+	
+	
+	
+	
+	public Bullet(double x, double y, double w, double h, double damage) {
 		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
+		this.damage = damage;
 	}
 
-	double damage;
 	
-	@Override
+	
+
 	public void draw(PApplet marker) {
 		// TODO Auto-generated method stub
 		
@@ -23,6 +29,11 @@ public class Bullet extends Sprite implements Destructive {
 	@Override
 	public void dealDamage(Damageable d) {
 		d.takeDamage(damage);
+	}
+
+	@Override
+	public double getDamage() {
+		return damage;
 	}
 
 }

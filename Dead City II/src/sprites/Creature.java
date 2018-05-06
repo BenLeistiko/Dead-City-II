@@ -1,5 +1,7 @@
 package sprites;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import interfaces.Damageable;
@@ -36,6 +38,8 @@ public class Creature extends Sprite implements Damageable {
 	private double vX;
 	private double vY;
 	private double maxV;
+	
+	private boolean facingRight;
 
 	public Creature(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -76,8 +80,12 @@ public class Creature extends Sprite implements Damageable {
 		}
 	}
 
+	
+	
 	public void takeDamage(Destructive d) {
-		d.dealDamage(this);
+		if(Math.random()>agility) {
+			health = health - d.getDamage()* (1-defense);
+		}
 	}
 
 	public void takeDamage(double damage) {
@@ -109,5 +117,21 @@ public class Creature extends Sprite implements Damageable {
 	public double calculateVelocity() {
 		return Math.sqrt(vX*vX+vY*vY);
 	}
+
+	@Override
+	public Rectangle2D getLocationRect(){
+		
+		return this.getBounds2D();
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
+	}
+	
+	
 
 }
