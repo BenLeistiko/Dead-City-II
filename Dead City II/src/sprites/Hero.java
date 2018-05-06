@@ -13,7 +13,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void keyPressed(PApplet marker) {
 		if(marker.keyCode == 68) {
-			
+			if(calculateVelocity() <10) {
+				
+			}
 			
 		}
 	}
