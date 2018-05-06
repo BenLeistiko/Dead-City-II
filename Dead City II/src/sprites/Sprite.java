@@ -24,10 +24,13 @@ import interfaces.Drawable;
  *
  */
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
-	
-	public Sprite(int x, int y, int w, int h) {
+	// FIELDS
+	private boolean isVisible;
+
+	public Sprite(int x, int y, int w, int h, boolean Visiblity) {
 		super(x,y,w,h);
 
+		isVisible = true;
 	}
 
 	public boolean collides(Sprite s) {
