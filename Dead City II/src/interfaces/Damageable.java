@@ -11,6 +11,6 @@ public interface Damageable {
 	 * Takes a specified amount of damage
 	 * @param damage - the amount of damage to deal
 	 */
-	public void takeDamage(Double damage);
+	public void takeDamage(double damage);
 
 }

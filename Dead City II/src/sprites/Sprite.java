@@ -25,37 +25,13 @@ import interfaces.Drawable;
  */
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
-	private BufferedImage img;
 	private boolean isVisible;
 
-	private boolean textured;
-
-
-
-	// CONSTRUCTOR
-	/*
-		 All coordinates are in assumed coordinates and represent data for the
-		 image, not the window.
-	 */
-	public Sprite(String filename, int x, int y, int w, int h, boolean textured) {
+	public Sprite(int x, int y, int w, int h) {
 		super(x,y,w,h);
-		try {
-			img = ImageIO.read(new File(filename));
-		} catch(IOException ex) {
-		}
 
 		isVisible = true;
-
-		this.textured = textured;
 	}
-
-
-	// NON-STATIC METHODS
-	/*
-	 * If the MovingImage should be visible, draws the MovingImage to the
-	 * screen in the way specified by the resizable field.
-	 */
-	public abstract void draw(Graphics2D g, ImageObserver io);
 
 	public boolean collides(Sprite s) {
 		if(this.intersects(s)) {
@@ -77,10 +53,6 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 
 		return hits;
 	}
-
-
-
-
 
 	//a movebyAmount method but makes sure it doesnt leave the limits
 	public void moveInLimits(Rectangle2D.Double limits, double x, double y) {
@@ -115,8 +87,4 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public boolean isVisible() {
 		return isVisible;
 	}
-
-
-
-
 }

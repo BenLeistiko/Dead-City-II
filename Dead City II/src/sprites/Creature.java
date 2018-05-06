@@ -19,7 +19,10 @@ public class Creature extends Sprite implements Damageable {
 	private State state;
 	
 	private int animationPos;
-	
+
+	public Creature(int x, int y, int w, int h) {
+		super(x, y, w, h);
+	}
 	
 	public void draw(PApplet marker) {
 	
@@ -30,7 +33,7 @@ public class Creature extends Sprite implements Damageable {
 		d.dealDamage(this);
 	}
 
-	public void takeDamage(Double damage) {
+	public void takeDamage(double damage) {
 		if(Math.random()>agility) {
 			health = health - damage* (1-defense);
 		}
