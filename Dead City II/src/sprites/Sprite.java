@@ -78,8 +78,8 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return hits;
 	}
 	
-	public boolean isAbove(Sprite other) {
-		if(this.getY()+this.getHeight() > other.getY()) {
+	public boolean isBelow(Sprite other) {
+		if(this.getY()+this.getHeight() < other.getY()) {
 			return true;
 		}
 		return false;
