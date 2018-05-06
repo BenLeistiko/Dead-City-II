@@ -30,7 +30,7 @@ public class Main {
 		
 		window.setName("Dead City II");
 		window.setLocation(0,0);
-		Image icon = (new ImageIcon("Dead-City-II-Icon.jpg")).getImage();
+		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 		
 		
