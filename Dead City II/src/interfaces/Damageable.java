@@ -1,5 +1,16 @@
 package interfaces;
 
 public interface Damageable {
+	
+	/**
+	 * Takes damage from a Destructive object
+	 * @param d - the destructive that deals the damage
+	 */
+	public void takeDamage(Destructive d);
+	/**
+	 * Takes a specified amount of damage
+	 * @param damage - the amount of damage to deal
+	 */
+	public void takeDamage(Double damage);
 
 }
