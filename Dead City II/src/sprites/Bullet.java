@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Bullet extends Sprite implements Destructive {
 
 	private double damage;
-	private vX
+	
 	
 	
 	
