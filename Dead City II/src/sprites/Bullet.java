@@ -12,6 +12,7 @@ public class Bullet extends Sprite implements Destructive {
 	
 	
 	
+	
 	public Bullet(double x, double y, double w, double h, double damage) {
 		super(x, y, w, h);
 		this.damage = damage;
