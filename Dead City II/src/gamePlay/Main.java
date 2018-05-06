@@ -19,6 +19,8 @@ public class Main {
 	public static final double frameTime = 1/60;
 	public static final double GRAVITY = -10;//PIXLES per second^2
 
+	
+	
 	public static void main(String args[]) {
 		DrawingSurface drawing = new DrawingSurface();
 		PApplet.runSketch(new String[]{""}, drawing);

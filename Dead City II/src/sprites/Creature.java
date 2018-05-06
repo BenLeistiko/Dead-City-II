@@ -1,5 +1,7 @@
 package sprites;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import gamePlay.Main;
@@ -45,6 +47,8 @@ public class Creature extends Sprite implements Damageable {
 
 	private double vX;
 	private double vY;
+	
+	private boolean facingRight;
 
 	ArrayList<Sprite> collision;
 
@@ -121,7 +125,9 @@ public class Creature extends Sprite implements Damageable {
 	}
 
 	public void takeDamage(Destructive d) {
-		d.dealDamage(this);
+		if(Math.random()>agility) {
+			health = health - d.getDamage()* (1-defense);
+		}
 	}
 
 	public void takeDamage(double damage) {

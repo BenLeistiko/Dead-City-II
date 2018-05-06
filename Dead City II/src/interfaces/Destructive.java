@@ -8,4 +8,6 @@ public interface Destructive {
 	 * @pre do NOT call d.takeDamage(this); it will generate an endless loop
 	 */
 	public void dealDamage(Damageable d);
+	
+	public double getDamage();
 }

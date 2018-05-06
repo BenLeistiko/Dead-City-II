@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="sprites.Sprite" project="Dead City II" 
     file="/Dead City II/src/sprites/Sprite.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="339" y="214"/>    
+    <position height="-1" width="-1" x="562" y="254"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="gamePlay.Main" project="Dead City II" file="/Dead City II/src/gamePlay/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="624" y="96"/>    
+    <position height="-1" width="-1" x="802" y="78"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </interface>  
   <class id="20" language="java" name="gamePlay.DrawingSurface" project="Dead City II" 
     file="/Dead City II/src/gamePlay/DrawingSurface.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="405" y="92"/>    
+    <position height="-1" width="-1" x="563" y="62"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -217,42 +217,42 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="25">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <realization id="27">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="19"/>  
+  <realization id="26">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="3"/>  
   </realization>  
-  <generalization id="28">    
+  <generalization id="27">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="24"/>  
   </generalization>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <realization id="30">    
+  <generalization id="29">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="31">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="8"/>  
   </realization>  
-  <generalization id="31">    
-    <end type="SOURCE" refId="18"/>    
+  <generalization id="32">    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="24"/>  
   </generalization>  
-  <dependency id="32">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="20"/>  
-  </dependency>  
-  <realization id="33">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="21"/>  
-  </realization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
   <realization id="34">    
     <bendpoint x="63" y="295"/>    
     <bendpoint x="63" y="416"/>    
@@ -260,58 +260,58 @@
     <end type="TARGET" refId="21"/>  
   </realization>  
   <generalization id="35">    
-    <end type="SOURCE" refId="13"/>    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="24"/>  
   </generalization>  
   <generalization id="36">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
   <generalization id="37">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="39">    
+  <realization id="38">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="39">    
     <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
+    <end type="TARGET" refId="21"/>  
+  </realization>  
   <realization id="40">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="42">    
     <bendpoint x="246" y="416"/>    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <generalization id="41">    
+  <realization id="43">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="46">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="16"/>    
+  <generalization id="47">    
+    <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="24"/>  
   </generalization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="44">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <realization id="45">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="46">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="24"/>  
-  </generalization>  
-  <realization id="47">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

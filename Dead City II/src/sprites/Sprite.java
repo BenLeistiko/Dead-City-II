@@ -27,13 +27,13 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
 	private boolean isVisible;
 	
-	public Sprite(int x, int y, int w, int h, boolean visiblity) {
+	public Sprite(double x, double y, double w, double h, boolean visiblity) {
 		super(x,y,w,h);
 
 		isVisible = visiblity;
 	}
 
-	public Sprite(int x, int y, int w, int h) {
+	public Sprite(double x, double y, double w, double h) {
 		super(x,y,w,h);
 
 		isVisible = true;
