@@ -24,21 +24,12 @@ import interfaces.Drawable;
  *
  */
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
-	// FIELDS
-	private boolean isVisible;
-
-	public Sprite(int x, int y, int w, int h, boolean visiblity) {
-		super(x,y,w,h);
-
-		isVisible = visiblity;
-	}
-
+	
 	public Sprite(int x, int y, int w, int h) {
 		super(x,y,w,h);
 
-		isVisible = true;
 	}
-	
+
 	public boolean collides(Sprite s) {
 		if(this.intersects(s)) {
 			return true;
@@ -60,7 +51,12 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return hits;
 	}
 
-	//a movebyAmount method but makes sure it doesnt leave the limits
+	
+	public void moveByAmount(double x, double y) {
+		this.x+=x;
+		this.y+=y;
+	}
+	
 	public void moveInLimits(Rectangle2D.Double limits, double x, double y) {
 		double newX = this.x + x;
 		double newY = this.y + y;
