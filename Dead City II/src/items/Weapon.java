@@ -6,16 +6,34 @@ import interfaces.Slotable;
  * @author Ben
  *
  */
-public class Weapon implements Slotable {
+public abstract class Weapon implements Slotable {
 
 	private double damage;
-	private double accuracy;	
+	
+	public Weapon(double damage) {
+		this.damage = damage;
+		
+		
+		
+		
+	}
+	
+	
+	public abstract void attack(double x, double y); 
 	
 	
 	
-	
-	
-	
-	
-	
+	public void upgrade(int upgradeAmt) {
+		damage+=upgradeAmt;
+	}
+
+
+
+
+
+
+
+
+
+
 }
