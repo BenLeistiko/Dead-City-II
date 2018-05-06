@@ -13,7 +13,7 @@ public class MeleeWeapon extends Weapon implements Destructive {
 	}
 
 	public void dealDamage(Damageable d) {
-
+		d.takeDamage(this.getDamage());
 	}
 
 	public void attack(double x, double y) {
