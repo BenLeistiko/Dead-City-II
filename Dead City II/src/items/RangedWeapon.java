@@ -1,6 +1,6 @@
 package items;
 
-public class Gun extends Weapon {
+public class RangedWeapon {
 
 	
 	
@@ -11,4 +11,8 @@ public class Gun extends Weapon {
 	
 	
 	
+	
+	
+	
 }
+

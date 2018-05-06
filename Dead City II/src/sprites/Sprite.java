@@ -60,7 +60,11 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return hits;
 	}
 
-	//a movebyAmount method but makes sure it doesnt leave the limits
+	public void moveByAmount(double x, double y) {
+		this.x+=x;
+		this.y+=y;
+	}
+	
 	public void moveInLimits(Rectangle2D.Double limits, double x, double y) {
 		double newX = this.x + x;
 		double newY = this.y + y;
@@ -93,6 +97,4 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public boolean isVisible() {
 		return isVisible;
 	}
-	
-	
 }
