@@ -23,6 +23,7 @@ public class ResourceLoader {
 	public void load(PApplet loader) {
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
+		
 		states.add("Attacking");
 
 		animationNames.add("Zombie");
