@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import interfaces.Damageable;
 import interfaces.Destructive;
@@ -15,7 +16,7 @@ import processing.core.PImage;
  * @author Ben
  *
  */
-public class Creature extends Sprite implements Damageable {
+public abstract class Creature extends MovingSprite implements Damageable {
 	private static final double SPRINT_SPEED = 2;//the number of times faster that sprint speed is
 
 	public enum State {WALKING, RUNNING, ATTACKING, JUMPING};
@@ -45,29 +46,119 @@ public class Creature extends Sprite implements Damageable {
 	private int framesPerJumping;
 	private ArrayList<PImage> jumping;
 
-	private double vX;
-	private double vY;
-	
+
 	private boolean facingRight;
+	private boolean onASurface;
+	//ArrayList<Sprite> collision;
 
-	ArrayList<Sprite> collision;
-
-	public Creature(int x, int y, int w, int h, ArrayList<Sprite> collision) {
+	public Creature(int x, int y, int w, int h/*, ArrayList<Sprite> collision*/) {
 		super(x, y, w, h);
-		this.collision =  collision;
+		onASurface = false;
+		facingRight = false;
+		//this.collision =  collision;
+	}
+
+	
+	
+	public void act(ArrayList<Sprite> worldlyThings) {
+
+		double xCoord = getX();
+		double yCoord = getY();
+		double width = getWidth();
+		double height = getHeight();
+
+		// ***********Y AXIS***********
+
+		setvY(getvY() + Main.GRAVITY); // GRAVITY
+		double yCoord2 = yCoord + getvY();
+
+		Rectangle2D.Double strechY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(getvY()));
+
+		onASurface = false;
+
+		if (getvY() > 0) {
+			Sprite standingSurface = null;
+			for (Sprite s : worldlyThings) {
+				if (s.intersects(strechY)) {
+					onASurface = true;
+					standingSurface = s;
+					setvY(0);
+				}
+			}
+			if (standingSurface != null) {
+				Rectangle r = standingSurface.getBounds();
+				yCoord2 = r.getY()-height;
+			}
+		} else if (getvY() < 0) {
+			Sprite headSurface = null;
+			for (Sprite s : worldlyThings) {
+				if (s.intersects(strechY)) {
+					headSurface = s;
+					setvY(0);
+				}
+			}
+			if (headSurface != null) {
+				Rectangle r = headSurface.getBounds();
+				yCoord2 = r.getY()+r.getHeight();
+			}
+		}
+
+		if (Math.abs(getvY()) < .2)
+			setvY(0);
+
+		// ***********X AXIS***********
+
+
+		setvX(getvX() * Main.FRICTION);
+
+		double xCoord2 = xCoord + getvX();
+
+		Rectangle2D.Double strechX = new Rectangle2D.Double(Math.min(xCoord,xCoord2),yCoord2,width+Math.abs(getvX()),height);
+
+		if (getvX() > 0) {
+			Sprite rightSurface = null;
+			for (Sprite s : worldlyThings) {
+				if (s.intersects(strechX)) {
+					rightSurface = s;
+					setvX(0);
+				}
+			}
+			if (rightSurface != null) {
+				Rectangle r = rightSurface.getBounds();
+				xCoord2 = r.getX()-width;
+			}
+		} else if (getvX() < 0) {
+			Sprite leftSurface = null;
+			for (Sprite s : worldlyThings) {
+				if (s.intersects(strechX)) {
+					leftSurface = s;
+					setvX(0);
+				}
+			}
+			if (leftSurface != null) {
+				Rectangle r = leftSurface.getBounds();
+				xCoord2 = r.getX()+r.getWidth();
+			}
+		}
+
+
+		if (Math.abs(getvX()) < .2)
+			setvX(0);
+
+		moveToLocation(xCoord2,yCoord2);
 	}
 
 	public void draw(PApplet marker) {
 
-		
-		
-		super.moveByAmount(vX*Main.frameTime, vY*Main.frameTime);
+		act();
 
 		if(state == State.WALKING) {
 			if(animationPos > walking.size())
 				animationPos = 0;
 			marker.image(walking.get(animationPos), (float)getX(), (float)getX());
-
+			//marker.image(DrawingSurface.resources.getAnimation("Walking", animationPos), (float)getX(), (float)getX());   ????????????
+			
+			
 			if(animationCounter>framesPerWalking) {
 				animationCounter = 0;
 				animationPos++;
@@ -120,7 +211,7 @@ public class Creature extends Sprite implements Damageable {
 			animationCounter = 0;
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -135,27 +226,29 @@ public class Creature extends Sprite implements Damageable {
 			health = health - damage* (1-defense);
 		}
 	}
-	
+
 	public void jump() {
-		if(setState(state.JUMPING)) {
+		if(setState(state.JUMPING) && onASurface) {
 			state = state.JUMPING;
-			vY = jumpPower;
+			setvY(jumpPower);
 		}
 	}
-		
-	public double getvX() {
-		return vX;
+
+	
+
+
+	public Rectangle2D getLocationRect() {
+
+		return this.getBounds2D();
 	}
 
-	public void setvX(double vX) {
-		this.vX = vX;
+	public boolean isFacingRight() {
+		return facingRight;
 	}
 
-	public double getvY() {
-		return vY;
+	public void swapFacingRight() {
+		this.facingRight = !facingRight;
 	}
 
-	public void setvY(double vY) {
-		this.vY = vY;
-	}
+
 }

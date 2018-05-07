@@ -11,8 +11,8 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	ArrayList<Integer> keysPressed;
 
-	public Hero(int x, int y, int w, int h, ArrayList<Sprite> collision) {
-		super(x, y, w, h, collision);
+	public Hero(int x, int y, int w, int h/*, ArrayList<Sprite> collision*/) {
+		super(x, y, w, h);
 	}
 
 	public void keyPressed(PApplet marker) {

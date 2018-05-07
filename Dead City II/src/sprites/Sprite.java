@@ -15,7 +15,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import gamePlay.DrawingSurface;
 import interfaces.Drawable;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * 
@@ -26,12 +29,15 @@ import interfaces.Drawable;
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
 	private boolean isVisible;
-	private ArrayList<Sprite> sprites;
+	private String imageKey;
+//	private ArrayList<Sprite> sprites;
 	
-	public Sprite(double x, double y, double w, double h, boolean visiblity, ArrayList<Sprite> sprites) {
+	public Sprite(String imageKey,double x, double y, double w, double h, boolean visiblity, ArrayList<Sprite> sprites) {
 		super(x,y,w,h);
-		this.sprites = sprites;
+		//this.sprites = sprites;
+		this.imageKey = imageKey;
 		isVisible = visiblity;
+		
 	}
 	public Sprite(double x, double y, double w, double h, boolean visiblity) {
 		super(x,y,w,h);
@@ -55,15 +61,16 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	}
 
 	public ArrayList<Sprite> collides() {
+		/*
 		ArrayList<Sprite> hits = new ArrayList<Sprite>();
-
 		for(Sprite s: sprites) {
 			if(this.collides(s)) {
 				hits.add(s);
 			}
 		}
-
 		return hits;
+		*/
+		return null;
 	}
 	
 	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
@@ -122,4 +129,11 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public boolean isVisible() {
 		return isVisible;
 	}
+	
+	/*
+	public void draw(PApplet marker) {
+		marker.image(DrawingSurface.resources.getImage(imageKey), (float)this.getX(), (float)this.getY(), (float)this.getWidth(), (float)this.getHeight());
+	}
+	*/
+	
 }

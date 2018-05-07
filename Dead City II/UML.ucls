@@ -1,321 +1,462 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="scenes.Camp" project="Dead City II" file="/Dead City II/src/scenes/Camp.java" 
+  <package id="1" language="java" name="gamePlay" project="Dead City II" file="/Dead City II/src/gamePlay" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="661" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="2" language="java" name="interfaces.Slotable" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Slotable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="234" y="74"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="3" language="java" name="interfaces.Damageable" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Damageable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="391" y="568"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="4" language="java" name="sprites.Creature" project="Dead City II" 
-    file="/Dead City II/src/sprites/Creature.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="280" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="sprites.Sprite" project="Dead City II" 
-    file="/Dead City II/src/sprites/Sprite.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="562" y="254"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="scenes.Map" project="Dead City II" file="/Dead City II/src/scenes/Map.java" 
+    <position height="249" width="304" x="6" y="26"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="interfaces" project="Dead City II" file="/Dead City II/src/interfaces" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="788" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="sprites.Barrier" project="Dead City II" 
-    file="/Dead City II/src/sprites/Barrier.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="407" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="8" language="java" name="interfaces.Drawable" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Drawable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="145" y="326"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="9" language="java" name="sprites.Bullet" project="Dead City II" 
-    file="/Dead City II/src/sprites/Bullet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="534" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="10" language="java" name="interfaces.Typeable" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Typeable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="248" y="568"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="11" language="java" name="gamePlay.Button" project="Dead City II" 
+    <position height="363" width="571" x="328" y="11"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="items" project="Dead City II" file="/Dead City II/src/items" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="428" x="-11" y="371"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="scenes" project="Dead City II" file="/Dead City II/src/scenes" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="369" width="821" x="934" y="56"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="sprites" project="Dead City II" file="/Dead City II/src/sprites" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="479" width="911" x="448" y="408"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="6" language="java" name="gamePlay.Button" project="Dead City II" 
     file="/Dead City II/src/gamePlay/Button.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="137" y="214"/>    
+    <position height="-1" width="-1" x="244" y="223"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="sprites.Hero" project="Dead City II" file="/Dead City II/src/sprites/Hero.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="172" y="456"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="scenes.Inventory" project="Dead City II" 
-    file="/Dead City II/src/scenes/Inventory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="915" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="sprites.DamageableBarrier" project="Dead City II" 
-    file="/Dead City II/src/sprites/DamageableBarrier.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="471" y="456"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="gamePlay.Main" project="Dead City II" file="/Dead City II/src/gamePlay/Main.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="802" y="78"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="scenes.SuppliesMenu" project="Dead City II" 
-    file="/Dead City II/src/scenes/SuppliesMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1051" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="sprites.Monster" project="Dead City II" 
-    file="/Dead City II/src/sprites/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="320" y="456"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="scenes.BattleField" project="Dead City II" 
-    file="/Dead City II/src/scenes/BattleField.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1186" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="19" language="java" name="interfaces.Destructive" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Destructive.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="630" y="447"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="20" language="java" name="gamePlay.DrawingSurface" project="Dead City II" 
+  <class id="7" language="java" name="gamePlay.DrawingSurface" project="Dead City II" 
     file="/Dead City II/src/gamePlay/DrawingSurface.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="563" y="62"/>    
+    <position height="-1" width="-1" x="230" y="124"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="21" language="java" name="interfaces.Clickable" project="Dead City II" 
-    file="/Dead City II/src/interfaces/Clickable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="105" y="568"/>    
+  <class id="8" language="java" name="gamePlay.Main" project="Dead City II" file="/Dead City II/src/gamePlay/Main.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="80" y="216"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="gamePlay.ResourceLoader" project="Dead City II" 
+    file="/Dead City II/src/gamePlay/ResourceLoader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="86" y="123"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="interfaces.Slotable" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Slotable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="461" y="250"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="22" language="java" name="scenes.MainMenu" project="Dead City II" 
-    file="/Dead City II/src/scenes/MainMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1313" y="335"/>    
+  <interface id="11" language="java" name="interfaces.Destructive" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Destructive.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="431" y="339"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </class>  
-  <class id="23" language="java" name="scenes.ResearchMenu" project="Dead City II" 
-    file="/Dead City II/src/scenes/ResearchMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1452" y="335"/>    
+  </interface>  
+  <interface id="12" language="java" name="interfaces.Drawable" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Drawable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="826" y="289"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="13" language="java" name="interfaces.Typeable" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Typeable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="409" y="76"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="14" language="java" name="interfaces.Clickable" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Clickable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="491" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="interfaces.Damageable" project="Dead City II" 
+    file="/Dead City II/src/interfaces/Damageable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="673" y="334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="items.MeleeWeapon" project="Dead City II" 
+    file="/Dead City II/src/items/MeleeWeapon.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="261" y="507"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="scenes.Scene" project="Dead City II" file="/Dead City II/src/scenes/Scene.java" 
+  <class id="17" language="java" name="items.Weapon" project="Dead City II" file="/Dead City II/src/items/Weapon.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="936" y="214"/>    
+    <position height="-1" width="-1" x="89" y="563"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="25">    
+  <class id="18" language="java" name="items.RangedWeapon" project="Dead City II" 
+    file="/Dead City II/src/items/RangedWeapon.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="257" y="610"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="items.Supplies" project="Dead City II" 
+    file="/Dead City II/src/items/Supplies.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="66" y="450"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="scenes.Camp" project="Dead City II" file="/Dead City II/src/scenes/Camp.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="989" y="374"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="scenes.BattleField" project="Dead City II" 
+    file="/Dead City II/src/scenes/BattleField.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1100" y="374"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="scenes.ResearchMenu" project="Dead City II" 
+    file="/Dead City II/src/scenes/ResearchMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1229" y="372"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="scenes.Map" project="Dead City II" file="/Dead City II/src/scenes/Map.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1386" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="scenes.Inventory" project="Dead City II" 
+    file="/Dead City II/src/scenes/Inventory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1520" y="334"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="scenes.Scene" project="Dead City II" file="/Dead City II/src/scenes/Scene.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1283" y="173"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="scenes.SuppliesMenu" project="Dead City II" 
+    file="/Dead City II/src/scenes/SuppliesMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1576" y="215"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="scenes.MainMenu" project="Dead City II" 
+    file="/Dead City II/src/scenes/MainMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1565" y="112"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="false" private="true" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="sprites.Creature" project="Dead City II" 
+    file="/Dead City II/src/sprites/Creature.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="563" y="595"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="sprites.Barrier" project="Dead City II" 
+    file="/Dead City II/src/sprites/Barrier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1065" y="500"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="sprites.Bullet" project="Dead City II" 
+    file="/Dead City II/src/sprites/Bullet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="545" y="498"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="sprites.Hero" project="Dead City II" file="/Dead City II/src/sprites/Hero.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="567" y="798"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="sprites.MovingSprite" project="Dead City II" 
+    file="/Dead City II/src/sprites/MovingSprite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="910" y="772"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="sprites.DamageableBarrier" project="Dead City II" 
+    file="/Dead City II/src/sprites/DamageableBarrier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1098" y="761"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="sprites.Monster" project="Dead City II" 
+    file="/Dead City II/src/sprites/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="734" y="816"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="sprites.Sprite" project="Dead City II" 
+    file="/Dead City II/src/sprites/Sprite.java" binary="false" corner="BOTTOM_LEFT">    
+    <position height="-1" width="-1" x="827" y="505"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="36">    
+    <bendpoint x="980" y="538"/>    
+    <bendpoint x="921" y="398"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="37">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="39">    
     <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="TARGET" refId="25"/>  
   </generalization>  
-  <realization id="26">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="24"/>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="28"/>  
   </generalization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="24"/>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="35"/>  
   </generalization>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="24"/>  
-  </generalization>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <realization id="31">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="24"/>  
-  </generalization>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <realization id="34">    
-    <bendpoint x="63" y="295"/>    
-    <bendpoint x="63" y="416"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="21"/>  
-  </realization>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="24"/>  
-  </generalization>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="38">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="21"/>  
-  </realization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <realization id="41">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
   <realization id="42">    
-    <bendpoint x="246" y="416"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
+    <bendpoint x="363" y="576"/>    
+    <bendpoint x="291" y="301"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
   <realization id="43">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="19"/>  
+    <bendpoint x="1230" y="89"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="13"/>  
   </realization>  
-  <dependency id="44">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="20"/>  
-  </dependency>  
+  <realization id="44">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
   <generalization id="45">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="35"/>  
   </generalization>  
-  <generalization id="46">    
+  <dependency id="46">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <realization id="47">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <realization id="48">    
+    <bendpoint x="370" y="573"/>    
+    <bendpoint x="299" y="301"/>    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <realization id="51">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <realization id="53">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <realization id="56">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <realization id="59">    
+    <bendpoint x="166" y="359"/>    
     <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="60">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="25"/>  
   </generalization>  
-  <generalization id="47">    
+  <dependency id="61">    
+    <bendpoint x="909" y="467"/>    
+    <bendpoint x="692" y="464"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <realization id="62">    
+    <bendpoint x="69" y="292"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <realization id="64">    
+    <bendpoint x="661" y="533"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <realization id="67">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <dependency id="69">    
+    <bendpoint x="432" y="597"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <generalization id="70">    
     <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="35"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
-    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
-    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+    <attributes public="false" package="true" protected="false" private="true" static="true"/>    
+    <operations public="false" package="true" protected="true" private="true" static="true"/>  
   </classifier-display>  
   <association-display labels="true" multiplicity="true"/>
 </class-diagram>

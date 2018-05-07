@@ -2,6 +2,7 @@ package sprites;
 
 import java.util.ArrayList;
 
+import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
 
@@ -17,19 +18,43 @@ public abstract class MovingSprite extends Sprite {
 		super(x, y, w, h,visible);
 	}
 
-	public void draw(PApplet marker) {
+	public double getvX() {
+		return vX;
+	}
+
+	public void setvX(double vX) {
+		this.vX = vX;
+	}
+
+	public double getvY() {
+		return vY;
+	}
+
+	public void setvY(double vY) {
+		this.vY = vY;
+	}
+
+	
+	
+	public void act() {
+		
+		
 		ArrayList<Sprite> hits = super.collides();
 		boolean isFalling = true;
-		for(Sprite s:hits) {
+		for(Sprite s:hits) 
 			if(super.isBelow(s))
-		}
+		
 		vY = vY + Main.GRAVITY*Main.frameTime;
 		super.moveByAmount(vX*Main.frameTime, vY*Main.frameTime);
 		
+		
+		
+		
+		
+		
+		
+		
 	}
-	
-	
-	
 	
 	
 	

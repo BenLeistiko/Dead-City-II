@@ -1,6 +1,7 @@
 package sprites;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
 import interfaces.Damageable;
@@ -17,11 +18,17 @@ public class DamageableBarrier extends Barrier implements Damageable {
 	}	
 
 	public void takeDamage(Destructive d) {
-		d.dealDamage(this);
+		health = health-(d.getDamage()*armor);
 	}
 
 	public void takeDamage(double damage) {
 		health = health-(damage*armor);
+	}
+
+	@Override
+	public Rectangle2D getLocationRect() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
