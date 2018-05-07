@@ -42,7 +42,7 @@ public class ResourceLoader {
 				ArrayList<PImage> list = new ArrayList<PImage>();
 				int number = 1;
 				while(true) {
-					PImage img = loader.loadImage(fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
+					PImage img = loader.loadImage(fileSeparator+"resources" +fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
 					if(img == null)
 						break; 
 					list.add(img);
