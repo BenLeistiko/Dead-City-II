@@ -55,7 +55,7 @@ public class ResourceLoader {
 	}
 
 	public PImage getImage(String key) {
-		return images.get(key);
+		return images.get(key); 
 
 	}
 
