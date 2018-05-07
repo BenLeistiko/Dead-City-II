@@ -34,30 +34,5 @@ public abstract class MovingSprite extends Sprite {
 		this.vY = vY;
 	}
 
-	
-	
-	public void act() {
-		
-		
-		ArrayList<Sprite> hits = super.collides();
-		boolean isFalling = true;
-		for(Sprite s:hits) 
-			if(super.isBelow(s))
-		
-		vY = vY + Main.GRAVITY*Main.frameTime;
-		super.moveByAmount(vX*Main.frameTime, vY*Main.frameTime);
-		
-		
-		
-		
-		
-		
-		
-		
-	}
-	
-	
-	
-
 
 }
