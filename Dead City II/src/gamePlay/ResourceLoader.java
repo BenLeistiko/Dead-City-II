@@ -41,10 +41,10 @@ public class ResourceLoader {
 					number++;
 				}
 			}
-
 			animations.put(name, list);
-
 		}
+		
+		images.put("something", loader.loadImage("something.jpg"));
 
 	}
 

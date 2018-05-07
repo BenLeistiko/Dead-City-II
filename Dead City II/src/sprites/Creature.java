@@ -51,15 +51,15 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private boolean onASurface;
 	private final String key;
 	
-	//ArrayList<Sprite> collision;
+	
 
-	public Creature(String key,int x, int y, int w, int h, ArrayList<Sprite> collision ) {
+	public Creature(String key, double x, double y, double w, double h) {
 		super(x, y, w, h);
 		this.key = key;
 		onASurface = false;
 		facingRight = false;
 		
-		//this.collision =  collision;
+		
 	}
 
 	
@@ -153,8 +153,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void draw(PApplet marker) {
-
-		act();
+	
 
 		if(state == State.WALKING) {
 			if(animationPos > walking.size())
