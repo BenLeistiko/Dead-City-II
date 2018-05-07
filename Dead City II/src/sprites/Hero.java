@@ -12,9 +12,10 @@ public class Hero extends Creature implements Clickable, Typeable {
 	ArrayList<Integer> keysPressed;
 	Weapon weapon;
 
-	public Hero(String key, double x, double y, double w, double h, Weapon weapon) {
-		super(key, x, y, w, h);
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
+		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
+		keysPressed = new ArrayList<Integer>();
 		
 	}
 
