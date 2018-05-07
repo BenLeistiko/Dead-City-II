@@ -21,17 +21,23 @@ public class ResourceLoader {
 	}
 
 	public void load(PApplet loader) {
+		
+		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
 		
 		states.add("Attacking");
+		states.add("Attacking");
+		states.add("Attacking");
+		states.add("Attacking");
 
+		
 		animationNames.add("Zombie");
 		animationNames.add("Hero");
 
 		for(String name: animationNames) {
-			ArrayList<PImage> list = new ArrayList<PImage>();
 			for(String state:states) {
+				ArrayList<PImage> list = new ArrayList<PImage>();
 				int number = 1;
 				while(true) {
 					PImage img = loader.loadImage(name + state + number);
@@ -40,18 +46,23 @@ public class ResourceLoader {
 					list.add(img);
 					number++;
 				}
+				animations.put(name+state, list);
 			}
-
-			animations.put(name, list);
-
 		}
 
 	}
 
 
+	public ArrayList<PImage> getAnimationList(String key){
+		return animations.get(key);
+	}
+	
 	public PImage getAnimation(String key, int index) {
 		return animations.get(key).get(index);
-
+	}
+	
+	public int length(String key) {
+		return animations.get(key).size();
 	}
 
 	public PImage getImage(String key) {
