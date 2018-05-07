@@ -150,8 +150,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	public void draw(PApplet marker) {
 
-		act();
-
 		if(state == State.WALKING) {
 			if(animationPos > walking.size())
 				animationPos = 0;
