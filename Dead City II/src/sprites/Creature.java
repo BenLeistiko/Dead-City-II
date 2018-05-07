@@ -19,7 +19,7 @@ import processing.core.PImage;
 public abstract class Creature extends MovingSprite implements Damageable {
 	private static final double SPRINT_SPEED = 2;//the number of times faster that sprint speed is
 
-	public enum State {WALKING, RUNNING, ATTACKING, JUMPING};
+	public enum State {STANDING, WALKING, RUNNING, ATTACKING, JUMPING};
 
 	private double health;
 	private double defense;
@@ -33,7 +33,10 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	private int animationPos;//Position in arrayList
 	private int animationCounter;//How many frames you have been on the current image for
-
+	
+	private int framesPerStanding;//number of frames until you go to the next image (ie animationPos ++)
+	private ArrayList<PImage> standing;//images in walking
+	
 	private int framesPerWalking;//number of frames until you go to the next image (ie animationPos ++)
 	private ArrayList<PImage> walking;//images in walking
 
@@ -49,22 +52,45 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	private boolean facingRight;
 	private boolean onASurface;
-	private final String key;
 	
-	
+	ArrayList<Sprite> worldlyThings;
 
-	public Creature(String key, double x, double y, double w, double h) {
+	/**
+	 * Creates a new creature.  It's state is currently standing when created.  It will stay 2 frames on each picture by defualt.
+	 * @param x - sprite x location
+	 * @param y - sprite y location
+	 * @param w - sprite width
+	 * @param h -sprite height
+	 * @param worldlyThings - everything that this sprite can collide with
+	 * @param animationKey - what pictures you want to load
+	 */
+	public Creature(int x, int y, int w, int h, ArrayList<Sprite> worldlyThings, String animationKey) {
 		super(x, y, w, h);
-		this.key = key;
 		onASurface = false;
 		facingRight = false;
 		
+		standing = DrawingSurface.resources.getAnimationList(animationKey+"Standing");
+		walking = DrawingSurface.resources.getAnimationList(animationKey+"Walking");
+		running = DrawingSurface.resources.getAnimationList(animationKey+"Running");
+		attacking = DrawingSurface.resources.getAnimationList(animationKey+"Attacking");
+		jumping = DrawingSurface.resources.getAnimationList(animationKey+"Jumping");
 		
+		animationPos = 0;
+		animationCounter = 0;
+		state = State.STANDING;
+		
+		framesPerStanding = 2;
+		framesPerWalking = 2;
+		framesPerRunning = 2;
+		framesPerAttacking = 2;
+		framesPerJumping = 2;
+		
+		this.worldlyThings =  worldlyThings;
 	}
 
 	
 	
-	public void act(ArrayList<Sprite> worldlyThings) {
+	private void act(ArrayList<Sprite> worldlyThings) {
 
 		double xCoord = getX();
 		double yCoord = getY();
@@ -153,14 +179,21 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void draw(PApplet marker) {
-	
-
-		if(state == State.WALKING) {
+		act(worldlyThings);
+		
+		if(state == State.STANDING) {
+			if(animationPos > standing.size())
+				animationPos = 0;
+			marker.image(standing.get(animationPos), (float)getX(), (float)getX(), (float)getWidth(), (float)getHeight());
+			
+			if(animationCounter>framesPerStanding) {
+				animationCounter = 0;
+				animationPos++;
+			}
+		}else if(state == State.WALKING) {
 			if(animationPos > walking.size())
 				animationPos = 0;
-			marker.image(walking.get(animationPos), (float)getX(), (float)getX());
-			marker.image(DrawingSurface.resources.getAnimation(key+"walking", animationPos), (float)getX(), (float)getY(), (float)getWidth(),(float)getWidth());
-			
+			marker.image(walking.get(animationPos), (float)getX(), (float)getX());	
 			
 			if(animationCounter>framesPerWalking) {
 				animationCounter = 0;
