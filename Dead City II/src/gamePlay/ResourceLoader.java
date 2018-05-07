@@ -11,6 +11,8 @@ import sprites.Creature;
 
 public class ResourceLoader {
 
+	private static String fileSeparator = System.getProperty("file.separator");
+	
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
 
@@ -40,9 +42,9 @@ public class ResourceLoader {
 				ArrayList<PImage> list = new ArrayList<PImage>();
 				int number = 1;
 				while(true) {
-					PImage img = loader.loadImage(name + state + number);
+					PImage img = loader.loadImage(fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
 					if(img == null)
-						break;
+						break; 
 					list.add(img);
 					number++;
 				}
