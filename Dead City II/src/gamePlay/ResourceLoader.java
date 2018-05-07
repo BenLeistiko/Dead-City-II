@@ -23,6 +23,7 @@ public class ResourceLoader {
 	public void load(PApplet loader) {
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
+		
 		states.add("Attacking");
 
 		animationNames.add("Zombie");
@@ -48,12 +49,12 @@ public class ResourceLoader {
 	}
 
 
-	public ImageWrapper getAnimation(String key, int index) {
+	public PImage getAnimation(String key, int index) {
 		return animations.get(key).get(index);
 
 	}
 
-	public ImageWrapper getImage(String key) {
+	public PImage getImage(String key) {
 		return images.get(key);
 
 	}
