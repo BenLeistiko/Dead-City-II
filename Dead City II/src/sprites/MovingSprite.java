@@ -13,6 +13,8 @@ public abstract class MovingSprite extends Sprite {
 	
 	public MovingSprite(double x, double y, double w, double h) {
 		super(x, y, w, h);
+		vX = 0;
+		vy = 0;
 	}
 	public MovingSprite(double x, double y, double w, double h, boolean visible) {
 		super(x, y, w, h,visible);

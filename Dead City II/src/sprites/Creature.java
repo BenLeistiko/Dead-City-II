@@ -11,7 +11,7 @@ import interfaces.Destructive;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-/**
+/**	Represents a creature class, with the help of Shelby's Animation Demo for collision detection
  * 
  * @author Ben
  *
@@ -49,12 +49,16 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	private boolean facingRight;
 	private boolean onASurface;
+	private final String key;
+	
 	//ArrayList<Sprite> collision;
 
-	public Creature(int x, int y, int w, int h/*, ArrayList<Sprite> collision*/) {
+	public Creature(String key,int x, int y, int w, int h, ArrayList<Sprite> collision ) {
 		super(x, y, w, h);
+		this.key = key;
 		onASurface = false;
 		facingRight = false;
+		
 		//this.collision =  collision;
 	}
 
@@ -156,7 +160,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			if(animationPos > walking.size())
 				animationPos = 0;
 			marker.image(walking.get(animationPos), (float)getX(), (float)getX());
-			//marker.image(DrawingSurface.resources.getAnimation("Walking", animationPos), (float)getX(), (float)getX());   ????????????
+			marker.image(DrawingSurface.resources.getAnimation(key+"walking", animationPos), (float)getX(), (float)getY(), (float)getWidth(),(float)getWidth());
 			
 			
 			if(animationCounter>framesPerWalking) {

@@ -2,12 +2,12 @@ package gamePlay;
 
 import processing.core.PImage;
 
-public class ImageWrapper {
+public class PImage {
 
 	private String filename;
 	private PImage image;
 	
-	public ImageWrapper(String filename) {
+	public PImage(String filename) {
 		this.filename = filename;
 	}
 	

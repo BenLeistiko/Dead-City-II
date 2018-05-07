@@ -9,55 +9,84 @@ import processing.core.PImage;
 
 public class ResourceLoader {
 
-	private HashMap<String, ArrayList<ImageWrapper>> animations;
-	private HashMap<String, ImageWrapper> images;
+	private HashMap<String, ArrayList<PImage>> animations;
+	private HashMap<String, PImage> images;
 
 	public ResourceLoader() {
-		ArrayList<ImageWrapper> walking = new ArrayList<ImageWrapper>();
-	
-		walking.add(new ImageWrapper("walking1.jpg"));
-		walking.add(new ImageWrapper("walking2.jpg"));
-		animations.put("zombieWalking", walking);
-		
-		ArrayList<ImageWrapper> running = new ArrayList<ImageWrapper>();
-		running.add(new ImageWrapper("running1.jpg"));
-		running.add(new ImageWrapper("running2.jpg"));
-		
-		animations.put("running", running);
 		
 		
+	}
+
+	public void load(PApplet loader) {
+		ArrayList<PImage> zombieWalking = new ArrayList<PImage>();
 		
-		ArrayList<ImageWrapper> list = new ArrayList<ImageWrapper>();
+		zombieWalking.add(loader.loadImage("walking1"));
+		zombieWalking.add(loader.loadImage("walking2"));
+		animations.put("zombieWalking", zombieWalking);
 		
-		list.add(new ImageWrapper("somethingElse1.jpg"));
-		list.add(new ImageWrapper("somethingElse2.jpg"));
+		ArrayList<PImage> ZombieRunning = new ArrayList<PImage>();
+		ZombieRunning.add(loader.loadImage("running1"));
+		ZombieRunning.add(loader.loadImage("running1"));
+		
+		animations.put("ZombieRunning", ZombieRunning);
+		
+		
+		
+		ArrayList<PImage> list = new ArrayList<PImage>();
+		
+		list.add(loader.loadImage("box.wow"));
+
 		animations.put("somethingElse", list);
 		
 		
 		
-		images.put("basic not animated thing", new ImageWrapper("this some box thing that dont move.png"));
 		
 		
-
-	}
-
-	public void load(PApplet loader) {
-		Collection<ArrayList<ImageWrapper>> c = animations.values();
-		for(ArrayList<ImageWrapper> list : c) {
-			for(ImageWrapper i: list) {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		ArrayList<PImage> list = new ArrayList<PImage>();
+		list.add(loader.loadImage("running"));
+		list.add(loader.loadImage("running2"));
+		
+		animations.put("BruteRunning", list);
+		
+		
+		
+		
+		Collection<ArrayList<PImage>> c = animations.values();
+		for(ArrayList<PImage> list : c) {
+			for(PImage i: list) {
 				i.setPImage(loader.loadImage(i.getFilename()));
 			}
 		}
 	}
 
 
-	public ImageWrapper getAnimation(String key, int index) {
-		return animations.get(key).get(index);
+	public PImage getAnimation(String key, int index) {
+		return animations.get(key).get(index).getPImage();
 
 	}
 	
-	public ImageWrapper getImage(String key) {
-		return images.get(key);
+	public PImage getImage(String key) {
+		return images.get(key).getPImage();
 
 	}
 
