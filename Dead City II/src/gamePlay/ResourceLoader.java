@@ -48,12 +48,12 @@ public class ResourceLoader {
 	}
 
 
-	public ImageWrapper getAnimation(String key, int index) {
+	public PImage getAnimation(String key, int index) {
 		return animations.get(key).get(index);
 
 	}
 
-	public ImageWrapper getImage(String key) {
+	public PImage getImage(String key) {
 		return images.get(key);
 
 	}
