@@ -44,7 +44,7 @@ public class ResourceLoader {
 				while(true) {
 					PImage img = loader.loadImage(fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
 					if(img == null)
-						break;
+						break; 
 					list.add(img);
 					number++;
 				}
