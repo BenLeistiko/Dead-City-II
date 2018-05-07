@@ -167,9 +167,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.RUNNING) {
+		}else if(state == State.RUNNING) {
 			if(animationPos > running.size())
 				animationPos = 0;
 			marker.image(running.get(animationPos), (float)getX(), (float)getX());
@@ -178,9 +176,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.ATTACKING) {
+		}else if(state == State.ATTACKING) {
 			if(animationPos > attacking.size())
 				animationPos = 0;
 			marker.image(attacking.get(animationPos), (float)getX(), (float)getX());
@@ -189,9 +185,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.JUMPING) {
+		}else if(state == State.JUMPING) {
 			if(animationPos > jumping.size())
 				animationPos = 0;
 			marker.image(jumping.get(animationPos), (float)getX(), (float)getX());
