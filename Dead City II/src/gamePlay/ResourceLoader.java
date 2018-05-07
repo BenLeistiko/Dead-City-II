@@ -1,53 +1,50 @@
 package gamePlay;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import sprites.Creature;
 
 public class ResourceLoader {
 
-	private HashMap<String, ArrayList<ImageWrapper>> animations;
-	private HashMap<String, ImageWrapper> images;
+	private HashMap<String, ArrayList<PImage>> animations;
+	private HashMap<String, PImage> images;
 
 	public ResourceLoader() {
-		ArrayList<ImageWrapper> walking = new ArrayList<ImageWrapper>();
-	
-		walking.add(new ImageWrapper("walking1.jpg"));
-		walking.add(new ImageWrapper("walking2.jpg"));
-		animations.put("zombieWalking", walking);
-		
-		ArrayList<ImageWrapper> running = new ArrayList<ImageWrapper>();
-		running.add(new ImageWrapper("running1.jpg"));
-		running.add(new ImageWrapper("running2.jpg"));
-		
-		animations.put("running", running);
-		
-		
-		
-		ArrayList<ImageWrapper> list = new ArrayList<ImageWrapper>();
-		
-		list.add(new ImageWrapper("somethingElse1.jpg"));
-		list.add(new ImageWrapper("somethingElse2.jpg"));
-		animations.put("somethingElse", list);
-		
-		
-		
-		images.put("basic not animated thing", new ImageWrapper("this some box thing that dont move.png"));
-		
-		
+		animations = new HashMap<String, ArrayList<PImage>>();
+		images = new HashMap<String, PImage>();
 
 	}
 
 	public void load(PApplet loader) {
-		Collection<ArrayList<ImageWrapper>> c = animations.values();
-		for(ArrayList<ImageWrapper> list : c) {
-			for(ImageWrapper i: list) {
-				i.setPImage(loader.loadImage(i.getFilename()));
+		ArrayList<String> animationNames = new ArrayList<String>();
+		ArrayList<String> states = new ArrayList<String>();
+		states.add("Attacking");
+
+		animationNames.add("Zombie");
+		animationNames.add("Hero");
+
+		for(String name: animationNames) {
+			ArrayList<PImage> list = new ArrayList<PImage>();
+			for(String state:states) {
+				int number = 1;
+				while(true) {
+					PImage img = loader.loadImage(name + state + number);
+					if(img == null)
+						break;
+					list.add(img);
+					number++;
+				}
 			}
+
+			animations.put(name, list);
+
 		}
+
 	}
 
 
@@ -55,7 +52,7 @@ public class ResourceLoader {
 		return animations.get(key).get(index);
 
 	}
-	
+
 	public ImageWrapper getImage(String key) {
 		return images.get(key);
 

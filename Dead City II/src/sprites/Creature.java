@@ -19,7 +19,7 @@ import processing.core.PImage;
 public abstract class Creature extends MovingSprite implements Damageable {
 	private static final double SPRINT_SPEED = 2;//the number of times faster that sprint speed is
 
-	public enum State {WALKING, RUNNING, ATTACKING, JUMPING};
+	public enum State {STANDING, WALKING, RUNNING, ATTACKING, JUMPING};
 
 	private double health;
 	private double defense;
@@ -34,6 +34,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private int animationPos;//Position in arrayList
 	private int animationCounter;//How many frames you have been on the current image for
 
+	private int framesPerStanding;//number of frames until you go to the next image (ie animationPos ++)
+	private ArrayList<PImage> standing;//images in walking
+	
 	private int framesPerWalking;//number of frames until you go to the next image (ie animationPos ++)
 	private ArrayList<PImage> walking;//images in walking
 
@@ -51,7 +54,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private boolean onASurface;
 	//ArrayList<Sprite> collision;
 
-	public Creature(int x, int y, int w, int h/*, ArrayList<Sprite> collision*/) {
+	public Creature(int x, int y, int w, int h, ArrayList<PImage> walking/*, ArrayList<Sprite> collision*/) {
 		super(x, y, w, h);
 		onASurface = false;
 		facingRight = false;
@@ -149,21 +152,20 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void draw(PApplet marker) {
-
+		
+		act();
 		if(state == State.WALKING) {
 			if(animationPos > walking.size())
 				animationPos = 0;
 			marker.image(walking.get(animationPos), (float)getX(), (float)getX());
-			//marker.image(DrawingSurface.resources.getAnimation("Walking", animationPos), (float)getX(), (float)getX());   ????????????
+			//marker.image(DrawingSurface.resources.getAnimation(type + "Walking", animationPos), (float)getX(), (float)getX()); 
 			
 			
 			if(animationCounter>framesPerWalking) {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.RUNNING) {
+		}else if(state == State.RUNNING) {
 			if(animationPos > running.size())
 				animationPos = 0;
 			marker.image(running.get(animationPos), (float)getX(), (float)getX());
@@ -172,9 +174,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.ATTACKING) {
+		}else if(state == State.ATTACKING) {
 			if(animationPos > attacking.size())
 				animationPos = 0;
 			marker.image(attacking.get(animationPos), (float)getX(), (float)getX());
@@ -183,9 +183,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
-		}
-
-		if(state == State.JUMPING) {
+		}else if(state == State.JUMPING) {
 			if(animationPos > jumping.size())
 				animationPos = 0;
 			marker.image(jumping.get(animationPos), (float)getX(), (float)getX());
