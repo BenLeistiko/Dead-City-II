@@ -28,14 +28,14 @@ public class ResourceLoader {
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
 		
+		states.add("Walking");
+		states.add("Standing");
+		states.add("Running");
 		states.add("Attacking");
-		states.add("Attacking");
-		states.add("Attacking");
-		states.add("Attacking");
+		states.add("Jumping");
 
 		
-		animationNames.add("Zombie");
-		animationNames.add("Hero");
+		animationNames.add("Trooper");
 
 		for(String name: animationNames) {
 			for(String state:states) {
