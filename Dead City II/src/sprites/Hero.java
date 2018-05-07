@@ -10,9 +10,12 @@ import processing.core.PApplet;
 public class Hero extends Creature implements Clickable, Typeable {
 
 	ArrayList<Integer> keysPressed;
+	Weapon weapon;
 
-	public Hero(int x, int y, int w, int h/*, ArrayList<Sprite> collision*/) {
-		super(x, y, w, h);
+	public Hero(String key, double x, double y, double w, double h, Weapon weapon) {
+		super(key, x, y, w, h);
+		this.weapon = weapon;
+		
 	}
 
 	public void keyPressed(PApplet marker) {
