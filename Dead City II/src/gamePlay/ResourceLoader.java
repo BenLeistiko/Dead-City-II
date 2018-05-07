@@ -41,7 +41,7 @@ public class ResourceLoader {
 			for(String state:states) {
 				ArrayList<PImage> list = new ArrayList<PImage>();
 				int number = 1;
-				while(true) {
+				while(true) { 
 					PImage img = loader.loadImage(fileSeparator+"resources" +fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
 					if(img == null)
 						break; 
