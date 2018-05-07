@@ -64,7 +64,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	 * @param worldlyThings - everything that this sprite can collide with
 	 * @param animationKey - what pictures you want to load
 	 */
-	public Creature(int x, int y, int w, int h, ArrayList<Sprite> worldlyThings, String animationKey) {
+	public Creature(double x, double y, double w, double h, ArrayList<Sprite> worldlyThings, String animationKey) {
 		super(x, y, w, h);
 		onASurface = false;
 		facingRight = false;
