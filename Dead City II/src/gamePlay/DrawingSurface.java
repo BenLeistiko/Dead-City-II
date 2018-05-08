@@ -26,7 +26,7 @@ public class DrawingSurface extends PApplet{
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
-
+		mobs.add(joe);
 		mobs.add(b1);
 		mobs.add(b2);
 
