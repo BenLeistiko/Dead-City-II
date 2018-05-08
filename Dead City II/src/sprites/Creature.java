@@ -85,11 +85,11 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		animationCounter = 0;
 		state = State.STANDING;
 
-		framesPerStanding = 2;
-		framesPerWalking = 2;
-		framesPerRunning = 2;
-		framesPerAttacking = 3;
-		framesPerJumping = 2;
+		framesPerStanding = 4;
+		framesPerWalking = 4;
+		framesPerRunning = (int) Math.round((double)(framesPerWalking)/SPRINT_SPEED);
+		framesPerAttacking = 4;
+		framesPerJumping = 4;
 		framesPerMovingAndAttacking = 2;
 		
 		health = 10;
@@ -332,7 +332,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return onASurface;
 	}
 	
-	public Rectangle2D getLocationRect() {
+	public Rectangle2D getHitBox() {
 		return this.getBounds2D();
 	}
 	
@@ -359,6 +359,10 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			direction = -1;
 		}
 		super.setvX(vX);
+	}
+
+	public static double getSprintSpeed() {
+		return SPRINT_SPEED;
 	}
 	
 }
