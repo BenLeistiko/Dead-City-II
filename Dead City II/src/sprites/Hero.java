@@ -1,5 +1,6 @@
 package sprites;
 
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import interfaces.Clickable;
@@ -59,7 +60,5 @@ public class Hero extends Creature implements Clickable, Typeable {
 		}
 		super.draw(marker);
 	}
-
-
 
 }

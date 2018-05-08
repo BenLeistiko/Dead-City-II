@@ -125,7 +125,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if (getvY() > 0) {
 			Sprite standingSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechY)) {
+				if (s.intersects(strechY) && s!=this) {
 					onASurface = true;
 					standingSurface = s;
 					setvY(0);
@@ -138,7 +138,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		} else if (getvY() < 0) {
 			Sprite headSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechY)) {
+				if (s.intersects(strechY)&& s!=this) {
 					headSurface = s;
 					setvY(0);
 				}
@@ -164,7 +164,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if (getvX() > 0) {
 			Sprite rightSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechX)) {
+				if (s.intersects(strechX)&& s!=this) {
 					rightSurface = s;
 					setvX(0);
 				}
@@ -176,7 +176,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		} else if (getvX() < 0) {
 			Sprite leftSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechX)) {
+				if (s.intersects(strechX)&& s!=this) {
 					leftSurface = s;
 					setvX(0);
 				}
