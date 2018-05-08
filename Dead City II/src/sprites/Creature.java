@@ -154,7 +154,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 		// ***********X AXIS*********** 
 
-
 		setvX(getvX() * Main.FRICTION);
 
 		double xCoord2 = xCoord + getvX();
