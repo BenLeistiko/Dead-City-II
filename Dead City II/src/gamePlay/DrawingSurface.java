@@ -23,8 +23,8 @@ public class DrawingSurface extends PApplet{
 
 		ArrayList<Sprite> mobs = new ArrayList<Sprite>();
 		bullets = new ArrayList<Bullet>();
-		
-		joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(10, 10, 1000, 10, bullets), mobs);
+
+		joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(10, 500, 1000, 10, bullets), mobs);
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
@@ -39,8 +39,10 @@ public class DrawingSurface extends PApplet{
 		b1.drawHitBox(this);
 		b2.drawHitBox(this);
 		joe.draw(this);
-
+		
+		
 		for(Bullet b: bullets) {
+			b.setDir(joe.getDirection());
 			b.draw(this);
 		}
 

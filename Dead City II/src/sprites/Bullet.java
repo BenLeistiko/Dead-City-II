@@ -18,6 +18,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	private PImage image;
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
+	private int dir;
 
 
 	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites) {
@@ -26,15 +27,16 @@ public class Bullet extends MovingSprite implements Destructive {
 		image = DrawingSurface.resources.getImage("Bullet");
 		this.sprites = sprites;
 		alive = true;
+		dir = 1;
 	}
-	
+
 	public void act() {
 		setvY(getvY() + Main.GRAVITY);
-		
+
 		moveByAmount(getvX(),getvY());
 	}
-	
-	
+
+
 
 	/**can only detect hits if alive because the method is called in draw(PApplet marker)
 	 * 
@@ -43,42 +45,48 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
 	public boolean detectHit() {
-		System.out.println("detecting collision"
-				+ "");
-		for(Sprite s: sprites) {
-			if(this.intersects(s.getHitBox())) {
-				if(s instanceof Damageable) {
-					Damageable damageableSprite = ((Damageable) s);
-					damageableSprite.takeDamage(getDamage());
-				}
 
-				return true;
+		for(Sprite s: sprites) {
+			if(!(s instanceof Hero)) {
+				if(this.intersects(s.getHitBox())) {//if intersects with something
+					if(s instanceof Damageable) {//if damageable do damage
+						Damageable damageableSprite = ((Damageable) s);
+						damageableSprite.takeDamage(getDamage());
+					}
+					return true;//still means it hit something
+				}
 			}
 		}
-
 		return false;
 
 	}
 
 	/**only draws bullets/detects collisions with bullets and other objects if the bullet is alive
-	 * 
+	 * @pre USE setDir(int dir) ALONG WITH DRAW TO GET THE DIRECTION THE HERO IS COMING FROM
 	 */
 	public void draw(PApplet marker) {
 		if(alive) {
-			marker.image(image, (float)getX(),(float)getY(),(float)getWidth(),(float)getHeight());
+			marker.pushMatrix();
+			
+			marker.scale(-(float)getDir(), 1f);		
+			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+			//marker.image(image, (float)getX(),(float)getY(),(float)getWidth(),(float)getHeight());
+			marker.popMatrix();
 			
 			if(detectHit()) {
 				setAlive(false);
 			}
 		}
-		
 		act();
-
-		
 	}
 
+	public void setDir(int dir) {
+		this.dir = dir;
+	}
 
-
+	public int getDir() {
+		return dir;
+	}
 
 	public void dealDamage(Damageable d) {
 		d.takeDamage(this.getDamage());

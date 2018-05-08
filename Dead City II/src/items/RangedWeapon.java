@@ -26,18 +26,19 @@ public class RangedWeapon extends Weapon {
 
 
 	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
-
+		
 		if(System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Bullet bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),
-					creatureRect.getY()+creatureRect.getHeight()/2,20,20, getDamage(),sprites);
+					creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites);
+			
 			bull.setvX(dir*50.0);
 			bullets.add(bull);			
 			ammo--;
 			timeLastUpdated = System.currentTimeMillis();
 		}
 		ridDeadBullets();
-		
-		
+
+
 	}
 
 	public void ridDeadBullets() {

@@ -107,7 +107,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 
 	private void act(ArrayList<Sprite> worldlyThings) {
-		System.out.println(health);
+		//System.out.println(health);
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
