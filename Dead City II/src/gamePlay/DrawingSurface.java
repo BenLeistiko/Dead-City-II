@@ -41,7 +41,6 @@ public class DrawingSurface extends PApplet{
 		joe.draw(this);
 		b1.draw(this);
 		for(Bullet b: bullets) {
-			b.setDir(joe.getDirection());
 			b.draw(this);
 		}
 

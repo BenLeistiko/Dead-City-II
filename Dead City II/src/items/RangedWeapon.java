@@ -14,6 +14,7 @@ public class RangedWeapon extends Weapon {
 	private int currentAmmo;
 	private long timeLastUpdated;
 	private ArrayList<Bullet> bullets;
+	private final double BULLET_SPEED = 5;
 
 
 	public RangedWeapon(double damage, int attackRate, double range, int ammo, ArrayList<Bullet> bullets) {
@@ -31,12 +32,12 @@ public class RangedWeapon extends Weapon {
 			Bullet bull;
 			if(dir == 1) {
 				bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),
-						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites);
+						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites,dir);
 			}else {
 				bull = new Bullet(creatureRect.getX(),
-						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites);
+						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites,dir);
 			}
-			bull.setvX(dir*50.0);
+			bull.setvX(dir*BULLET_SPEED);
 			bullets.add(bull);			
 			currentAmmo--;
 			timeLastUpdated = System.currentTimeMillis();
