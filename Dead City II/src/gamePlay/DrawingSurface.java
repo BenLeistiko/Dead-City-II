@@ -7,6 +7,7 @@ import processing.core.PApplet;
 import sprites.Barrier;
 import sprites.Bullet;
 import sprites.Creature;
+import sprites.DamageableBarrier;
 import sprites.Hero;
 import sprites.Sprite;
 
@@ -15,7 +16,7 @@ public class DrawingSurface extends PApplet{
 	public static ResourceLoader resources = new ResourceLoader();
 	private Hero joe;
 	ArrayList<Sprite> mobs;
-	Barrier b1, b2;
+	Barrier b1, b2, b3;
 	ArrayList<Bullet> bullets;
 
 	public void setup() {
@@ -28,10 +29,11 @@ public class DrawingSurface extends PApplet{
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
+		b3 = new DamageableBarrier(600, 650, 100,100,100,0.5);
 		mobs.add(joe);
 		mobs.add(b1);
 		mobs.add(b2);
-
+		mobs.add(b3);
 	}
 
 	public void draw() {
@@ -41,6 +43,8 @@ public class DrawingSurface extends PApplet{
 		joe.draw(this);
 		joe.drawHitBox(this);
 		b1.draw(this);
+		b2.draw(this);
+		b3.draw(this);
 		for(Bullet b: bullets) {
 			b.setDir(joe.getDirection());
 			b.draw(this);
