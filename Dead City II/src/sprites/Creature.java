@@ -57,7 +57,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private boolean onASurface;
 	private boolean isAttacking;
 
-	ArrayList<Sprite> worldlyThings;
+	private ArrayList<Sprite> worldlyThings;
 
 	/**
 	 * Creates a new creature.  It's state is currently standing when created.  It will stay 2 frames on each picture by defualt.
@@ -92,7 +92,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerJumping = 4;
 		framesPerMovingAndAttacking = 2;
 		
-		health = 10;
+		health = 100;
 		defense = 10;
 		agility = 10;
 		stamina = 10;
@@ -107,7 +107,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 
 	private void act(ArrayList<Sprite> worldlyThings) {
-
+		System.out.println(health);
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
@@ -210,10 +210,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	public void attack() {
 		isAttacking = true;
-		System.out.println("attacking");
-		/*
-		 * WEAPON STUFF
-		 */
 	}
 	
 	public void setSprint(boolean isSprinting) {
@@ -364,5 +360,16 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public static double getSprintSpeed() {
 		return SPRINT_SPEED;
 	}
-	
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+
+	public ArrayList<Sprite> getWorldlyThings() {
+		return worldlyThings;
+	}	
 }

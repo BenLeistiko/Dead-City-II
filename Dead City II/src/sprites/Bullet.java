@@ -23,7 +23,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites) {
 		super(x, y, w, h);
 		this.damage = damage;
-		image = DrawingSurface.resources.getImage("Bullet.jpg");
+		image = DrawingSurface.resources.getImage("Bullet");
 		this.sprites = sprites;
 		alive = true;
 	}

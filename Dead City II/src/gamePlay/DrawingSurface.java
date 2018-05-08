@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import items.*;
 import processing.core.PApplet;
 import sprites.Barrier;
+import sprites.Bullet;
 import sprites.Creature;
 import sprites.Hero;
 import sprites.Sprite;
@@ -15,14 +16,15 @@ public class DrawingSurface extends PApplet{
 	private Hero joe;
 	ArrayList<Sprite> mobs;
 	Barrier b1, b2;
-
+	ArrayList<Bullet> bullets;
 
 	public void setup() {
 		resources.load(this);
 
 		ArrayList<Sprite> mobs = new ArrayList<Sprite>();
-
-		joe = new Hero("Trooper",100,100,200,200, new MeleeWeapon(10,10,10), mobs);
+		bullets = new ArrayList<Bullet>();
+		
+		joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(10, 10, 1000, 10, bullets), mobs);
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
@@ -38,7 +40,9 @@ public class DrawingSurface extends PApplet{
 		b2.drawHitBox(this);
 		joe.draw(this);
 
-
+		for(Bullet b: bullets) {
+			b.draw(this);
+		}
 
 
 

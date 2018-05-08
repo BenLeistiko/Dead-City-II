@@ -63,6 +63,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		super.setvX(vX);
 		if(mouseButtonsPressed.contains(37)) {
 			attack();
+			weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
 		}
 		super.draw(marker);
 	}
