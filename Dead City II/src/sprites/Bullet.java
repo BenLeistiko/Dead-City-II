@@ -27,6 +27,14 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 	}
+	
+	public void act() {
+		setvY(getvY() + Main.GRAVITY);
+		
+		moveByAmount(getvX(),getvY());
+	}
+	
+	
 
 	/**can only detect hits if alive because the method is called in draw(PApplet marker)
 	 * 
@@ -35,6 +43,8 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
 	public boolean detectHit() {
+		System.out.println("detecting collision"
+				+ "");
 		for(Sprite s: sprites) {
 			if(this.intersects(s.getHitBox())) {
 				if(s instanceof Damageable) {
@@ -61,6 +71,8 @@ public class Bullet extends MovingSprite implements Destructive {
 				setAlive(false);
 			}
 		}
+		
+		act();
 
 		
 	}

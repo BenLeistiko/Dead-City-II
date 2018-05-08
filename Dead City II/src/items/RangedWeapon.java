@@ -30,7 +30,7 @@ public class RangedWeapon extends Weapon {
 		if(System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Bullet bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),
 					creatureRect.getY()+creatureRect.getHeight()/2,20,20, getDamage(),sprites);
-			bull.setvX(dir*50.0*Main.frameTime);
+			bull.setvX(dir*50.0);
 			bullets.add(bull);			
 			ammo--;
 			timeLastUpdated = System.currentTimeMillis();
