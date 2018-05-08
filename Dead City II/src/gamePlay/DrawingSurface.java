@@ -41,7 +41,7 @@ public class DrawingSurface extends PApplet{
 		joe.draw(this);
 		b1.draw(this);
 		for(Bullet b: bullets) {
-			//db.setDir(joe.getDirection());/*this doesn't work because when you turn you end up fliping the bullet direction midflight
+			b.setDir(joe.getDirection());
 			b.draw(this);
 		}
 
