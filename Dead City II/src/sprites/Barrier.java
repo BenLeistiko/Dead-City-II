@@ -16,7 +16,6 @@ public class Barrier extends Sprite {
 	@Override
 	public void draw(PApplet marker) {
 		marker.image(image, (float)getX(), (float)getY(),(float)getWidth(),(float)getHeight());
-		
 	}
 
 }
