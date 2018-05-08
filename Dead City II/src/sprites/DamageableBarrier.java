@@ -26,7 +26,7 @@ public class DamageableBarrier extends Barrier implements Damageable {
 	}
 
 	@Override
-	public Rectangle2D getLocationRect() {
+	public Rectangle2D getHitBox() {
 		// TODO Auto-generated method stub
 		return null;
 	}

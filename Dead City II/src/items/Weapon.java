@@ -1,6 +1,12 @@
 package items;
 
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
+import interfaces.Damageable;
 import interfaces.Slotable;
+import sprites.Bullet;
+import sprites.Sprite;
 /**
  * 
  * @author Ben
@@ -18,6 +24,8 @@ public abstract class Weapon implements Slotable {
 		this.range = range;
 			
 	}
+	
+	public abstract void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites); 
 	
 	
 	public void upgrade(double upgradeAmt) {

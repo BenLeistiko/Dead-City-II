@@ -49,7 +49,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private int framesPerJumping;
 	private ArrayList<PImage> jumping;
 
-
 	private boolean facingRight;
 	private boolean onASurface;
 	
@@ -272,7 +271,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	
 
 
-	public Rectangle2D getLocationRect() {
+	public Rectangle2D getHitBox() {
 
 		return this.getBounds2D();
 	}
