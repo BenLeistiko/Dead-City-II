@@ -33,6 +33,7 @@ public class ResourceLoader {
 		states.add("Running");
 		states.add("Attacking");
 		states.add("Jumping");
+		states.add("MovingAndAttacking");
 
 		
 		animationNames.add("Trooper");

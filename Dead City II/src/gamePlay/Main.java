@@ -17,7 +17,7 @@ import processing.core.PApplet;
 public class Main {
 	public static final int frameRate = 60;
 	public static final double frameTime = 1/60;
-	public static final double GRAVITY = 0;//PIXLES per second^2
+	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = .5;
 
 	

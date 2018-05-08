@@ -19,7 +19,7 @@ import processing.core.PImage;
 public abstract class Creature extends MovingSprite implements Damageable {
 	private static final double SPRINT_SPEED = 2;//the number of times faster that sprint speed is
 
-	public enum State {STANDING, WALKING, RUNNING, ATTACKING, JUMPING};
+	public enum State {STANDING, WALKING, RUNNING, ATTACKING, JUMPING, MOVINGANDATTACKING};
 
 	private double health;
 	private double defense;
@@ -28,15 +28,16 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double speed;
 	private double jumpPower;
 
-
+	private int direction;//the direction that the creature is moving.  1=right, -1=left, 0=bugs!!
+	
 	private State state;
 
 	private int animationPos;//Position in arrayList
 	private int animationCounter;//How many frames you have been on the current image for
-	
+
 	private int framesPerStanding;//number of frames until you go to the next image (ie animationPos ++)
 	private ArrayList<PImage> standing;//images in walking
-	
+
 	private int framesPerWalking;//number of frames until you go to the next image (ie animationPos ++)
 	private ArrayList<PImage> walking;//images in walking
 
@@ -49,10 +50,13 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private int framesPerJumping;
 	private ArrayList<PImage> jumping;
 
-
-	private boolean facingRight;
-	private boolean onASurface;
+	private int framesPerMovingAndAttacking;
+	private ArrayList<PImage> movingAndAttacking;
 	
+	private boolean isSprinting;
+	private boolean onASurface;
+	private boolean isAttacking;
+
 	ArrayList<Sprite> worldlyThings;
 
 	/**
@@ -67,29 +71,41 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public Creature(double x, double y, double w, double h, ArrayList<Sprite> worldlyThings, String animationKey) {
 		super(x, y, w, h);
 		onASurface = false;
-		facingRight = false;
+		isSprinting = false;
+		isAttacking = false;
 		
 		standing = DrawingSurface.resources.getAnimationList(animationKey+"Standing");
 		walking = DrawingSurface.resources.getAnimationList(animationKey+"Walking");
 		running = DrawingSurface.resources.getAnimationList(animationKey+"Running");
 		attacking = DrawingSurface.resources.getAnimationList(animationKey+"Attacking");
 		jumping = DrawingSurface.resources.getAnimationList(animationKey+"Jumping");
+		movingAndAttacking = DrawingSurface.resources.getAnimationList(animationKey+"MovingAndAttacking");
 		
 		animationPos = 0;
 		animationCounter = 0;
 		state = State.STANDING;
-		
+
 		framesPerStanding = 2;
 		framesPerWalking = 2;
 		framesPerRunning = 2;
-		framesPerAttacking = 2;
+		framesPerAttacking = 3;
 		framesPerJumping = 2;
+		framesPerMovingAndAttacking = 2;
 		
+		health = 10;
+		defense = 10;
+		agility = 10;
+		stamina = 10;
+		speed = 10;
+		jumpPower = 25;
+
+		direction = 1;
+
 		this.worldlyThings =  worldlyThings;
 	}
 
-	
-	
+
+
 	private void act(ArrayList<Sprite> worldlyThings) {
 
 		double xCoord = getX();
@@ -176,16 +192,46 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			setvX(0);
 
 		moveToLocation(xCoord2,yCoord2);
+		if(isAttacking) {
+			if(Math.abs(getvX()) < 0.000001 || !isOnSurface()) {
+				state = State.ATTACKING;
+			}else {
+				state = State.MOVINGANDATTACKING;
+			}
+		}else if(Math.abs(getvX()) < 0.000001 && isOnSurface()) {
+			state = State.STANDING;
+		}else if(!isOnSurface()) {
+			state = State.JUMPING;
+		}else if(isSprinting) {
+			state = State.RUNNING;		
+		}else {
+			state = State.WALKING;
+		}
 	}
 
+	public void attack() {
+		isAttacking = true;
+		System.out.println("attacking");
+		/*
+		 * WEAPON STUFF
+		 */
+	}
+	
+	public void setSprint(boolean isSprinting) {
+		this.isSprinting = isSprinting;
+	}
+	
 	public void draw(PApplet marker) {
 		act(worldlyThings);
+		super.drawHitBox(marker);
+		marker.pushMatrix();
 		
+		marker.scale((float)direction, 1f);
 		if(state == State.STANDING) {
 			if(animationPos >= standing.size())
 				animationPos = 0;
-			marker.image(standing.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
-			
+			marker.image(standing.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
 			if(animationCounter>framesPerStanding) {
 				animationCounter = 0;
 				animationPos++;
@@ -194,8 +240,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.WALKING) {
 			if(animationPos >= walking.size())
 				animationPos = 0;
-			marker.image(walking.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());	
-			
+			marker.image(walking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());	
 			if(animationCounter>framesPerWalking) {
 				animationCounter = 0;
 				animationPos++;
@@ -204,7 +249,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.RUNNING) {
 			if(animationPos >= running.size())
 				animationPos = 0;
-			marker.image(running.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
+			marker.image(running.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerRunning) {
 				animationCounter = 0;
@@ -212,11 +257,25 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			}
 			animationCounter++;
 		}else if(state == State.ATTACKING) {
-			if(animationPos >= attacking.size())
+			if(animationPos >= attacking.size()) {
 				animationPos = 0;
-			marker.image(attacking.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
+				isAttacking = false;
+			}
+			marker.image(attacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerAttacking) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
+		}else if(state == State.MOVINGANDATTACKING) {
+			if(animationPos >= movingAndAttacking.size()) {
+				animationPos = 0;
+				isAttacking = false;
+			}
+			marker.image(movingAndAttacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
+			if(animationCounter>framesPerMovingAndAttacking) {
 				animationCounter = 0;
 				animationPos++;
 			}
@@ -224,7 +283,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.JUMPING) {
 			if(animationPos >= jumping.size())
 				animationPos = 0;
-			marker.image(jumping.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
+			marker.image(jumping.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerJumping) {
 				animationCounter = 0;
@@ -232,6 +291,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			}
 			animationCounter++;
 		}
+		
+		marker.popMatrix();
 	}
 
 	/**
@@ -263,27 +324,42 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void jump() {
-		if(setState(state.JUMPING) && onASurface) {
-			state = state.JUMPING;
-			setvY(jumpPower);
+		if(state != State.JUMPING && isOnSurface()) {
+			setvY(-jumpPower);
 		}
 	}
 
+	public boolean isOnSurface() {
+		return onASurface;
+	}
 	
-
-
 	public Rectangle2D getLocationRect() {
-
 		return this.getBounds2D();
 	}
-
-	public boolean isFacingRight() {
-		return facingRight;
+	
+	public double getStamina() {
+		return stamina;
 	}
 
-	public void swapFacingRight() {
-		this.facingRight = !facingRight;
+	public void setStamina(double stamina) {
+		this.stamina = stamina;
+	}
+	
+	public double getSpeed() {
+		return speed;
 	}
 
-
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public void setvX(double vX) {
+		if(Math.abs(vX)<0.000001) {
+		}else if(vX>0) {
+			direction = 1;
+		}else if(vX<0) {
+			direction = -1;
+		}
+		super.setvX(vX);
+	}
+	
 }

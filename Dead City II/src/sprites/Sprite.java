@@ -51,6 +51,11 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		isVisible = true;
 	}
 	
+	public void drawHitBox(PApplet marker) {
+		marker.noFill();
+		marker.rect((float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
+	}
+	
 	public boolean collides(Sprite s) {
 		if(this.intersects(s) && this != s) {
 			return true;
