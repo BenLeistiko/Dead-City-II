@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import interfaces.Clickable;
 import interfaces.Typeable;
+import items.RangedWeapon;
 import items.Weapon;
 import processing.core.PApplet;
 
@@ -24,7 +25,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void keyPressed(PApplet marker) {
 		if(!keysPressed.contains(marker.keyCode))
-			keysPressed.add(marker.keyCode);		
+			keysPressed.add(marker.keyCode);
 	}
 
 	public void keyReleased(PApplet marker) {
@@ -41,6 +42,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
+	
 		double vX = 0;
 		if(keysPressed.contains(87)) {//w
 			super.jump();
@@ -60,10 +62,24 @@ public class Hero extends Creature implements Clickable, Typeable {
 		}else {
 			super.setSprint(false);
 		}
+		if(keysPressed.contains(82)) {//r for reloading
+			if(weapon instanceof RangedWeapon) {
+				((RangedWeapon) weapon).reload();
+			}
+		}
 		super.setvX(vX);
-		if(mouseButtonsPressed.contains(37)) {
-			attack();
-			weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
+
+		if(mouseButtonsPressed.contains(37)) {//shooting/attacking
+			if(weapon instanceof RangedWeapon) {
+				RangedWeapon rw = ((RangedWeapon) weapon);
+				if(rw.getCurrentAmmo()>0) {
+					attack();
+					weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
+				}
+			}else {
+				attack();
+				weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
+			}
 		}
 		super.draw(marker);
 	}

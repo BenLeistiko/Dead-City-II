@@ -11,7 +11,7 @@ import sprites.Sprite;
 public class RangedWeapon extends Weapon {
 
 	private final int MAX_AMMO;
-	private int ammo;
+	private int currentAmmo;
 	private long timeLastUpdated;
 	private ArrayList<Bullet> bullets;
 
@@ -19,7 +19,7 @@ public class RangedWeapon extends Weapon {
 	public RangedWeapon(double damage, int attackRate, double range, int ammo, ArrayList<Bullet> bullets) {
 		super(damage,attackRate,range);
 		MAX_AMMO = ammo;
-		this.ammo = ammo;
+		this.currentAmmo = ammo;
 		this.bullets = bullets;
 	}
 
@@ -27,7 +27,7 @@ public class RangedWeapon extends Weapon {
 
 	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
 
-		if(ammo>0 && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
+		if(currentAmmo>0 && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Bullet bull;
 			if(dir == 1) {
 				bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),
@@ -38,7 +38,7 @@ public class RangedWeapon extends Weapon {
 			}
 			bull.setvX(dir*50.0);
 			bullets.add(bull);			
-			ammo--;
+			currentAmmo--;
 			timeLastUpdated = System.currentTimeMillis();
 		}
 		ridDeadBullets();
@@ -57,7 +57,7 @@ public class RangedWeapon extends Weapon {
 
 
 	public void reload() {
-		ammo = MAX_AMMO;
+		currentAmmo = MAX_AMMO;
 	}
 
 	public ArrayList<Bullet> getBulletArray(){
@@ -65,7 +65,9 @@ public class RangedWeapon extends Weapon {
 	}
 
 
-
+	public int getCurrentAmmo() {
+		return currentAmmo;
+	}
 
 }
 
