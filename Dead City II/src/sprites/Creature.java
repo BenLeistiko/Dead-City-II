@@ -152,7 +152,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if (Math.abs(getvY()) < .2)
 			setvY(0);
 
-		// ***********X AXIS***********
+		// ***********X AXIS*********** 
 
 
 		setvX(getvX() * Main.FRICTION);

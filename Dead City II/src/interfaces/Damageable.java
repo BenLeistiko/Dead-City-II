@@ -16,6 +16,6 @@ public interface Damageable {
 	 */
 	public void takeDamage(double damage);
 	
-	public Rectangle2D getLocationRect();
+	public Rectangle2D getHitBox();
 	
 }

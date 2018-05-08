@@ -140,5 +140,5 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		marker.image(DrawingSurface.resources.getImage(imageKey), (float)this.getX(), (float)this.getY(), (float)this.getWidth(), (float)this.getHeight());
 	}
 	*/
-	
+	 
 }

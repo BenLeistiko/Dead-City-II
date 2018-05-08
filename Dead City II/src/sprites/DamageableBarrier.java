@@ -25,10 +25,10 @@ public class DamageableBarrier extends Barrier implements Damageable {
 		health = health-(damage*armor);
 	}
 
-	@Override
-	public Rectangle2D getLocationRect() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Rectangle2D getHitBox() {
+		
+		return this.getBounds2D();
 	}
 
 

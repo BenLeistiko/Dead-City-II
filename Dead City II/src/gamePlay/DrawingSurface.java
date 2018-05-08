@@ -59,7 +59,7 @@ public class DrawingSurface extends PApplet{
 	}
 	public void keyReleased() {
 		joe.keyReleased(this);
-	}
+	} 
 
 
 

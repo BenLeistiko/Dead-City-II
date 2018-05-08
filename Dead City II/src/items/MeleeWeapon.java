@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import interfaces.Damageable;
 import interfaces.Destructive;
+import sprites.Sprite;
 
 public class MeleeWeapon extends Weapon implements Destructive {
 
@@ -20,22 +21,28 @@ public class MeleeWeapon extends Weapon implements Destructive {
 		d.takeDamage(this.getDamage());
 	}
 
-	public void attack(Rectangle2D creatureRect, boolean isFacingRight, ArrayList<Damageable> damageables) {
+
+	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
 
 		if(System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Rectangle2D target;
-			for(Damageable d: damageables) {
-				target = d.getLocationRect();
-				if(isFacingRight) {
-					if(Point2D.distance(creatureRect.getX()+creatureRect.getWidth(), creatureRect.getY(),
-							target.getX(), target.getY()) <  getRange()) {
-						this.dealDamage(d);
+			for(Sprite s: sprites) {
+				if(s instanceof Damageable) {
+					Damageable damageableSprite = ((Damageable) s);
+
+					target = damageableSprite.getHitBox();
+					if(dir == 1) {
+						if(Point2D.distance(creatureRect.getX()+creatureRect.getWidth(), creatureRect.getY(),
+								target.getX(), target.getY()) <  getRange()) {
+							damageableSprite.takeDamage(getDamage());
+						}
+					}else {
+						if(Point2D.distance(creatureRect.getX(), creatureRect.getY(),
+								target.getX()+target.getWidth(), target.getY()) <  getRange()) {
+							damageableSprite.takeDamage(getDamage());
+						}
 					}
-				}else {
-					if(Point2D.distance(creatureRect.getX(), creatureRect.getY(),
-							target.getX()+target.getWidth(), target.getY()) <  getRange()) {
-						this.dealDamage(d);
-					}
+
 				}
 
 			}
