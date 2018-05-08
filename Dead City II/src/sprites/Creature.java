@@ -182,7 +182,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		act(worldlyThings);
 		
 		if(state == State.STANDING) {
-			if(animationPos > standing.size())
+			if(animationPos >= standing.size())
 				animationPos = 0;
 			marker.image(standing.get(animationPos), (float)getX(), (float)getX(), (float)getWidth(), (float)getHeight());
 			
@@ -190,8 +190,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
+			animationCounter++;
 		}else if(state == State.WALKING) {
-			if(animationPos > walking.size())
+			if(animationPos >= walking.size())
 				animationPos = 0;
 			marker.image(walking.get(animationPos), (float)getX(), (float)getX());	
 			
@@ -199,8 +200,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
+			animationCounter++;
 		}else if(state == State.RUNNING) {
-			if(animationPos > running.size())
+			if(animationPos >= running.size())
 				animationPos = 0;
 			marker.image(running.get(animationPos), (float)getX(), (float)getX());
 
@@ -208,8 +210,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
+			animationCounter++;
 		}else if(state == State.ATTACKING) {
-			if(animationPos > attacking.size())
+			if(animationPos >= attacking.size())
 				animationPos = 0;
 			marker.image(attacking.get(animationPos), (float)getX(), (float)getX());
 
@@ -217,8 +220,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
+			animationCounter++;
 		}else if(state == State.JUMPING) {
-			if(animationPos > jumping.size())
+			if(animationPos >= jumping.size())
 				animationPos = 0;
 			marker.image(jumping.get(animationPos), (float)getX(), (float)getX());
 
@@ -226,6 +230,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 				animationCounter = 0;
 				animationPos++;
 			}
+			animationCounter++;
 		}
 	}
 
