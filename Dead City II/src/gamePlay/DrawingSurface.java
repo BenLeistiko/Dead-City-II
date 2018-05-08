@@ -21,7 +21,7 @@ public class DrawingSurface extends PApplet{
 	
 		ArrayList<Sprite> mobs = new ArrayList<Sprite>();
 		
-		joe = new Hero("Trooper",100,100,100,100, new MeleeWeapon(10,10,10), mobs);
+		joe = new Hero("Trooper",100,100,200,200, new MeleeWeapon(10,10,10), mobs);
 		joe.setState(Creature.State.WALKING);
 		
 		
