@@ -54,7 +54,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		if(keysPressed.contains(68)) {//d
 			vX = vX + super.getSpeed();
 		}
-		if(keysPressed.contains(16)  && isOnSurface()) {//d 
+		if(keysPressed.contains(16)  && isOnSurface()) {//shift
 			vX = vX*getSprintSpeed();
 			super.setSprint(true);
 		}else {
