@@ -28,6 +28,7 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	public void draw() {
+		background(255);
 		
 		joe.draw(this);
 		
