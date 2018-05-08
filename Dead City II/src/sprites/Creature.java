@@ -183,7 +183,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if(state == State.STANDING) {
 			if(animationPos >= standing.size())
 				animationPos = 0;
-			marker.image(standing.get(animationPos), (float)getX(), (float)getX(), (float)getWidth(), (float)getHeight());
+			marker.image(standing.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 			
 			if(animationCounter>framesPerStanding) {
 				animationCounter = 0;
@@ -193,7 +193,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.WALKING) {
 			if(animationPos >= walking.size())
 				animationPos = 0;
-			marker.image(walking.get(animationPos), (float)getX(), (float)getX());	
+			marker.image(walking.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());	
 			
 			if(animationCounter>framesPerWalking) {
 				animationCounter = 0;
@@ -203,7 +203,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.RUNNING) {
 			if(animationPos >= running.size())
 				animationPos = 0;
-			marker.image(running.get(animationPos), (float)getX(), (float)getX());
+			marker.image(running.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerRunning) {
 				animationCounter = 0;
@@ -213,7 +213,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.ATTACKING) {
 			if(animationPos >= attacking.size())
 				animationPos = 0;
-			marker.image(attacking.get(animationPos), (float)getX(), (float)getX());
+			marker.image(attacking.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerAttacking) {
 				animationCounter = 0;
@@ -223,7 +223,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(state == State.JUMPING) {
 			if(animationPos >= jumping.size())
 				animationPos = 0;
-			marker.image(jumping.get(animationPos), (float)getX(), (float)getX());
+			marker.image(jumping.get(animationPos), (float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 
 			if(animationCounter>framesPerJumping) {
 				animationCounter = 0;
