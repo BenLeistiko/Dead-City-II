@@ -28,7 +28,6 @@ public class ResourceLoader {
 	}
 
 	public void load(PApplet loader) {
-
 		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
@@ -61,7 +60,7 @@ public class ResourceLoader {
 
 
 		//****Loading Normal Images****
-		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
+		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.jpg"));
 
 	}
 
