@@ -82,23 +82,24 @@ public class ResourceLoader {
 	}
 
 	public PImage cropedImage(PImage pImg) {//still does not work
-		int margin = -100;
+		int margin = 5;
 		Image img = pImg.getImage();
-		BufferedImage buffedImg = new BufferedImage(img.getWidth(null),img.getHeight(null),BufferedImage.TYPE_INT_ARGB);
+		BufferedImage buffedImg = new BufferedImage(img.getWidth(null),img.getHeight(null),BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = buffedImg.createGraphics();
 		g.drawImage(img, 0, 0, null);
 		g.dispose();
 		
 		int x1 = 0;
-		int x2 = buffedImg.getWidth()-1;
+		int x2 = buffedImg.getWidth(null)-1;
 		int y1 = 0;
-		int y2 = buffedImg.getHeight()-1;
+		int y2 = buffedImg.getWidth(null)-1;
 		
 		while(true) {
 			boolean b = false;
 			for(int i = 0; i < buffedImg.getHeight(); i++) {
 				Color c = new Color(buffedImg.getRGB(x1, i));
-				if(c.getBlue() <255- margin || c.getRed() < 255-margin || c.getGreen() < 255-margin) {
+				//System.out.println("Loop 1: PIXLE found at (" + x1 + ", " + i + ") color: " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
+				if(c.getBlue() > margin || c.getRed() >margin || c.getGreen() > margin) {
 					b = true;
 					break;
 				}
@@ -111,7 +112,8 @@ public class ResourceLoader {
 			boolean b = false;
 			for(int i = 0; i < buffedImg.getHeight(); i++) {
 				Color c = new Color(buffedImg.getRGB(x2, i));
-				if(c.getBlue() <255- margin || c.getRed() < 255-margin || c.getGreen() < 255-margin) {
+				//System.out.println("Loop 2: PIXLE found at (" + x2 + ", " + i + ") color: " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
+				if(c.getBlue() > margin || c.getRed() >margin || c.getGreen() > margin) {
 					b = true;
 					break;
 				}
@@ -124,7 +126,8 @@ public class ResourceLoader {
 			boolean b = false;
 			for(int i = 0; i < buffedImg.getWidth(); i++) {
 				Color c = new Color(buffedImg.getRGB(i, y1));
-				if(c.getBlue() <255- margin || c.getRed() < 255-margin || c.getGreen() < 255-margin) {
+				//System.out.println("Loop 3: PIXLE found at (" + i + ", " + y1 + ") color: " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
+				if(c.getBlue() > margin || c.getRed() >margin || c.getGreen() > margin) {
 					b = true;
 					break;
 				}
@@ -137,7 +140,8 @@ public class ResourceLoader {
 			boolean b = false;
 			for(int i = 0; i < buffedImg.getWidth(); i++) {
 				Color c = new Color(buffedImg.getRGB(i, y2));
-				if(c.getBlue() <255- margin || c.getRed() < 255-margin || c.getGreen() < 255-margin) {
+				//System.out.println("Loop 4: PIXLE found at (" + i + ", " + y2 + ") color: " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
+				if(c.getBlue() > margin || c.getRed() >margin || c.getGreen() > margin) {
 					b = true;
 					break;
 				}
@@ -146,8 +150,9 @@ public class ResourceLoader {
 				break;
 			y2--;
 		}
-		buffedImg.getSubimage(x1, y1, x2-x1, y2-y1);
-		return new PImage(buffedImg);
+		
+		System.out.println(x1 + ", "+ y1 + "||" +  (x2-x1) + "," + (y2-y1) + "\n");
+		return new PImage(buffedImg.getSubimage(x1, y1, x2-x1, y2-y1));
 	}
 
 

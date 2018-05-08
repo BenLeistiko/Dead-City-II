@@ -218,7 +218,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	
 	public void draw(PApplet marker) {
 		act(worldlyThings);
-		super.drawHitBox(marker);
 		marker.pushMatrix();
 		
 		marker.scale((float)direction, 1f);
