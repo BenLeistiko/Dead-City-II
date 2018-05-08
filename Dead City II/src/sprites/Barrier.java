@@ -10,7 +10,7 @@ public class Barrier extends Sprite {
 	
 	public Barrier(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		DrawingSurface.resources.getImage("Barrier.jpg");
+		image = DrawingSurface.resources.getImage("Barrier");
 	}
 
 	@Override
