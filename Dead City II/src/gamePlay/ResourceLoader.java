@@ -60,8 +60,8 @@ public class ResourceLoader {
 
 
 		//****Loading Normal Images****
-		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.jpg"));
-
+		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
+		images.put("Barrier", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Barrier.jpg"));
 	}
 
 
