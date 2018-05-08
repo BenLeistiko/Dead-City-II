@@ -18,16 +18,16 @@ public class Bullet extends MovingSprite implements Destructive {
 	private PImage image;
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
-	private int dir;
+	private final int dir;
 
 
-	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites) {
+	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites,int dir) {
 		super(x, y, w, h);
 		this.damage = damage;
 		image = DrawingSurface.resources.getImage("Bullet");
 		this.sprites = sprites;
 		alive = true;
-		dir = 1;
+		this.dir = dir;
 	}
 
 	public void act() {
@@ -62,7 +62,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	}
 
 	/**only draws bullets/detects collisions with bullets and other objects if the bullet is alive
-	 * @pre USE setDir(int dir) ALONG WITH DRAW TO GET THE DIRECTION THE HERO IS COMING FROM
+	 * 
 	 */
 	public void draw(PApplet marker) {
 		if(alive) {
@@ -80,9 +80,9 @@ public class Bullet extends MovingSprite implements Destructive {
 		act();
 	}
 
-	public void setDir(int dir) {
-		this.dir = dir;
-	}
+	//public void setDir(int dir) {
+	//	this.dir = dir;
+	//}
 
 	public int getDir() {
 		return dir;
