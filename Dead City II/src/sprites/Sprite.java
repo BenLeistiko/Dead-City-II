@@ -135,10 +135,8 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return isVisible;
 	}
 	
-	/*
-	public void draw(PApplet marker) {
-		marker.image(DrawingSurface.resources.getImage(imageKey), (float)this.getX(), (float)this.getY(), (float)this.getWidth(), (float)this.getHeight());
+	public Rectangle2D getHitBox() {
+		return this.getBounds2D();
 	}
-	*/
 	 
 }
