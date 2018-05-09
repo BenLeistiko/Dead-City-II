@@ -84,4 +84,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		super.draw(marker);
 	}
 
+	
+	
+
 }

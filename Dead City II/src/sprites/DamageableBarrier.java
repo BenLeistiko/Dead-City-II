@@ -11,19 +11,24 @@ import processing.core.PApplet;
 public class DamageableBarrier extends Barrier implements Damageable {
 	private double health;
 	private double armor;
-	
-	
-	public DamageableBarrier(int x, int y, int w, int h, double health, double armor) {
+	private boolean alive;
+
+	public DamageableBarrier(double x, double y, double w, double h, double health, double armor) {
 		super(x, y, w, h);
 		this.health = health;
 		this.armor = armor;
+		alive = true;
 	}	
 
 	public void draw(PApplet marker) {
-		super.draw(marker);
-		System.out.println(health);
+		if(isAlive()) {
+			super.draw(marker);
+			if(health<=0) {
+				alive = false;
+			}
+		}
 	}
-	
+
 	public void takeDamage(Destructive d) {
 		health = health-(d.getDamage()*armor);
 	}
@@ -32,10 +37,18 @@ public class DamageableBarrier extends Barrier implements Damageable {
 		health = health-(damage*armor);
 	}
 
-	
 	public Rectangle2D getHitBox() {
 		return this.getBounds2D();
 	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
 
 
 }

@@ -4,24 +4,35 @@ import processing.core.PApplet;
 
 public class MainMenu extends Scene {
 
-	@Override
+
 	public void draw(PApplet marker) {
-		// TODO Auto-generated method stub
+		marker.pushMatrix();
+		marker.textSize(30);
+		marker.fill(0);
 		
-	}
-
-	@Override
-	public void keyPressed(PApplet marker) {
-		// TODO Auto-generated method stub
+		marker.textAlign(marker.CENTER,marker.CENTER);
 		
-	}
-
-	@Override
-	public void keyReleased(PApplet marker) {
-		// TODO Auto-generated method stub
-		
-	}
-
+		marker.text("Dead City II", marker.width/2, marker.height/2);
+		marker.rect(marker.width/2, marker.height/2, 2, 2);
 	
+		
+		marker.popMatrix();
+	}
+
+
+
+
+	public void keyPressed(PApplet marker) {
+
+
+	}
+
+
+	public void keyReleased(PApplet marker) {
+
+
+	}
+
+
 
 }

@@ -29,7 +29,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double jumpPower;
 
 	private int direction;//the direction that the creature is moving.  1=right, -1=left, 0=bugs!!
-	
+
 	private State state;
 
 	private int animationPos;//Position in arrayList
@@ -52,12 +52,14 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	private int framesPerMovingAndAttacking;
 	private ArrayList<PImage> movingAndAttacking;
-	
+
 	private boolean isSprinting;
 	private boolean onASurface;
 	private boolean isAttacking;
 
 	private ArrayList<Sprite> worldlyThings;
+
+	private boolean isAlive;
 
 	/**
 	 * Creates a new creature.  It's state is currently standing when created.  It will stay 2 frames on each picture by defualt.
@@ -73,14 +75,14 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		onASurface = false;
 		isSprinting = false;
 		isAttacking = false;
-		
+
 		standing = DrawingSurface.resources.getAnimationList(animationKey+"Standing");
 		walking = DrawingSurface.resources.getAnimationList(animationKey+"Walking");
 		running = DrawingSurface.resources.getAnimationList(animationKey+"Running");
 		attacking = DrawingSurface.resources.getAnimationList(animationKey+"Attacking");
 		jumping = DrawingSurface.resources.getAnimationList(animationKey+"Jumping");
 		movingAndAttacking = DrawingSurface.resources.getAnimationList(animationKey+"MovingAndAttacking");
-		
+
 		animationPos = 0;
 		animationCounter = 0;
 		state = State.STANDING;
@@ -91,7 +93,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerAttacking = 4;
 		framesPerJumping = 4;
 		framesPerMovingAndAttacking = 2;
-		
+
 		health = 100;
 		defense = 10;
 		agility = 10;
@@ -102,6 +104,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		direction = 1;
 
 		this.worldlyThings =  worldlyThings;
+		isAlive = true;
+
 	}
 
 
@@ -211,82 +215,84 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public void attack() {
 		isAttacking = true;
 	}
-	
+
 	public void setSprint(boolean isSprinting) {
 		this.isSprinting = isSprinting;
 	}
-	
+
 	public void draw(PApplet marker) {
-		act(worldlyThings);
-		marker.pushMatrix();
-		
-		marker.scale((float)direction, 1f);
-		if(state == State.STANDING) {
-			if(animationPos >= standing.size())
-				animationPos = 0;
-			marker.image(standing.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+		if(isAlive()) {
+			act(worldlyThings);
+			marker.pushMatrix();
 
-			if(animationCounter>framesPerStanding) {
-				animationCounter = 0;
-				animationPos++;
-			}
-			animationCounter++;
-		}else if(state == State.WALKING) {
-			if(animationPos >= walking.size())
-				animationPos = 0;
-			marker.image(walking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());	
-			if(animationCounter>framesPerWalking) {
-				animationCounter = 0;
-				animationPos++;
-			}
-			animationCounter++;
-		}else if(state == State.RUNNING) {
-			if(animationPos >= running.size())
-				animationPos = 0;
-			marker.image(running.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+			marker.scale((float)direction, 1f);
+			if(state == State.STANDING) {
+				if(animationPos >= standing.size())
+					animationPos = 0;
+				marker.image(standing.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-			if(animationCounter>framesPerRunning) {
-				animationCounter = 0;
-				animationPos++;
-			}
-			animationCounter++;
-		}else if(state == State.ATTACKING) {
-			if(animationPos >= attacking.size()) {
-				animationPos = 0;
-				isAttacking = false;
-			}
-			marker.image(attacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+				if(animationCounter>framesPerStanding) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
+			}else if(state == State.WALKING) {
+				if(animationPos >= walking.size())
+					animationPos = 0;
+				marker.image(walking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());	
+				if(animationCounter>framesPerWalking) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
+			}else if(state == State.RUNNING) {
+				if(animationPos >= running.size())
+					animationPos = 0;
+				marker.image(running.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-			if(animationCounter>framesPerAttacking) {
-				animationCounter = 0;
-				animationPos++;
-			}
-			animationCounter++;
-		}else if(state == State.MOVINGANDATTACKING) {
-			if(animationPos >= movingAndAttacking.size()) {
-				animationPos = 0;
-				isAttacking = false;
-			}
-			marker.image(movingAndAttacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+				if(animationCounter>framesPerRunning) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
+			}else if(state == State.ATTACKING) {
+				if(animationPos >= attacking.size()) {
+					animationPos = 0;
+					isAttacking = false;
+				}
+				marker.image(attacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-			if(animationCounter>framesPerMovingAndAttacking) {
-				animationCounter = 0;
-				animationPos++;
-			}
-			animationCounter++;
-		}else if(state == State.JUMPING) {
-			if(animationPos >= jumping.size())
-				animationPos = 0;
-			marker.image(jumping.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+				if(animationCounter>framesPerAttacking) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
+			}else if(state == State.MOVINGANDATTACKING) {
+				if(animationPos >= movingAndAttacking.size()) {
+					animationPos = 0;
+					isAttacking = false;
+				}
+				marker.image(movingAndAttacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-			if(animationCounter>framesPerJumping) {
-				animationCounter = 0;
-				animationPos++;
+				if(animationCounter>framesPerMovingAndAttacking) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
+			}else if(state == State.JUMPING) {
+				if(animationPos >= jumping.size())
+					animationPos = 0;
+				marker.image(jumping.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
+				if(animationCounter>framesPerJumping) {
+					animationCounter = 0;
+					animationPos++;
+				}
+				animationCounter++;
 			}
-			animationCounter++;
+
+			marker.popMatrix();
 		}
-		
-		marker.popMatrix();
 	}
 
 	/**
@@ -326,11 +332,11 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public boolean isOnSurface() {
 		return onASurface;
 	}
-	
+
 	public Rectangle2D getHitBox() {
 		return this.getBounds2D();
 	}
-	
+
 	public double getStamina() {
 		return stamina;
 	}
@@ -338,7 +344,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public void setStamina(double stamina) {
 		this.stamina = stamina;
 	}
-	
+
 	public double getSpeed() {
 		return speed;
 	}
@@ -371,4 +377,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;
 	}	
+
+	public boolean isAlive() {
+		return isAlive;
+	}
 }

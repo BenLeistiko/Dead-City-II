@@ -18,4 +18,6 @@ public interface Damageable {
 	
 	public Rectangle2D getHitBox();
 	
+	public boolean isAlive();
+	
 }
