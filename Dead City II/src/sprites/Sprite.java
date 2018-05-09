@@ -30,11 +30,11 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
 	private boolean isVisible;
 	private String imageKey;
-//	private ArrayList<Sprite> sprites;
+	private boolean remove; 
 	
 	public Sprite(String imageKey,double x, double y, double w, double h, boolean visiblity, ArrayList<Sprite> sprites) {
 		super(x,y,w,h);
-		//this.sprites = sprites;
+		remove = false;
 		this.imageKey = imageKey;
 		isVisible = visiblity;
 		
@@ -138,5 +138,7 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public Rectangle2D getHitBox() {
 		return this.getBounds2D();
 	}
-	 
+	public void remove() {
+		remove = true;
+	}
 }

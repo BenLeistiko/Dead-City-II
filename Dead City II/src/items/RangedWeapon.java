@@ -14,7 +14,7 @@ public class RangedWeapon extends Weapon {
 	private int currentAmmo;
 	private long timeLastUpdated;
 	private ArrayList<Bullet> bullets;
-	private final double BULLET_SPEED = 38;
+	private final double BULLET_SPEED = 50;
 
 
 	public RangedWeapon(double damage, int attackRate, double range, int ammo, ArrayList<Bullet> bullets) {
