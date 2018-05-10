@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.SoundFile;
 import sprites.Creature;
 
 public class ResourceLoader {
@@ -20,11 +21,14 @@ public class ResourceLoader {
 
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
+	private HashMap<String, SoundFile> sounds;
 
+	
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
-
+		sounds = new HashMap<String, SoundFile>();
+		
 	}
 
 	public void load(PApplet loader) {
@@ -62,6 +66,10 @@ public class ResourceLoader {
 		//****Loading Normal Images****
 		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
 		images.put("Barrier", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Barrier.jpg"));
+
+
+		//****Loading Sounds****
+	//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
 	}
 
 
@@ -88,12 +96,12 @@ public class ResourceLoader {
 		Graphics2D g = buffedImg.createGraphics();
 		g.drawImage(img, 0, 0, null);
 		g.dispose();
-		
+
 		int x1 = 0;
 		int x2 = buffedImg.getWidth(null)-1;
 		int y1 = 0;
 		int y2 = buffedImg.getWidth(null)-1;
-		
+
 		while(true) {
 			boolean b = false;
 			for(int i = 0; i < buffedImg.getHeight(); i++) {
@@ -150,7 +158,7 @@ public class ResourceLoader {
 				break;
 			y2--;
 		}
-		
+
 		System.out.println(x1 + ", "+ y1 + "||" +  (x2-x1) + "," + (y2-y1) + "\n");
 		return new PImage(buffedImg.getSubimage(x1, y1, x2-x1, y2-y1));
 	}

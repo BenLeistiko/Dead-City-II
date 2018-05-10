@@ -1,5 +1,6 @@
 package gamePlay;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import interfaces.Damageable;
@@ -57,12 +58,18 @@ public class DrawingSurface extends PApplet{
 		for(Bullet b: bullets) {
 			b.draw(this);
 		}
-		removeDeadSprites(worldlyThings);
-
+	
 		for(Scene s:scenes) {
 			s.draw(this);
 		}
 
+		removeDeadSprites(worldlyThings);
+		
+		if (isPressed(KeyEvent.VK_SPACE)) {
+			m.changePanel("1");
+			pause(true);
+		}
+		
 
 	}
 
