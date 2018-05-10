@@ -31,10 +31,10 @@ public class Main {
 	public static final double frameTime = 1/60;
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = .5;
-	
-	
+
+
 	public static ResourceLoader resources;
-	
+
 	private JFrame window;
 
 	private JPanel cardPanel;
@@ -45,20 +45,20 @@ public class Main {
 	//private MainMenu panel2;  // Even though we've named them "DrawingSurface", they are better thought of as "Drawer"s - like a Graphics object.
 
 	private HashMap<String,Scene> panels;
-	
+
 	//private PSurfaceAWT surf;  // These are the "portals" through which the PApplets draw on the canvas
 	//private PSurfaceAWT surf2;
 
 	private HashMap<String, PSurfaceAWT> surfaces;
-	
+
 	//private PSurfaceAWT.SmoothCanvas processingCanvas;  // These are swing components (think of it as the canvas that the PApplet draws on to)
 	//private PSurfaceAWT.SmoothCanvas processingCanvas2;   // They are what is literally in the window
-	
+
 	private HashMap<String, PSurfaceAWT.SmoothCanvas> processingCanvases;
-	
+
 	public Main() {
 		resources = new ResourceLoader();
-		
+
 		window = new JFrame();
 
 		window.setSize(900, 900);
@@ -73,7 +73,7 @@ public class Main {
 		panels = new HashMap<String,Scene>();
 		surfaces = new HashMap<String, PSurfaceAWT>();
 		processingCanvases = new HashMap<String, PSurfaceAWT.SmoothCanvas>();
-		
+
 		cardPanel.addComponentListener(new ComponentAdapter() {
 
 			@Override
@@ -83,18 +83,18 @@ public class Main {
 			}
 
 		});
-		
+
 		this.addScene(new BattleField(this), "BattleField");
 		this.addScene(new MainMenu(this), "MainMenu");
-		
+
 		window.setLayout(new BorderLayout());
 
 		window.add(cardPanel);
 
-		
+
 		window.setVisible(true);
 
-		//	window.setBounds(0, 0, 800, 600);
+		window.setBounds(0, 0, 800, 600);
 
 		window.setName("Dead City II");
 		window.setLocation(0,0);
