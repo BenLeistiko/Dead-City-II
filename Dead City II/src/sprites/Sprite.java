@@ -21,7 +21,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * 
+ * Anything that takes collides with other sprites and is drawn.
  * @author Jose
  * @version 5/5/2018 5:30
  *

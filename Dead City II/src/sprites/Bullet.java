@@ -11,7 +11,11 @@ import interfaces.Destructive;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-
+/**
+ * Something that a gun generates.  Deals damage to damageables.
+ * @author bleistiko405
+ *
+ */
 public class Bullet extends MovingSprite implements Destructive {
 
 	private double damage;

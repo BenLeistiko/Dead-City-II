@@ -3,6 +3,11 @@ package interfaces;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Anything that can take damage.
+ * @author bleistiko405
+ *
+ */
 public interface Damageable {
 	
 	/**

@@ -21,7 +21,7 @@ import scenes.BattleField;
 import scenes.MainMenu;
 import scenes.Scene;
 /**
- * 
+ * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
  * @author Jose
  * @version 5/5/2018 5:30
  *

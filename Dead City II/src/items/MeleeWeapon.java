@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import interfaces.Damageable;
 import interfaces.Destructive;
 import sprites.Sprite;
-
+/**
+ * A short ranged melee weapon that deals damage.
+ * @author bleistiko405
+ *
+ */
 public class MeleeWeapon extends Weapon implements Destructive {
 
 	private long timeLastUpdated;

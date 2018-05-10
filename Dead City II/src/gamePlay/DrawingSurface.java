@@ -9,6 +9,11 @@ import processing.core.PApplet;
 import scenes.*;
 import sprites.*;
 
+/**
+ * This class is obslete and for testing only.  Will be removed for the final version.
+ * @author bleistiko405
+ *
+ */
 public class DrawingSurface extends PApplet{
 
 	//public static ResourceLoader resources = new ResourceLoader();

@@ -15,6 +15,11 @@ import processing.core.PImage;
 import processing.sound.SoundFile;
 import sprites.Creature;
 
+/**
+ * This class loads all of our resources and allows different classes to easily access picture sounds etc.
+ * @author bleistiko405
+ *
+ */
 public class ResourceLoader {
 
 	private static String fileSeparator = System.getProperty("file.separator");

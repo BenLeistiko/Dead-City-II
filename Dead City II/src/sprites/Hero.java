@@ -9,6 +9,11 @@ import items.RangedWeapon;
 import items.Weapon;
 import processing.core.PApplet;
 
+/**
+ * Any character that the player controls
+ * @author bleistiko405
+ *
+ */
 public class Hero extends Creature implements Clickable, Typeable {
 
 	ArrayList<Integer> keysPressed;

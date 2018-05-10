@@ -8,6 +8,11 @@ import interfaces.Damageable;
 import sprites.Bullet;
 import sprites.Sprite;
 
+/**
+ * Something generates bullets.
+ * @author bleistiko405
+ *
+ */
 public class RangedWeapon extends Weapon {
 
 	private final int MAX_AMMO;

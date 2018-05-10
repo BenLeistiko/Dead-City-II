@@ -8,7 +8,7 @@ import interfaces.Slotable;
 import sprites.Bullet;
 import sprites.Sprite;
 /**
- * 
+ * A common superclass for anything that will do damage directly or indirectly.
  * @author Ben
  *
  */

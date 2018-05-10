@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
-
+/**
+ * Any sprite that can be moved.
+ * @author bleistiko405
+ *
+ */
 public abstract class MovingSprite extends Sprite {
 
 	private double vX;

@@ -1,5 +1,9 @@
 package interfaces;
-
+/**
+ * Anything that deals damage.
+ * @author bleistiko405
+ *
+ */
 public interface Destructive {
 	/**
 	 * Deals damage to a Damageable object.

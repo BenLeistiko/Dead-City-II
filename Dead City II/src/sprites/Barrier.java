@@ -4,7 +4,11 @@ import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
-
+/**
+ * An rectangle that can't take damage but can collide with sprites. 
+ * @author bleistiko405
+ *
+ */
 public class Barrier extends Sprite {
 
 	private PImage image; 

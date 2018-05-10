@@ -8,6 +8,11 @@ import interfaces.Damageable;
 import interfaces.Destructive;
 import processing.core.PApplet;
 
+/**
+ * A barrier that can be destroyed.
+ * @author bleistiko405
+ *
+ */
 public class DamageableBarrier extends Barrier implements Damageable {
 	private double health;
 	private double armor;
