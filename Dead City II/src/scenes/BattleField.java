@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import gamePlay.Main;
 import gamePlay.ResourceLoader;
+import interfaces.Clickable;
 import interfaces.Damageable;
+import interfaces.Destructive;
+import interfaces.Drawable;
+import interfaces.Typeable;
 import items.RangedWeapon;
 import processing.core.PApplet;
 import sprites.Barrier;
@@ -16,15 +20,13 @@ import sprites.Monster;
 import sprites.Sprite;
 
 public class BattleField extends Scene {
-
-
-	private Hero joe;
-	private Monster zombie;
+	
 	ArrayList<Sprite> worldlyThings;
-	Barrier b1, b2, b3;
-	ArrayList<Bullet> bullets;
-	ArrayList<Scene> scenes;
-
+	ArrayList<Drawable> toDraw;//Everything to draw that is NOT a sprite
+	ArrayList<Clickable> mouseInput;
+	ArrayList<Typeable> keyInput;
+	ArrayList<Destructive> destructive;
+	ArrayList<Damageable> damageable;
 
 	public BattleField(Main m) {
 		super(m);	
@@ -32,7 +34,7 @@ public class BattleField extends Scene {
 
 
 
-	public void setup() {
+	public void setup() {		
 		Main.resources.load(this);
 
 		worldlyThings = new ArrayList<Sprite>();
