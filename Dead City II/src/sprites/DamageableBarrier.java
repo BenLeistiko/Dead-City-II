@@ -26,11 +26,8 @@ public class DamageableBarrier extends Barrier implements Damageable {
 	}	
 
 	public void draw(PApplet marker) {
-		if(isAlive()) {
+		if(checkAlive()) {
 			super.draw(marker);
-			if(health<=0) {
-				alive = false;
-			}
 		}
 	}
 
@@ -50,7 +47,13 @@ public class DamageableBarrier extends Barrier implements Damageable {
 		this.alive = alive;
 	}
 
-	public boolean isAlive() {
+	/**
+	 * tests the health and sets it to false if its health is <=0
+	 */
+	public boolean checkAlive() {	
+		if(health <=0) {
+			setAlive(false) ;
+		}
 		return alive;
 	}
 

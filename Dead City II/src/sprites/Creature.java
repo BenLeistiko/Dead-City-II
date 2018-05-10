@@ -96,8 +96,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerMovingAndAttacking = 2;
 
 		health = 100;
-		defense = 10;
-		agility = 10;
+		defense = .5;
+		agility = 0;
 		stamina = 10;
 		speed = 10;
 		jumpPower = 25;
@@ -222,7 +222,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void draw(PApplet marker) {
-		if(isAlive()) {
+		if(checkAlive()) {
 			act(worldlyThings);
 			marker.pushMatrix();
 
@@ -378,8 +378,20 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;
 	}	
-
-	public boolean isAlive() {
+	/**
+	 * tests the health and sets it to false if its health is <=0
+	 */
+	public boolean checkAlive() {
+		if(health <=0) {
+			setAlive(false);
+		}
 		return isAlive;
+	}
+	
+	public void setAlive(boolean alive) {
+		isAlive = alive;
+	}
+	public double getHealth() {
+		return health;
 	}
 }

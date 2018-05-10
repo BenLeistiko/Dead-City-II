@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import processing.core.PApplet;
 import processing.core.PImage;
-import processing.sound.SoundFile;
+//import processing.sound.SoundFile;
 import sprites.Creature;
 
 /**
@@ -26,13 +26,13 @@ public class ResourceLoader {
 
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
-	private HashMap<String, SoundFile> sounds;
+//	private HashMap<String, SoundFile> sounds;
 
 
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
-		sounds = new HashMap<String, SoundFile>();
+	//	sounds = new HashMap<String, SoundFile>();
 
 	}
 

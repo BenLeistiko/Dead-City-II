@@ -8,8 +8,21 @@ import java.util.ArrayList;
  */
 public class Monster extends Creature {
 
-	public Monster(String key,int x, int y, int w, int h, ArrayList<Sprite> worldlyThings) {
+	public Monster(String key,double x, double y, double w, double h, ArrayList<Sprite> worldlyThings) {
 		super(x, y, w, h,worldlyThings, key);
+	}
+
+	public void draw(PApplet marker) {
+
+
+		System.out.println(super.checkAlive());
+		System.out.println(super.getHealth());
+
+
+
+
+		super.draw(marker);
+
 	}
 
 }
