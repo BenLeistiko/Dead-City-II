@@ -87,7 +87,7 @@ public class DrawingSurface extends PApplet{
 		for(int i = 0;i<thingys.size();i++) {
 			if(thingys.get(i) instanceof Damageable) {
 				Damageable d = ((Damageable) thingys.get(i));
-				if(!d.isAlive()) {
+				if(!d.checkAlive()) {
 					thingys.remove(i);
 				}
 			}

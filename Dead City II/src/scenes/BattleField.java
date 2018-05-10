@@ -12,12 +12,14 @@ import sprites.Bullet;
 import sprites.Creature;
 import sprites.DamageableBarrier;
 import sprites.Hero;
+import sprites.Monster;
 import sprites.Sprite;
 
 public class BattleField extends Scene {
 
-	
+
 	private Hero joe;
+	private Monster zombie;
 	ArrayList<Sprite> worldlyThings;
 	Barrier b1, b2, b3;
 	ArrayList<Bullet> bullets;
@@ -41,7 +43,9 @@ public class BattleField extends Scene {
 		//	scenes.add(new BattleField());
 
 
-
+		zombie = new Monster("Trooper",100,100,200,200, worldlyThings);
+		worldlyThings.add(zombie);
+		
 		joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(30, 500, 1000, 10, bullets), worldlyThings);
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
@@ -103,7 +107,7 @@ public class BattleField extends Scene {
 		for(int i = 0;i<thingys.size();i++) {
 			if(thingys.get(i) instanceof Damageable) {
 				Damageable d = ((Damageable) thingys.get(i));
-				if(!d.isAlive()) {
+				if(!d.checkAlive()) {
 					thingys.remove(i);
 				}
 			}
