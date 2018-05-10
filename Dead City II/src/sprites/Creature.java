@@ -75,13 +75,14 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		onASurface = false;
 		isSprinting = false;
 		isAttacking = false;
+	
+		standing = Main.resources.getAnimationList(animationKey+"Standing");
+		walking = Main.resources.getAnimationList(animationKey+"Walking");
+		running = Main.resources.getAnimationList(animationKey+"Running");
+		attacking = Main.resources.getAnimationList(animationKey+"Attacking");
+		jumping = Main.resources.getAnimationList(animationKey+"Jumping");
 
-		standing = DrawingSurface.resources.getAnimationList(animationKey+"Standing");
-		walking = DrawingSurface.resources.getAnimationList(animationKey+"Walking");
-		running = DrawingSurface.resources.getAnimationList(animationKey+"Running");
-		attacking = DrawingSurface.resources.getAnimationList(animationKey+"Attacking");
-		jumping = DrawingSurface.resources.getAnimationList(animationKey+"Jumping");
-		movingAndAttacking = DrawingSurface.resources.getAnimationList(animationKey+"MovingAndAttacking");
+		movingAndAttacking = Main.resources.getAnimationList(animationKey+"MovingAndAttacking");
 
 		animationPos = 0;
 		animationCounter = 0;

@@ -1,6 +1,7 @@
 package sprites;
 
 import gamePlay.DrawingSurface;
+import gamePlay.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -10,7 +11,7 @@ public class Barrier extends Sprite {
 	
 	public Barrier(double x, double y, double w, double h) {
 		super(x, y, w, h);
-		image = DrawingSurface.resources.getImage("Barrier");
+		image = Main.resources.getImage("Barrier");
 	}
 
 	@Override

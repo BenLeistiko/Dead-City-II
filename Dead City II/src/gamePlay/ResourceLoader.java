@@ -23,12 +23,12 @@ public class ResourceLoader {
 	private HashMap<String, PImage> images;
 	private HashMap<String, SoundFile> sounds;
 
-	
+
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
 		sounds = new HashMap<String, SoundFile>();
-		
+
 	}
 
 	public void load(PApplet loader) {
@@ -58,6 +58,7 @@ public class ResourceLoader {
 					list.add(img);
 					number++;
 				}
+
 				animations.put(name+state, list);
 			}
 		}
@@ -67,7 +68,6 @@ public class ResourceLoader {
 		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
 		images.put("Barrier", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Barrier.jpg"));
 
-
 		//****Loading Sounds****
 	//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
 	}
@@ -75,6 +75,7 @@ public class ResourceLoader {
 
 	public ArrayList<PImage> getAnimationList(String key){
 		return animations.get(key);
+	
 	}
 
 	public PImage getAnimation(String key, int index) {

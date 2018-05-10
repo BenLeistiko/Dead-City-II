@@ -11,7 +11,7 @@ import sprites.*;
 
 public class DrawingSurface extends PApplet{
 
-	public static ResourceLoader resources = new ResourceLoader();
+	//public static ResourceLoader resources = new ResourceLoader();
 	private Hero joe;
 	ArrayList<Sprite> worldlyThings;
 	Barrier b1, b2, b3;
@@ -19,14 +19,14 @@ public class DrawingSurface extends PApplet{
 	ArrayList<Scene> scenes;
 
 	public void setup() {
-		resources.load(this);
+		Main.resources.load(this);
 
 		worldlyThings = new ArrayList<Sprite>();
 		bullets = new ArrayList<Bullet>();
 		scenes = new ArrayList<Scene>();
 
-		scenes.add(new MainMenu());
-		scenes.add(new BattleField());
+	//	scenes.add(new MainMenu());
+	//	scenes.add(new BattleField());
 
 
 
@@ -59,9 +59,9 @@ public class DrawingSurface extends PApplet{
 			b.draw(this);
 		}
 	
-		for(Scene s:scenes) {
-			s.draw(this);
-		}
+//		for(Scene s:scenes) {
+//			s.draw(this);
+//		}
 
 		removeDeadSprites(worldlyThings);
 		
@@ -76,14 +76,7 @@ public class DrawingSurface extends PApplet{
 		joe.mouseReleased(this);
 	}
 
-	public void keyPressed() {
-//		if(keyCode == KeyEvent.VK_ESCAPE) {
-//			//m.changePanel("1");
-//			//super.pause(this, true);
-//			System.out.println("WOWOWOOW");
-//		}
-		
-		
+	public void keyPressed() {		
 		joe.keyPressed(this);
 	}
 	public void keyReleased() {
