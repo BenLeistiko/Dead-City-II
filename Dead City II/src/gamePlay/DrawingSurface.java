@@ -65,11 +65,6 @@ public class DrawingSurface extends PApplet{
 
 		removeDeadSprites(worldlyThings);
 		
-		if (isPressed(KeyEvent.VK_SPACE)) {
-			m.changePanel("1");
-			pause(true);
-		}
-		
 
 	}
 
@@ -82,6 +77,13 @@ public class DrawingSurface extends PApplet{
 	}
 
 	public void keyPressed() {
+//		if(keyCode == KeyEvent.VK_ESCAPE) {
+//			//m.changePanel("1");
+//			//super.pause(this, true);
+//			System.out.println("WOWOWOOW");
+//		}
+		
+		
 		joe.keyPressed(this);
 	}
 	public void keyReleased() {

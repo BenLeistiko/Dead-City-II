@@ -20,12 +20,12 @@ public abstract class Scene implements Drawable, Typeable, Clickable {
 		}
 	}
 	
-	public void pause(PApplet marker,boolean paused) {
-		if (paused)
-			marker.noLoop();
-		else
-			marker.loop();
-	}
+//	public void pause(PApplet marker,boolean paused) {
+//		if (paused)
+//			marker.noLoop();
+//		else
+//			marker.loop();
+//	}
 	
 	
 }
