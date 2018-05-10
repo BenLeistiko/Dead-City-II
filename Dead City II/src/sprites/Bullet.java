@@ -49,7 +49,6 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
 	public boolean detectHit() {
-
 		for(Sprite s: sprites) {
 			if(!(s instanceof Hero)) {
 				if(this.intersects(s.getHitBox())) {//if intersects with something
