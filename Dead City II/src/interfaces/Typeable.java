@@ -7,7 +7,7 @@ import processing.core.PApplet;
  * @author bleistiko405
  *
  */
-public interface Typeable {
+public interface Typeable extends Removable {
 	public void keyPressed(PApplet marker);
 	public void keyReleased(PApplet marker);
 }

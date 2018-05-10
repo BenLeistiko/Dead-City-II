@@ -4,6 +4,6 @@ package interfaces;
  * @author bleistiko405
  *
  */
-public interface Slotable {
+public interface Slotable extends Removable{
 
 }

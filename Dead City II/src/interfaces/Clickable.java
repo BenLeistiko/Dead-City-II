@@ -6,7 +6,7 @@ import processing.core.PApplet;
  * @author bleistiko405
  *
  */
-public interface Clickable {
+public interface Clickable extends Removable{
 
 	public void keyPressed(PApplet marker);
 	public void keyReleased(PApplet marker);
