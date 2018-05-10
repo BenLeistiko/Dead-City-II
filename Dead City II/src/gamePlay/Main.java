@@ -7,6 +7,9 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +19,7 @@ import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.BattleField;
 import scenes.MainMenu;
+import scenes.Scene;
 /**
  * 
  * @author Jose
@@ -37,33 +41,25 @@ public class Main {
 
 	//private OptionPanel panel1;
 
-	private BattleField panel1;  // These are PApplets - you use these to do regular processing stuff
-	private MainMenu panel2;  // Even though we've named them "DrawingSurface", they are better thought of as "Drawer"s - like a Graphics object.
+	//private BattleField panel1;  // These are PApplets - you use these to do regular processing stuff
+	//private MainMenu panel2;  // Even though we've named them "DrawingSurface", they are better thought of as "Drawer"s - like a Graphics object.
 
-	private PSurfaceAWT surf;  // These are the "portals" through which the PApplets draw on the canvas
-	private PSurfaceAWT surf2;
+	private HashMap<String,Scene> panels;
+	
+	//private PSurfaceAWT surf;  // These are the "portals" through which the PApplets draw on the canvas
+	//private PSurfaceAWT surf2;
 
-	private PSurfaceAWT.SmoothCanvas processingCanvas;  // These are swing components (think of it as the canvas that the PApplet draws on to)
-	private PSurfaceAWT.SmoothCanvas processingCanvas2;   // They are what is literally in the window
-
+	private HashMap<String, PSurfaceAWT> surfaces;
+	
+	//private PSurfaceAWT.SmoothCanvas processingCanvas;  // These are swing components (think of it as the canvas that the PApplet draws on to)
+	//private PSurfaceAWT.SmoothCanvas processingCanvas2;   // They are what is literally in the window
+	
+	private HashMap<String, PSurfaceAWT.SmoothCanvas> processingCanvases;
+	
 	public Main() {
 		resources = new ResourceLoader();
 		
 		window = new JFrame();
-
-//		
-		panel1 = new BattleField(this);//this and the next 4 lines must be repeated for each new scene along with the bottom method
-		panel1.runMe();
-
-		surf = (PSurfaceAWT) panel1.getSurface();
-		processingCanvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();////
-		// window = (JFrame)processingCanvas.getFrame();
-
-		panel2 = new MainMenu(this);
-		panel2.runMe();
-
-		surf2 = (PSurfaceAWT) panel2.getSurface();
-		processingCanvas2 = (PSurfaceAWT.SmoothCanvas) surf2.getNative();
 
 		window.setSize(900, 900);
 		window.setMinimumSize(new Dimension(100,100));
@@ -74,6 +70,10 @@ public class Main {
 		CardLayout cl = new CardLayout();
 		cardPanel.setLayout(cl);
 
+		panels = new HashMap<String,Scene>();
+		surfaces = new HashMap<String, PSurfaceAWT>();
+		processingCanvases = new HashMap<String, PSurfaceAWT.SmoothCanvas>();
+		
 		cardPanel.addComponentListener(new ComponentAdapter() {
 
 			@Override
@@ -83,13 +83,9 @@ public class Main {
 			}
 
 		});
-
-		//	panel1 = new OptionPanel(this);    
-
-		//cardPanel.add(panel1,"1");
-		cardPanel.add(processingCanvas,"BattleField");
-		cardPanel.add(processingCanvas2,"MainMenu");
-
+		
+		this.addScene(new BattleField(this), "BattleField");
+		this.addScene(new MainMenu(this), "MainMenu");
 		
 		window.setLayout(new BorderLayout());
 
@@ -109,55 +105,39 @@ public class Main {
 		changePanel("BattleField");
 	}
 
-
+	/**
+	 * adds and sets up a scene
+	 * s - the scene to add
+	 * @pre the arraylist must be initialized
+	 */
+	public void addScene(Scene s, String name) {
+		panels.put(name, s);
+		s.runMe();
+		surfaces.put(name, (PSurfaceAWT) s.getSurface());
+		processingCanvases.put(name, (PSurfaceAWT.SmoothCanvas) surfaces.get(name).getNative());
+		cardPanel.add(processingCanvases.get(name), name);
+	}
 
 
 
 
 	public static void main(String args[]) {
 		Main m = new Main();
-		/*
-		resources = new ResourceLoader();
-		
-		DrawingSurface drawing = new DrawingSurface();
-		PApplet.runSketch(new String[]{""}, drawing);
-		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-		JFrame window = (JFrame)canvas.getFrame();
-
-		window.setSize(900, 900);
-		window.setMinimumSize(new Dimension(100,100));
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(true);
-
-		window.setName("Dead City II");
-		window.setLocation(0,0);
-
-		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
-		window.setIconImage(icon);
-
-		window.setVisible(true);
-		 */
 	}
 
 
 
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);//cardpanel is a JPanel that gets added to the window JFrame
-		if (name.equals("BattleField")) {
-			processingCanvas.requestFocus();
-			panel1.pause(panel1,false);
-		} else if (name.equals("MainMenu")) {
-			processingCanvas2.requestFocus();
-			panel2.pause(panel2,false);
-		}
+		processingCanvases.get(name).requestFocus();
+		Scene s = panels.get(name);
+		s.pause(s,false);
 	}
 
 	public void fixProcessingPanelSizes(Component match) {
-		surf.setSize(match.getWidth(),match.getHeight());
-		surf2.setSize(match.getWidth(),match.getHeight());
+		Collection<PSurfaceAWT> c = surfaces.values();
+		for(PSurfaceAWT surf:c) {
+			surf.setSize(match.getWidth(),match.getHeight());
+		}
 	}
-
-
-
 }
