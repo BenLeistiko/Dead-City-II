@@ -8,6 +8,6 @@ import processing.core.PApplet;
  */
 public interface Clickable extends Removable{
 
-	public void keyPressed(PApplet marker);
-	public void keyReleased(PApplet marker);
+	public void mousePressed(PApplet marker);
+	public void mouseReleased(PApplet marker);
 }
