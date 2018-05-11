@@ -23,7 +23,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
 	private final int dir;
-	private boolean shouldBeRemoved;
+	
 
 
 	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites, int dir) {
@@ -33,7 +33,7 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
-		shouldBeRemoved = false;
+		
 	}
 
 	public void act() {
