@@ -109,6 +109,12 @@ public class Bullet extends MovingSprite implements Destructive {
 		return alive;
 	}
 
+	@Override
+	public boolean shouldRemove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 }

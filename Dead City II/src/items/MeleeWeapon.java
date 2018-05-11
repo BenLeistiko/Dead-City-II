@@ -14,6 +14,7 @@ import sprites.Sprite;
  */
 public class MeleeWeapon extends Weapon implements Destructive {
 
+	
 	private long timeLastUpdated;
 
 	public MeleeWeapon(double damage, int attackRate, double range) {
@@ -55,6 +56,8 @@ public class MeleeWeapon extends Weapon implements Destructive {
 
 	}
 
+	
+	
 
 
 

@@ -75,5 +75,13 @@ public class RangedWeapon extends Weapon {
 		return currentAmmo;
 	}
 
+
+
+	@Override
+	public boolean shouldRemove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
 
