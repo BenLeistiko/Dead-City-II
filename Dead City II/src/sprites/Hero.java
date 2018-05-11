@@ -89,12 +89,5 @@ public class Hero extends Creature implements Clickable, Typeable {
 		super.draw(marker);
 	}
 	
-	public boolean shouldRemove() {
-		if(super.shouldRemove()) {
-			weapon.remove();
-			return true;
-		}else {
-			return false;
-		}
-	}
+
 }

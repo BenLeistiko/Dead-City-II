@@ -23,7 +23,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
 	private final int dir;
-	private boolean shouldBeRemoved;
+	
 
 
 	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites, int dir) {
@@ -33,12 +33,11 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
-		shouldBeRemoved = false;
+		
 	}
 
 	public void act() {
 		setvY(getvY() + Main.GRAVITY);
-
 		moveByAmount(getvX(),getvY());
 	}
 
@@ -72,7 +71,6 @@ public class Bullet extends MovingSprite implements Destructive {
 	public void draw(PApplet marker) {
 		if(alive) {
 			marker.pushMatrix();
-			
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 			marker.popMatrix();
@@ -109,11 +107,11 @@ public class Bullet extends MovingSprite implements Destructive {
 		return alive;
 	}
 
-	@Override
 	public boolean shouldRemove() {
-		return false;
+		return !alive;
 	}
 
+	
 
 
 }
