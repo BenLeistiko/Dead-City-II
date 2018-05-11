@@ -111,7 +111,6 @@ public class Bullet extends MovingSprite implements Destructive {
 
 	@Override
 	public boolean shouldRemove() {
-		
 		return false;
 	}
 
