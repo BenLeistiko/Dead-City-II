@@ -17,17 +17,19 @@ public abstract class Weapon implements Slotable {
 	private double damage;
 	private int attackRate;
 	private double range;
-	
+	private boolean shouldBeRemoved;
+
 	public Weapon(double damage, int attackRate, double range) {
 		this.damage = damage;
 		this.attackRate = attackRate;
 		this.range = range;
-			
+		shouldBeRemoved = false;
+
 	}
-	
+
 	public abstract void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites); 
-	
-	
+
+
 	public void upgrade(double upgradeAmt) {
 		damage+=upgradeAmt;
 	}
@@ -62,6 +64,14 @@ public abstract class Weapon implements Slotable {
 	}
 
 
+	public void setShouldBeRemoved(boolean shouldBeRemoved) {
+		this.shouldBeRemoved = shouldBeRemoved;
+	}
+
+
+	public boolean shouldRemove() {
+		return shouldBeRemoved;
+	}
 
 
 
