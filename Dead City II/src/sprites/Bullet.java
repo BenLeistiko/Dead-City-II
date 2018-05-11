@@ -23,15 +23,17 @@ public class Bullet extends MovingSprite implements Destructive {
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
 	private final int dir;
+	private boolean shouldBeRemoved;
 
 
-	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites,int dir) {
+	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites, int dir) {
 		super(x, y, w, h);
 		this.damage = damage;
 		image = Main.resources.getImage("Bullet");
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
+		shouldBeRemoved = false;
 	}
 
 	public void act() {
@@ -55,7 +57,6 @@ public class Bullet extends MovingSprite implements Destructive {
 					if(s instanceof Damageable) {//if damageable do damage
 						Damageable damageableSprite = ((Damageable) s);
 						damageableSprite.takeDamage(getDamage());
-						System.out.println("damaging?");
 					}
 					return true;//still means it hit something
 				}
@@ -74,7 +75,6 @@ public class Bullet extends MovingSprite implements Destructive {
 			
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
-			//marker.image(image, (float)getX(),(float)getY(),(float)getWidth(),(float)getHeight());
 			marker.popMatrix();
 			
 			if(detectHit()) {
@@ -111,7 +111,7 @@ public class Bullet extends MovingSprite implements Destructive {
 
 	@Override
 	public boolean shouldRemove() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
