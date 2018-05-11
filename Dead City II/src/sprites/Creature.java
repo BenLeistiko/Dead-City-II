@@ -108,7 +108,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 
 	private void act(ArrayList<Sprite> worldlyThings) {
-		//System.out.println(health);
+		
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
@@ -192,6 +192,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			setvX(0);
 
 		moveToLocation(xCoord2,yCoord2);
+		
+		
 		if(isAttacking) {
 			if(Math.abs(getvX()) < 0.000001 || !isOnSurface()) {
 				state = State.ATTACKING;

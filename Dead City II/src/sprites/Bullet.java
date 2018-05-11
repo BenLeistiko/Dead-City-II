@@ -23,7 +23,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	private ArrayList<Sprite> sprites;
 	private boolean alive;
 	private final int dir;
-	
+
 
 
 	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites, int dir) {
@@ -33,7 +33,7 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
-		
+
 	}
 
 	public void act() {
@@ -50,13 +50,16 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
 	public boolean detectHit() {
+
 		for(Sprite s: sprites) {
-			if(!(s instanceof Hero)) {
+			if(s!=this && !(s instanceof Hero)) {
 				if(this.intersects(s.getHitBox())) {//if intersects with something
 					if(s instanceof Damageable) {//if damageable do damage
 						Damageable damageableSprite = ((Damageable) s);
 						damageableSprite.takeDamage(getDamage());
+						
 					}
+				
 					return true;//still means it hit something
 				}
 			}
@@ -69,13 +72,12 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * 
 	 */
 	public void draw(PApplet marker) {
-	System.out.println("bullet drawing");
 		if(alive) {
 			marker.pushMatrix();
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 			marker.popMatrix();
-			System.out.println("bullet hit smth" + detectHit());
+		
 			if(detectHit()) {
 				setAlive(false);
 			}
@@ -109,11 +111,10 @@ public class Bullet extends MovingSprite implements Destructive {
 	}
 
 	public boolean shouldRemove() {
-		System.out.println("should remove?  " + !alive);
 		return !alive;
 	}
 
-	
+
 
 
 }

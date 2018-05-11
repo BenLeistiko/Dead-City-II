@@ -47,33 +47,28 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		marker.rect((float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 	}
 	
-	public boolean collides(Sprite s) {
-		if(this.intersects(s) && this != s) {
-			return true;
-		} else {
-			return false;	
-		}
-
-	}
+//	public boolean collides(Sprite s) {
+//		if(this.intersects(s) && this != s) {
+//			return true;
+//		} else {
+//			return false;	
+//		}
+//
+//	}
 	
-	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
-		ArrayList<Sprite> hits = new ArrayList<Sprite>();
-
-		for(Sprite s: sprites) {
-			if(this.collides(s)) {
-				hits.add(s);
-			}
-		}
-
-		return hits;
-	}
+//	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
+//		ArrayList<Sprite> hits = new ArrayList<Sprite>();
+//
+//		for(Sprite s: sprites) {
+//			if(this.collides(s)) {
+//				hits.add(s);
+//			}
+//		}
+//
+//		return hits;
+//	}
 	
-	public boolean isBelow(Sprite other) {
-		if(this.getY()+this.getHeight() < other.getY()) {
-			return true;
-		}
-		return false;
-	}
+	
 
 	public void moveByAmount(double x, double y) {
 		this.x+=x;
