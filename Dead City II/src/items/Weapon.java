@@ -64,8 +64,8 @@ public abstract class Weapon implements Slotable {
 	}
 
 
-	public void setShouldBeRemoved(boolean shouldBeRemoved) {
-		this.shouldBeRemoved = shouldBeRemoved;
+	public void remove() {
+		this.shouldBeRemoved = true;
 	}
 
 
