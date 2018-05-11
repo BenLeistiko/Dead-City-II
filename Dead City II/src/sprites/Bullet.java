@@ -107,6 +107,10 @@ public class Bullet extends MovingSprite implements Destructive {
 		return alive;
 	}
 
+	public boolean shouldRemove() {
+		return !alive;
+	}
+
 	
 
 
