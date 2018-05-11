@@ -38,7 +38,6 @@ public class Bullet extends MovingSprite implements Destructive {
 
 	public void act() {
 		setvY(getvY() + Main.GRAVITY);
-
 		moveByAmount(getvX(),getvY());
 	}
 
@@ -72,7 +71,6 @@ public class Bullet extends MovingSprite implements Destructive {
 	public void draw(PApplet marker) {
 		if(alive) {
 			marker.pushMatrix();
-			
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 			marker.popMatrix();
@@ -109,11 +107,7 @@ public class Bullet extends MovingSprite implements Destructive {
 		return alive;
 	}
 
-	@Override
-	public boolean shouldRemove() {
-		return false;
-	}
-
+	
 
 
 }
