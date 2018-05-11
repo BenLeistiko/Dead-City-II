@@ -12,10 +12,12 @@ import processing.core.PImage;
 public class Barrier extends Sprite {
 
 	private PImage image; 
+	private boolean shouldBeRemoved;
 	
 	public Barrier(double x, double y, double w, double h) {
 		super(x, y, w, h);
 		image = Main.resources.getImage("Barrier");
+		shouldBeRemoved = false;
 	}
 
 	@Override
@@ -23,4 +25,11 @@ public class Barrier extends Sprite {
 		marker.image(image, (float)getX(), (float)getY(),(float)getWidth(),(float)getHeight());
 	}
 
+	public boolean shouldRemove() {
+		return shouldBeRemoved;
+	}
+
+	public void remove() {
+		shouldBeRemoved = true;
+	}
 }

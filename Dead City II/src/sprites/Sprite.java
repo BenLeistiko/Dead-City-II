@@ -28,27 +28,18 @@ import processing.core.PImage;
  */
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
-	private boolean isVisible;
 	private String imageKey;
-	private boolean remove; 
 	
-	public Sprite(String imageKey,double x, double y, double w, double h, boolean visiblity, ArrayList<Sprite> sprites) {
+	public Sprite(String imageKey,double x, double y, double w, double h, ArrayList<Sprite> sprites) {
 		super(x,y,w,h);
-		remove = false;
-		this.imageKey = imageKey;
-		isVisible = visiblity;
-		
+		this.imageKey = imageKey;		
 	}
 	public Sprite(double x, double y, double w, double h, boolean visiblity) {
 		super(x,y,w,h);
-
-		isVisible = visiblity;
 	}
 
 	public Sprite(double x, double y, double w, double h) {
 		super(x,y,w,h);
-
-		isVisible = true;
 	}
 	
 	public void drawHitBox(PApplet marker) {
@@ -63,19 +54,6 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 			return false;	
 		}
 
-	}
-
-	public ArrayList<Sprite> collides() {
-		/*
-		ArrayList<Sprite> hits = new ArrayList<Sprite>();
-		for(Sprite s: sprites) {
-			if(this.collides(s)) {
-				hits.add(s);
-			}
-		}
-		return hits;
-		*/
-		return null;
 	}
 	
 	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
@@ -119,26 +97,8 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	public Point2D.Double getCenter() {
 		return new Point2D.Double(getX()+getWidth()/2,getY()+getHeight()/2);
 	}
-
-	/*
-	 * Switches the MovingImage visibility to the opposite of what it is
-	 * currently.
-	 */
-	public void swapVisibility() {
-		isVisible = !isVisible;
-	}
-
-	/*
-	 * Returns the visibility of the MovingImage.
-	 */
-	public boolean isVisible() {
-		return isVisible;
-	}
 	
 	public Rectangle2D getHitBox() {
 		return this.getBounds2D();
-	}
-	public void remove() {
-		remove = true;
 	}
 }

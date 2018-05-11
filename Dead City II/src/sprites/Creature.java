@@ -59,8 +59,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	private ArrayList<Sprite> worldlyThings;
 
-	private boolean isAlive;
-
 	/**
 	 * Creates a new creature.  It's state is currently standing when created.  It will stay 2 frames on each picture by defualt.
 	 * @param x - sprite x location
@@ -75,7 +73,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		onASurface = false;
 		isSprinting = false;
 		isAttacking = false;
-	
+
 		standing = Main.resources.getAnimationList(animationKey+"Standing");
 		walking = Main.resources.getAnimationList(animationKey+"Walking");
 		running = Main.resources.getAnimationList(animationKey+"Running");
@@ -105,8 +103,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		direction = 1;
 
 		this.worldlyThings =  worldlyThings;
-		isAlive = true;
-
 	}
 
 
@@ -222,79 +218,79 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void draw(PApplet marker) {
-		if(checkAlive()) {
-			act(worldlyThings);
-			marker.pushMatrix();
 
-			marker.scale((float)direction, 1f);
-			if(state == State.STANDING) {
-				if(animationPos >= standing.size())
-					animationPos = 0;
-				marker.image(standing.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+		act(worldlyThings);
+		marker.pushMatrix();
 
-				if(animationCounter>framesPerStanding) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
-			}else if(state == State.WALKING) {
-				if(animationPos >= walking.size())
-					animationPos = 0;
-				marker.image(walking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());	
-				if(animationCounter>framesPerWalking) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
-			}else if(state == State.RUNNING) {
-				if(animationPos >= running.size())
-					animationPos = 0;
-				marker.image(running.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+		marker.scale((float)direction, 1f);
+		if(state == State.STANDING) {
+			if(animationPos >= standing.size())
+				animationPos = 0;
+			marker.image(standing.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-				if(animationCounter>framesPerRunning) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
-			}else if(state == State.ATTACKING) {
-				if(animationPos >= attacking.size()) {
-					animationPos = 0;
-					isAttacking = false;
-				}
-				marker.image(attacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
-
-				if(animationCounter>framesPerAttacking) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
-			}else if(state == State.MOVINGANDATTACKING) {
-				if(animationPos >= movingAndAttacking.size()) {
-					animationPos = 0;
-					isAttacking = false;
-				}
-				marker.image(movingAndAttacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
-
-				if(animationCounter>framesPerMovingAndAttacking) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
-			}else if(state == State.JUMPING) {
-				if(animationPos >= jumping.size())
-					animationPos = 0;
-				marker.image(jumping.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
-
-				if(animationCounter>framesPerJumping) {
-					animationCounter = 0;
-					animationPos++;
-				}
-				animationCounter++;
+			if(animationCounter>framesPerStanding) {
+				animationCounter = 0;
+				animationPos++;
 			}
+			animationCounter++;
+		}else if(state == State.WALKING) {
+			if(animationPos >= walking.size())
+				animationPos = 0;
+			marker.image(walking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());	
+			if(animationCounter>framesPerWalking) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
+		}else if(state == State.RUNNING) {
+			if(animationPos >= running.size())
+				animationPos = 0;
+			marker.image(running.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 
-			marker.popMatrix();
+			if(animationCounter>framesPerRunning) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
+		}else if(state == State.ATTACKING) {
+			if(animationPos >= attacking.size()) {
+				animationPos = 0;
+				isAttacking = false;
+			}
+			marker.image(attacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
+			if(animationCounter>framesPerAttacking) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
+		}else if(state == State.MOVINGANDATTACKING) {
+			if(animationPos >= movingAndAttacking.size()) {
+				animationPos = 0;
+				isAttacking = false;
+			}
+			marker.image(movingAndAttacking.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
+			if(animationCounter>framesPerMovingAndAttacking) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
+		}else if(state == State.JUMPING) {
+			if(animationPos >= jumping.size())
+				animationPos = 0;
+			marker.image(jumping.get(animationPos), (direction == 1)? (float)getX():direction*(float)getX()-(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
+
+			if(animationCounter>framesPerJumping) {
+				animationCounter = 0;
+				animationPos++;
+			}
+			animationCounter++;
 		}
+
+		marker.popMatrix();
 	}
+
 
 	/**
 	 * sets the animation state of this creature
@@ -378,20 +374,12 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;
 	}	
-	/**
-	 * tests the health and sets it to false if its health is <=0
-	 */
-	public boolean checkAlive() {
-		if(health <=0) {
-			setAlive(false);
-		}
-		return isAlive;
-	}
-	
-	public void setAlive(boolean alive) {
-		isAlive = alive;
-	}
+
 	public double getHealth() {
 		return health;
+	}
+
+	public boolean shouldRemove(){
+		return health<=0;
 	}
 }

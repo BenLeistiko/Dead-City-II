@@ -25,8 +25,6 @@ public class BattleField extends Scene {
 	ArrayList<Drawable> toDraw;//Everything to draw that is NOT a sprite
 	ArrayList<Clickable> mouseInput;
 	ArrayList<Typeable> keyInput;
-	ArrayList<Destructive> destructive;
-	ArrayList<Damageable> damageable;
 
 	public BattleField(Main m) {
 		super(m);	
