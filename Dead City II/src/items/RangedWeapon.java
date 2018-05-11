@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import gamePlay.Main;
 import interfaces.Damageable;
+import scenes.Scene;
 import sprites.Bullet;
 import sprites.Sprite;
 
@@ -18,15 +19,17 @@ public class RangedWeapon extends Weapon {
 	private final int MAX_AMMO;
 	private int currentAmmo;
 	private long timeLastUpdated;
-	private ArrayList<Bullet> bullets;
+//	private ArrayList<Bullet> bullets;
+	private Scene s;
 	private final double BULLET_SPEED = 50;
 
 
-	public RangedWeapon(double damage, int attackRate, double range, int ammo, ArrayList<Bullet> bullets) {
+	public RangedWeapon(double damage, long attackRate, double range, int ammo, Scene s) {
 		super(damage,attackRate,range);
 		MAX_AMMO = ammo;
 		this.currentAmmo = ammo;
-		this.bullets = bullets;
+	//	this.bullets = bullets;
+		this.s=s;
 	}
 
 
@@ -43,22 +46,23 @@ public class RangedWeapon extends Weapon {
 						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites,dir);
 			}
 			bull.setvX(dir*BULLET_SPEED);
-			bullets.add(bull);			
+			//bullets.add(bull);
+			s.add(bull);
 			currentAmmo--;
 			timeLastUpdated = System.currentTimeMillis();
 		}
-		ridDeadBullets();
+	//	ridDeadBullets();
 
 
 	}
 
-	public void ridDeadBullets() {
-		for(int i = 0; i < bullets.size();i++) {
-			if(!bullets.get(i).isAlive()) {
-				bullets.remove(i);
-			}
-		}
-	}
+//	public void ridDeadBullets() {
+//		for(int i = 0; i < bullets.size();i++) {
+//			if(!bullets.get(i).isAlive()) {
+//				bullets.remove(i);
+//			}
+//		}
+//	}
 
 
 
@@ -66,9 +70,9 @@ public class RangedWeapon extends Weapon {
 		currentAmmo = MAX_AMMO;
 	}
 
-	public ArrayList<Bullet> getBulletArray(){
-		return bullets;
-	}
+//	public ArrayList<Bullet> getBulletArray(){
+//		return bullets;
+//	}
 
 
 	public int getCurrentAmmo() {

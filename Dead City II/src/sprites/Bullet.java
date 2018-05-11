@@ -69,12 +69,13 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * 
 	 */
 	public void draw(PApplet marker) {
+	System.out.println("bullet drawing");
 		if(alive) {
 			marker.pushMatrix();
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 			marker.popMatrix();
-			
+			System.out.println("bullet hit smth" + detectHit());
 			if(detectHit()) {
 				setAlive(false);
 			}
@@ -108,6 +109,7 @@ public class Bullet extends MovingSprite implements Destructive {
 	}
 
 	public boolean shouldRemove() {
+		System.out.println("should remove?  " + !alive);
 		return !alive;
 	}
 

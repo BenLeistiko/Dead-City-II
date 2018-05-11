@@ -30,7 +30,14 @@ public class BattleField extends Scene {
 
 	public void setup() {	
 		Main.resources.load(this);
-		Barrier b= new Barrier(50, 50, 50, 50);
+		Barrier b= new Barrier(0, 500, 200, 50);
+		
+		
+		
+		Hero joe = new Hero("Trooper", 100,100,200,200,new RangedWeapon(50,1000,20,10,this),worldlyThings);
+		
+		this.add(joe);
+		
 		this.add(b);
 	}
 
