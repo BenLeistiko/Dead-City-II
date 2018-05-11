@@ -1,6 +1,8 @@
 package sprites;
 
 import java.util.ArrayList;
+
+import processing.core.PApplet;
 /**
  * CPU controlled monster that attacks heros.
  * @author bleistiko405
@@ -13,16 +15,7 @@ public class Monster extends Creature {
 	}
 
 	public void draw(PApplet marker) {
-
-
-		System.out.println(super.checkAlive());
-		System.out.println(super.getHealth());
-
-
-
-
 		super.draw(marker);
-
 	}
 
 }

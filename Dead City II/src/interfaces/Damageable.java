@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
  * @author bleistiko405
  *
  */
-public interface Damageable extends Removable {
+public interface Damageable {
 	
 	/**
 	 * Takes damage from a Destructive object
@@ -22,9 +22,4 @@ public interface Damageable extends Removable {
 	public void takeDamage(double damage);
 	
 	public Rectangle2D getHitBox();
-	
-	public boolean checkAlive();
-	
-	
-	
 }

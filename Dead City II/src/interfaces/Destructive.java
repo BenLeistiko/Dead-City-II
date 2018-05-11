@@ -4,7 +4,7 @@ package interfaces;
  * @author bleistiko405
  *
  */
-public interface Destructive extends Removable {
+public interface Destructive {
 	/**
 	 * Deals damage to a Damageable object.
 	 * Do NOT call d.takeDamage(this); it will generate an endless loop
