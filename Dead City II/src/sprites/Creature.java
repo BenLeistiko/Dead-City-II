@@ -27,6 +27,12 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double stamina;
 	private double speed;
 	private double jumpPower;
+	
+	private double maxHealth;
+	private double maxStamina;
+	
+	private double regenHealth;//in Health per second
+	private double regenStamina;//in Stamina per second
 
 	private int direction;//the direction that the creature is moving.  1=right, -1=left, 0=bugs!!
 
@@ -89,9 +95,9 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerStanding = 4;
 		framesPerWalking = 4;
 		framesPerRunning = (int) Math.round((double)(framesPerWalking)/SPRINT_SPEED);
-		framesPerAttacking = 4;
+		framesPerAttacking = 6;
 		framesPerJumping = 4;
-		framesPerMovingAndAttacking = 2;
+		framesPerMovingAndAttacking = 3;
 
 		health = 100;
 		defense = .5;
@@ -99,6 +105,12 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		stamina = 10;
 		speed = 10;
 		jumpPower = 25;
+		
+		maxHealth = health;
+		maxStamina = stamina;
+		
+		regenHealth = 1;
+		regenStamina = 1;
 
 		direction = 1;
 
@@ -126,7 +138,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if (getvY() > 0) {
 			Sprite standingSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechY) && s!=this) {
+				if (s.intersects(strechY) && s instanceof Barrier) {
 					onASurface = true;
 					standingSurface = s;
 					setvY(0);
@@ -139,7 +151,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		} else if (getvY() < 0) {
 			Sprite headSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechY)&& s!=this) {
+				if (s.intersects(strechY)&& s instanceof Barrier) {
 					headSurface = s;
 					setvY(0);
 				}
@@ -164,7 +176,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if (getvX() > 0) {
 			Sprite rightSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechX)&& s!=this) {
+				if (s.intersects(strechX)&& s instanceof Barrier) {
 					rightSurface = s;
 					setvX(0);
 				}
@@ -176,7 +188,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		} else if (getvX() < 0) {
 			Sprite leftSurface = null;
 			for (Sprite s : worldlyThings) {
-				if (s.intersects(strechX)&& s!=this) {
+				if (s.intersects(strechX)&& s instanceof Barrier) {
 					leftSurface = s;
 					setvX(0);
 				}
@@ -208,6 +220,18 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			state = State.RUNNING;		
 		}else {
 			state = State.WALKING;
+		}
+		
+		if(health < maxHealth) {
+			health = health + this.regenHealth*Main.frameTime;
+		}else {
+			health = maxHealth; 
+		}
+		
+		if(stamina < maxStamina) {
+			stamina = stamina + this.regenStamina*Main.frameTime;
+		}else {
+			stamina = maxStamina; 
 		}
 	}
 
