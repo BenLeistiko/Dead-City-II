@@ -35,7 +35,7 @@ public class DrawingSurface extends PApplet{
 
 
 
-		joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(30, 500, 1000, 10, bullets), worldlyThings);
+		//joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(30, 500, 1000, 10, bullets), worldlyThings);
 		joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
@@ -92,9 +92,9 @@ public class DrawingSurface extends PApplet{
 		for(int i = 0;i<thingys.size();i++) {
 			if(thingys.get(i) instanceof Damageable) {
 				Damageable d = ((Damageable) thingys.get(i));
-				if(!d.checkAlive()) {
-					thingys.remove(i);
-				}
+				//if(!d.checkAlive()) {
+					//thingys.remove(i);
+				//}
 			}
 		}
 	}

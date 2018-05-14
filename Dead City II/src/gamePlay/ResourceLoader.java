@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,13 +27,13 @@ public class ResourceLoader {
 
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
-//	private HashMap<String, SoundFile> sounds;
+	//	private HashMap<String, SoundFile> sounds;
 
 
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
-	//	sounds = new HashMap<String, SoundFile>();
+		//	sounds = new HashMap<String, SoundFile>();
 
 	}
 
@@ -49,16 +50,24 @@ public class ResourceLoader {
 		states.add("MovingAndAttacking");
 
 
+		animationNames.add("BasicZombie");
+		animationNames.add("BoneZombie");
+		animationNames.add("SkirtZombie");
 		animationNames.add("Trooper");
+
 
 		for(String name: animationNames) {
 			for(String state:states) {
 				ArrayList<PImage> list = new ArrayList<PImage>();
 				int number = 1;
 				while(true) { 
-					PImage img = loader.loadImage(fileSeparator+"resources" +fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
-					if(img == null)
-						break; 
+					File f = new File("resources" +fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
+					if(!f.exists()) {
+						System.out.println(f.getPath());
+						break;
+					}
+					PImage img = loader.loadImage(f.getPath());
+
 					//list.add(cropedImage(img));
 					list.add(img);
 					number++;
@@ -74,13 +83,13 @@ public class ResourceLoader {
 		images.put("Barrier", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Barrier.jpg"));
 
 		//****Loading Sounds****
-	//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
+		//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
 	}
 
 
 	public ArrayList<PImage> getAnimationList(String key){
 		return animations.get(key);
-	
+
 	}
 
 	public PImage getAnimation(String key, int index) {
