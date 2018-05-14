@@ -40,22 +40,13 @@ public class Main {
 
 	private JPanel cardPanel;
 
-	//private OptionPanel panel1;
 
-	//private BattleField panel1;  // These are PApplets - you use these to do regular processing stuff
-	//private MainMenu panel2;  // Even though we've named them "DrawingSurface", they are better thought of as "Drawer"s - like a Graphics object.
+	private HashMap<String,Scene> panels;// These are PApplets - you use these to do regular processing stuff
 
-	private HashMap<String,Scene> panels;
+	private HashMap<String, PSurfaceAWT> surfaces; // These are the "portals" through which the PApplets draw on the canvas
 
-	//private PSurfaceAWT surf;  // These are the "portals" through which the PApplets draw on the canvas
-	//private PSurfaceAWT surf2;
-
-	private HashMap<String, PSurfaceAWT> surfaces;
-
-	//private PSurfaceAWT.SmoothCanvas processingCanvas;  // These are swing components (think of it as the canvas that the PApplet draws on to)
-	//private PSurfaceAWT.SmoothCanvas processingCanvas2;   // They are what is literally in the window
-
-	private HashMap<String, PSurfaceAWT.SmoothCanvas> processingCanvases;
+	private HashMap<String, PSurfaceAWT.SmoothCanvas> processingCanvases; // These are swing components (think of it as the canvas that the PApplet draws on to), They are what is literally in the window
+	
 
 	public Main() {
 		resources = new ResourceLoader();

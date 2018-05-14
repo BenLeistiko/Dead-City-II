@@ -1,8 +1,14 @@
 package scenes;
 
+import gamePlay.Main;
 import processing.core.PApplet;
 
 public class Map extends Scene {
+
+	public Map(Main m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void draw(PApplet marker) {
@@ -10,16 +16,5 @@ public class Map extends Scene {
 		
 	}
 
-	@Override
-	public void keyPressed(PApplet marker) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(PApplet marker) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

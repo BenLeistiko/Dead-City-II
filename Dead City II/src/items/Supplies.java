@@ -5,9 +5,15 @@ import processing.core.PApplet;
 
 public class Supplies implements Drawable {
 
-	@Override
+	private boolean remove;
+
 	public void draw(PApplet marker) {
 
+	}
+
+	@Override
+	public boolean shouldRemove() {
+		return remove;
 	}
 
 }
