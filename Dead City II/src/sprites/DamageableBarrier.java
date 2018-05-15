@@ -7,6 +7,7 @@ import java.awt.image.ImageObserver;
 import interfaces.Damageable;
 import interfaces.Destructive;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * A barrier that can be destroyed.
@@ -18,8 +19,8 @@ public class DamageableBarrier extends Barrier implements Damageable {
 	private double armor;
 	private boolean alive;
 
-	public DamageableBarrier(double x, double y, double w, double h, double health, double armor) {
-		super(x, y, w, h);
+	public DamageableBarrier(double x, double y, double w, double h, double textureW, double textureH, PImage texture, double health, double armor) {
+		super(x, y, w, h, textureW, textureH, texture);
 		this.health = health;
 		this.armor = armor;
 		alive = true;

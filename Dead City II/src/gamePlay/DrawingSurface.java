@@ -36,14 +36,14 @@ public class DrawingSurface extends PApplet{
 
 
 		//joe = new Hero("Trooper",100,100,200,200, new RangedWeapon(30, 500, 1000, 10, bullets), worldlyThings);
-		joe.setState(Creature.State.WALKING);
+		/*joe.setState(Creature.State.WALKING);
 		b1 = new Barrier(0, 800, 1000, 100);
 		b2 = new Barrier(600,550,250,50);
 		b3 = new DamageableBarrier(600, 650, 100,100,100,0.5);
 		worldlyThings.add(joe);
 		worldlyThings.add(b1);
 		worldlyThings.add(b2);
-		worldlyThings.add(b3);
+		worldlyThings.add(b3);*/
 	}
 
 	public void draw() {

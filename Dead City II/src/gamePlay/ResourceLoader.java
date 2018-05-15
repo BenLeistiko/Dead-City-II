@@ -82,7 +82,8 @@ public class ResourceLoader {
 
 		//****Loading Normal Images****
 		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
-		images.put("Barrier", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Barrier.jpg"));
+		images.put("Bricks", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bricks.jpg"));
+		images.put("Bedrock", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bedrock.png"));
 
 		//****Loading Sounds****
 		//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
