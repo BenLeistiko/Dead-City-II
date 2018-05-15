@@ -15,51 +15,37 @@ import processing.core.PImage;
  *
  */
 public class DamageableBarrier extends Barrier implements Damageable {
+	
 	private double health;
 	private double armor;
-	private boolean alive;
 
 	public DamageableBarrier(double x, double y, double w, double h, double textureW, double textureH, String key, double health, double armor) {
 		super(x, y, w, h, textureW, textureH, key);
 		this.health = health;
 		this.armor = armor;
-		alive = true;
 	}	
 
 	public void draw(PApplet marker) {
-		if(checkAlive()) {
 			super.draw(marker);
-		}
 	}
 
 	public void takeDamage(Destructive d) {
-		health = health-(d.getDamage()*armor);
-		System.out.println(health);
+		health = health-(d.getDamage()-d.getDamage()*armor);
+		checkAlive();
 	}
 
 	public void takeDamage(double damage) {
-		health = health-(damage*armor);
-		System.out.println(health);
+		health = health-(damage-damage*armor);
+		checkAlive();
 	}
 
-	public Rectangle2D getHitBox() {
-		return this.getBounds2D();
-	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
 
 	/**
 	 * tests the health and sets it to false if its health is <=0
 	 */
-	public boolean checkAlive() {	
+	public void checkAlive() {	
 		if(health <=0) {
-			setAlive(false) ;
+			remove();
 		}
-		return alive;
 	}
-
-
-
 }

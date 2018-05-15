@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import interfaces.Damageable;
 import interfaces.Destructive;
@@ -356,9 +355,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return onASurface;
 	}
 
-	public Rectangle2D getHitBox() {
-		return this.getBounds2D();
-	}
+
 
 	public double getStamina() {
 		return stamina;

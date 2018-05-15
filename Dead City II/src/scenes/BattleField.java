@@ -36,10 +36,10 @@ public class BattleField extends Scene {
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
-
 	}
+	
 
-	public void setup() {	
+	public void setup() {
 		Main.resources.load(this);
 
 		Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings);
@@ -55,6 +55,7 @@ public class BattleField extends Scene {
 			generateHill((int)(worldSpace.getWidth()*Math.random()),(int)(worldSpace.getHeight()-1001) , 1);
 		}
 		generatePlatforms(100);
+		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
 	}
 
 	public void draw() {
@@ -111,9 +112,8 @@ public class BattleField extends Scene {
 				yTrans = characterSpace.getY() - center.y;
 			}
 			characterSpace.setRect(characterSpace.getX()-xTrans, characterSpace.getY()-yTrans, characterSpace.getWidth(), characterSpace.getHeight());
-
+			super.updateRenderSpace(-xTrans, -yTrans);
 		}
-
 	}
 
 	public void generateEdges() {
@@ -158,10 +158,14 @@ public class BattleField extends Scene {
 	}
 
 	public void generatePlatforms(int number) {
+		int[] ySizes = new int[10];
+		for(int i = 0; i < 10; i++) {
+			ySizes[i] = 200+100*i;
+		}
 		for(int i = 0; i < number; i++) {
-			Barrier plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), 500*Math.random()+200, 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
+			Barrier plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), ySizes[(int)(Math.random()*10)], 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
 			while(plat.collides(worldlyThings)) {
-				plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), 500*Math.random()+200, 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
+				plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), ySizes[(int)(Math.random()*10)], 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
 			}
 			add(plat);
 		}

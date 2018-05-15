@@ -1,5 +1,7 @@
 package scenes;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import gamePlay.Main;
@@ -15,21 +17,32 @@ public abstract class Scene extends PApplet {
 
 	private Main m;
 	
+	private Rectangle2D.Double renderSpace;
+	
 	public Scene (Main m) {
 		this.m=m;
-		
 		toDraw = new ArrayList<Drawable>();
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
+		renderSpace = new Rectangle2D.Double(0,0,0,0);
 	}
+	
 
+	public void setRenderSpace(Rectangle2D.Double r) {
+		renderSpace = r;
+	}
+	
+	public void updateRenderSpace(double xTrans, double yTrans) {
+		renderSpace.setRect(renderSpace.getX()+xTrans, renderSpace.getY()+yTrans, renderSpace.getWidth(), renderSpace.getHeight());
+	}
+	
 	public void draw(PApplet marker) {
-
 		for(int i = 0; i < toDraw.size(); i++) {
 			if(toDraw.get(i).shouldRemove()) {
 				toDraw.remove(i);
-			}else
+			}else if(toDraw.get(i).getHitBox().intersects(renderSpace)) {
 				toDraw.get(i).draw(this);
+			}
 		}
 		for(int i = 0; i < mouseInput.size(); i++) {
 			if(mouseInput.get(i).shouldRemove())
@@ -74,6 +87,7 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void runMe() {
+		
 		super.sketchPath();
 		super.initSurface();
 		super.surface.startThread();

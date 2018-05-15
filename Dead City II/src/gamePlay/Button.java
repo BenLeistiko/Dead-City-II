@@ -2,6 +2,8 @@ package gamePlay;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 
 import interfaces.Clickable;
 import interfaces.Drawable;
@@ -11,15 +13,14 @@ import processing.core.PApplet;
  * @author bleistiko405
  *
  */
-public class Button implements Drawable, Clickable {
+public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	String name;
-	Rectangle r;	
 	boolean isPressed;
 	int x,y;
 	
 	public Button(int x, int y, int h, int w, String name) {
-		r = new Rectangle(x,y,h,w);
+		super(x,y,h,w);
 		this.name = name;
 		this.isPressed = false;
 		x = (x+x+w)/2;
@@ -35,14 +36,14 @@ public class Button implements Drawable, Clickable {
 	}
 
 	public boolean mouseInside(PApplet marker) {
-		if(r.contains(marker.mouseX, marker.mouseY)) {
+		if(this.contains(marker.mouseX, marker.mouseY)) {
 			return true;
 		}
 		return false;
 	}
 
 	public void mousePressed(PApplet marker) {
-		if(r.contains(marker.mouseX, marker.mouseY)) {
+		if(this.contains(marker.mouseX, marker.mouseY)) {
 			isPressed = true;
 		}
 	}
@@ -60,9 +61,13 @@ public class Button implements Drawable, Clickable {
 			marker.noFill();
 			marker.strokeWeight(2);
 		}
-		marker.rect((float)r.x, (float)r.y, (float)r.getWidth(), (float)r.getHeight());
+		marker.rect((float)super.x, (float)super.y, (float)super.getWidth(), (float)super.getHeight());
 		marker.textAlign(marker.CENTER);
 		marker.text(name, x, y);
 	}
 
+	@Override
+	public Rectangle2D.Double getHitBox() {
+		return this;
+	}
 }

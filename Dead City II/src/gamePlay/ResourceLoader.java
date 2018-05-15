@@ -32,6 +32,7 @@ public class ResourceLoader {
 	private HashMap<String, PImage> images;
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
+	private int numberOfImages;
 
 	
 	//	private HashMap<String, SoundFile> sounds;
@@ -42,7 +43,7 @@ public class ResourceLoader {
 		images = new HashMap<String, PImage>();
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
 		//	sounds = new HashMap<String, SoundFile>();
-
+		numberOfImages = 0;
 	}
 
 	public void load(PApplet loader) {
@@ -115,6 +116,7 @@ public class ResourceLoader {
 			PImage img = this.getImage(name); 
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
+			System.out.println(++numberOfImages);
 		}
 		return textures.get(name).get(bounds).get(cropBounds);
 	}

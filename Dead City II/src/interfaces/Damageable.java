@@ -21,5 +21,5 @@ public interface Damageable {
 	 */
 	public void takeDamage(double damage);
 	
-	public Rectangle2D getHitBox();
+	public Rectangle2D.Double getHitBox();
 }

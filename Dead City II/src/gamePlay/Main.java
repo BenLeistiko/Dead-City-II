@@ -84,7 +84,7 @@ public class Main {
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
-		changePanel("BattleField");
+		changePanel("MainMenu");
 	}
 
 	/**

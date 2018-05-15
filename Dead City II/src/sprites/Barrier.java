@@ -2,7 +2,6 @@ package sprites;
 
 import java.awt.Point;
 
-import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -61,7 +60,7 @@ public class Barrier extends Sprite {
 					}else {
 						marker.image(bottomImg, (float)(getX() + x*textureWidth), (float)(getY()+ y*textureHeight),(float)textureWidth,(float)cropY);
 						//System.out.println(x + ", " + y + ": " + textureWidth + ", " + cropY);
-					}
+					} 
 				}else if(x==xMax) {
 					marker.image(sideImg, (float)(getX() + x*textureWidth), (float)(getY()+ y*textureHeight),(float)cropX,(float)textureHeight);
 					//System.out.println(x + ", " + y + ": " + cropX + ", " + textureHeight);
@@ -71,6 +70,8 @@ public class Barrier extends Sprite {
 				}
 			}
 		}
+
+		
 		/*marker.image(mainImg, (float)x, (float)y);
 		marker.image(bottomImg, (float)x+200, (float)y);
 		marker.image(sideImg, (float)x+400, (float)y);

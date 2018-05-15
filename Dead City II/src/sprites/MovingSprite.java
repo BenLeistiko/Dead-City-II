@@ -2,7 +2,6 @@ package sprites;
 
 import java.util.ArrayList;
 
-import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
 /**

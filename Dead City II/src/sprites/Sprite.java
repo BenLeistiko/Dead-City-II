@@ -3,6 +3,7 @@ package sprites;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.TexturePaint;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import gamePlay.DrawingSurface;
 import interfaces.Drawable;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -59,29 +59,6 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return false;
 	}
 	
-//	public boolean collides(Sprite s) {
-//		if(this.intersects(s) && this != s) {
-//			return true;
-//		} else {
-//			return false;	
-//		}
-//
-//	}
-	
-//	public ArrayList<Sprite> collides(ArrayList<Sprite> sprites) {
-//		ArrayList<Sprite> hits = new ArrayList<Sprite>();
-//
-//		for(Sprite s: sprites) {
-//			if(this.collides(s)) {
-//				hits.add(s);
-//			}
-//		}
-//
-//		return hits;
-//	}
-	
-	
-
 	public void moveByAmount(double x, double y) {
 		this.x+=x;
 		this.y+=y;
@@ -105,7 +82,7 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		return new Point2D.Double(getX()+getWidth()/2,getY()+getHeight()/2);
 	}
 	
-	public Rectangle2D getHitBox() {
-		return this.getBounds2D();
+	public Rectangle2D.Double getHitBox() {
+		return this;
 	}
 }

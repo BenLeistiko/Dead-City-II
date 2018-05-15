@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import interfaces.Damageable;
 import interfaces.Destructive;
@@ -56,7 +55,7 @@ public class Bullet extends MovingSprite implements Destructive {
 					if(s instanceof Damageable) {//if damageable do damage
 						Damageable damageableSprite = ((Damageable) s);
 						damageableSprite.takeDamage(getDamage());
-						
+						System.out.println("Damage Dealt: "+ getDamage());
 					}
 				
 					return true;//still means it hit something
