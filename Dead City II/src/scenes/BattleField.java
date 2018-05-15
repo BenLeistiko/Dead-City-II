@@ -51,7 +51,7 @@ public class BattleField extends Scene {
 		this.add(b);
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
-		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000);
+		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
 	}
 
 	public void draw() {
