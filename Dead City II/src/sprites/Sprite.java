@@ -46,6 +46,18 @@ public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 		marker.noFill();
 		marker.rect((float)getX(), (float)getY(), (float)getWidth(), (float)getHeight());
 	}
+	/**
+	 * True if this sprite hits any other sprite in the array list that is passed in
+	 * @param worldlyThings
+	 * @return
+	 */
+	public boolean collides(ArrayList<Sprite> worldlyThings) {
+		for(Sprite s:worldlyThings) {
+			if(s.intersects(this) && s != this)
+				return true;
+		}
+		return false;
+	}
 	
 //	public boolean collides(Sprite s) {
 //		if(this.intersects(s) && this != s) {
