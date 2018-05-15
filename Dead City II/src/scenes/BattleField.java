@@ -42,16 +42,15 @@ public class BattleField extends Scene {
 	public void setup() {	
 		Main.resources.load(this);
 
-		Hero joe = new Hero("Trooper", 0,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings);
+		Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings);
 		focusedSprite = joe;
-		Barrier b= new Barrier(0, 1875, 1000, 150,Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,Main.resources.getImage("Bedrock"
-				+ ""));
 
 		this.add(joe);
-		this.add(b);
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
+		generateEdges();
+		generateGround();
 	}
 
 	public void draw() {
@@ -81,10 +80,13 @@ public class BattleField extends Scene {
 			super.changePanelAndPause(this, "MainMenu");
 	}
 
-	public void add(Object o) {
-		super.add(o);
-		if(o instanceof Sprite) 
-			worldlyThings.add((Sprite) o);
+	public void add(Object ... objects) {
+		super.add(objects);
+		for(Object o:objects) {
+			if(o instanceof Sprite) 
+				worldlyThings.add((Sprite) o);
+		}
+
 	}
 
 	public void slideWorldToImage(Sprite s) {
@@ -107,6 +109,25 @@ public class BattleField extends Scene {
 			characterSpace.setRect(characterSpace.getX()-xTrans, characterSpace.getY()-yTrans, characterSpace.getWidth(), characterSpace.getHeight());
 
 		}
+
+	}
+
+	public void generateEdges() {
+		Barrier bottom= new Barrier(worldSpace.getX(), worldSpace.getHeight()-100, worldSpace.getWidth(), 100,Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
+		Barrier left = new Barrier(worldSpace.getX()-100, worldSpace.getY(), 100, worldSpace.getHeight(),Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
+		Barrier right = new Barrier(worldSpace.getWidth(), worldSpace.getY(), 100, worldSpace.getHeight(),Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
+		add(bottom,left,right);
+	}
+
+	public void generateGround() {
+		for(int x = 0; x < worldSpace.getWidth(); x=x+100) {
+			for(int y = (int) (worldSpace.getHeight()-1000); y < worldSpace.getHeight()-100;y=y+100) {
+				add(new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0));
+			}
+		}
+	}
+	
+	public void generateHill(int x, int y) {
 
 	}
 

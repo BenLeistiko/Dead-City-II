@@ -1,5 +1,7 @@
 package sprites;
 
+import java.awt.Point;
+
 import gamePlay.DrawingSurface;
 import gamePlay.Main;
 import processing.core.PApplet;
@@ -15,24 +17,36 @@ public class Barrier extends Sprite {
 	private boolean shouldBeRemoved;
 	private double textureHeight,textureWidth;
 	private int cropX,cropY;
-
-	public Barrier(double x, double y, double w, double h, double textureW, double textureH, PImage texture) {
+	
+	static int Resizes = 0;
+	public Barrier(double x, double y, double w, double h, double textureW, double textureH, String key) {
 		super(x, y, w, h);
 
 		shouldBeRemoved = false;
 
 		textureHeight = textureH;
 		textureWidth = textureW;
-
-		mainImg = texture.get();
-		mainImg.resize((int)textureWidth, (int)textureHeight);
 		
 		cropX = (int) (super.getWidth()-(Math.ceil(super.getWidth()/textureWidth)-1.0001)*textureWidth);
 		cropY = (int) (super.getHeight()-(Math.ceil(super.getHeight()/textureHeight)-1.001)*textureHeight);
 		
+		Point bounds = new Point((int)textureW, (int) textureH);
+		mainImg = Main.resources.getTexture(key, bounds, new Point((int)textureW, (int)textureH));
+		cornerImg = Main.resources.getTexture(key, bounds, new Point(cropX, cropY));
+		bottomImg = Main.resources.getTexture(key, bounds, new Point((int)textureWidth, cropY));
+		sideImg = Main.resources.getTexture(key, bounds, new Point(cropX, (int)textureHeight));
+
+		
+		/*mainImg = Main.resources.getImage(key);
+		if(Math.abs(mainImg.width - textureWidth) > 0.0001 || Math.abs(mainImg.height - textureHeight) > 0.0001) {
+			mainImg.resize((int)textureWidth, (int)textureHeight);
+		}
+
+		
+
 		bottomImg = mainImg.get(0, 0, (int)textureWidth, cropY);
 		sideImg = mainImg.get(0, 0, cropX, (int)textureHeight);
-		cornerImg = mainImg.get(0,0,cropX,cropY);
+		cornerImg = mainImg.get(0,0,cropX,cropY);*/
 	}
 
 	public void draw(PApplet marker) {

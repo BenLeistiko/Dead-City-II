@@ -106,12 +106,14 @@ public abstract class Scene extends PApplet {
 	 * Only use if you have to, this is much slower
 	 * @param o - the object to 
 	 */
-	public void add(Object o) {
-		if(o instanceof Drawable)
-			toDraw.add((Drawable)o);
-		if(o instanceof Clickable)
-			mouseInput.add((Clickable)o);
-		if(o instanceof Typeable)
-			keyInput.add((Typeable)o);
+	public void add(Object ... objects) {
+		for(Object o:objects) {
+			if(o instanceof Drawable)
+				toDraw.add((Drawable)o);
+			if(o instanceof Clickable)
+				mouseInput.add((Clickable)o);
+			if(o instanceof Typeable)
+				keyInput.add((Typeable)o);
+		}
 	}
 }

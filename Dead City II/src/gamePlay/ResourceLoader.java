@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,19 +25,22 @@ import sprites.Sprite;
  *
  */
 public class ResourceLoader {
-
+	
 	private static String fileSeparator = System.getProperty("file.separator");
 
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
 	private HashMap<String, Sprite> templateSprites;
+	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
 
+	
 	//	private HashMap<String, SoundFile> sounds;
 
 
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
+		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
 		//	sounds = new HashMap<String, SoundFile>();
 
 	}
@@ -84,6 +89,7 @@ public class ResourceLoader {
 		images.put("Bullet", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bullet.png"));
 		images.put("Bricks", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bricks.jpg"));
 		images.put("Bedrock", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Bedrock.png"));
+		images.put("Dirt", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Dirt.png"));
 
 		//****Loading Sounds****
 		//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
@@ -91,7 +97,28 @@ public class ResourceLoader {
 	
 	}
 
-
+	/**
+	 * This will return a cropped image.  bounds of (0, 0) are for raw scaled images
+	 * 
+	 * @param name - the name of the key for the image
+	 * @param bounds - the bounds of the texture you want to get
+	 * @return the cropped image
+	 */
+	public PImage getTexture(String name, Point bounds, Point cropBounds) {
+		if(textures.get(name) == null) {
+			textures.put(name, new HashMap<Point, HashMap<Point, PImage>>());
+		}
+		if (textures.get(name).get(bounds) == null) {
+			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
+		}
+		if(textures.get(name).get(bounds).get(cropBounds) == null) {
+			PImage img = this.getImage(name); 
+			img.resize(bounds.x, bounds.y);
+			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
+		}
+		return textures.get(name).get(bounds).get(cropBounds);
+	}
+	
 	public ArrayList<PImage> getAnimationList(String key){
 		return animations.get(key);
 

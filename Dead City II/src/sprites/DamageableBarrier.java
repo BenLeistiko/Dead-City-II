@@ -19,8 +19,8 @@ public class DamageableBarrier extends Barrier implements Damageable {
 	private double armor;
 	private boolean alive;
 
-	public DamageableBarrier(double x, double y, double w, double h, double textureW, double textureH, PImage texture, double health, double armor) {
-		super(x, y, w, h, textureW, textureH, texture);
+	public DamageableBarrier(double x, double y, double w, double h, double textureW, double textureH, String key, double health, double armor) {
+		super(x, y, w, h, textureW, textureH, key);
 		this.health = health;
 		this.armor = armor;
 		alive = true;
@@ -34,10 +34,12 @@ public class DamageableBarrier extends Barrier implements Damageable {
 
 	public void takeDamage(Destructive d) {
 		health = health-(d.getDamage()*armor);
+		System.out.println(health);
 	}
 
 	public void takeDamage(double damage) {
 		health = health-(damage*armor);
+		System.out.println(health);
 	}
 
 	public Rectangle2D getHitBox() {
