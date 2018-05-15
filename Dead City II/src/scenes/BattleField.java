@@ -22,47 +22,43 @@ import sprites.Monster;
 import sprites.Sprite;
 
 public class BattleField extends Scene {
-	public static final int ASSUMED_DRAWING_WIDTH = 400; // These numbers are way too small
-	public static final int ASSUMED_DRAWING_HEIGHT = 300; // We are only using them to zoom in on the scene
 
-	private Rectangle2D.Double visibleSpace;
-	private Rectangle2D.Double characterSpace;
+	private Rectangle2D.Double characterSpace;//This is the rectangle that the character can not leave
+	private Rectangle2D.Double worldSpace;// This is the world.  If the character leaves this area, the camera stops following him
 
 	private ArrayList<Sprite> worldlyThings;
 
 	private Sprite focusedSprite;
 
+	private int xEdge = 200;
+	private int yEdge = 400;
+
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
-
-		visibleSpace = new Rectangle2D.Double(0,height-ASSUMED_DRAWING_HEIGHT,ASSUMED_DRAWING_WIDTH,ASSUMED_DRAWING_HEIGHT);
-		characterSpace = new Rectangle2D.Double(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,
-				visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
 
 	}
 
 	public void setup() {	
 		Main.resources.load(this);
 
-		Hero joe = new Hero("Trooper", 100,100,200,200,new RangedWeapon(50,1000,20,10,this),worldlyThings);
+		Hero joe = new Hero("Trooper", 25000,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings);
 		focusedSprite = joe;
-		Barrier b= new Barrier(0, 500, 2000, 50);
-		
-		
-		
-		
-
+		Barrier b= new Barrier(0, 1875, 50000, 100,100,100,Main.resources.getImage("Barrier"));
 
 		this.add(joe);
 		this.add(b);
+
+		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
+		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000);
 	}
 
 	public void draw() {
 		background(255);
 
+
 		slideWorldToImage(focusedSprite);
-		translate((float)-visibleSpace.getX(),(float)-visibleSpace.getY());
+		translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
 
 		super.draw(this);
 
@@ -92,31 +88,25 @@ public class BattleField extends Scene {
 
 	public void slideWorldToImage(Sprite s) {
 		Point2D.Double center = s.getCenter();
+		//System.out.println(center + "    :    " + characterSpace);
+		double xTrans = 0,yTrans = 0;
+
 		if (!characterSpace.contains(center)) {
-			double newX = visibleSpace.getX();
-			double newY = visibleSpace.getY();
-
-			if (center.getX() < characterSpace.getX()) {
-				newX -= (characterSpace.getX() - center.getX());
-			} else if (center.getX() > characterSpace.getX() + characterSpace.getWidth()) {
-				newX += (center.getX() - (characterSpace.getX() + characterSpace.getWidth()));
+			if(center.x>characterSpace.getWidth()+characterSpace.getX() && characterSpace.getX()+characterSpace.getWidth()<worldSpace.getX()+worldSpace.getWidth()) {
+				xTrans = (characterSpace.getWidth()+characterSpace.getX()) - center.x;
+			}else if (center.x<characterSpace.getX() && worldSpace.getX() < characterSpace.getX()) {
+				xTrans = characterSpace.getX() - center.x;
 			}
 
-			if (center.getY() < characterSpace.getY()) {
-				newY -= (characterSpace.getY() - center.getY());
-			} else if (center.getY() > characterSpace.getY() + characterSpace.getHeight()) {
-				newY += (center.getY() - characterSpace.getY() - characterSpace.getHeight());
+			if(center.y>characterSpace.getHeight()+characterSpace.getY() && characterSpace.getY()+characterSpace.getHeight()<worldSpace.getY()+worldSpace.getHeight()) {
+				yTrans = (characterSpace.getHeight()+characterSpace.getY()) - center.y;
+			}else if (center.y<characterSpace.getY()&& worldSpace.getY() < characterSpace.getY()) {
+				yTrans = characterSpace.getY() - center.y;
 			}
-			newX = Math.max(newX,0);
-			newY = Math.max(newY,0);
-			newX = Math.min(newX,width-visibleSpace.getWidth());
-			newY = Math.min(newY,height-visibleSpace.getHeight());
-			
-			visibleSpace.setRect(newX,newY,visibleSpace.getWidth(),visibleSpace.getHeight());
-			characterSpace.setRect(visibleSpace.getX()+visibleSpace.getWidth()/5,visibleSpace.getY()+visibleSpace.getHeight()/5,visibleSpace.getWidth()*3/5,visibleSpace.getHeight()*3/5);
+			characterSpace.setRect(characterSpace.getX()-xTrans, characterSpace.getY()-yTrans, characterSpace.getWidth(), characterSpace.getHeight());
+
 		}
 
 	}
-
 
 }

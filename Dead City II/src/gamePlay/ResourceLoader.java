@@ -15,6 +15,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 //import processing.sound.SoundFile;
 import sprites.Creature;
+import sprites.Sprite;
 
 /**
  * This class loads all of our resources and allows different classes to easily access picture sounds etc.
@@ -27,6 +28,8 @@ public class ResourceLoader {
 
 	private HashMap<String, ArrayList<PImage>> animations;
 	private HashMap<String, PImage> images;
+	private HashMap<String, Sprite> templateSprites;
+
 	//	private HashMap<String, SoundFile> sounds;
 
 
@@ -63,7 +66,6 @@ public class ResourceLoader {
 				while(true) { 
 					File f = new File("resources" +fileSeparator + name + fileSeparator + state + fileSeparator + number+ ".png");
 					if(!f.exists()) {
-						System.out.println(f.getPath());
 						break;
 					}
 					PImage img = loader.loadImage(f.getPath());
@@ -84,6 +86,8 @@ public class ResourceLoader {
 
 		//****Loading Sounds****
 		//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
+	
+	
 	}
 
 

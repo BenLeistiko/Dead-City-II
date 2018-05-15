@@ -33,27 +33,22 @@ public class Main {
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = .5;
 
-
 	public static ResourceLoader resources;
 
 	private JFrame window;
 
 	private JPanel cardPanel;
 
-
 	private HashMap<String,Scene> panels;// These are PApplets - you use these to do regular processing stuff
-
 	private HashMap<String, PSurfaceAWT> surfaces; // These are the "portals" through which the PApplets draw on the canvas
-
 	private HashMap<String, PSurfaceAWT.SmoothCanvas> processingCanvases; // These are swing components (think of it as the canvas that the PApplet draws on to), They are what is literally in the window
-	
 
 	public Main() {
 		resources = new ResourceLoader();
 
 		window = new JFrame();
 
-		window.setSize(900, 900);
+		window.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth());
 		window.setMinimumSize(new Dimension(100,100));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
@@ -66,9 +61,8 @@ public class Main {
 		surfaces = new HashMap<String, PSurfaceAWT>();
 		processingCanvases = new HashMap<String, PSurfaceAWT.SmoothCanvas>();
 
-		cardPanel.addComponentListener(new ComponentAdapter() {
+		cardPanel.addComponentListener(new ComponentAdapter() {//This rests the sizes of the processing windows when they have a change in size
 
-			@Override
 			public void componentResized(ComponentEvent arg0) {
 				Component x = (Component)arg0.getSource();
 				fixProcessingPanelSizes(x);
@@ -83,13 +77,9 @@ public class Main {
 
 		window.add(cardPanel);
 
-
 		window.setVisible(true);
 
-		window.setBounds(0, 0, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-
 		window.setName("Dead City II");
-		window.setLocation(0,0);
 
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
@@ -110,14 +100,10 @@ public class Main {
 		cardPanel.add(processingCanvases.get(name), name);
 	}
 
-
-
-
 	public static void main(String args[]) {
 		Main m = new Main();
+		System.out.println("Running");
 	}
-
-
 
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);//cardpanel is a JPanel that gets added to the window JFrame
