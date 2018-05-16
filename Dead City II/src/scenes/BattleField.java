@@ -55,7 +55,7 @@ public class BattleField extends Scene {
 		generateEdges();
 		generateGround();
 		for(int i =0; i < 1;i++) {
-			generateHill(40000,(int)(worldSpace.getHeight()-topHeight-100) , 1);
+			generateHill(40000,(int)(worldSpace.getHeight()-topHeight-100));
 		}
 		//generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
@@ -134,30 +134,8 @@ public class BattleField extends Scene {
 		}
 	}
 
-	public void generateHill(int x, int y,int depth) {
-		Barrier dirt = new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
-		
-		double bottom = dirt.getY()+dirt.getHeight();
-		boolean isOnTop = false;
-		for(Sprite s:worldlyThings) {
-			if(Math.abs(s.getY() - bottom) < 0.001 && dirt.getCenterX() > s.x && dirt.getCenterX() < s.x+s.width) {
-				isOnTop = true;
-				dirt = new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Bricks",10,0);
-			}
-		}
-		if(dirt.collides(worldlyThings)) {
-			return;
-		}else if(!isOnTop)
-			return;
-		else if(Math.random()*40<depth) {
-			return;
-		}else {
-			System.out.println("generated: "+ depth+";"+x+", "+y);
-			add(dirt);
-			generateHill(x-100,y,depth+1);
-			generateHill(x+200,y,depth+1);
-			generateHill(x,y-100,depth+1);
-		}
+	public void generateHill(int x, int y) {
+		double angle1 = Math.random();
 	}
 
 	public void generatePlatforms(int number, int space) {
