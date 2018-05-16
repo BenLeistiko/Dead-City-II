@@ -149,10 +149,10 @@ public class BattleField extends Scene {
 		
 		
 		
-		for(int i = (int) (50/Math.tan(Math.toRadians(90-angle1)))+1; i < p3.x-100;i = i+100) {
+		for(int i = (int) (100*Math.tan(Math.toRadians(angle1))+1); i < p3.x-100*Math.tan(Math.toRadians(angle2));i = i+100) {
 			double j = groundHeight-100;
 			DamageableBarrier dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
-			while(!dirt.collides(worldlyThings) && ) {
+			while(!dirt.collides(worldlyThings)) {
 				j = j-100;
 				super.add(dirt);
 				dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
