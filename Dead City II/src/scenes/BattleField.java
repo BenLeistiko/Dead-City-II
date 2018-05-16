@@ -48,13 +48,13 @@ public class BattleField extends Scene {
 		this.add(joe);
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
-		worldSpace = new Rectangle2D.Double(0, 0, 50000, 1500); 
+		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
 		generateEdges();
 		generateGround();
 		for(int i =0; i < 10;i++) {
 			generateHill((int)(worldSpace.getWidth()*Math.random()),(int)(worldSpace.getHeight()-1001) , 1);
 		}
-		generatePlatforms(100);
+		generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
 	}
 
@@ -64,7 +64,7 @@ public class BattleField extends Scene {
 
 		slideWorldToImage(focusedSprite);
 		translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
-
+		
 		super.draw(this);
 
 		removeDeadSprites();
@@ -157,16 +157,21 @@ public class BattleField extends Scene {
 		}
 	}
 
-	public void generatePlatforms(int number) {
+	public void generatePlatforms(int number, int space) {
 		int[] ySizes = new int[10];
 		for(int i = 0; i < 10; i++) {
 			ySizes[i] = 200+100*i;
 		}
 		for(int i = 0; i < number; i++) {
 			Barrier plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), ySizes[(int)(Math.random()*10)], 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
+			Rectangle2D.Double box = new Rectangle2D.Double(plat.getX(), plat.getY(), plat.getWidth(), plat.getHeight());
+			plat.setRect(plat.getX()-space, plat.getY()-space, plat.getWidth()+2*space, plat.getHeight()+2*space);
 			while(plat.collides(worldlyThings)) {
 				plat = new Barrier((worldSpace.getWidth()-worldSpace.getX())*Math.random(), (worldSpace.getHeight()-worldSpace.getY())*Math.random(), ySizes[(int)(Math.random()*10)], 100,Main.resources.getImage("Bricks").width,Main.resources.getImage("Bricks").height,"Bricks");
+				box = new Rectangle2D.Double(plat.getX(), plat.getY(), plat.getWidth(), plat.getHeight());
+				plat.setRect(plat.getX()-space, plat.getY()-space, plat.getWidth()+2*space, plat.getHeight()+2*space);
 			}
+			plat.setRect(box);
 			add(plat);
 		}
 	}
