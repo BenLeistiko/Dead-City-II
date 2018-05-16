@@ -75,7 +75,6 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		//marker.textAlign(marker.CENTER, marker.CENTER);
 		//marker.textSize(20);
 		//marker.text(name, (float)x, (float)y);
-
 		marker.popMatrix();
 	}
 
