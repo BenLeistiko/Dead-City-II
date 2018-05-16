@@ -76,11 +76,13 @@ public class Main {
 		window.setLayout(new BorderLayout());
 
 		window.add(cardPanel);
-
+				
 		window.setVisible(true);
 
 		window.setName("Dead City II");
 
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 

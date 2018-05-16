@@ -33,9 +33,12 @@ public class BattleField extends Scene {
 	private int xEdge = 200;
 	private int yEdge = 400;
 
+	private int topHeight;
+	
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
+		topHeight = 1000;
 	}
 	
 
@@ -51,10 +54,10 @@ public class BattleField extends Scene {
 		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
 		generateEdges();
 		generateGround();
-		for(int i =0; i < 10;i++) {
-			generateHill((int)(worldSpace.getWidth()*Math.random()),(int)(worldSpace.getHeight()-1001) , 1);
+		for(int i =0; i < 1;i++) {
+			generateHill((int)(worldSpace.getWidth()*Math.random()),(int)(worldSpace.getHeight()-topHeight-100) , 1);
 		}
-		generatePlatforms(80,100);
+		//generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
 	}
 
@@ -125,7 +128,7 @@ public class BattleField extends Scene {
 
 	public void generateGround() {
 		for(int x = 0; x < worldSpace.getWidth(); x=x+100) {
-			for(int y = (int) (worldSpace.getHeight()-1000); y < worldSpace.getHeight()-100;y=y+100) {
+			for(int y = (int) (worldSpace.getHeight()-topHeight); y < worldSpace.getHeight()-100;y=y+100) {
 				add(new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0));
 			}
 		}
@@ -139,21 +142,21 @@ public class BattleField extends Scene {
 		double bottom = dirt.getY()+dirt.getHeight();
 		boolean isOnTop = false;
 		for(Sprite s:worldlyThings) {
-			if(s.getY() -bottom < 3) {
+			if(Math.abs(s.getY() - bottom) < 0.001) {
 				isOnTop = true;
 			}
 		}
 		if(!isOnTop)
 			return;
-		else if(Math.random()*200<depth) {
+		else if(Math.random()*40<depth) {
 			return;
 		}
 		else {
+			System.out.println("generated: "+ depth+";"+x+", "+y);
 			add(dirt);
 			generateHill(x-100,y,depth+1);
-			generateHill(x+100,y,depth+1);
-			generateHill(x,y+100,depth+1);
-			System.out.println("added hill");
+			generateHill(x+200,y,depth+1);
+			generateHill(x,y-100,depth+1);
 		}
 	}
 
