@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.BattleField;
-import scenes.MainMenu;
+import scenes.TitleScreen;
 import scenes.Scene;
 /**
  * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
@@ -71,7 +71,7 @@ public class Main {
 		});
 
 		this.addScene(new BattleField(this), "BattleField");
-		this.addScene(new MainMenu(this), "MainMenu");
+		this.addScene(new TitleScreen(this), "TitleScreen");
 
 		window.setLayout(new BorderLayout());
 
@@ -84,7 +84,7 @@ public class Main {
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
-		changePanel("MainMenu");
+		changePanel("TitleScreen");
 	}
 
 	/**

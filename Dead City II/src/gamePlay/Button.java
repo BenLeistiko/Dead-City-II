@@ -15,16 +15,18 @@ import processing.core.PApplet;
  */
 public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
-	String name;
-	boolean isPressed;
-	int x,y;
+	private String name;
+	private	boolean isPressed;
+	private boolean mouseOver;
 	
-	public Button(int x, int y, int h, int w, String name) {
-		super(x,y,h,w);
+
+	public Button(double x, double y, double w, double h, String name) {
+		super(x-w,y-h,w,h);
 		this.name = name;
 		this.isPressed = false;
-		x = (x+x+w)/2;
-		y = (y+y+h)/2;
+		this.mouseOver = false;
+	
+	
 	}
 
 	public boolean shouldRemove() {
@@ -35,7 +37,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		return isPressed;
 	}
 
-	public boolean mouseInside(PApplet marker) {
+	private boolean mouseInside(PApplet marker) {
 		if(this.contains(marker.mouseX, marker.mouseY)) {
 			return true;
 		}
@@ -43,8 +45,9 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void mousePressed(PApplet marker) {
-		if(this.contains(marker.mouseX, marker.mouseY)) {
+		if(mouseOver) {
 			isPressed = true;
+			act();
 		}
 	}
 
@@ -53,18 +56,63 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void draw(PApplet marker) {
-		if(this.mouseInside(marker)) {
+		update(marker);
+
+	//	System.out.println(mouseOver);
+		
+		marker.pushMatrix();
+
+		if(mouseOver) {
 			marker.fill(new Color(128,128,128).getRGB(), 0.5f);
 			marker.strokeWeight(3);
-		}
-		if(this.mouseInside(marker)) {
+		} else {
 			marker.noFill();
 			marker.strokeWeight(2);
 		}
-		marker.rect((float)super.x, (float)super.y, (float)super.getWidth(), (float)super.getHeight());
-		marker.textAlign(marker.CENTER);
-		marker.text(name, x, y);
+
+		//marker.rectMode(marker.CENTER);
+		marker.rect((float)(super.getX()+getWidth()), (float)(super.getY()+getHeight()), (float)super.getWidth(), (float)super.getHeight());
+		//marker.textAlign(marker.CENTER, marker.CENTER);
+		//marker.textSize(20);
+		//marker.text(name, (float)x, (float)y);
+
+		marker.popMatrix();
 	}
+
+	public void update(PApplet marker) {
+		if(this.mouseInside(marker)){
+			mouseOver = true;
+		}else {
+			mouseOver = false;
+		}
+
+
+
+	}
+
+	public void setCoords(double x, double y) {
+			this.x = x-super.getWidth();
+			this.y = y-super.getHeight();
+		//	this.x = x;
+		//	this.y = y;
+	//	this.setRect(x-super.getWidth(), y-super.getHeight(), this.getWidth(), this.getHeight());
+		//this.x = x-super.getWidth();
+		
+	}
+
+	public void setX(double x) {
+		this.x = x-super.getWidth();
+	}
+
+	public void setY(double y) {
+		this.y = y-super.getHeight();
+	}
+
+
+	public void act() {
+		System.out.println("Pressed");
+	}
+
 
 	@Override
 	public Rectangle2D.Double getHitBox() {

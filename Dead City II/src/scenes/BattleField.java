@@ -1,5 +1,6 @@
 package scenes;
 
+import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -81,8 +82,8 @@ public class BattleField extends Scene {
 
 	public void keyPressed() {
 		super.keyPressed();
-		if(keyCode == 85)
-			super.changePanelAndPause(this, "MainMenu");
+		if(keyCode == KeyEvent.VK_U)
+			super.changePanelAndPause(this, "TitleScreen");
 	}
 
 	public void add(Object ... objects) {
