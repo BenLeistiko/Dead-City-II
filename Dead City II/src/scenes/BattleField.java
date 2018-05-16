@@ -1,5 +1,6 @@
 package scenes;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -34,12 +35,14 @@ public class BattleField extends Scene {
 	private int xEdge = 200;
 	private int yEdge = 400;
 
-	private int topHeight;
+	private int groundThickness;
+	private double groundHeight;
+
 	
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
-		topHeight = 1000;
+		groundThickness = 1000;
 	}
 	
 
@@ -53,12 +56,13 @@ public class BattleField extends Scene {
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
+		groundHeight = worldSpace.getY()+worldSpace.getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
 		for(int i =0; i < 1;i++) {
-			generateHill(40000,(int)(worldSpace.getHeight()-topHeight-100));
+			//generateHill(40000,(int)(worldSpace.getHeight()-groundThickness-100));
 		}
-		//generatePlatforms(80,100);
+		generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
 	}
 
@@ -129,14 +133,39 @@ public class BattleField extends Scene {
 
 	public void generateGround() {
 		for(int x = 0; x < worldSpace.getWidth(); x=x+100) {
-			for(int y = (int) (worldSpace.getHeight()-topHeight); y < worldSpace.getHeight()-100;y=y+100) {
+			for(int y = (int) (worldSpace.getHeight()-groundThickness); y < worldSpace.getHeight()-100;y=y+100) {
 				add(new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0));
 			}
 		}
 	}
 
 	public void generateHill(int x, int y) {
-		double angle1 = Math.random();
+		double angle1 = Math.random()*45+30;
+		double angle2 = Math.random()*45+30;
+		double hillHeight = y-groundHeight;
+		Point p1 = new Point(x,y);
+		Point p2 = new Point((int)(x-Math.tan(Math.toRadians(angle1))*hillHeight), (int)groundHeight);
+		Point p3 = new Point((int)(x+Math.tan(Math.toRadians(angle2))*hillHeight), (int)groundHeight);
+		
+		
+		
+		for(int i = (int) (50/Math.tan(Math.toRadians(90-angle1)))+1; i < p3.x-100;i = i+100) {
+			double j = groundHeight-100;
+			DamageableBarrier dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
+			while(!dirt.collides(worldlyThings) && ) {
+				j = j-100;
+				super.add(dirt);
+				dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
+			}
+		}
+	}
+	
+	private double getHeight(double angle1, double angle2, Point tip, double xPos) {
+		if(xPos < tip.x) {
+			return Math.tan(Math.toRadians(90-angle1))*xPos;
+		}else {
+			return Math.tan(Math.toRadians(angle2-90))*(xPos-tip.x)+tip.y;
+		}
 	}
 
 	public void generatePlatforms(int number, int space) {
