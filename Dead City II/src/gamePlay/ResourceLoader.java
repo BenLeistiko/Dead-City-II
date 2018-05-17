@@ -94,7 +94,8 @@ public class ResourceLoader {
 		images.put("Dirt", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Dirt.png"));
 
 		//****Loading Sounds****
-		sounds.put("Shoot", new EasySound2("resources" +fileSeparator +"shoot.wav"));
+		sounds.put("Shoot", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
+		sounds.put("emptyClick", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
 	
 	
 	}
