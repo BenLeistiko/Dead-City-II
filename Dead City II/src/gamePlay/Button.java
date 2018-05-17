@@ -77,7 +77,7 @@ public boolean mouseOver() {
 			marker.strokeWeight(2);
 		}
 
-		//marker.rectMode(marker.CENTER);
+		
 		marker.rect((float)(super.getX()), (float)(super.getY()), (float)super.getWidth(), (float)super.getHeight());
 
 		
@@ -86,6 +86,8 @@ public boolean mouseOver() {
 		marker.fill(textColor.getRGB());
 		marker.textSize(20);
 		marker.text(name, (float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2));
+		
+		
 		marker.popMatrix();
 	}
 
@@ -103,11 +105,13 @@ public boolean mouseOver() {
 	public void setCoords(double x, double y) {
 		this.x = x-super.getWidth()/2;
 		this.y = y-super.getHeight()/2;
-		//	this.x = x;
-		//	this.y = y;
-		//	this.setRect(x-super.getWidth(), y-super.getHeight(), this.getWidth(), this.getHeight());
-		//this.x = x-super.getWidth();
-
+	}
+	
+	public void setCoordsAndDraw(PApplet marker, double x, double y){
+		this.x = x-super.getWidth()/2;
+		this.y = y-super.getHeight()/2;
+		draw(marker);
+		
 	}
 
 	public void setX(double x) {

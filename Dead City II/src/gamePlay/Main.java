@@ -20,6 +20,7 @@ import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.BattleField;
 import scenes.Camp;
+import scenes.Pause;
 import scenes.TitleScreen;
 import scenes.Scene;
 /**
@@ -74,6 +75,7 @@ public class Main {
 		this.addScene(new BattleField(this), "BattleField");
 		this.addScene(new TitleScreen(this), "TitleScreen");
 		this.addScene(new Camp(this), "Camp");
+		this.addScene(new Pause(this), "Pause");
 
 		window.setLayout(new BorderLayout());
 

@@ -76,18 +76,7 @@ public class BattleField extends Scene {
 	}
 
 	public void draw() {
-		if(paused) {			
-			//fill(0,10);
-			//rect((float)getVisSpace().getX(),(float)getVisSpace().getY(),(float)getVisSpace().getWidth(),(float)getVisSpace().getHeight(),100f);
-			background(125);
-			textAlign(CENTER,CENTER);
-		
-			textSize(100);
-			text("PAUSED",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()/2));
-			textSize(40);
-			text("Push '1' to return to Main Menu",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()*2/3));
 
-		}else {
 
 			background(255);
 
@@ -95,10 +84,10 @@ public class BattleField extends Scene {
 			translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
 
 			super.draw(this);
-			//super.draw(this, paused);
+		
 
 			removeDeadSprites();
-		}
+
 	}
 
 
@@ -113,18 +102,12 @@ public class BattleField extends Scene {
 
 	public void keyPressed() {
 		super.keyPressed();
-		if(keyCode == KeyEvent.VK_U)
+		if(keyCode == KeyEvent.VK_U) {
 			super.changePanelAndPause(this, "TitleScreen");
-		
-		if(keyCode == KeyEvent.VK_P) {
-			paused = !paused;//pseudo pause - only to know whether or not to show pause menu
-			draw();
-			super.pause(this, paused);// real pause
 		}
-
-		if(paused && keyCode == KeyEvent.VK_1) {
-			paused = false;//undo pseudo pause
-			super.changePanelAndPause(this, "TitleScreen");//real pause
+			
+		if(keyCode == KeyEvent.VK_P) {
+			super.changePanelAndPause(this, "Pause");
 		}
 
 

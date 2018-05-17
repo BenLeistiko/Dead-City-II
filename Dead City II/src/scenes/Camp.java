@@ -1,5 +1,7 @@
 package scenes;
 
+import java.awt.event.KeyEvent;
+
 import gamePlay.Main;
 import processing.core.PApplet;
 
@@ -18,4 +20,34 @@ public class Camp extends Scene {
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	public void keyPressed() {
+		
+		if(keyCode == KeyEvent.VK_U) {
+			super.changePanelAndPause(this, "TitleScreen");
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -32,7 +32,7 @@ public class ResourceLoader {
 	private HashMap<String, PImage> images;
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
-	private int numberOfImages;
+	
 	
 	private HashMap<String,EasySound2> sounds;
 //	private final EasySound2 shootSound = new EasySound2("resources" +fileSeparator +"shoot.wav");
@@ -45,10 +45,25 @@ public class ResourceLoader {
 		images = new HashMap<String, PImage>();
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
 		sounds = new HashMap<String, EasySound2>();
-		numberOfImages = 0;
+	
+		
 	}
 
 	public void load(PApplet loader) {
+		//****Loading Stats*****
+		ArrayList<String> stats = new ArrayList<String>();
+		
+		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
+		
+		System.out.println(stats.get(0));
+		
+		
+		
+		
+		
+		
+		
+		
 		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();

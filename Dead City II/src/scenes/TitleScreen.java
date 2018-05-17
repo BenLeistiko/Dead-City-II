@@ -41,22 +41,17 @@ public class TitleScreen extends Scene {
 		background(255);
 
 		//.6666-.5 = distance between buttons = height*1/6
-		startGame.setCoords(width/2, height/3);
+		startGame.setCoordsAndDraw(this,width/2, height/3);
 		
-		camp.setCoords(width/2, height*1/2);
+		camp.setCoordsAndDraw(this,width/2, height*1/2);
 		
-		exitGame.setCoords(width/2, height*2/3);
+		exitGame.setCoordsAndDraw(this,width/2, height*2/3);
 		
 
-		for(Button b:buttons) {
-			b.draw(this);	
-		}
 
 		act();
 
-		textSize(30);
-		fill(0);
-
+	
 		//image(Main.resources.getAnimation("TrooperRunning",0),100,100);
 
 		//	textAlign(CENTER,CENTER);
