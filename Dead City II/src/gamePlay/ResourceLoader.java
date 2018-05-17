@@ -33,6 +33,7 @@ public class ResourceLoader {
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
 	private int numberOfImages;
+	private final EasySound2 slashSound = new EasySound2("slash.wav");
 
 	
 	//	private HashMap<String, SoundFile> sounds;
