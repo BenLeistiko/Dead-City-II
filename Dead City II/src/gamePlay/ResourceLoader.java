@@ -32,6 +32,8 @@ public class ResourceLoader {
 	private HashMap<String, PImage> images;
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
+	private HashMap<String,  HashMap<String,Double>> statistics;
+	private ArrayList<String> characters;
 	
 	
 	private HashMap<String,EasySound2> sounds;
@@ -45,24 +47,21 @@ public class ResourceLoader {
 		images = new HashMap<String, PImage>();
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
 		sounds = new HashMap<String, EasySound2>();
+		statistics = new HashMap<String, HashMap<String,Double>>();
+		
 	
 		
 	}
 
 	public void load(PApplet loader) {
+		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
 		
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 		
+		statistics = parseStats(stats);
+		
 	
-		
-		
-		
-		
-		
-		
-		
-		
 		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
@@ -112,6 +111,27 @@ public class ResourceLoader {
 		sounds.put("emptyClick", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
 	
 	
+	}
+	
+	public HashMap<String, HashMap<String,Double>> parseStats(ArrayList<String> stats) {
+		
+		
+		for(String s: stats) {
+			//String line = );
+			
+			if(statistics.get("smth") == null) {
+				statistics.put("smth", new HashMap<String, Double>());
+			}
+			
+		//	statistics.get("trooper").put("healt", 40);
+		//	statistics.put("trooper", "helth",6);
+			
+			
+			
+		}
+		
+		
+		return null;
 	}
 
 	/**
