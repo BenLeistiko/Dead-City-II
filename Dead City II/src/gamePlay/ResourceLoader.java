@@ -35,6 +35,8 @@ public class ResourceLoader {
 	private HashMap<String, PImage> images;
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
+	private HashMap<String,  HashMap<String,Double>> statistics;
+	private ArrayList<String> characters;
 
 
 	private HashMap<String,EasySound2> sounds;
@@ -52,18 +54,15 @@ public class ResourceLoader {
 	}
 
 	public void load() {
+		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
+		
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 
-
-
-
-
-
-
-
-
-
+		
+		statistics = parseStats(stats);
+		
+	
 		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
