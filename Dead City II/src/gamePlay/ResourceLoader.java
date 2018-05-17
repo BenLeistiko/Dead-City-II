@@ -56,13 +56,13 @@ public class ResourceLoader {
 	public void load() {
 		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
-		
+
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 
-		
+
 		statistics = parseStats(stats);
-		
-	
+
+
 		//****Loading Creature Animations*****
 		ArrayList<String> animationNames = new ArrayList<String>();
 		ArrayList<String> states = new ArrayList<String>();
@@ -178,5 +178,26 @@ public class ResourceLoader {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public HashMap<String, HashMap<String,Double>> parseStats(ArrayList<String> stats) {
+
+
+		for(String s: stats) {
+			//String line = );
+
+			if(statistics.get("smth") == null) {
+				statistics.put("smth", new HashMap<String, Double>());
+			}
+
+			//	statistics.get("trooper").put("healt", 40);
+			//	statistics.put("trooper", "helth",6);
+
+
+
+		}
+
+
+		return null;
 	}
 }
