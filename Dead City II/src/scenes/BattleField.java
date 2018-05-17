@@ -60,7 +60,7 @@ public class BattleField extends Scene {
 		generateEdges();
 		generateGround();
 		for(int i =0; i < 1;i++) {
-			//generateHill(40000,(int)(worldSpace.getHeight()-groundThickness-100));
+			generateHill(45000,(int)(this.groundHeight-500));
 		}
 		generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
@@ -99,7 +99,6 @@ public class BattleField extends Scene {
 			if(o instanceof Sprite) 
 				worldlyThings.add((Sprite) o);
 		}
-
 	}
 
 	public void slideWorldToImage(Sprite s) {
@@ -142,32 +141,31 @@ public class BattleField extends Scene {
 	public void generateHill(int x, int y) {
 		double angle1 = Math.random()*45+30;
 		double angle2 = Math.random()*45+30;
-		double hillHeight = y-groundHeight;
+		double hillHeight = groundHeight-y;
 		Point p1 = new Point(x,y);
-		Point p2 = new Point((int)(x-Math.tan(Math.toRadians(angle1))*hillHeight), (int)groundHeight);
+		Point p2 = new Point((int)(x-hillHeight*Math.tan(Math.toRadians(angle1))), (int)groundHeight);
 		Point p3 = new Point((int)(x+Math.tan(Math.toRadians(angle2))*hillHeight), (int)groundHeight);
 		
-		
-		
-		for(int i = (int) (100*Math.tan(Math.toRadians(angle1))+1); i < p3.x-100*Math.tan(Math.toRadians(angle2));i = i+100) {
+		for(int i = p2.x+(int) (100*Math.tan(Math.toRadians(angle1))+1)-50; i < p3.x-100*Math.tan(Math.toRadians(angle2));i = i+100) {
 			double j = groundHeight-100;
 			DamageableBarrier dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
-			while(!dirt.collides(worldlyThings)) {
+			while(!dirt.collides(worldlyThings) && j>getHeight(angle1, angle2,p1,p2,p3,i+50)) {
 				j = j-100;
 				super.add(dirt);
+				System.out.println("added dirt");
 				dirt = new DamageableBarrier(i,j,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
 			}
 		}
 	}
 	
-	private double getHeight(double angle1, double angle2, Point tip, double xPos) {
-		if(xPos < tip.x) {
-			return Math.tan(Math.toRadians(90-angle1))*xPos;
+	private double getHeight(double angle1, double angle2, Point p1, Point p2, Point p3, double xPos) {
+		if(xPos < p1.x - p2.x) {
+			return xPos/Math.tan(Math.toRadians(90));
 		}else {
-			return Math.tan(Math.toRadians(angle2-90))*(xPos-tip.x)+tip.y;
+			return (p3.x - p2.x+xPos)/Math.tan(Math.toRadians(angle2));
 		}
 	}
-
+	
 	public void generatePlatforms(int number, int space) {
 		int[] ySizes = new int[10];
 		for(int i = 0; i < 10; i++) {
@@ -186,5 +184,4 @@ public class BattleField extends Scene {
 			add(plat);
 		}
 	}
-
 }
