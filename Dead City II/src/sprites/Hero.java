@@ -81,7 +81,6 @@ public class Hero extends Creature implements Clickable, Typeable {
 				if(rw.getCurrentAmmo()>0) {
 					Main.resources.getSound("Shoot").play();
 					attack();
-					
 					weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
 				}
 			}else {
