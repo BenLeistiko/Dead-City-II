@@ -3,6 +3,7 @@ package sprites;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import gamePlay.Main;
 import interfaces.Clickable;
 import interfaces.Typeable;
 import items.RangedWeapon;
@@ -47,7 +48,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-	
+
 		double vX = 0;
 		if(keysPressed.contains(87)) {//w
 			super.jump();
@@ -78,6 +79,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 			if(weapon instanceof RangedWeapon) {
 				RangedWeapon rw = ((RangedWeapon) weapon);
 				if(rw.getCurrentAmmo()>0) {
+					Main.resources.getSound("Shoot").play();
 					attack();
 					weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
 				}
@@ -88,6 +90,6 @@ public class Hero extends Creature implements Clickable, Typeable {
 		}
 		super.draw(marker);
 	}
-	
+
 
 }

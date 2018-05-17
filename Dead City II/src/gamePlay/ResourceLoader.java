@@ -33,9 +33,10 @@ public class ResourceLoader {
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
 	private int numberOfImages;
-	private final EasySound2 shootSound = new EasySound2("resources" + fileSeparator +"shoot.wav");
-
 	
+	private HashMap<String,EasySound2> sounds;
+//	private final EasySound2 shootSound = new EasySound2("resources" +fileSeparator +"shoot.wav");
+ 
 	//	private HashMap<String, SoundFile> sounds;
 
 
@@ -43,7 +44,7 @@ public class ResourceLoader {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
-		//	sounds = new HashMap<String, SoundFile>();
+		sounds = new HashMap<String, EasySound2>();
 		numberOfImages = 0;
 	}
 
@@ -93,7 +94,7 @@ public class ResourceLoader {
 		images.put("Dirt", loader.loadImage(fileSeparator+"resources"+fileSeparator+"Dirt.png"));
 
 		//****Loading Sounds****
-		//	sounds.put("Shoot", new SoundFile(loader,fileSeparator+"resources"+fileSeparator+"Shoot.mp3"));
+		sounds.put("Shoot", new EasySound2("resources" +fileSeparator +"shoot.wav"));
 	
 	
 	}
@@ -136,5 +137,9 @@ public class ResourceLoader {
 
 	public PImage getImage(String key) {
 		return images.get(key); 
+	}
+	
+	public EasySound2 getSound(String key) {
+		return sounds.get(key);
 	}
 }
