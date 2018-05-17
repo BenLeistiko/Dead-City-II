@@ -50,12 +50,11 @@ public class ResourceLoader {
 	}
 
 	public void load(PApplet loader) {
-		//****Loading Stats*****
 		ArrayList<String> stats = new ArrayList<String>();
 		
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 		
-		System.out.println(stats.get(0));
+	
 		
 		
 		
