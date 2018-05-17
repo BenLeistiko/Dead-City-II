@@ -1,5 +1,6 @@
 package scenes;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -34,14 +35,16 @@ public class BattleField extends Scene {
 	private int xEdge = 200;
 	private int yEdge = 400;
 
-	private int topHeight;
-	
+	private int groundThickness;
+	private double groundHeight;
+
+
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
-		topHeight = 1000;
+		groundThickness = 1000;
 	}
-	
+
 
 	public void setup() {
 
@@ -52,12 +55,11 @@ public class BattleField extends Scene {
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
+		groundHeight = worldSpace.getY()+worldSpace.getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
-		for(int i =0; i < 1;i++) {
-			generateHill(40000,(int)(worldSpace.getHeight()-topHeight-100));
-		}
-		//generatePlatforms(80,100);
+		generateHill(10);
+		generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
 	}
 
@@ -67,7 +69,7 @@ public class BattleField extends Scene {
 
 		slideWorldToImage(focusedSprite);
 		translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
-		
+
 		super.draw(this);
 
 		removeDeadSprites();
@@ -94,7 +96,6 @@ public class BattleField extends Scene {
 			if(o instanceof Sprite) 
 				worldlyThings.add((Sprite) o);
 		}
-
 	}
 
 	public void slideWorldToImage(Sprite s) {
@@ -128,14 +129,68 @@ public class BattleField extends Scene {
 
 	public void generateGround() {
 		for(int x = 0; x < worldSpace.getWidth(); x=x+100) {
-			for(int y = (int) (worldSpace.getHeight()-topHeight); y < worldSpace.getHeight()-100;y=y+100) {
+			for(int y = (int) (worldSpace.getHeight()-groundThickness); y < worldSpace.getHeight()-100;y=y+100) {
 				add(new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0));
 			}
 		}
 	}
 
-	public void generateHill(int x, int y) {
-		double angle1 = Math.random();
+	public void generateHill(int numOfHills) {
+		double[] b1 = new double[numOfHills];
+		double[] b2 = new double[numOfHills];
+		int numGen = 0;
+		for(int i = 0; i < numOfHills; i++) {
+			boolean generate = false;
+			while(generate == false) {
+				//System.out.println("generating...");
+				double a1 = Math.toRadians(Math.random()*30+45);
+				double a2 = Math.toRadians(Math.random()*30+45);
+				double x = worldSpace.getX() + worldSpace.getWidth()*Math.random();
+				double y = (int)(this.groundHeight-300-Math.random()*800);
+				double h = groundHeight - y;
+				double x1 = x-h*Math.tan(a1);
+				double x2 = x+h*Math.tan(a2);
+				generate = true;
+				for(int j = 0; j <numOfHills; j++) {
+					if(overlaps(x1,x2,b1[j],b2[j])) {
+						generate = false;
+					}
+				}
+				if(generate) {
+					generateHill(x,y,a1,a2,groundHeight);
+					b1[numGen] = x1;
+					b2[numGen] = x2;
+					numGen++;
+				}
+			}
+		}
+
+
+	}
+
+	private boolean overlaps(double a1, double a2, double b1, double b2) {
+		if((a1 < b2 && a1>b1)||(a2 < b2 && a2>b1) || (b1<a2 &&b1>a1) ||(b2<a2 &&b2>a1) ) {
+			return true;
+		}return false;
+	}
+
+	private void generateHill(double x, double y, double a1, double a2, double floor) {
+		if(floor>y) {
+			double h = floor - y;
+			double x1 = x-h*Math.tan(a1);
+			double x2 = x+h*Math.tan(a2);
+			double startX = x1+100*Math.tan(a1);
+			double endX = x2-100*Math.tan(a2);
+			//System.out.println("Varibles: " + h +", " + x1 + ", " + x2 + ", " + startX + ", " + endX);
+			for(int  i = (int) startX;i<=endX;i=i+100) {
+				DamageableBarrier dirt = new DamageableBarrier(i-50,floor-100,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
+				//System.out.println("added dirt" + (i-50) + ", " + (floor -100));
+				if(!dirt.collides(worldlyThings)) {
+					add(dirt);
+				}
+			}
+			generateHill(x,y,a1,a2,floor-100);
+		}
 	}
 
 	public void generatePlatforms(int number, int space) {
@@ -156,5 +211,4 @@ public class BattleField extends Scene {
 			add(plat);
 		}
 	}
-
 }
