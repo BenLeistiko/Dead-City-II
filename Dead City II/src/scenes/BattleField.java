@@ -57,7 +57,6 @@ public class BattleField extends Scene {
 
 
 	public void setup() {
-		Main.resources.load(this);
 		Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings, this);
 		focusedSprite = joe;
 

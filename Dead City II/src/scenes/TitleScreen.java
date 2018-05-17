@@ -19,7 +19,11 @@ public class TitleScreen extends Scene {
 
 	public TitleScreen(Main m) {
 		super(m);
+		
+	}
 
+	public void setup() {
+		
 		this.startGame = new Button(width/2, height/2, 400, 150,"START",new Color(255,0,0), new Color(0,255,0));
 		this.camp = new Button(width/2, height/2, 400, 150,"CAMP",new Color(255,0,0), new Color(0,255,0));
 		this.exitGame = new Button(width/2, height/2, 400, 150,"EXIT",new Color(255,0,0), new Color(0,255,0));
@@ -29,11 +33,6 @@ public class TitleScreen extends Scene {
 		buttons.add(startGame);
 		buttons.add(camp);
 		buttons.add(exitGame);
-	}
-
-	public void setup() {
-		Main.resources.load(this);
-
 	}
 
 

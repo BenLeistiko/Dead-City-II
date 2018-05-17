@@ -47,7 +47,7 @@ public class Main {
 
 	public Main() {
 		resources = new ResourceLoader();
-
+		resources.load();
 		window = new JFrame();
 
 		window.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth());
@@ -71,9 +71,10 @@ public class Main {
 			}
 
 		});
-
-		this.addScene(new BattleField(this), "BattleField");
+		
 		this.addScene(new TitleScreen(this), "TitleScreen");
+		changePanel("TitleScreen");
+		this.addScene(new BattleField(this), "BattleField");
 		this.addScene(new Camp(this), "Camp");
 		this.addScene(new Pause(this), "Pause");
 
@@ -90,7 +91,6 @@ public class Main {
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
-		changePanel("TitleScreen");
 	}
 
 	/**

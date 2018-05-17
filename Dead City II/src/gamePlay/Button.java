@@ -1,6 +1,7 @@
 package gamePlay;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
@@ -8,6 +9,7 @@ import java.awt.geom.Rectangle2D.Double;
 import interfaces.Clickable;
 import interfaces.Drawable;
 import processing.core.PApplet;
+import processing.core.PImage;
 /**
  * This is a button that is in scenes.  It could open other scenes or do other suff.
  * @author bleistiko405
@@ -18,17 +20,17 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	private String name;
 	private	boolean isPressed;
 	private boolean mouseOver;
-	private Color buttonColor,textColor;
+	private Color textColor;
+	private PImage left,center,right,leftP,centerP,rightP,centerCrop,centerCropP;
 
-
-	public Button(double x, double y, double w, double h, String name,Color buttonColor, Color textColor) {
+	public Button(double x, double y, double w, double h, String name, Color c,Color textColor) {
 		super(x-(w/2),y-(h/2),w,h);
 		this.name = name;
 		this.isPressed = false;
 		this.mouseOver = false;
-		this.buttonColor = buttonColor;
 		this.textColor = textColor;
-
+		left = Main.resources.getTexture("ButtonLeft", new Point((int)w,(int)h), new Point((int)w,(int)h));
+		right = Main.resources.getTexture("ButtonRight", new Point((int)w,(int)h), new Point((int)w,(int)h));
 
 
 	}
@@ -69,11 +71,11 @@ public boolean mouseOver() {
 		marker.pushMatrix();
 
 		if(mouseOver) {
-			marker.fill(buttonColor.getRGB(), 175f);
+			//marker.fill(buttonColor.getRGB(), 175f);
 			marker.strokeWeight(5);
 		} else {
 			
-			marker.fill(buttonColor.getRGB());		
+			//marker.fill(buttonColor.getRGB());		
 			marker.strokeWeight(2);
 		}
 
