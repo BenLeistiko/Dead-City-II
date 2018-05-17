@@ -69,7 +69,6 @@ public boolean mouseOver() {
 		marker.pushMatrix();
 
 		if(mouseOver) {
-			
 			marker.fill(buttonColor.getRGB(), 175f);
 			marker.strokeWeight(5);
 		} else {
@@ -78,8 +77,8 @@ public boolean mouseOver() {
 			marker.strokeWeight(2);
 		}
 
-		marker.rectMode(marker.CENTER);
-		marker.rect((float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2), (float)super.getWidth(), (float)super.getHeight());
+		//marker.rectMode(marker.CENTER);
+		marker.rect((float)(super.getX()), (float)(super.getY()), (float)super.getWidth(), (float)super.getHeight());
 
 		
 		marker.textAlign(marker.CENTER, marker.CENTER);
