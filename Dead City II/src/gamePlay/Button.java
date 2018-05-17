@@ -18,15 +18,19 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	private String name;
 	private	boolean isPressed;
 	private boolean mouseOver;
-	
+	private Color buttonColor,textColor;
 
-	public Button(double x, double y, double w, double h, String name) {
-		super(x-w,y-h,w,h);
+
+	public Button(double x, double y, double w, double h, String name,Color buttonColor, Color textColor) {
+		super(x-(w/2),y-(h/2),w,h);
 		this.name = name;
 		this.isPressed = false;
 		this.mouseOver = false;
-	
-	
+		this.buttonColor = buttonColor;
+		this.textColor = textColor;
+
+
+
 	}
 
 	public boolean shouldRemove() {
@@ -47,7 +51,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	public void mousePressed(PApplet marker) {
 		if(mouseOver) {
 			isPressed = true;
-			act();
+
 		}
 	}
 
@@ -58,23 +62,27 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	public void draw(PApplet marker) {
 		update(marker);
 
-	//	System.out.println(mouseOver);
-		
 		marker.pushMatrix();
 
 		if(mouseOver) {
-			marker.fill(new Color(128,128,128).getRGB(), 0.5f);
-			marker.strokeWeight(3);
+			
+			marker.fill(buttonColor.getRGB(), 175f);
+			marker.strokeWeight(5);
 		} else {
-			marker.noFill();
+			
+			marker.fill(buttonColor.getRGB());		
 			marker.strokeWeight(2);
 		}
 
-		//marker.rectMode(marker.CENTER);
-		marker.rect((float)(super.getX()+getWidth()), (float)(super.getY()+getHeight()), (float)super.getWidth(), (float)super.getHeight());
-		//marker.textAlign(marker.CENTER, marker.CENTER);
-		//marker.textSize(20);
-		//marker.text(name, (float)x, (float)y);
+		marker.rectMode(marker.CENTER);
+		marker.rect((float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2), (float)super.getWidth(), (float)super.getHeight());
+
+		
+		marker.textAlign(marker.CENTER, marker.CENTER);
+	
+		marker.fill(textColor.getRGB());
+		marker.textSize(20);
+		marker.text(name, (float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2));
 		marker.popMatrix();
 	}
 
@@ -90,13 +98,13 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void setCoords(double x, double y) {
-			this.x = x-super.getWidth();
-			this.y = y-super.getHeight();
+		this.x = x-super.getWidth()/2;
+		this.y = y-super.getHeight()/2;
 		//	this.x = x;
 		//	this.y = y;
-	//	this.setRect(x-super.getWidth(), y-super.getHeight(), this.getWidth(), this.getHeight());
+		//	this.setRect(x-super.getWidth(), y-super.getHeight(), this.getWidth(), this.getHeight());
 		//this.x = x-super.getWidth();
-		
+
 	}
 
 	public void setX(double x) {
@@ -108,12 +116,8 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 
-	public void act() {
-		System.out.println("Pressed");
-	}
 
 
-	@Override
 	public Rectangle2D.Double getHitBox() {
 		return this;
 	}

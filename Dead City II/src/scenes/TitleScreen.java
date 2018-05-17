@@ -1,51 +1,75 @@
 package scenes;
 
+import java.awt.Color;
+
 import gamePlay.Button;
 import gamePlay.Main;
 import processing.core.PApplet;
 
 public class TitleScreen extends Scene {
-	private Button b;
+
+	private Button startGame,exitGame;
 
 	public TitleScreen(Main m) {
 		super(m);
-		this.b = new Button(width/2, height/2, 200, 200,"button");
+		this.startGame = new Button(width/2, height/2, 400, 150,"START",new Color(255,0,0), new Color(0,255,0));
+		this.exitGame = new Button(width/2, height/2, 400, 150,"EXIT",new Color(255,0,0), new Color(0,255,0));
+	}
+
+	public void setup() {
+		Main.resources.load(this);
 	}
 
 
 	public void draw() {
 		background(255);
-	//	System.out.println("x-coord: " + mouseX + " y-coord: " + mouseY);
-		
-		b.draw(this);
-		b.setCoords(width/2, height/2);
+
+
+		startGame.draw(this);
+		startGame.setCoords(width/2, height/2);
+
+		exitGame.draw(this);
+		exitGame.setCoords(width/2, height*2/3);
+
+		act();
 
 		textSize(30);
 		fill(0);
 
+		//image(Main.resources.getAnimation("TrooperRunning",0),100,100);
+
+		//	textAlign(CENTER,CENTER);
+		//	rectMode(this.CENTER);
 
 
-		textAlign(CENTER,CENTER);
+	}
 
-	//	text("Dead City II", width/2, height/2);
-		rectMode(this.CENTER);
-		rect(width/2, height/2, 200, 2);
-		rect(width/2, height/2, 2, 30);
+	public void act() {
+		if(startGame.isPressed()) {
+			super.changePanelAndPause(this, "BattleField");
+		}
 
-
-
+		if(exitGame.isPressed()) {
+			exit();
+		}
 	}
 
 	public void keyPressed() {
-		super.changePanelAndPause(this, "BattleField");
+
+	}
+
+	public void keyReleased() {
+
 	}
 
 	public void mousePressed() {
-		b.mousePressed(this);
+		startGame.mousePressed(this);
+		exitGame.mousePressed(this);
 	}
-	
+
 	public void mouseReleased() {
-		b.mouseReleased(this);
+		startGame.mouseReleased(this);
+		exitGame.mouseReleased(this);
 	}
 
 
