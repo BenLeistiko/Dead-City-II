@@ -11,6 +11,7 @@ import interfaces.Typeable;
 import items.RangedWeapon;
 import items.Weapon;
 import processing.core.PApplet;
+import scenes.Scene;
 
 /**
  * Any character that the player controls
@@ -22,14 +23,16 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private ArrayList<Integer> keysPressed;
 	private ArrayList<Integer> mouseButtonsPressed;
 	private Weapon weapon;
+	private Scene s;
 	private HUD display; 
 
-	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
 		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
-		display = new HUD();
+		this.s=s;
+		display = new HUD(s);
 
 	}
 

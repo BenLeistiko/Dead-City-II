@@ -9,6 +9,9 @@ public abstract class Menu implements Drawable{
 
 	private boolean isVisible;
 	
+	public Menu(boolean isVisible) {
+		this.isVisible=isVisible;
+	}
 
 	public boolean isVisible() {
 		return isVisible;
