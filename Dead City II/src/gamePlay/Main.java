@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.BattleField;
+import scenes.Camp;
 import scenes.TitleScreen;
 import scenes.Scene;
 /**
@@ -72,6 +73,7 @@ public class Main {
 
 		this.addScene(new BattleField(this), "BattleField");
 		this.addScene(new TitleScreen(this), "TitleScreen");
+		this.addScene(new Camp(this), "Camp");
 
 		window.setLayout(new BorderLayout());
 

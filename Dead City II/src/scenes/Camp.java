@@ -9,9 +9,12 @@ public class Camp extends Scene {
 		super(m);
 	}
 
-	@Override
-	public void draw(PApplet marker) {
-		// TODO Auto-generated method stub
+	public void draw() {
+		background(128);
+		
+		text("im a camp", width/2,height/2);
+		
+		
 		
 	}
 

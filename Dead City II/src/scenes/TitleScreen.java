@@ -1,6 +1,9 @@
 package scenes;
 
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
+import java.util.ArrayList;
 
 import gamePlay.Button;
 import gamePlay.Main;
@@ -10,29 +13,44 @@ import processing.core.PApplet;
 
 public class TitleScreen extends Scene {
 
-	private Button startGame,exitGame;
+	private ArrayList<Button> buttons;
+	private Button startGame,exitGame,camp;
+
 
 	public TitleScreen(Main m) {
 		super(m);
+
 		this.startGame = new Button(width/2, height/2, 400, 150,"START",new Color(255,0,0), new Color(0,255,0));
+		this.camp = new Button(width/2, height/2, 400, 150,"CAMP",new Color(255,0,0), new Color(0,255,0));
 		this.exitGame = new Button(width/2, height/2, 400, 150,"EXIT",new Color(255,0,0), new Color(0,255,0));
+
+		buttons = new ArrayList<Button>();
+		
+		buttons.add(startGame);
+		buttons.add(camp);
+		buttons.add(exitGame);
 	}
 
 	public void setup() {
 		Main.resources.load(this);
-		
+
 	}
 
 
 	public void draw() {
 		background(255);
 
-
-		startGame.draw(this);
-		startGame.setCoords(width/2, height/2);
-
-		exitGame.draw(this);
+		//.6666-.5 = distance between buttons = height*1/6
+		startGame.setCoords(width/2, height/3);
+		
+		camp.setCoords(width/2, height*1/2);
+		
 		exitGame.setCoords(width/2, height*2/3);
+		
+
+		for(Button b:buttons) {
+			b.draw(this);	
+		}
 
 		act();
 
@@ -52,9 +70,15 @@ public class TitleScreen extends Scene {
 			super.changePanelAndPause(this, "BattleField");
 		}
 
+		if(camp.isPressed()) {
+			super.changePanelAndPause(this, "Camp");
+		}
+
 		if(exitGame.isPressed()) {
 			exit();
 		}
+
+
 	}
 
 	public void keyPressed() {
@@ -66,14 +90,19 @@ public class TitleScreen extends Scene {
 	}
 
 	public void mousePressed() {
-		startGame.mousePressed(this);
-		exitGame.mousePressed(this);
+		for(Button b:buttons) {
+			b.mousePressed(this);
+		}
+		
 	}
 
 	public void mouseReleased() {
-		startGame.mouseReleased(this);
-		exitGame.mouseReleased(this);
+		for(Button b:buttons) {
+			b.mouseReleased(this);
+		}
+		
 	}
+
 
 
 

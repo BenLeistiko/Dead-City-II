@@ -1,5 +1,6 @@
 package Menus;
 
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 
@@ -13,9 +14,11 @@ import sprites.Hero;
 public class HUD extends Menu{
 
 	private Scene s;
+	private Rectangle2D.Double visSpace;
 	private double health;
 	private int ammo;
 	private Weapon weapon;
+
 
 
 	public HUD(Scene s) {
@@ -23,50 +26,42 @@ public class HUD extends Menu{
 		health = 0;
 		ammo = 0;
 		this.s=s;
+		visSpace = new Rectangle2D.Double();
 	}
 
 
-	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
+
 
 	public void draw(PApplet marker) {
+		if(super.isVisible()) {
+
+			marker.pushMatrix();
+			Color c = new Color(255,0,0);
+			marker.fill(0);
+			marker.strokeWeight(5);
+			marker.stroke(c.getRGB());;
+
+		//	marker.rect((float)visSpace.getX(), (float)visSpace.getY(), (float)visSpace.getWidth(), (float)visSpace.getHeight());
+			marker.textAlign(marker.LEFT, marker.TOP);
+			marker.textSize(20);
+			marker.text("Ammo: " + ammo + " Health: " + health, (float)visSpace.getX(), (float)visSpace.getY());
 
 
-		marker.pushMatrix();
+			marker.popMatrix();
 
-		marker.fill(0);
+			if(weapon instanceof RangedWeapon) {
+				RangedWeapon rw = ((RangedWeapon) weapon);
 
-		marker.rect(300, 300, 800, 800);
-		marker.text("ammo: " + ammo + "Health: " + health, 500, 500);
-
-
-		marker.popMatrix();
-		
-		if(weapon instanceof RangedWeapon) {
-			RangedWeapon rw = ((RangedWeapon) weapon);
+			}
 
 		}
-
-		
-
-
-
 	}
 
+	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 	public void update(Hero h) {
-		if(s instanceof BattleField) {
-			BattleField b = ((BattleField)s);
-			
-			
-			
-			
-		}else {
-			
-			
-		}
-		
-		health =	h.getHealth();
+		visSpace = s.getVisSpace();
 
-
+		health = h.getHealth();
 		weapon = h.getWeapon();
 
 		if(weapon instanceof RangedWeapon) {

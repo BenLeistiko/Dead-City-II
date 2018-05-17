@@ -32,7 +32,10 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 
 	}
-
+public boolean mouseOver() {
+	return mouseOver;
+}
+	
 	public boolean shouldRemove() {
 		return false;
 	}
@@ -44,6 +47,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	private boolean mouseInside(PApplet marker) {
 		if(this.contains(marker.mouseX, marker.mouseY)) {
 			return true;
+			
 		}
 		return false;
 	}

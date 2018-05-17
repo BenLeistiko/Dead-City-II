@@ -16,9 +16,9 @@ public abstract class Scene extends PApplet {
 	private ArrayList<Typeable> keyInput;
 
 	private Main m;
-	
+
 	private Rectangle2D.Double renderSpace;
-	
+
 	public Scene (Main m) {
 		this.m=m;
 		toDraw = new ArrayList<Drawable>();
@@ -26,17 +26,22 @@ public abstract class Scene extends PApplet {
 		keyInput = new ArrayList<Typeable>();
 		renderSpace = new Rectangle2D.Double(0,0,0,0);
 	}
-	
+
+	public Rectangle2D.Double getVisSpace(){
+
+		return new Rectangle2D.Double(0, 0, width, height);
+	}
 
 	public void setRenderSpace(Rectangle2D.Double r) {
 		renderSpace = r;
 	}
-	
+
 	public void updateRenderSpace(double xTrans, double yTrans) {
 		renderSpace.setRect(renderSpace.getX()+xTrans, renderSpace.getY()+yTrans, renderSpace.getWidth(), renderSpace.getHeight());
 	}
-	
+
 	public void draw(PApplet marker) {
+		
 		for(int i = 0; i < toDraw.size(); i++) {
 			if(toDraw.get(i).shouldRemove()) {
 				toDraw.remove(i);
@@ -54,12 +59,21 @@ public abstract class Scene extends PApplet {
 		}
 	}
 
+//	public void draw(PApplet kik, boolean wow) {
+//		if(wow) {
+//		kik.fill(0);
+//		kik.ellipse(kik.width/2, kik.height/2, 100000, 100);
+//		System.out.println("wow");
+//		}
+//	}
+	
+	
 	public void mousePressed() {
 		for(Clickable c:mouseInput) {
 			c.mousePressed(this);
 		}
 	}
-	
+
 	public void mouseReleased() {
 		for(Clickable c:mouseInput) {
 			c.mouseReleased(this);
@@ -71,7 +85,7 @@ public abstract class Scene extends PApplet {
 			t.keyPressed(this);
 		}
 	}
-	
+
 	public void keyReleased() {
 		for(Typeable t :keyInput) {
 			t.keyReleased(this);
@@ -87,7 +101,7 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void runMe() {
-		
+
 		super.sketchPath();
 		super.initSurface();
 		super.surface.startThread();
@@ -107,15 +121,15 @@ public abstract class Scene extends PApplet {
 	public void addDrawable(Drawable d) {
 		toDraw.add(d);
 	}
-	
+
 	public void addClickable(Clickable c) {
 		mouseInput.add(c);
 	}
-	
+
 	public void addTypeable(Typeable t) {
 		keyInput.add(t);
 	}
-	
+
 	/**
 	 * Only use if you have to, this is much slower
 	 * @param o - the object to 
@@ -130,4 +144,6 @@ public abstract class Scene extends PApplet {
 				keyInput.add((Typeable)o);
 		}
 	}
+
+
 }

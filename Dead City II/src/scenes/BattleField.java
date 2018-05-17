@@ -1,11 +1,14 @@
 package scenes;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 
+import gamePlay.Button;
 import gamePlay.Main;
 import gamePlay.ResourceLoader;
 import interfaces.Clickable;
@@ -27,6 +30,7 @@ public class BattleField extends Scene {
 
 	private Rectangle2D.Double characterSpace;//This is the rectangle that the character can not leave
 	private Rectangle2D.Double worldSpace;// This is the world.  If the character leaves this area, the camera stops following him
+	private Rectangle2D.Double visSpace;
 
 	private ArrayList<Sprite> worldlyThings;
 
@@ -38,11 +42,17 @@ public class BattleField extends Scene {
 	private int groundThickness;
 	private double groundHeight;
 
+	private boolean paused;
+
+
+
 
 	public BattleField(Main m) {
 		super(m);	
 		worldlyThings = new ArrayList<Sprite>();
 		groundThickness = 1000;
+		paused = false;
+
 	}
 
 
@@ -51,7 +61,7 @@ public class BattleField extends Scene {
 		Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),worldlyThings, this);
 		focusedSprite = joe;
 
-		this.add(joe);
+		//	this.add(joe);
 
 		characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 		worldSpace = new Rectangle2D.Double(0, 0, 50000, 2000); 
@@ -61,20 +71,37 @@ public class BattleField extends Scene {
 		generateHill(10);
 		generatePlatforms(80,100);
 		super.setRenderSpace(new Rectangle2D.Double(characterSpace.getX()-500, characterSpace.getY()-500, characterSpace.getX()+characterSpace.getWidth()+1000, characterSpace.getY()+characterSpace.getHeight()+1000));
+
+		this.add(joe);
 	}
 
 	public void draw() {
-		background(255);
+		if(paused) {			
+			//fill(0,10);
+			//rect((float)getVisSpace().getX(),(float)getVisSpace().getY(),(float)getVisSpace().getWidth(),(float)getVisSpace().getHeight(),100f);
+			background(125);
+			textAlign(CENTER,CENTER);
+		
+			textSize(100);
+			text("PAUSED",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()/2));
+			textSize(40);
+			text("Push '1' to return to Main Menu",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()*2/3));
 
+		}else {
 
-		slideWorldToImage(focusedSprite);
-		translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
+			background(255);
 
-		super.draw(this);
+			slideWorldToImage(focusedSprite);
+			translate((float)-(characterSpace.getX() - xEdge),(float) -(characterSpace.getY() - yEdge));
 
-		removeDeadSprites();
+			super.draw(this);
+			//super.draw(this, paused);
 
+			removeDeadSprites();
+		}
 	}
+
+
 
 	public void removeDeadSprites() {
 		for(int i = 0; i < worldlyThings.size(); i++) {
@@ -88,6 +115,19 @@ public class BattleField extends Scene {
 		super.keyPressed();
 		if(keyCode == KeyEvent.VK_U)
 			super.changePanelAndPause(this, "TitleScreen");
+		
+		if(keyCode == KeyEvent.VK_P) {
+			paused = !paused;//pseudo pause - only to know whether or not to show pause menu
+			draw();
+			super.pause(this, paused);// real pause
+		}
+
+		if(paused && keyCode == KeyEvent.VK_1) {
+			paused = false;//undo pseudo pause
+			super.changePanelAndPause(this, "TitleScreen");//real pause
+		}
+
+
 	}
 
 	public void add(Object ... objects) {
@@ -168,6 +208,7 @@ public class BattleField extends Scene {
 
 	}
 
+
 	private boolean overlaps(double a1, double a2, double b1, double b2) {
 		if((a1 < b2 && a1>b1)||(a2 < b2 && a2>b1) || (b1<a2 &&b1>a1) ||(b2<a2 &&b2>a1) ) {
 			return true;
@@ -211,17 +252,20 @@ public class BattleField extends Scene {
 			add(plat);
 		}
 	}
-	
-	public int getXEdge() {
-		return xEdge;
+
+	public void generateMobs() {
+
 	}
-	
-	public int getYEdge() {
-		return yEdge;
+
+
+	public Rectangle2D.Double getVisSpace() {
+		double width = characterSpace.getWidth();
+		double height = characterSpace.getHeight();
+		visSpace = new Rectangle2D.Double(characterSpace.getX()-xEdge, characterSpace.getY()-yEdge, width+2*xEdge, height+2*yEdge);
+
+		return visSpace;
 	}
-	
-	public Rectangle2D.Double getCharacterSpace(){
-		return characterSpace;
-	}
-	
+
+
+
 }
