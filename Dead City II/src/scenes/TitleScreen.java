@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import gamePlay.Button;
 import gamePlay.Main;
+//import gifAnimation.*;
+import gamePlay.*;
 import processing.core.PApplet;
 
 public class TitleScreen extends Scene {
@@ -18,6 +20,7 @@ public class TitleScreen extends Scene {
 
 	public void setup() {
 		Main.resources.load(this);
+		
 	}
 
 

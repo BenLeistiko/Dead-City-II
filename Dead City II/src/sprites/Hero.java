@@ -1,8 +1,10 @@
 package sprites;
 
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import Menus.HUD;
 import gamePlay.Main;
 import interfaces.Clickable;
 import interfaces.Typeable;
@@ -17,15 +19,17 @@ import processing.core.PApplet;
  */
 public class Hero extends Creature implements Clickable, Typeable {
 
-	ArrayList<Integer> keysPressed;
-	ArrayList<Integer> mouseButtonsPressed;
-	Weapon weapon;
+	private ArrayList<Integer> keysPressed;
+	private ArrayList<Integer> mouseButtonsPressed;
+	private Weapon weapon;
+	private HUD display; 
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
 		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
+		display = new HUD();
 
 	}
 
@@ -48,21 +52,23 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
+		display.update(this);
+		display.draw(marker);
 
 		double vX = 0;
-		if(keysPressed.contains(87)) {//w
+		if(keysPressed.contains(KeyEvent.VK_W)) {//w
 			super.jump();
 		}
-		if(keysPressed.contains(65)) {//a
+		if(keysPressed.contains(KeyEvent.VK_A)) {//a
 			vX = vX - super.getSpeed();
 		}
-		if(keysPressed.contains(83)) {//s
+		if(keysPressed.contains(KeyEvent.VK_S)) {//s
 
 		}
-		if(keysPressed.contains(68)) {//d
+		if(keysPressed.contains(KeyEvent.VK_D)) {//d
 			vX = vX + super.getSpeed();
 		}
-		if(keysPressed.contains(16)  && isOnSurface()) {//shift
+		if(keysPressed.contains(KeyEvent.VK_SHIFT)  && isOnSurface()) {//shift
 			vX = vX*getSprintSpeed();
 			super.setSprint(true);
 		}else {
@@ -79,7 +85,6 @@ public class Hero extends Creature implements Clickable, Typeable {
 			if(weapon instanceof RangedWeapon) {
 				RangedWeapon rw = ((RangedWeapon) weapon);
 				if(rw.getCurrentAmmo()>0) {
-					Main.resources.getSound("Shoot").play();
 					attack();
 					weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
 				} else {
@@ -93,5 +98,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 		super.draw(marker);
 	}
 
+	public Weapon getWeapon() {
+		return weapon;
+
+	}
 
 }

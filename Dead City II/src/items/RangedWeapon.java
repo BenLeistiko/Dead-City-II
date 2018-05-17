@@ -37,6 +37,7 @@ public class RangedWeapon extends Weapon {
 	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
 
 		if(currentAmmo>0 && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
+			
 			Bullet bull;
 			if(dir == 1) {
 				bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),

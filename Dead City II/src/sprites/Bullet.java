@@ -32,6 +32,7 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
+		Main.resources.getSound("Shoot").play();
 	}
 
 	public void act() {
