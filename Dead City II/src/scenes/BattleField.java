@@ -51,7 +51,6 @@ public class BattleField extends Scene {
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
 
 
-		System.out.println(width + ", " + height);
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
@@ -72,11 +71,11 @@ public class BattleField extends Scene {
 	public void keyPressed() {
 		super.keyPressed();
 		if(keyCode == KeyEvent.VK_U) {
-			super.changePanelAndPause(this, "TitleScreen");
+			super.changePanelAndPause( "TitleScreen");
 		}
 
 		if(keyCode == KeyEvent.VK_P) {
-			super.changePanelAndPause(this, "Pause");
+			super.changePanelAndPause("Pause");
 		}
 
 

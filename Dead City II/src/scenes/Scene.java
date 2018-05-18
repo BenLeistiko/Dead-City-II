@@ -250,14 +250,14 @@ public abstract class Scene extends PApplet {
 		pause(this,true);
 	}
 
-	public void changePanelAndPause(PApplet marker, String name) {
+	public void changePanelAndPause(String name) {
 		m.changePanel(name);
-		pause(marker,true);
+		pause(this,true);
 	}
 
-	public void changePanel(PApplet marker, String name,boolean pause) {
+	public void changePanel(String name,boolean pause) {
 		m.changePanel(name);
-		pause(marker,pause);
+		pause(this,pause);
 	}
 
 	public void addDrawable(Drawable d) {

@@ -10,110 +10,97 @@ import interfaces.Clickable;
 import interfaces.Drawable;
 import processing.core.PApplet;
 import processing.core.PImage;
+import scenes.Scene;
 /**
  * This is a button that is in scenes.  It could open other scenes or do other suff.
  * @author bleistiko405
- *
+ * 
  */
 public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	private String name;
-	private	boolean isPressed;
-	private boolean mouseOver;
 	private Color textColor;
 	private PImage left,center,right,leftP,centerP,rightP,centerCrop,centerCropP;
-
-	public Button(double x, double y, double w, double h, String name, Color c,Color textColor) {
+	private Scene scene;
+	private String target;
+	private boolean isPressed = false;
+	public Button(double x, double y, double w, double h, String name,Color textColor, Scene scene, String target) {
 		super(x-(w/2),y-(h/2),w,h);
 		this.name = name;
-		this.isPressed = false;
-		this.mouseOver = false;
 		this.textColor = textColor;
-		left = Main.resources.getTexture("ButtonLeft", new Point((int)w,(int)h), new Point((int)w,(int)h));
-		right = Main.resources.getTexture("ButtonRight", new Point((int)w,(int)h), new Point((int)w,(int)h));
+		left = Main.resources.getImage("ButtonLeft");
+		System.out.println(left.height / h);
+		left = Main.resources.getTexture("ButtonLeft", new Point((int) (left.width*(h/left.height)),(int)h), new Point((int) (left.width*(h/left.height)),(int)h));
+		right = Main.resources.getImage("ButtonRight");
+		right = Main.resources.getTexture("ButtonRight", new Point((int) (right.width*(h/right.height)),(int)h), new Point((int) (right.width*(h/right.height)),(int)h));
 
+		leftP = Main.resources.getImage("ButtonLeftPressed");
+		leftP = Main.resources.getTexture("ButtonLeftPressed", new Point((int) (leftP.width*(h/leftP.height)),(int)h), new Point((int) (leftP.width*(h/leftP.height)),(int)h));
+		rightP = Main.resources.getImage("ButtonRightPressed");
+		rightP = Main.resources.getTexture("ButtonRightPressed", new Point((int) (rightP.width*(h/rightP.height)),(int)h), new Point((int) (rightP.width*(h/rightP.height)),(int)h));
 
+		center = Main.resources.getImage("Button");
+		center = Main.resources.getTexture("Button", new Point((int) (center.width*(h/center.height)),(int)h-4), new Point((int) (center.width*(h/center.height)),(int)h-4));
+
+		centerP = Main.resources.getImage("ButtonPressed");
+		centerP = Main.resources.getTexture("ButtonPressed", new Point((int) (centerP.width*(h/centerP.height)),(int)h-4), new Point((int) (centerP.width*(h/centerP.height)),(int)h-4));
+
+		double centerWidth = getWidth() - left.width - right.width;
+
+		int cropX = (int) (centerWidth-(Math.ceil(centerWidth/center.width)-1.0001)*center.width);
+
+		centerCrop = Main.resources.getImage("Button");
+		centerCrop = Main.resources.getTexture("Button", new Point((int) (centerCrop.width*(h/centerCrop.height)),(int)h-4), new Point(cropX,(int)h-4));
+
+		centerCropP = Main.resources.getImage("ButtonPressed");
+		centerCropP = Main.resources.getTexture("ButtonPressed", new Point((int) (centerCropP.width*(h/centerCropP.height)),(int)h-4), new Point(cropX,(int)h-4));
+
+		this.scene = scene;
+		this.target = target;
 	}
-public boolean mouseOver() {
-	return mouseOver;
-}
-	
+
+
 	public boolean shouldRemove() {
 		return false;
 	}
 
-	public boolean isPressed() {
-		return isPressed;
-	}
-
-	private boolean mouseInside(PApplet marker) {
-		if(this.contains(marker.mouseX, marker.mouseY)) {
+	private boolean mouseInside(Point point) {
+		if(this.contains(point.x, point.y)) {
 			return true;
-			
 		}
 		return false;
 	}
 
-	public void mousePressed(PApplet marker) {
-		if(mouseOver) {
-			isPressed = true;
-
-		}
-	}
-
-	public void mouseReleased(PApplet marker) {
-		isPressed = false;
-	}
-
 	public void draw(PApplet marker) {
-		update(marker);
-
 		marker.pushMatrix();
-
-		if(mouseOver) {
-			//marker.fill(buttonColor.getRGB(), 175f);
-			marker.strokeWeight(5);
-		} else {
-			
-			//marker.fill(buttonColor.getRGB());		
-			marker.strokeWeight(2);
+		if(!isPressed) {
+			marker.image(left, (float)x, (float) y);
+			int j = 0;
+			for(int i = (int) (x+left.width); i<x+this.width-right.width-center.width; i = i + center.width) {
+				marker.image(center, i, (float) y+2);
+				j++;
+			}
+			float cropX = (float) (x+leftP.width+center.width*j);
+			marker.image(centerCrop, cropX, (float)y+2);
+			marker.image(right, cropX+centerCrop.width, (float) y);
+		}else {
+			marker.image(leftP, (float)x, (float) y);
+			int j = 0;
+			for(int i = (int) (x+leftP.width); i<x+this.width-rightP.width-centerP.width; i = i + centerP.width) {
+				marker.image(centerP, i, (float) y+2);
+				j++;
+			}
+			float cropX = (float) (x+leftP.width+centerP.width*j);
+			marker.image(centerCropP, cropX, (float)y+2);
+			marker.image(rightP, cropX+centerCropP.width, (float) y);
 		}
-
-		
-		marker.rect((float)(super.getX()), (float)(super.getY()), (float)super.getWidth(), (float)super.getHeight());
-
-		
 		marker.textAlign(marker.CENTER, marker.CENTER);
-	
+
 		marker.fill(textColor.getRGB());
 		marker.textSize(20);
 		marker.text(name, (float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2));
-		
-		
+
 		marker.popMatrix();
-	}
-
-	public void update(PApplet marker) {
-		if(this.mouseInside(marker)){
-			mouseOver = true;
-		}else {
-			mouseOver = false;
-		}
-
-
-
-	}
-
-	public void setCoords(double x, double y) {
-		this.x = x-super.getWidth()/2;
-		this.y = y-super.getHeight()/2;
-	}
-	
-	public void setCoordsAndDraw(PApplet marker, double x, double y){
-		this.x = x-super.getWidth()/2;
-		this.y = y-super.getHeight()/2;
-		draw(marker);
-		
 	}
 
 	public void setX(double x) {
@@ -124,10 +111,23 @@ public boolean mouseOver() {
 		this.y = y-super.getHeight();
 	}
 
-
-
-
 	public Rectangle2D.Double getHitBox() {
 		return this;
+	}
+
+	public void mousePressed(Point clickPoint, int button) {
+		if(mouseInside(clickPoint)) {
+			isPressed = true;
+		}
+	}
+
+	public void mouseReleased(Point clickPoint, int button) {
+		if(mouseInside(clickPoint)) {
+			if(target.equalsIgnoreCase("exit")) {
+				System.exit(0);
+			}
+			scene.changePanelAndPause(target);
+		}
+		isPressed = false;
 	}
 }
