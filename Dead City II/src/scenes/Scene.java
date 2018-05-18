@@ -101,7 +101,7 @@ public abstract class Scene extends PApplet {
 		slideWorldToImage();
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
 		for(int i = 0; i < toDraw.size(); i++) {
-			if(toDraw.get(i).shouldRemove()) { 
+			if(toDraw.get(i).shouldRemove()) {  
 				toDraw.remove(i);
 			}else if(toDraw.get(i).getHitBox().intersects(renderSpace)) {
 				toDraw.get(i).draw(this);
