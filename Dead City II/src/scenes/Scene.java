@@ -95,12 +95,11 @@ public abstract class Scene extends PApplet {
 	}
 	
 	public void draw() {
-		updateRatios();
-		slideWorldToImage();
 		this.pushMatrix();
-		this.scale((float)xRatio, (float)yRatio);
+		if(updateRatios())
+			this.scale((float)xRatio, (float)yRatio);
+		slideWorldToImage();
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
-		System.out.println(xRatio + ", " + yRatio);
 		for(int i = 0; i < toDraw.size(); i++) {
 			if(toDraw.get(i).shouldRemove()) {
 				toDraw.remove(i);
@@ -123,7 +122,7 @@ public abstract class Scene extends PApplet {
 		}
 	}
 	
-	public void slideWorldToImage() {
+	public boolean slideWorldToImage() {
 		Point2D.Double center = focusedSprite.getCenter();
 		//System.out.println(center + "    :    " + characterSpace);
 		double xTrans = 0,yTrans = 0;
@@ -146,7 +145,9 @@ public abstract class Scene extends PApplet {
 			this.translateRect(screenSpace, -xTrans, -yTrans);
 			this.translateRect(renderSpace, -xTrans, -yTrans);
 			//System.out.println(characterSpace + "\n\t" + screenSpace + "\n\t" + worldSpace + "\n\t" + focusedSprite);
+			return true;
 		}
+		return false;
 	}
 	
 	private void translateRect(Rectangle2D.Double r, double x, double y) {
@@ -158,7 +159,8 @@ public abstract class Scene extends PApplet {
 		int y = this.mouseY;
 
 		for(Clickable c:mouseInput) {
-			c.mousePressed(new Point(x,y), mouseButton);
+			c.mousePressed(this.actualToAssumed(new Point(x,y)), mouseButton);
+			System.out.println(this.actualToAssumed(new Point(x,y)));
 		}
 	}
 
@@ -167,7 +169,7 @@ public abstract class Scene extends PApplet {
 		int y = this.mouseY;
 		
 		for(Clickable c:mouseInput) {
-			c.mouseReleased(new Point(x,y), mouseButton);
+			c.mouseReleased(this.actualToAssumed(new Point(x,y)), mouseButton);
 		}
 	}
 
@@ -240,16 +242,23 @@ public abstract class Scene extends PApplet {
 	/**
 	 * These are the ratios of actual/assumed
 	 */
-	public void updateRatios() {
-		xRatio = (double)(width)/ASSUMED_DRAWING_WIDTH;
-		yRatio = (double)(height)/ASSUMED_DRAWING_HEIGHT;
+	public boolean updateRatios() {
+		double newXRatio = (double)(width)/ASSUMED_DRAWING_WIDTH;
+		double newYRatio = (double)(height)/ASSUMED_DRAWING_HEIGHT;
+		
+		if(Math.abs(newXRatio - this.xRatio) > 0.0001 || Math.abs(newYRatio - this.yRatio) > 0.0001) {
+			this.xRatio = newXRatio;
+			this.yRatio = newYRatio;
+			return true;
+		}
+		return false;
 	}
 	
-	public Point actualToAssumed(Point actual, PApplet window) {
+	public Point actualToAssumed(Point actual) {
 		return new Point((int)(actual.getX()/xRatio-screenSpace.getX()), (int) (actual.getY()/yRatio-screenSpace.getY()));
 	}
 	
-	public Point AssumedToAcual(Point assumed, PApplet window) {
+	public Point AssumedToAcual(Point assumed) {
 		return new Point((int)((assumed.getX() - screenSpace.getX())*xRatio), (int)((assumed.getY() - screenSpace.getY())*yRatio));
 	}
 
