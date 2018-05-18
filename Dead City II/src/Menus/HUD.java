@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D.Double;
 import items.RangedWeapon;
 import items.Weapon;
 import processing.core.PApplet;
+import processing.core.PImage;
 import scenes.BattleField;
 import scenes.Scene;
 import sprites.Hero;
@@ -19,7 +20,7 @@ public class HUD extends Menu{
 	private int ammo;
 	private Weapon weapon;
 
-
+	private PImage HUD, FistBulletBar, BulletBar;
 
 	public HUD(Scene s) {
 		super(true);
@@ -28,9 +29,6 @@ public class HUD extends Menu{
 		this.s=s;
 		visSpace = new Rectangle2D.Double();
 	}
-
-
-
 
 	public void draw(PApplet marker) {
 		if(super.isVisible()) {
