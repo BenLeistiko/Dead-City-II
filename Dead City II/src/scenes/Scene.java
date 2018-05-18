@@ -326,4 +326,34 @@ public abstract class Scene extends PApplet {
 	public void setWorldSpace(Rectangle2D.Double worldSpace) {
 		this.worldSpace = worldSpace;
 	}
+
+
+	public double getxRatio() {
+		return xRatio;
+	}
+
+
+	public void setxRatio(double xRatio) {
+		this.xRatio = xRatio;
+	}
+
+
+	public double getyRatio() {
+		return yRatio;
+	}
+
+
+	public void setyRatio(double yRatio) {
+		this.yRatio = yRatio;
+	}
+
+
+	public Rectangle2D.Double getScreenSpace() {
+		return screenSpace;
+	}
+
+
+	public void setScreenSpace(Rectangle2D.Double screenSpace) {
+		this.screenSpace = screenSpace;
+	}
 }

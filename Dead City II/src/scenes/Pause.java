@@ -5,53 +5,24 @@ import java.awt.Color;
 import gamePlay.Button;
 import gamePlay.Main;
 
-public class Pause extends Scene{
-
-	private Button mainMenu;
-
-
-
-
-
+public class Pause extends Scene{	
 	public Pause(Main m) {
 		super(m);
-
-
 	}
 
 	public void setup() {
-		//mainMenu = new Button(width/2, height/2, 400, 150,"RETURN TO MAIN MENU",new Color(255,0,0), new Color(0,255,0), this, "titleScreen");
+		Button mainMenu = new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/2, 400, 50,"RETURN TO MAIN MENU",new Color(0,0,0), this, "TitleScreen");
+		add(mainMenu);
 	}
-	
+
 	public void draw() {
-		background(125);
-
-
+		super.draw();
+		pushMatrix();
+		scale((float) super.getxRatio(), (float) super.getyRatio());
+		this.translate((float)(-getScreenSpace().getX()), (float) -getScreenSpace().getY());
 		textAlign(CENTER,CENTER);
-
 		textSize(100);
-		text("PAUSED",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()/2));
-
-		//mainMenu.setCoordsAndDraw(this, width/2, height*2/3);
-
-
-		//textSize(40);
-		//text("Push '1' to return to Main Menu",(float)(getVisSpace().getX()+getVisSpace().getWidth()/2),(float)(getVisSpace().getY()+ getVisSpace().getHeight()*2/3));
-
+		text("PAUSED",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
+		popMatrix();
 	}
-
-
-
-	public void mousePressed() {
-		//mainMenu.mousePressed(this);
-
-	}
-
-	public void mouseReleased() {
-
-		//mainMenu.mouseReleased(this);
-	}
-
-
-
 }
