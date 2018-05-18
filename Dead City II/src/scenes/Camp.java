@@ -31,7 +31,7 @@ public class Camp extends Scene {
 	public void keyPressed() {
 		
 		if(keyCode == KeyEvent.VK_U) {
-			super.changePanelAndPause(this, "TitleScreen");
+			super.changePanelAndPause("TitleScreen");
 		}
 		
 		
