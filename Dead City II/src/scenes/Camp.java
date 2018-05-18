@@ -17,39 +17,11 @@ public class Camp extends Scene {
 		background(128);
 		
 		text("im a camp", width/2,height/2);
-		
-		
-		
-	}
-
-	
-	
-	
-	
-	
+	}	
 	
 	public void keyPressed() {
-		
 		if(keyCode == KeyEvent.VK_U) {
 			super.changePanelAndPause("TitleScreen");
 		}
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
