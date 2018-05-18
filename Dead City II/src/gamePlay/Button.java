@@ -29,7 +29,6 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		this.name = name;
 		this.textColor = textColor;
 		left = Main.resources.getImage("ButtonLeft");
-		System.out.println(left.height / h);
 		left = Main.resources.getTexture("ButtonLeft", new Point((int) (left.width*(h/left.height)),(int)h), new Point((int) (left.width*(h/left.height)),(int)h));
 		right = Main.resources.getImage("ButtonRight");
 		right = Main.resources.getTexture("ButtonRight", new Point((int) (right.width*(h/right.height)),(int)h), new Point((int) (right.width*(h/right.height)),(int)h));
