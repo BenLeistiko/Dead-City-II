@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.awt.Point;
+
 import processing.core.PApplet;
 /**
  * Anything that can be clicked
@@ -8,6 +10,6 @@ import processing.core.PApplet;
  */
 public interface Clickable extends Removable{
 
-	public void mousePressed(PApplet marker);
-	public void mouseReleased(PApplet marker);
+	public void mousePressed(Point clickPoint, int button);
+	public void mouseReleased(Point clickPoint, int button);
 }

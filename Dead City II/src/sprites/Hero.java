@@ -1,5 +1,6 @@
 package sprites;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -33,9 +34,10 @@ public class Hero extends Creature implements Clickable, Typeable {
 		mouseButtonsPressed = new ArrayList<Integer>();
 		this.s=s;
 		display = new HUD(s);
-
 	}
-
+	
+	
+	
 	public void keyPressed(PApplet marker) {
 		if(!keysPressed.contains(marker.keyCode))
 			keysPressed.add(marker.keyCode);
@@ -45,13 +47,13 @@ public class Hero extends Creature implements Clickable, Typeable {
 		keysPressed.remove(new Integer(marker.keyCode));
 	}
 
-	public void mousePressed(PApplet marker) {
-		if(!mouseButtonsPressed.contains(marker.mouseButton))
-			mouseButtonsPressed.add(marker.mouseButton);	
+	public void mousePressed(Point clickPoint, int button) {
+		if(!mouseButtonsPressed.contains(button))
+			mouseButtonsPressed.add(button);	
 	}
 
-	public void mouseReleased(PApplet marker) {
-		mouseButtonsPressed.remove(new Integer(marker.mouseButton));
+	public void mouseReleased(Point clickPoint, int button) {
+		mouseButtonsPressed.remove(new Integer(button));
 	}
 
 	public void draw(PApplet marker) {

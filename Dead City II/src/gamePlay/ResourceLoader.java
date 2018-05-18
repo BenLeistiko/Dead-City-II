@@ -54,13 +54,14 @@ public class ResourceLoader {
 	}
 
 	public void load() {
+		System.out.println("loaded");
 		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
 
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 
 
-		statistics = parseStats(stats);
+		//statistics = parseStats(stats);
 
 
 		//****Loading Creature Animations*****

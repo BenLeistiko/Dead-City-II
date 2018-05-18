@@ -16,12 +16,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import items.RangedWeapon;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.BattleField;
 import scenes.Camp;
 import scenes.Pause;
 import scenes.TitleScreen;
+import sprites.Hero;
 import scenes.Scene;
 /**
  * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
@@ -71,13 +73,15 @@ public class Main {
 			}
 
 		});
-		
-		this.addScene(new TitleScreen(this), "TitleScreen");
-		changePanel("TitleScreen");
-		this.addScene(new BattleField(this), "BattleField");
-		this.addScene(new Camp(this), "Camp");
-		this.addScene(new Pause(this), "Pause");
+		Hero joe  = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,null),null, null);
+		//this.addScene(new TitleScreen(this), "TitleScreen"); 
+		this.addScene(new BattleField(this, joe), "BattleField");
+		//this.addScene(new Camp(this), "Camp");
+		//this.addScene(new Pause(this), "Pause");
 
+		changePanel("BattleField");
+
+		
 		window.setLayout(new BorderLayout());
 
 		window.add(cardPanel);
