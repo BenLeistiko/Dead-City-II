@@ -74,12 +74,12 @@ public class Main {
 
 		});
 		Hero joe  = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,null),null, null);
-		//this.addScene(new TitleScreen(this), "TitleScreen"); 
+		this.addScene(new TitleScreen(this), "TitleScreen"); 
 		this.addScene(new BattleField(this, joe), "BattleField");
-		//this.addScene(new Camp(this), "Camp");
-		//this.addScene(new Pause(this), "Pause");
+		this.addScene(new Camp(this), "Camp");
+		this.addScene(new Pause(this), "Pause");
 
-		changePanel("BattleField");
+		changePanel("TitleScreen");
 
 		
 		window.setLayout(new BorderLayout());
@@ -90,7 +90,7 @@ public class Main {
 
 		window.setName("Dead City II");
 
-		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		window.setSize(Scene.ASSUMED_DRAWING_WIDTH/2, Scene.ASSUMED_DRAWING_HEIGHT/2);
 		
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);

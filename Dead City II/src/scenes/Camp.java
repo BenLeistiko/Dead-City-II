@@ -1,9 +1,11 @@
 package scenes;
 
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 
 import gamePlay.Main;
 import processing.core.PApplet;
+import sprites.Barrier;
 
 public class Camp extends Scene {
 

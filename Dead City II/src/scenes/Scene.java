@@ -17,7 +17,7 @@ public abstract class Scene extends PApplet {
 	public static final int ASSUMED_DRAWING_WIDTH = 1600;
 	public static final int ASSUMED_DRAWING_HEIGHT = 900;
 
-	
+
 	private ArrayList<Drawable> toDraw;//Everything to draw that is NOT a sprite
 	private ArrayList<Clickable> mouseInput;
 	private ArrayList<Typeable> keyInput;
@@ -30,12 +30,14 @@ public abstract class Scene extends PApplet {
 	private Rectangle2D.Double worldSpace;//This is the limits of the world.  Past this the camera will not follow the focusedSprite.
 	private Rectangle2D.Double screenSpace;//This is the space that should be drawn onto ones screen.  Its width and height are the assumed width and hieghts.
 	private Rectangle2D.Double characterSpace;//This is the Space that the focused Sprite is allowed to be in.  If he tries to move out of it the world will just be translated around him.
-	
+
 	private Sprite focusedSprite;
-	
+
 	private double xRatio; 
 	private double yRatio;
-	
+
+	private boolean SideScroll;
+
 	/**
 	 * This creates a new scene.  If you don't want it to side scroll, just set the world space to the the assumed drawing width and height
 	 * @param m - the main method
@@ -47,7 +49,7 @@ public abstract class Scene extends PApplet {
 	 */
 	public Scene (Main m, Sprite focusedSprite, Rectangle2D.Double worldSpace, int xPadding, int yPadding, int renderDistance) {
 		this.m=m;
-		
+
 		toDraw = new ArrayList<Drawable>();
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
@@ -57,11 +59,14 @@ public abstract class Scene extends PApplet {
 		this.screenSpace = new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT);
 		this.characterSpace = new Rectangle2D.Double(xPadding, yPadding, ASSUMED_DRAWING_WIDTH-2*xPadding, ASSUMED_DRAWING_HEIGHT-2*yPadding);
 		renderSpace = new Rectangle2D.Double(-renderDistance,-renderDistance,ASSUMED_DRAWING_WIDTH+2*renderDistance,ASSUMED_DRAWING_HEIGHT+2*renderDistance);
-		
+		this.focusedSprite = focusedSprite;
+
 		updateRatios();
+
+		this.SideScroll = true;
 	}
-	
-	
+
+
 	/**
 	 * This creates a new scene.  If you don't want it to side scroll, just set the world space to the the assumed drawing width and height
 	 * If using this constructor, setup(Sprite) must be called.
@@ -73,9 +78,9 @@ public abstract class Scene extends PApplet {
 	 */
 	public Scene (Main m, Rectangle2D.Double worldSpace, int xPadding, int yPadding, int renderDistance) {
 		this.m=m;
-		
+
 		focusedSprite = null;
-		
+
 		toDraw = new ArrayList<Drawable>();
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
@@ -85,19 +90,56 @@ public abstract class Scene extends PApplet {
 		this.screenSpace = new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT);
 		this.characterSpace = new Rectangle2D.Double(xPadding, yPadding, ASSUMED_DRAWING_WIDTH-2*xPadding, ASSUMED_DRAWING_HEIGHT-2*yPadding);
 		renderSpace = new Rectangle2D.Double(-renderDistance,-renderDistance,ASSUMED_DRAWING_WIDTH+2*renderDistance,ASSUMED_DRAWING_HEIGHT+2*renderDistance);
-		
+
 		updateRatios();
+
+		this.SideScroll = true;
 	}
-	
+
+	/**
+	 * This creates a new scene.  If you don't want it to side scroll, just set the world space to the the assumed drawing width and height
+	 * If using this constructor, setup(Sprite) must be called.
+	 * @param m - the main method
+	 * @param worldSpace - the size of the level
+	 * @param xPadding - the distance from each side on the x axis that the focused sprite can not reach
+	 * @param yPadding - the distance from each side on the y axis that the focused sprite can not reach
+	 * @param renderDistance - the distance off the screen that is drawn
+	 */
+	public Scene (Main m) {
+		this.m=m;
+
+		focusedSprite = null;
+
+		toDraw = new ArrayList<Drawable>();
+		mouseInput = new ArrayList<Clickable>();
+		keyInput = new ArrayList<Typeable>();
+		worldlyThings = new ArrayList<Sprite>();
+
+		this.setWorldSpace(new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT));
+		this.screenSpace = worldSpace;
+		this.characterSpace = worldSpace;
+		renderSpace = worldSpace;
+
+		updateRatios();
+
+		this.SideScroll = false;
+	}
+
 	public void setup(Sprite focusedSprite) {
 		this.focusedSprite = focusedSprite;
 		add(focusedSprite);
 	}
-	
+
+
+	public void setup() {
+
+	}
+
 	public void draw() {
+		background(255,255,255);
 		this.pushMatrix();
-		if(updateRatios())
-			this.scale((float)xRatio, (float)yRatio);
+		updateRatios();
+		scale((float)xRatio, (float)yRatio);
 		slideWorldToImage();
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
 		for(int i = 0; i < toDraw.size(); i++) {
@@ -121,56 +163,65 @@ public abstract class Scene extends PApplet {
 				worldlyThings.remove(i);
 		}
 	}
-	
+
 	public boolean slideWorldToImage() {
-		Point2D.Double center = focusedSprite.getCenter();
-		//System.out.println(center + "    :    " + characterSpace);
-		double xTrans = 0,yTrans = 0;
+		if(SideScroll) {
+			Point2D.Double center = focusedSprite.getCenter();
+			//System.out.println(center + "    :    " + characterSpace);
+			double xTrans = 0,yTrans = 0;
 
-		if (!characterSpace.contains(center)) {
-			//System.out.println("NOT CONTAINED\n\t" + characterSpace + " ___ " + center);
-			if(center.x>characterSpace.getWidth()+characterSpace.getX() && characterSpace.getX()+characterSpace.getWidth()<getWorldSpace().getX()+getWorldSpace().getWidth()) {
-				xTrans = (characterSpace.getWidth()+characterSpace.getX()) - center.x;
-			}else if (center.x<characterSpace.getX() && getWorldSpace().getX() < characterSpace.getX()) {
-				xTrans = characterSpace.getX() - center.x;
-			}
+			if (!characterSpace.contains(center)) {
+				//System.out.println("NOT CONTAINED\n\t" + characterSpace + " ___ " + center);
+				if(center.x>characterSpace.getWidth()+characterSpace.getX() && characterSpace.getX()+characterSpace.getWidth()<getWorldSpace().getX()+getWorldSpace().getWidth()) {
+					xTrans = (characterSpace.getWidth()+characterSpace.getX()) - center.x;
+				}else if (center.x<characterSpace.getX() && getWorldSpace().getX() < characterSpace.getX()) {
+					xTrans = characterSpace.getX() - center.x;
+				}
 
-			if(center.y>characterSpace.getHeight()+characterSpace.getY() && characterSpace.getY()+characterSpace.getHeight()<getWorldSpace().getY()+getWorldSpace().getHeight()) {
-				yTrans = (characterSpace.getHeight()+characterSpace.getY()) - center.y;
-			}else if (center.y<characterSpace.getY()&& getWorldSpace().getY() < characterSpace.getY()) {
-				yTrans = characterSpace.getY() - center.y;
+				if(center.y>characterSpace.getHeight()+characterSpace.getY() && characterSpace.getY()+characterSpace.getHeight()<getWorldSpace().getY()+getWorldSpace().getHeight()) {
+					yTrans = (characterSpace.getHeight()+characterSpace.getY()) - center.y;
+				}else if (center.y<characterSpace.getY()&& getWorldSpace().getY() < characterSpace.getY()) {
+					yTrans = characterSpace.getY() - center.y;
+				}
+				//System.out.println("\t" + xTrans + ", " + yTrans);
+				this.translateRect(characterSpace, -xTrans, -yTrans);
+				this.translateRect(screenSpace, -xTrans, -yTrans);
+				this.translateRect(renderSpace, -xTrans, -yTrans);
+				//System.out.println(characterSpace + "\n\t" + screenSpace + "\n\t" + worldSpace + "\n\t" + focusedSprite);
+				return true;
 			}
-			//System.out.println("\t" + xTrans + ", " + yTrans);
-			this.translateRect(characterSpace, -xTrans, -yTrans);
-			this.translateRect(screenSpace, -xTrans, -yTrans);
-			this.translateRect(renderSpace, -xTrans, -yTrans);
-			//System.out.println(characterSpace + "\n\t" + screenSpace + "\n\t" + worldSpace + "\n\t" + focusedSprite);
-			return true;
 		}
 		return false;
 	}
-	
+
 	private void translateRect(Rectangle2D.Double r, double x, double y) {
 		r.setRect(r.getX()+x, r.getY()+y, r.getWidth(), r.getHeight());
 	}
-	
+
 	public void mousePressed() {
 		int x = this.mouseX;
 		int y = this.mouseY;
 
 		for(Clickable c:mouseInput) {
-			c.mousePressed(this.actualToAssumed(new Point(x,y)), mouseButton);
-			System.out.println(this.actualToAssumed(new Point(x,y)));
+			c.mousePressed(this.AssumedToAcual(new Point(x,y)), mouseButton);
 		}
 	}
 
 	public void mouseReleased() {
 		int x = this.mouseX;
 		int y = this.mouseY;
-		
+
 		for(Clickable c:mouseInput) {
-			c.mouseReleased(this.actualToAssumed(new Point(x,y)), mouseButton);
+			c.mouseReleased(this.AssumedToAcual(new Point(x,y)), mouseButton);
 		}
+	}
+
+	public Point actualToAssumed(Point actual) {
+		return new Point((int)(actual.getX()-screenSpace.getX()*xRatio), (int) (actual.getY()-screenSpace.getY()*yRatio));
+	}
+
+	public Point AssumedToAcual(Point assumed) {
+		return new Point((int)((assumed.getX()/xRatio + screenSpace.getX())), (int)((assumed.getY()/yRatio + screenSpace.getY())));
 	}
 
 	public void keyPressed() {		
@@ -245,7 +296,7 @@ public abstract class Scene extends PApplet {
 	public boolean updateRatios() {
 		double newXRatio = (double)(width)/ASSUMED_DRAWING_WIDTH;
 		double newYRatio = (double)(height)/ASSUMED_DRAWING_HEIGHT;
-		
+
 		if(Math.abs(newXRatio - this.xRatio) > 0.0001 || Math.abs(newYRatio - this.yRatio) > 0.0001) {
 			this.xRatio = newXRatio;
 			this.yRatio = newYRatio;
@@ -253,14 +304,8 @@ public abstract class Scene extends PApplet {
 		}
 		return false;
 	}
-	
-	public Point actualToAssumed(Point actual) {
-		return new Point((int)(actual.getX()/xRatio-screenSpace.getX()), (int) (actual.getY()/yRatio-screenSpace.getY()));
-	}
-	
-	public Point AssumedToAcual(Point assumed) {
-		return new Point((int)((assumed.getX() - screenSpace.getX())*xRatio), (int)((assumed.getY() - screenSpace.getY())*yRatio));
-	}
+
+
 
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;
@@ -269,7 +314,7 @@ public abstract class Scene extends PApplet {
 	public void setWorldlyThings(ArrayList<Sprite> worldlyThings) {
 		this.worldlyThings = worldlyThings;
 	}
-	
+
 	public Rectangle2D.Double getVisSpace() {
 		return this.screenSpace;
 	}

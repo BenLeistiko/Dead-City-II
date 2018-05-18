@@ -10,7 +10,6 @@ public class Map extends Scene {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void draw(PApplet marker) {
 		// TODO Auto-generated method stub
 		
