@@ -60,6 +60,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		display.update(this);
 		display.draw(marker);
 
+		
 		double vX = 0;
 		if(keysPressed.contains(KeyEvent.VK_W)) {//w
 			super.jump();

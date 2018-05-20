@@ -27,8 +27,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double speed;
 	private double jumpPower;
 	
-	private double maxHealth;
-	private double maxStamina;
+	private final double maxHealth;
+	private final double maxStamina;
 	
 	private double regenHealth;//in Health per second
 	private double regenStamina;//in Stamina per second
@@ -108,7 +108,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		stamina = Main.resources.getStat(animationKey, Main.resources.STAMINA);
 		//speed = 10;
 		speed = Main.resources.getStat(animationKey, Main.resources.SPEED);
-		jumpPower = 25;
+	//	jumpPower = 25;
+		jumpPower = Main.resources.getStat(animationKey, Main.resources.JUMPPOWER);
 		
 		maxHealth = health;
 		maxStamina = stamina;
@@ -420,5 +421,19 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		 health = maxHealth;
 	}
 	
-	
+	public double getMaxStamina() {
+		return maxStamina;
+	}
+
+
+
+	public ArrayList<PImage> getStanding() {
+		return standing;
+	}
+
+
+
+	public void setStanding(ArrayList<PImage> standing) {
+		this.standing = standing;
+	}
 }

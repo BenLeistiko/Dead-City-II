@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import Menus.HUD;
 import processing.core.PApplet;
 import processing.core.PImage;
 //import processing.sound.SoundFile;
@@ -47,7 +48,7 @@ public class ResourceLoader {
 	public static final String SKIRTZOMBIE = "SkirtZombie";
 	public static final String BONEZOMBIE = "BoneZombie";
 	public static final String BOYZOMBIE = "BoyZombie";
-	public static final String MUMMIE = "Mummie";
+	public static final String MUMMY = "Mummy";
 	public static final String MOHAWKZOMBIE = "MohawkZombie";
 
 	public static final String HEALTH = "health";
@@ -55,7 +56,6 @@ public class ResourceLoader {
 	
 	public static final String ARMOUR = "armour";
 	public static final String SPEED = "speed";
-	public static final String JUMPING = "jumping";
 	public static final String STAMINA = "stamina";
 	public static final String STAMINAREGEN = "staminaRegen";
 	public static final String WEAPONTYPE = "weaponType";
@@ -93,7 +93,7 @@ public class ResourceLoader {
 		characters.add(SKIRTZOMBIE);
 		characters.add(BONEZOMBIE);
 		characters.add(BOYZOMBIE);
-		characters.add(MUMMIE);
+		characters.add(MUMMY);
 		characters.add(MOHAWKZOMBIE);
 
 
@@ -104,7 +104,6 @@ public class ResourceLoader {
 		
 		attributes.add(ARMOUR);
 		attributes.add(SPEED);
-		attributes.add(JUMPING);
 		attributes.add(STAMINA);
 		attributes.add(STAMINAREGEN);
 		attributes.add(WEAPONTYPE);
@@ -171,7 +170,7 @@ public class ResourceLoader {
 
 
 			//*****Loading From Folders*****
-			this.loadFromFolder("resources" + fileSeparator+"GUI");
+			this.loadFromFolder("resources" + fileSeparator+"GUI",HUD.xScaleFactor,HUD.yScaleFactor);
 
 			//****Loading Normal Images****
 
@@ -208,6 +207,7 @@ public class ResourceLoader {
 			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
 		}
 		if(textures.get(name).get(bounds).get(cropBounds) == null) {
+			System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);
@@ -236,13 +236,15 @@ public class ResourceLoader {
 		return sounds.get(key);
 	}
 
-	private void loadFromFolder(String folderPath) {
+	private void loadFromFolder(String folderPath,double xScale, double yScale) {
 		File folder = new File(folderPath);
 		final String[] files = folder.list();
 		for(int i = 0; i < files.length; i++) {
 			String filePath = files[i].substring(0, files[i].indexOf("."));
 			try {
-				images.put(filePath, new PImage(ImageIO.read(new File(folderPath+fileSeparator+files[i]))));
+				PImage temp = new PImage(ImageIO.read(new File(folderPath+fileSeparator+files[i])));
+				temp.resize((int)(temp.width*xScale), (int)(temp.height*yScale));
+				images.put(filePath, temp);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

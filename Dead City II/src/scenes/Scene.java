@@ -127,7 +127,7 @@ public abstract class Scene extends PApplet {
 
 	public void setup(Sprite focusedSprite) {
 		this.focusedSprite = focusedSprite;
-		add(focusedSprite);
+		addAtEnd(focusedSprite);
 	}
 
 
@@ -290,6 +290,20 @@ public abstract class Scene extends PApplet {
 				keyInput.add((Typeable)o);
 			if(o instanceof Sprite) 
 				worldlyThings.add((Sprite) o);
+		}
+		return objects[0];
+	}
+	
+	public Object addAtEnd(Object ... objects) {
+		for(Object o:objects) {
+			if(o instanceof Drawable)
+				toDraw.add(toDraw.size(),(Drawable)o);
+			if(o instanceof Clickable)
+				mouseInput.add(mouseInput.size(),(Clickable)o);
+			if(o instanceof Typeable)
+				keyInput.add(keyInput.size(),(Typeable)o);
+			if(o instanceof Sprite) 
+				worldlyThings.add(worldlyThings.size(),(Sprite) o);
 		}
 		return objects[0];
 	}
