@@ -79,6 +79,10 @@ public class RangedWeapon extends Weapon {
 	public int getCurrentAmmo() {
 		return currentAmmo;
 	}
+	
+	public int getMaxAmmo() {
+		return MAX_AMMO;
+	}
 
 
 

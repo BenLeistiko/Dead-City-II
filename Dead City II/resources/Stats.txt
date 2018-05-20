@@ -7,8 +7,9 @@
 
 Trooper
 health=100
+healthRegen=1
 armour=.3
-speed=6
+speed=10
 jumping=25
 stamina=10
 staminaRegen=1
@@ -20,9 +21,11 @@ projectiletype=0
 projectilespeed=50
 accuracy=1
 agility=.5
+jumpPower = 25
 
 Commander
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -36,9 +39,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 Thug
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -52,9 +57,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 JungleMan
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -68,9 +75,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 Assassin
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -84,9 +93,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 BasicZombie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -100,9 +111,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 SkirtZombie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -116,9 +129,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 BoneZombie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -132,10 +147,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
-
+jumpPower = 25
 
 BoyZombie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -149,9 +165,11 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 Mummie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -165,10 +183,12 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 
 MohawkZombie
 health=1
+healthRegen=1
 armour=1
 speed=1
 jumping=1
@@ -182,5 +202,6 @@ projectiletype=1
 projectilespeed=1
 accuracy=1
 agility=.5
+jumpPower = 25
 
 **********************************************

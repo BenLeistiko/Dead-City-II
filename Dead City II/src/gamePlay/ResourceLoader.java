@@ -51,6 +51,8 @@ public class ResourceLoader {
 	public static final String MOHAWKZOMBIE = "MohawkZombie";
 
 	public static final String HEALTH = "health";
+	public static final String HEALTHREGEN = "healthRegen";
+	
 	public static final String ARMOUR = "armour";
 	public static final String SPEED = "speed";
 	public static final String JUMPING = "jumping";
@@ -60,10 +62,11 @@ public class ResourceLoader {
 	public static final String DAMAGE = "damage";
 	public static final String FIRERATE = "firerate";
 	public static final String DPS = "dps";
-	public static final String PROJECTILETYPE = "projectileTy[e";
+	public static final String PROJECTILETYPE = "projectileType";
 	public static final String PROJECTILESPEED = "projectileSpeed";
 	public static final String ACCURACY = "accuracy";
 	public static final String AGILITY = "agility";
+	public static final String JUMPPOWER = "jumpPower";
 	
 
 
@@ -97,6 +100,8 @@ public class ResourceLoader {
 		
 		attributes = new ArrayList<String>();
 		attributes.add(HEALTH);
+		attributes.add(HEALTHREGEN);
+		
 		attributes.add(ARMOUR);
 		attributes.add(SPEED);
 		attributes.add(JUMPING);
@@ -110,6 +115,7 @@ public class ResourceLoader {
 		attributes.add(PROJECTILESPEED);
 		attributes.add(ACCURACY);
 		attributes.add(AGILITY);
+		attributes.add(JUMPPOWER);
 	
 		
 		
