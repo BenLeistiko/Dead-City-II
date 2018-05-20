@@ -132,7 +132,7 @@ public abstract class Scene extends PApplet {
 
 
 	public void setup() {
-		this.frameRate(30f);
+		this.frameRate(40f);
 	}
 
 	public void draw() {
@@ -147,7 +147,10 @@ public abstract class Scene extends PApplet {
 			if(toDraw.get(i).shouldRemove()) {  
 				toDraw.remove(i);
 			}else if(toDraw.get(i).getHitBox().intersects(renderSpace)) {
+				toDraw.get(i).act();
 				toDraw.get(i).draw(this);
+			}else {
+				toDraw.get(i).act();
 			}
 		}
 		this.popMatrix();

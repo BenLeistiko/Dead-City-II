@@ -72,6 +72,10 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		return false;
 	}
 
+	public void act() {
+		
+	}
+	
 	public void draw(PApplet marker) {
 		marker.pushMatrix();
 

@@ -119,7 +119,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 
 
-	private void act(ArrayList<Sprite> worldlyThings) {
+	public void act() {
 		
 		double xCoord = getX();
 		double yCoord = getY();
@@ -245,7 +245,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	public void draw(PApplet marker) {
 
-		act(worldlyThings);
 		marker.pushMatrix();
 
 		marker.scale((float)direction, 1f);
