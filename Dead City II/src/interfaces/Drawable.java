@@ -12,6 +12,7 @@ import processing.core.PApplet;
 public interface Drawable extends Removable{
 
 	public abstract void draw(PApplet marker);
+	public abstract void act();
 	public Rectangle2D.Double getHitBox();
 	
 }

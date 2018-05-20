@@ -92,7 +92,8 @@ public class Main {
 
 		window.setName("Dead City II");
 
-		window.setSize(Scene.ASSUMED_DRAWING_WIDTH/2, Scene.ASSUMED_DRAWING_HEIGHT/2);
+		window.setSize(Scene.ASSUMED_DRAWING_WIDTH, Scene.ASSUMED_DRAWING_HEIGHT);
+		window.setResizable(false);
 		
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
