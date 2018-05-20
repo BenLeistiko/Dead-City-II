@@ -98,9 +98,11 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerJumping = 4;
 		framesPerMovingAndAttacking = 2;
 
-		health = 100;
-		//health = Main.resources.getStat(name, attribute)
-		defense = .5;
+	//	health = 100;
+		health = Main.resources.getStat(animationKey, Main.resources.HEALTH);
+		//defense = .5;
+		defense = Main.resources.getStat(animationKey, Main.resources.ARMOUR);
+		
 		agility = 0;
 		stamina = 10;
 		speed = 10;

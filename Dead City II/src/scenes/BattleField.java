@@ -39,7 +39,10 @@ public class BattleField extends Scene {
 
 	public BattleField(Main m, Sprite hero) {
 		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
-		setup(new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this));
+		
+		setup(new Hero(Main.resources.TROOPER, 49000,100,100,100,
+				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),10,this),super.getWorldlyThings(), this));
+		
 		groundThickness = 1000;
 		paused = false;
 

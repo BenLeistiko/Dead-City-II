@@ -38,17 +38,17 @@ public class ResourceLoader {
 	private HashMap<String,  HashMap<String,Double>> statistics;
 	private ArrayList<String> characters;
 	private ArrayList<String> attributes;
-	public static final String TROOPER = "TROOPER";
-	public static final String COMMANDER = "COMMANDER";
-	public static final String THUG = "THUG";
-	public static final String JUNGLEMAN = "JUNGLEMAN";
-	public static final String ASSASSIN = "ASSASSIN";
-	public static final String BASICZOMBIE = "BASICZOMBIE";
-	public static final String SKIRTZOMBIE = "SKIRTZOMBIE";
-	public static final String BONEZOMBIE = "BONEZOMBIE";
-	public static final String BOYZOMBIE = "BOYZOMBIE";
-	public static final String MUMMIE = "MUMMIE";
-	public static final String MOHAWKZOMBIE = "MOHAWKZOMBIE";
+	public static final String TROOPER = "Trooper";
+	public static final String COMMANDER = "Commandor";
+	public static final String THUG = "Thug";
+	public static final String JUNGLEMAN = "JungleMan";
+	public static final String ASSASSIN = "Assassin";
+	public static final String BASICZOMBIE = "BasicZombie";
+	public static final String SKIRTZOMBIE = "SkirtZombie";
+	public static final String BONEZOMBIE = "BoneZombie";
+	public static final String BOYZOMBIE = "BoyZombie";
+	public static final String MUMMIE = "Mummie";
+	public static final String MOHAWKZOMBIE = "MohawkZombie";
 
 	public static final String HEALTH = "health";
 	public static final String ARMOUR = "armour";
