@@ -48,7 +48,7 @@ public class HUD extends Menu{
 		maxStamina=0;
 		ammo = 0;
 		maxAmmo = 0;
-		numBars=10;
+		numBars=20;
 		this.s=s;
 		visSpace = new Rectangle2D.Double();
 
@@ -70,8 +70,8 @@ public class HUD extends Menu{
 
 
 	public void draw(PApplet marker) {
-		if(super.isVisible()) {
-
+	if(super.isVisible()) {
+System.out.println(ammo);
 			marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
 			marker.image(HUD, (float)visSpace.getX(), (float)visSpace.getY());
@@ -98,7 +98,7 @@ public class HUD extends Menu{
 					marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
 				}
 			}
-			marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*10-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-2)));
+			marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-2)));
 
 
 			//stamina bars
@@ -111,7 +111,7 @@ public class HUD extends Menu{
 				}
 			}
 
-			marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*10-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-2f)));
+			marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*numBars-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-2f)));
 
 			//bullet bars
 
@@ -123,7 +123,7 @@ public class HUD extends Menu{
 				}
 			}
 
-			marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*10-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
+			marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
 
 			//marker.image(Main.resources.getAnimation(Main.resources.TROOPER, 1),(float) visSpace.getX(), (float) visSpace.getY());
 			marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
@@ -189,7 +189,7 @@ public class HUD extends Menu{
 		ammoRatio = ammo/(double)maxAmmo;
 
 		this.hero = h.getStanding().get(0);
-		//this.hero = Main.resources.getAnimationList(Main.resources.TROOPER).get(0);
+		
 	}
 
 	public Double getHitBox() {

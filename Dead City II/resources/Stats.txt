@@ -21,6 +21,7 @@ projectilespeed=50
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 Commander
 health=1
@@ -38,6 +39,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 Thug
 health=1
@@ -55,6 +57,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 JungleMan
 health=1
@@ -72,6 +75,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 Assassin
 health=1
@@ -89,6 +93,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 BasicZombie
 health=1
@@ -106,6 +111,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 SkirtZombie
 health=1
@@ -123,6 +129,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 BoneZombie
 health=1
@@ -140,6 +147,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 BoyZombie
 health=1
@@ -157,6 +165,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 Mummy
 health=1
@@ -174,7 +183,7 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
-
+reloadTime = 1000
 
 MohawkZombie
 health=1
@@ -192,5 +201,6 @@ projectilespeed=1
 accuracy=1
 agility=.5
 jumpPower = 25
+reloadTime = 1000
 
 **********************************************
