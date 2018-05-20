@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import interfaces.Damageable;
 import interfaces.Slotable;
 import sprites.Bullet;
+import sprites.Creature;
 import sprites.Sprite;
 /**
  * A common superclass for anything that will do damage directly or indirectly.
@@ -26,7 +27,7 @@ public abstract class Weapon implements Slotable {
 	
 	}
 
-	public abstract void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites); 
+	public abstract void perform(Creature c, int dir, ArrayList<Sprite> sprites); 
 
 
 	public void upgrade(double upgradeAmt) {

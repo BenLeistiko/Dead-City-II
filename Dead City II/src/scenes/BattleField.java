@@ -60,7 +60,7 @@ public class BattleField extends Scene {
 		generatePlatforms(80,100);
 		setup(new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
-						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),10,Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings(), this));
+						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings(), this));
 
 		//this.add(joe);
 	}

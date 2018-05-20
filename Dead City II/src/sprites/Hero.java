@@ -93,13 +93,13 @@ public class Hero extends Creature implements Clickable, Typeable {
 				RangedWeapon rw = ((RangedWeapon) weapon);
 				if(rw.getCurrentAmmo()>0) {
 					attack();
-					weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
+					weapon.perform(this, super.getDirection(), super.getWorldlyThings());
 				} else {
 					Main.resources.getSound("emptyClick").play();
 				}
 			}else {
 				attack();
-				weapon.perform(super.getHitBox(), super.getDirection(), super.getWorldlyThings());
+				weapon.perform(this, super.getDirection(), super.getWorldlyThings());
 			}
 		}
 		super.draw(marker);

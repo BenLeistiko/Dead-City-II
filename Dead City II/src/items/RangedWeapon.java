@@ -7,6 +7,8 @@ import gamePlay.Main;
 import interfaces.Damageable;
 import scenes.Scene;
 import sprites.Bullet;
+import sprites.Creature;
+import sprites.Hero;
 import sprites.Sprite;
 
 /**
@@ -36,18 +38,19 @@ public class RangedWeapon extends Weapon {
 
 
 
-	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
+	public void perform(Creature hero, int dir, ArrayList<Sprite> sprites) {
 		 if(currentAmmo>0 && !isReloading && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 
 			Bullet bull;
 			if(dir == 1) {
-				bull = new Bullet(creatureRect.getX()+creatureRect.getWidth(),
-						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites,dir);
+				bull = new Bullet(hero.getX()+hero.getWidth(),
+						hero.getY()+hero.getHeight()/3,30,20, getDamage(),sprites,dir);
 			}else {
-				bull = new Bullet(creatureRect.getX(),
-						creatureRect.getY()+creatureRect.getHeight()/3,30,20, getDamage(),sprites,dir);
+				bull = new Bullet(hero.getX(),
+						hero.getY()+hero.getHeight()/3,30,20, getDamage(),sprites,dir);
 			}
-			bull.setvX(dir*getRange());
+			bull.setvX(hero.getvX()+dir*getRange());
+			bull.setvY(hero.getvY());
 
 			s.add(bull);
 			currentAmmo--;
