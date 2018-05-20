@@ -19,6 +19,7 @@ dps=16
 projectiletype=0
 projectilespeed=50
 accuracy=1
+agility=.5
 
 Commander
 health=1
@@ -34,6 +35,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 Thug
 health=1
@@ -49,6 +51,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 JungleMan
 health=1
@@ -64,6 +67,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 Assassin
 health=1
@@ -79,7 +83,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-
+agility=.5
 
 BasicZombie
 health=1
@@ -95,6 +99,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 SkirtZombie
 health=1
@@ -110,6 +115,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 BoneZombie
 health=1
@@ -125,6 +131,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 
 BoyZombie
@@ -141,6 +148,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 Mummie
 health=1
@@ -156,6 +164,7 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
+agility=.5
 
 
 MohawkZombie
@@ -172,6 +181,6 @@ dps=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-
+agility=.5
 
 **********************************************

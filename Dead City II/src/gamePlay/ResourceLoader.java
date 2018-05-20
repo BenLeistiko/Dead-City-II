@@ -63,6 +63,7 @@ public class ResourceLoader {
 	public static final String PROJECTILETYPE = "projectileTy[e";
 	public static final String PROJECTILESPEED = "projectileSpeed";
 	public static final String ACCURACY = "accuracy";
+	public static final String AGILITY = "agility";
 	
 
 
@@ -110,6 +111,7 @@ public class ResourceLoader {
 		attributes.add(PROJECTILETYPE);
 		attributes.add(PROJECTILESPEED);
 		attributes.add(ACCURACY);
+		attributes.add(AGILITY);
 	
 		
 		
