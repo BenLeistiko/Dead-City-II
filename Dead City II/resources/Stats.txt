@@ -167,7 +167,7 @@ accuracy=1
 agility=.5
 jumpPower = 25
 
-Mummie
+Mummy
 health=1
 healthRegen=1
 armour=1
