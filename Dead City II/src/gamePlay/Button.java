@@ -74,8 +74,9 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	public void draw(PApplet marker) {
 		marker.pushMatrix();
+
 		if(!isPressed) {
-			marker.image(left, (float)x, (float) y);
+			marker.image(left, (float)(x), (float) y);
 			int j = 0;
 			for(int i = (int) (x+left.width); i<x+this.width-right.width-center.width; i = i + center.width) {
 				marker.image(center, i, (float) y+2);
@@ -99,11 +100,34 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 		marker.fill(textColor.getRGB());
 		marker.textSize(20);
-		marker.text(name, (float)(super.getX()+getWidth()/2), (float)(super.getY()+getHeight()/2));
+		marker.text(name, (float)(x+getWidth()/2), (float)(y+getHeight()/2));
 
 		marker.popMatrix();
 	}
+	
+	/*private void reSizeImages() {
+		//private PImage left,center,right,leftP,centerP,rightP,centerCrop,centerCropP;
+		if(Scene.reSized) {
+			double xRatio = Scene.xRatio_OLD/Scene.xRatio;
+			double yRatio = Scene.yRatio_OLD/Scene.yRatio;
+			System.out.println(Scene.xRatio_OLD + ", " + Scene.xRatio);
+			resizeImage(left,xRatio*left.width,yRatio*left.height);
+			resizeImage(center,xRatio*center.width,yRatio*center.height);
+			resizeImage(right,xRatio*right.width,yRatio*right.height);
+			resizeImage(leftP,xRatio*leftP.width,yRatio*leftP.height);
+			resizeImage(centerP,xRatio*centerP.width,yRatio*centerP.height);
+			resizeImage(rightP,xRatio*rightP.width,yRatio*rightP.height);
+			resizeImage(centerCrop,xRatio*centerCrop.width,yRatio*centerCrop.height);
+			resizeImage(centerCropP,xRatio*centerCropP.width,yRatio*centerCropP.height);
 
+		}
+	}
+	
+	private void resizeImage(PImage p,double xRatio,double yRatio) {
+		System.out.println(p.width + ", " + p.height + " : " + xRatio + ", " + yRatio);
+		p.resize((int)(p.width*xRatio), (int)(p.height*yRatio));
+	}*/
+	
 	public void setX(double x) {
 		this.x = x-super.getWidth();
 	}

@@ -12,12 +12,12 @@ import processing.core.PApplet;
 import sprites.Sprite;
 
 
+
 public abstract class Scene extends PApplet {
 	//****We pretend the screen is this size, then later scale everything up/down to the correct size.  This way it doen't matter what size the windows are when they are created o resized.  It is 1/4 the old scale.
 	public static final int ASSUMED_DRAWING_WIDTH = 1600;
 	public static final int ASSUMED_DRAWING_HEIGHT = 900;
-
-
+	
 	private ArrayList<Drawable> toDraw;//Everything to draw that is NOT a sprite
 	private ArrayList<Clickable> mouseInput;
 	private ArrayList<Typeable> keyInput;
@@ -31,10 +31,9 @@ public abstract class Scene extends PApplet {
 	private Rectangle2D.Double screenSpace;//This is the space that should be drawn onto ones screen.  Its width and height are the assumed width and hieghts.
 	private Rectangle2D.Double characterSpace;//This is the Space that the focused Sprite is allowed to be in.  If he tries to move out of it the world will just be translated around him.
 
+	double xRatio, yRatio;
+	
 	private Sprite focusedSprite;
-
-	private double xRatio; 
-	private double yRatio;
 
 	private boolean SideScroll;
 
@@ -55,6 +54,7 @@ public abstract class Scene extends PApplet {
 		keyInput = new ArrayList<Typeable>();
 		worldlyThings = new ArrayList<Sprite>();
 
+		
 		this.setWorldSpace(worldSpace);
 		this.screenSpace = new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT);
 		this.characterSpace = new Rectangle2D.Double(xPadding, yPadding, ASSUMED_DRAWING_WIDTH-2*xPadding, ASSUMED_DRAWING_HEIGHT-2*yPadding);
@@ -141,6 +141,7 @@ public abstract class Scene extends PApplet {
 		updateRatios();
 		scale((float)xRatio, (float)yRatio);
 		slideWorldToImage();
+		
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
 		for(int i = 0; i < toDraw.size(); i++) {
 			if(toDraw.get(i).shouldRemove()) {  
@@ -297,9 +298,9 @@ public abstract class Scene extends PApplet {
 		double newXRatio = (double)(width)/ASSUMED_DRAWING_WIDTH;
 		double newYRatio = (double)(height)/ASSUMED_DRAWING_HEIGHT;
 
-		if(Math.abs(newXRatio - this.xRatio) > 0.0001 || Math.abs(newYRatio - this.yRatio) > 0.0001) {
-			this.xRatio = newXRatio;
-			this.yRatio = newYRatio;
+		if(Math.abs(newXRatio - xRatio) > 0.0001 || Math.abs(newYRatio - yRatio) > 0.0001) {
+			xRatio = newXRatio;
+			yRatio = newYRatio;
 			return true;
 		}
 		return false;
