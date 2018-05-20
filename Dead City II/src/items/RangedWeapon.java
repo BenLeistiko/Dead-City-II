@@ -24,7 +24,7 @@ public class RangedWeapon extends Weapon {
 	private final double BULLET_SPEED = 50;
 
 
-	public RangedWeapon(double damage, long attackRate, double range, int ammo, Scene s) {
+	public RangedWeapon(double damage, double attackRate, double range, int ammo, Scene s) {
 		super(damage,attackRate,range);
 		MAX_AMMO = ammo;
 		this.currentAmmo = ammo;

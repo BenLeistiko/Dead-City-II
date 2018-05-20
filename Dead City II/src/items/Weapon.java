@@ -15,11 +15,11 @@ import sprites.Sprite;
 public abstract class Weapon implements Slotable {
 
 	private double damage;
-	private long attackRate;
+	private double attackRate;
 	private double range;
 	
 
-	public Weapon(double damage, long attackRate, double range) {
+	public Weapon(double damage, double attackRate, double range) {
 		this.damage = damage;
 		this.attackRate = attackRate;
 		this.range = range;
@@ -43,7 +43,7 @@ public abstract class Weapon implements Slotable {
 	}
 
 
-	public long getAttackRate() {
+	public double getAttackRate() {
 		return attackRate;
 	}
 
