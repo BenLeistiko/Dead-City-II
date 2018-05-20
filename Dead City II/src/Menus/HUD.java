@@ -16,8 +16,9 @@ public class HUD extends Menu{
 
 	private Scene s;
 	private Rectangle2D.Double visSpace;
-	private double health;
-	private int ammo;
+	private double healthRatio;
+	private double ammoRatio;
+	private double staminaRatio;
 	private Weapon weapon;
 
 	private PImage HUD, FistBulletBar, BulletBar;
@@ -34,7 +35,7 @@ public class HUD extends Menu{
 	
 	public void draw(PApplet marker) {
 		if(super.isVisible()) {
-
+	
 			marker.pushMatrix();
 			Color c = new Color(255,0,0);
 			marker.fill(0);
@@ -45,7 +46,6 @@ public class HUD extends Menu{
 			marker.textAlign(marker.LEFT, marker.TOP);
 			marker.textSize(20);
 			marker.text("Ammo: " + ammo + " Health: " + health, (float)visSpace.getX(), (float)visSpace.getY());
-
 
 			marker.popMatrix();
 
@@ -67,48 +67,18 @@ public class HUD extends Menu{
 			ammo = ((RangedWeapon) weapon).getCurrentAmmo();
 		}
 
-
 	}
 
-
-
-
-
-
-
-	@Override
 	public Double getHitBox() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public boolean shouldRemove() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-
-
-	@Override
 	public void act() {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
