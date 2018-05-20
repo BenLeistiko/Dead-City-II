@@ -104,16 +104,19 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		defense = Main.resources.getStat(animationKey, Main.resources.ARMOUR);
 		
 	//	agility = 0;
-		agility = Main.resources.getStat(animationKey, Main.resources.st)
-		stamina = 10;
-		speed = 10;
+		agility = Main.resources.getStat(animationKey, Main.resources.AGILITY);
+		stamina = Main.resources.getStat(animationKey, Main.resources.STAMINA);
+		//speed = 10;
+		speed = Main.resources.getStat(animationKey, Main.resources.SPEED);
 		jumpPower = 25;
 		
 		maxHealth = health;
 		maxStamina = stamina;
 		
-		regenHealth = 1;
-		regenStamina = 1;
+//		regenHealth = 1;
+		regenHealth = Main.resources.getStat(animationKey, Main.resources.HEALTHREGEN);
+	//	regenStamina = 1;
+		regenStamina = Main.resources.getStat(animationKey, Main.resources.STAMINAREGEN);
 
 		direction = 1;
 
@@ -408,4 +411,14 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public boolean shouldRemove(){
 		return health<=0;
 	}
+	
+	public double getMaxHealth() {
+		return maxHealth;
+	}
+	
+	public void setMaxHealth() {
+		 health = maxHealth;
+	}
+	
+	
 }
