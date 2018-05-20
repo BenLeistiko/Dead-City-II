@@ -91,12 +91,10 @@ public class ResourceLoader {
 		characters.add(BONEZOMBIE);
 		characters.add(BOYZOMBIE);
 		characters.add(MUMMIE);
-		
 		characters.add(MOHAWKZOMBIE);
 
 
 		
-
 		attributes = new ArrayList<String>();
 		attributes.add(HEALTH);
 		attributes.add(ARMOUR);
