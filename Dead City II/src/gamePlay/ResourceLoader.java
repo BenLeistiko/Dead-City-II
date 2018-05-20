@@ -37,12 +37,39 @@ public class ResourceLoader {
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
 	private HashMap<String,  HashMap<String,Double>> statistics;
 	private ArrayList<String> characters;
+	private ArrayList<String> attributes;
+	public static final String TROOPER = "TROOPER";
+	public static final String COMMANDER = "COMMANDER";
+	public static final String THUG = "THUG";
+	public static final String JUNGLEMAN = "JUNGLEMAN";
+	public static final String ASSASSIN = "ASSASSIN";
+	public static final String BASICZOMBIE = "BASICZOMBIE";
+	public static final String SKIRTZOMBIE = "SKIRTZOMBIE";
+	public static final String BONEZOMBIE = "BONEZOMBIE";
+	public static final String BOYZOMBIE = "BOYZOMBIE";
+	public static final String MUMMIE = "MUMMIE";
+	public static final String MOHAWKZOMBIE = "MOHAWKZOMBIE";
+
+	public static final String HEALTH = "health";
+	public static final String ARMOUR = "armour";
+	public static final String SPEED = "speed";
+	public static final String JUMPING = "jumping";
+	public static final String STAMINA = "stamina";
+	public static final String STAMINAREGEN = "staminaRegen";
+	public static final String WEAPONTYPE = "weaponType";
+	public static final String DAMAGE = "damage";
+	public static final String FIRERATE = "firerate";
+	public static final String DPS = "dps";
+	public static final String PROJECTILETYPE = "projectileTy[e";
+	public static final String PROJECTILESPEED = "projectileSpeed";
+	public static final String ACCURACY = "accuracy";
+	
 
 
 	private HashMap<String,EasySound2> sounds;
-	//	private final EasySound2 shootSound = new EasySound2("resources" +fileSeparator +"shoot.wav");
 
-	//	private HashMap<String, SoundFile> sounds;
+
+
 
 
 	public ResourceLoader() {
@@ -51,17 +78,52 @@ public class ResourceLoader {
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
 		sounds = new HashMap<String, EasySound2>();
 
+		statistics = new HashMap<String,  HashMap<String,Double>>();
+
+		characters = new ArrayList<String>();
+		characters.add(TROOPER);
+		characters.add(COMMANDER);
+		characters.add(JUNGLEMAN);
+		characters.add(ASSASSIN);
+		characters.add(BASICZOMBIE);
+		characters.add(SKIRTZOMBIE);
+		characters.add(BONEZOMBIE);
+		characters.add(BOYZOMBIE);
+		characters.add(MUMMIE);
+		
+		characters.add(MOHAWKZOMBIE);
+
+
+		
+
+		attributes = new ArrayList<String>();
+		attributes.add(HEALTH);
+		attributes.add(ARMOUR);
+		attributes.add(SPEED);
+		attributes.add(JUMPING);
+		attributes.add(STAMINA);
+		attributes.add(STAMINAREGEN);
+		attributes.add(WEAPONTYPE);
+		attributes.add(DAMAGE);
+		attributes.add(FIRERATE);
+		attributes.add(DPS);
+		attributes.add(PROJECTILETYPE);
+		attributes.add(PROJECTILESPEED);
+		attributes.add(ACCURACY);
+	
+		
+		
+
 	}
 
 	public void load() {
-		System.out.println("loaded");
+		
 		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
 
 		stats = FileIO.readFile("resources" + fileSeparator + "Stats.txt");
 
-
-		//statistics = parseStats(stats);
+		parseStats(stats);
 
 
 		//****Loading Creature Animations*****
@@ -181,24 +243,36 @@ public class ResourceLoader {
 		}
 	}
 
-	public HashMap<String, HashMap<String,Double>> parseStats(ArrayList<String> stats) {
+	public void parseStats(ArrayList<String> statsFile) {
+		//statsFile is all the lines from the txt file
 
+		for(int i = 0; i<statsFile.size();i++) {
+			String line = statsFile.get(i);
 
-		for(String s: stats) {
-			//String line = );
+			if(characters.contains(line)) {//if we are getting the stats of a character(zombies, heros
 
-			if(statistics.get("smth") == null) {
-				statistics.put("smth", new HashMap<String, Double>());
+				HashMap<String,Double> atts = new HashMap<String,Double>();
+
+				for(int j = 0;j<attributes.size();j++) { //fill the above hashmap with the attribute names and values
+					String laterLine = statsFile.get(i+1+j);//start going through the next lines
+					int equalIndex=laterLine.indexOf("=");	//find an equal sign
+
+					if(equalIndex != -1) {
+						double num = Double.parseDouble(laterLine.substring(equalIndex+1));//get out the num
+						//System.out.println(attributes.get(j));
+						atts.put(attributes.get(j), num);
+					}
+				}
+				
+				statistics.put(line, atts);//put the new atts hash with the corresponding chracter
+				i+=attributes.size();//save some time
+
 			}
-
-			//	statistics.get("trooper").put("healt", 40);
-			//	statistics.put("trooper", "helth",6);
-
-
-
-		}
-
-
-		return null;
+		}	
 	}
+	
+	public double getStat(String name, String attribute) {
+		return statistics.get(name).get(attribute);
+	}
+
 }

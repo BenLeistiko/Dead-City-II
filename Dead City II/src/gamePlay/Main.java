@@ -50,6 +50,8 @@ public class Main {
 	public Main() {
 		resources = new ResourceLoader();
 		resources.load();
+		
+		
 		window = new JFrame();
 
 		window.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth());

@@ -139,7 +139,7 @@ public abstract class Scene extends PApplet {
 		background(255,255,255);
 		this.pushMatrix();
 		updateRatios();
-		scale((float)xRatio, (float)yRatio);
+		//scale((float)xRatio, (float)yRatio);
 		slideWorldToImage();
 		
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
