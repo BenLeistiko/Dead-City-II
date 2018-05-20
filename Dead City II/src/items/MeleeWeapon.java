@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import interfaces.Damageable;
 import interfaces.Destructive;
+import sprites.Creature;
 import sprites.Sprite;
 /**
  * A short ranged melee weapon that deals damage.
@@ -26,7 +27,7 @@ public class MeleeWeapon extends Weapon implements Destructive {
 	}
 
 
-	public void perform(Rectangle2D creatureRect, int dir, ArrayList<Sprite> sprites) {
+	public void perform(Creature hero, int dir, ArrayList<Sprite> sprites) {
 
 		if(System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Rectangle2D target;
@@ -36,12 +37,12 @@ public class MeleeWeapon extends Weapon implements Destructive {
 
 					target = damageableSprite.getHitBox();
 					if(dir == 1) {
-						if(Point2D.distance(creatureRect.getX()+creatureRect.getWidth(), creatureRect.getY(),
+						if(Point2D.distance(hero.getX()+hero.getWidth(), hero.getY(),
 								target.getX(), target.getY()) <  getRange()) {
 							damageableSprite.takeDamage(getDamage());
 						}
 					}else {
-						if(Point2D.distance(creatureRect.getX(), creatureRect.getY(),
+						if(Point2D.distance(hero.getX(), hero.getY(),
 								target.getX()+target.getWidth(), target.getY()) <  getRange()) {
 							damageableSprite.takeDamage(getDamage());
 						}
