@@ -63,7 +63,9 @@ public abstract class Weapon implements Slotable {
 	}
 
 
-	
+	public void act() {
+		
+	}
 
 
 

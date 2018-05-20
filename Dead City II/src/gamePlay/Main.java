@@ -75,7 +75,7 @@ public class Main {
 			}
 
 		});
-		Hero joe  = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,null),null, null);
+		Hero joe  = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,1000,null),null, null);
 		this.addScene(new TitleScreen(this), "TitleScreen"); 
 		this.addScene(new BattleField(this, joe), "BattleField");
 		this.addScene(new Camp(this), "Camp");

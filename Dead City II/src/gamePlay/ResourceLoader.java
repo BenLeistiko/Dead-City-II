@@ -67,6 +67,7 @@ public class ResourceLoader {
 	public static final String ACCURACY = "accuracy";
 	public static final String AGILITY = "agility";
 	public static final String JUMPPOWER = "jumpPower";
+	public static final String RELOADTIME = "reloadTime";
 	
 
 
@@ -101,7 +102,6 @@ public class ResourceLoader {
 		attributes = new ArrayList<String>();
 		attributes.add(HEALTH);
 		attributes.add(HEALTHREGEN);
-		
 		attributes.add(ARMOUR);
 		attributes.add(SPEED);
 		attributes.add(STAMINA);
@@ -115,6 +115,7 @@ public class ResourceLoader {
 		attributes.add(ACCURACY);
 		attributes.add(AGILITY);
 		attributes.add(JUMPPOWER);
+		attributes.add(RELOADTIME);
 	
 		
 		
