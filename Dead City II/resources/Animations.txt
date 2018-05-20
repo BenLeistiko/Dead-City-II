@@ -1,5 +1,9 @@
 //*****This holds the offsets for each animation and the number of frames per animation
-Trooper
+//*****Name=Width,Height,ScaleFactor*****
+//*****These are the hit box sizes of each character*****
+//*****These sizes are the origonal size
+//*****Multiply by the scale factor in order to determine actual size
+*Trooper=135,215,0.4
 Attacking=4
 1=38,5
 2=38,5

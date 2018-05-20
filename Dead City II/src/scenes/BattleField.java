@@ -39,9 +39,9 @@ public class BattleField extends Scene {
 
 	public BattleField(Main m, Sprite hero) {
 		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
-		
-	
-		
+
+
+
 		groundThickness = 1000;
 		paused = false;
 
@@ -97,7 +97,8 @@ public class BattleField extends Scene {
 
 	public void generateGround() {
 		for(int x = 0; x < getWorldSpace().getWidth(); x=x+100) {
-			for(int y = (int) (getWorldSpace().getHeight()-groundThickness); y < getWorldSpace().getHeight()-100;y=y+100) {
+			add(new DamageableBarrier(x,getWorldSpace().getHeight()-groundThickness,100,100,Main.resources.getImage("Grass").width,Main.resources.getImage("Grass").height,"Grass",5,0));
+			for(int y = (int) (getWorldSpace().getHeight()-groundThickness+100); y < getWorldSpace().getHeight()-100;y=y+100) {
 				add(new DamageableBarrier(x,y,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0));
 			}
 		}
@@ -152,10 +153,10 @@ public class BattleField extends Scene {
 			double endX = x2-100*Math.tan(a2);
 			//System.out.println("Varibles: " + h +", " + x1 + ", " + x2 + ", " + startX + ", " + endX);
 			for(int  i = (int) startX;i<=endX;i=i+100) {
-				DamageableBarrier dirt = new DamageableBarrier(i-50,floor-100,100,100,Main.resources.getImage("Dirt").width,Main.resources.getImage("Dirt").height,"Dirt",10,0);
+				DamageableBarrier grass = new DamageableBarrier(i-50,floor-100,100,100,Main.resources.getImage("Grass").width,Main.resources.getImage("Grass").height,"Grass",5,0);
 				//System.out.println("added dirt" + (i-50) + ", " + (floor -100));
-				if(!dirt.collides(getWorldlyThings())) {
-					add(dirt);
+				if(!grass.collides(getWorldlyThings())) {
+					add(grass);
 				}
 			}
 			generateHill(x,y,a1,a2,floor-100);

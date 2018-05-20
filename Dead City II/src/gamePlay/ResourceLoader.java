@@ -37,6 +37,8 @@ public class ResourceLoader {
 	private HashMap<String, Sprite> templateSprites;
 	private HashMap<String, HashMap<Point, HashMap<Point, PImage>>> textures;
 	private HashMap<String,  HashMap<String,Double>> statistics;
+	private HashMap<String, ArrayList<Point>> Offsets;
+	private HashMap<String, Integer> framesPerAnimation;
 	private ArrayList<String> characters;
 	private ArrayList<String> attributes;
 	public static final String TROOPER = "Trooper";
@@ -178,6 +180,7 @@ public class ResourceLoader {
 			images.put("Bricks", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bricks.jpg")))));
 			images.put("Bedrock", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bedrock.png")))));
 			images.put("Dirt", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Dirt.png")))));
+			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
 
 			//****Loading Sounds****
 			sounds.put("Shoot", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
@@ -251,6 +254,11 @@ public class ResourceLoader {
 		}
 	}
 
+	public void parseAnimations() {
+		ArrayList<String> Animations = FileIO.readFile("resources" + fileSeparator + "Animations.txt");
+
+	}
+	
 	public void parseStats(ArrayList<String> statsFile) {
 		//statsFile is all the lines from the txt file
 
