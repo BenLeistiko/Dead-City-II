@@ -1,0 +1,15 @@
+//*****Name=Width,Height,ScaleFactor*****
+//*****These are the hit box sizes of each character*****
+//*****These sizes are the origonal size
+//*****Multiply by the scale factor in order to determine actual size
+Trooper=135,215,0.4
+Commander=300,450,0.2
+Thug=0,0,0
+JungleMan=0,0,0
+Assassin=300,500,0.8
+BasicZombie=0,0,0
+SkirtZombie=0,0,0
+BoneZombie=0,0,0
+BoyZombie=0,0,0
+Mummy=0,0,0
+MohawkZombie=0,0,0
