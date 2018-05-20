@@ -21,4 +21,10 @@ public class Supplies implements Drawable {
 		return null;
 	}
 
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

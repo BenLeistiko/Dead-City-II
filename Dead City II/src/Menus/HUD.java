@@ -30,6 +30,8 @@ public class HUD extends Menu{
 		visSpace = new Rectangle2D.Double();
 	}
 
+	
+	
 	public void draw(PApplet marker) {
 		if(super.isVisible()) {
 
@@ -50,8 +52,6 @@ public class HUD extends Menu{
 			if(weapon instanceof RangedWeapon) {
 				RangedWeapon rw = ((RangedWeapon) weapon);
 			}
-			System.out.println(marker.frameRate);
-
 		}
 	}
 
@@ -86,6 +86,14 @@ public class HUD extends Menu{
 	public boolean shouldRemove() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

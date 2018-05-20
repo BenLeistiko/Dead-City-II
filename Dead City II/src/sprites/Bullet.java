@@ -36,6 +36,9 @@ public class Bullet extends MovingSprite implements Destructive {
 	}
 
 	public void act() {
+		if(detectHit()) {
+			setAlive(false);
+		}
 		setvY(getvY() + Main.GRAVITY);
 		moveByAmount(getvX(),getvY());
 	}
@@ -76,12 +79,7 @@ public class Bullet extends MovingSprite implements Destructive {
 			marker.scale(-(float)getDir(), 1f);		
 			marker.image(image, (getDir() == 1)? -(float)getX():-getDir()*(float)getX()+(float)getWidth(), (float)getY(), (float)getWidth(), (float)getHeight());
 			marker.popMatrix();
-		
-			if(detectHit()) {
-				setAlive(false);
-			}
 		}
-		act();
 	}
 
 	//public void setDir(int dir) {

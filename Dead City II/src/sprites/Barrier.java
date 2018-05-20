@@ -87,4 +87,10 @@ public class Barrier extends Sprite {
 		shouldBeRemoved = true;
 	}
 
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
