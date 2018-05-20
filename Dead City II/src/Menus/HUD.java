@@ -49,8 +49,8 @@ public class HUD extends Menu{
 
 			if(weapon instanceof RangedWeapon) {
 				RangedWeapon rw = ((RangedWeapon) weapon);
-
 			}
+			System.out.println(marker.frameRate);
 
 		}
 	}

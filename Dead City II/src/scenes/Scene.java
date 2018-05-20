@@ -132,7 +132,7 @@ public abstract class Scene extends PApplet {
 
 
 	public void setup() {
-
+		this.frameRate(30f);
 	}
 
 	public void draw() {
