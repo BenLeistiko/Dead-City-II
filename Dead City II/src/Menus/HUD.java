@@ -28,6 +28,8 @@ public class HUD implements Drawable{
 	private float HUDWidth;
 	private PImage hero;
 	
+	private boolean isReloading;
+	
 	private static final float healthBarOffset = 4;
 	private static final float staminaBarOffset = 24;
 	private static final float bulletBarOffset = 44;
@@ -50,6 +52,7 @@ public class HUD implements Drawable{
 		ammo = 0;
 		maxAmmo = 0;
 		numBars=10;
+		isReloading = false;
 		this.s=s;
 		visSpace = new Rectangle2D.Double();
 
@@ -133,32 +136,27 @@ public class HUD implements Drawable{
 			
 			
 			
-			
-			
-			
-			Color c = new Color(255,0,0);
-			marker.fill(0);
-			marker.strokeWeight(5);
-			marker.stroke(c.getRGB());;
+			if(isReloading) {
+				Color c = new Color(255,0,0);
+				marker.fill(0);
+				
+				
+				
 
-			//	marker.rect((float)visSpace.getX(), (float)visSpace.getY(), (float)visSpace.getWidth(), (float)visSpace.getHeight());
-			marker.textAlign(marker.LEFT, marker.TOP);
-			marker.textSize(20);
-			//	marker.text("Ammo: " + ammo + " Health: " + health, (float)visSpace.getX(), (float)visSpace.getY());
+				
+				
+				marker.rect((float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)),numBars*bulletBar.width,bulletBar.height);
+				
+				marker.fill(255);
+				marker.textAlign(marker.LEFT, marker.TOP);
+				marker.textSize(20);
+				marker.text("RELOADING", (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
+			}
+			
+			
+		
 
 			marker.popMatrix();
-
-			if(weapon instanceof RangedWeapon) {
-				RangedWeapon rw = ((RangedWeapon) weapon);
-			}
-
-
-
-
-
-
-
-
 		}
 
 
@@ -190,6 +188,9 @@ public class HUD implements Drawable{
 		ammoRatio = ammo/(double)maxAmmo;
 
 		this.hero = h.getStanding().get(0);
+		
+		isReloading = h.isReloading();
+		
 		
 	}
 

@@ -58,15 +58,14 @@ public class BattleField extends Scene {
 		generateGround();
 		generateHill(10);
 		generatePlatforms(80,100);
+		generateMobs();
+
 		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings(), this);
 		setup(joe);
-	
 		this.add(joe.getHUD());
-		
 
-		//this.add(joe);
 	}
 
 	public void draw() {
@@ -187,6 +186,23 @@ public class BattleField extends Scene {
 	}
 
 	public void generateMobs() {
+	//	int[] mobTypes = new int[]
+		
+		int numMobs = 10;
+
+		
+		
+		for(int i =0; i <numMobs;i++) {
+			double rand = Math.random();
+			Monster zomb = new Monster(Main.resources.BONEZOMBIE,49000-300*i,100,100,100,super.getWorldlyThings());
+			add(zomb);
+		}
+
+
+
+
+
+
 
 	}
 

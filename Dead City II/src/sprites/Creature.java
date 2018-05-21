@@ -239,9 +239,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			health = maxHealth; 
 		}
 
-		System.out.println(stamina);
-		System.out.println("ran out? " + ranOutOfStamina);
-
+		
 		if(stamina <0) {
 			stamina = 0;
 			ranOutOfStamina = true;
@@ -360,8 +358,10 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void takeDamage(double damage) {
+	
 		if(Math.random()>agility) {
-			health = health - damage* (1-defense);
+		
+			health -= damage* (1-defense);
 		}
 	}
 

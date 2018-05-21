@@ -10,12 +10,13 @@ import processing.core.PApplet;
  */
 public class Monster extends Creature {
 
-	public Monster(String key,double x, double y, double w, double h, ArrayList<Sprite> worldlyThings) {
-		super(x, y, w, h,worldlyThings, key);
+	public Monster(String animationKey,double x, double y, double w, double h, ArrayList<Sprite> worldlyThings) {
+		super(x, y, w, h,worldlyThings, animationKey);
 	}
 
 	public void draw(PApplet marker) {
 		super.draw(marker);
+	
 	}
 
 }
