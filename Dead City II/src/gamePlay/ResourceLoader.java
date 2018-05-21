@@ -45,6 +45,7 @@ public class ResourceLoader {
 	private HashMap<String, Double> ScaleFactor;
 	private ArrayList<String> characters;
 	private ArrayList<String> attributes;
+	private ArrayList<String> badMobs;
 	public static final String TROOPER = "Trooper";
 	public static final String COMMANDER = "Commandor";
 	public static final String THUG = "Thug";
@@ -117,7 +118,10 @@ public class ResourceLoader {
 		attributes.add(RELOADTIME);
 	
 		
-		
+		badMobs = new ArrayList<String>();
+		badMobs.add(BASICZOMBIE);
+		badMobs.add(BONEZOMBIE);
+		badMobs.add(SKIRTZOMBIE);
 
 	}
 
@@ -328,6 +332,10 @@ public class ResourceLoader {
 	
 	public double getStat(String name, String attribute) {
 		return statistics.get(name).get(attribute);
+	}
+	
+	public ArrayList<String> getBadMobNames(){
+		return badMobs;
 	}
 
 }
