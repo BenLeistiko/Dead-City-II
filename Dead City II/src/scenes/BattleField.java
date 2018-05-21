@@ -77,13 +77,13 @@ public class BattleField extends Scene {
 	public void draw() {
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
-		//System.out.println(joe.isAlive());
+		
 		
 		super.draw();
-		
-
-		if(joe.isAlive()) {
-		//	joe.act();
+	
+		if(!joe.isAlive()) {
+			super.changePanelAndPause("Death");
+			//	joe.act();
 		//	joe.draw(this);
 		}
 		
@@ -92,6 +92,12 @@ public class BattleField extends Scene {
 
 		for(Monster m: super.getMonsters()) {
 			m.act((Hero)super.getFocusedSprite());
+		}
+		
+		
+		System.out.println(getMonsters().size());
+		if(super.getMonsters().size() == 0) {
+			super.changePanelAndPause("Camp");
 		}
 
 	}

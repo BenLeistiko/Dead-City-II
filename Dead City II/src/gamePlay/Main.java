@@ -19,12 +19,9 @@ import javax.swing.JPanel;
 import items.RangedWeapon;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
-import scenes.BattleField;
-import scenes.Camp;
-import scenes.Pause;
+import scenes.*;
 import scenes.TitleScreen;
 import sprites.Hero;
-import scenes.Scene;
 /**
  * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
  * @author Jose
@@ -91,6 +88,7 @@ public class Main {
 		this.addScene(new BattleField(this, joe), "BattleField");
 		this.addScene(new Camp(this), "Camp");
 		this.addScene(new Pause(this), "Pause");
+		this.addScene(new Death(this), "Death");
 
 		changePanel("TitleScreen");
 
