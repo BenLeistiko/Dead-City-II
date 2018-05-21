@@ -58,6 +58,8 @@ public class Main {
 		resources = new ResourceLoader();
 		resources.load();
 		
+		isBattle = false;
+		
 		chill = new BetterSound(this.resources.getSound("Chill"), true, true);
 		battle = new BetterSound(this.resources.getSound("Battle"), true, true);
 		
@@ -144,11 +146,11 @@ public class Main {
 	public void manageMusic() {
 		System.out.println(isBattle);
 		if(isBattle) {
-			battleVolume = Math.min(battleVolume + 0.01, 1);
-			chillVolume = Math.max(chillVolume - 0.01, 0);
+			battleVolume = Math.min(battleVolume + 0.005, 1);
+			chillVolume = Math.max(chillVolume - 0.005, 0);
 		}else {
-			battleVolume = Math.max(battleVolume - 0.01, 0);
-			chillVolume = Math.min(chillVolume + 0.01, 1);
+			battleVolume = Math.max(battleVolume - 0.005, 0);
+			chillVolume = Math.min(chillVolume + 0.005, 1);
 		}
 		
 		battle.setVolume(battleVolume);

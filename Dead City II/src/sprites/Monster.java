@@ -33,6 +33,7 @@ public class Monster extends Creature {
 		if(distance <1000) {
 			Main.isBattle = true;
 			System.out.println("Monsters are here");
+			System.out.print(Main.isBattle);
 			double targetX = h.getCenterX();
 			double targetY = h.getCenterY();
 
