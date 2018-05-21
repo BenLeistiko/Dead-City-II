@@ -3,6 +3,7 @@ package items;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import gamePlay.BetterSound;
 import gamePlay.Main;
 import interfaces.Damageable;
 import scenes.Scene;
@@ -70,9 +71,10 @@ public class RangedWeapon extends Weapon {
 	}
 
 	public void reload() {
-		if(currentAmmo != MAX_AMMO) {
+		if(currentAmmo != MAX_AMMO && !isReloading) {
 			isReloading = true;
 			timeLastUpdated = System.currentTimeMillis();
+			new BetterSound(Main.resources.getSound("Reload"),true,false);
 		}
 		//currentAmmo = MAX_AMMO;
 	}

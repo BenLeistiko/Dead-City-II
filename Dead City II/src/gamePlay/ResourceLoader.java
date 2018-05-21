@@ -187,6 +187,8 @@ public class ResourceLoader {
 			//****Loading Sounds****
 			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
 			sounds.put("EmptyClick",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
+			sounds.put("Reload",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "reload.wav"));
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();

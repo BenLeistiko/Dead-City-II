@@ -76,7 +76,7 @@ public class BattleField extends Scene {
 		display.update(this,(Hero)super.getFocusedSprite());
 		
 		for(Monster m: super.getMonsters()) {
-			m.act(super.getFocusedSprite());
+			m.act((Hero)super.getFocusedSprite());
 		}
 
 	}
@@ -194,7 +194,7 @@ public class BattleField extends Scene {
 
 	public void generateMobs() {
 		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
-		int amtToSpawn = 100;
+		int amtToSpawn = 40;
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
