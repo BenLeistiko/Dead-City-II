@@ -74,9 +74,9 @@ public class ResourceLoader {
 	public static final String AGILITY = "agility";
 	public static final String JUMPPOWER = "jumpPower";
 	public static final String RELOADTIME = "reloadTime";
-	
+
 	private HashMap<String,File> sounds;
-	
+
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
@@ -98,7 +98,7 @@ public class ResourceLoader {
 		characters.add(MOHAWKZOMBIE);
 
 
-		
+
 		attributes = new ArrayList<String>();
 		attributes.add(HEALTH);
 		attributes.add(HEALTHREGEN);
@@ -116,8 +116,8 @@ public class ResourceLoader {
 		attributes.add(AGILITY);
 		attributes.add(JUMPPOWER);
 		attributes.add(RELOADTIME);
-	
-		
+
+
 		badMobs = new ArrayList<String>();
 		badMobs.add(BASICZOMBIE);
 		badMobs.add(BONEZOMBIE);
@@ -126,7 +126,7 @@ public class ResourceLoader {
 	}
 
 	public void load() {
-		
+
 		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
 
@@ -183,12 +183,18 @@ public class ResourceLoader {
 			images.put("Bedrock", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bedrock.png")))));
 			images.put("Dirt", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Dirt.png")))));
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
+			
+			PImage bg = new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif"))));
+			bg.resize(1594, 865);
+			images.put("BattleFieldBackground", bg);
+			
+			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
 
 			//****Loading Sounds****
 			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
 			sounds.put("EmptyClick",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
 			sounds.put("Reload",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "reload.wav"));
-			
+
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -214,7 +220,7 @@ public class ResourceLoader {
 			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
 		}
 		if(textures.get(name).get(bounds).get(cropBounds) == null) {
-		//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
+			//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);
@@ -303,7 +309,7 @@ public class ResourceLoader {
 			}
 		}
 	}
-	
+
 	public void parseStats(ArrayList<String> statsFile) {
 		//statsFile is all the lines from the txt file
 
@@ -324,18 +330,18 @@ public class ResourceLoader {
 						atts.put(attributes.get(j), num);
 					}
 				}
-				
+
 				statistics.put(line, atts);//put the new atts hash with the corresponding chracter
 				i+=attributes.size();//save some time
 
 			}
 		}	
 	}
-	
+
 	public double getStat(String name, String attribute) {
 		return statistics.get(name).get(attribute);
 	}
-	
+
 	public ArrayList<String> getBadMobNames(){
 		return badMobs;
 	}

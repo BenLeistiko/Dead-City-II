@@ -91,7 +91,7 @@ ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.5
+agility=.1
 jumpPower = 25
 reloadTime = 1000
 
@@ -109,7 +109,7 @@ ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.1
+agility=.05
 jumpPower = 25
 reloadTime = 1000
 
@@ -127,7 +127,7 @@ ammo=-1
 projectiletype=-1
 projectilespeed=-1
 accuracy=1
-agility=.5
+agility=.05
 jumpPower = 25
 reloadTime = 1000
 

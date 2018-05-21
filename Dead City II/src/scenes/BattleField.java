@@ -35,6 +35,8 @@ public class BattleField extends Scene {
 	private int groundThickness;
 	private double groundHeight;
 
+	private int mobsSpawn;
+
 	private HUD display;
 	//private boolean paused;
 
@@ -43,7 +45,7 @@ public class BattleField extends Scene {
 		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
 
 		groundThickness = 1000;
-	
+
 
 	}
 
@@ -51,14 +53,14 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-
+		mobsSpawn = 10;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
 		generateHill(10);
 		generatePlatforms(80,100);
-		generateMobs();
+		generateMobs(mobsSpawn);
 
 		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
@@ -70,11 +72,13 @@ public class BattleField extends Scene {
 	}
 
 	public void draw() {
-		background(255, 255, 255);
+		//background(255, 255, 255);
+
+		background(Main.resources.getImage("BattleFieldBackground"));
 		super.draw();
-		
+
 		display.update(this,(Hero)super.getFocusedSprite());
-		
+
 		for(Monster m: super.getMonsters()) {
 			m.act((Hero)super.getFocusedSprite());
 		}
@@ -192,14 +196,13 @@ public class BattleField extends Scene {
 		}
 	}
 
-	public void generateMobs() {
+	public void generateMobs(int amtToSpawn) {
 		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
-		int amtToSpawn = 40;
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
-			Monster zomb = new Monster(mobTypes.get(rand),49000-300*i,100,100,100,super.getWorldlyThings());
-			
+			Monster zomb = new Monster(mobTypes.get(rand),49000*Math.random(),100,100,100,super.getWorldlyThings());
+
 			add(zomb);
 			super.getMonsters().add(zomb);
 		}

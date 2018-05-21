@@ -27,6 +27,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private ArrayList<Integer> mouseButtonsPressed;
 	private boolean hasClicked;
 	private Weapon weapon;
+	private boolean isAlive;
 	
 	private HUD display; 
 	
@@ -36,7 +37,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
-		
+		isAlive = true;
 		display = new HUD();
 		hasClicked = false;
 	}
@@ -63,7 +64,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-System.out.println(super.getHealth());
+//System.out.println(super.getHealth());
 		super.draw(marker);
 
 	}
@@ -144,6 +145,18 @@ System.out.println(super.getHealth());
 		}else {
 			return false;
 		}
+	}
+
+
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 }

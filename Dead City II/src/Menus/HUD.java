@@ -25,7 +25,6 @@ public class HUD implements Drawable{
 	private double health,maxHealth;
 	private double stamina,maxStamina;
 	private int ammo,maxAmmo;
-	private float HUDWidth;
 	private PImage hero;
 
 	private boolean isReloading;
@@ -36,7 +35,7 @@ public class HUD implements Drawable{
 	public static final float xScaleFactor = 2;
 	public static final float yScaleFactor = 2;
 
-
+private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
 	bulletBarCap,healthBarCap,staminaBarCap;
@@ -53,6 +52,7 @@ public class HUD implements Drawable{
 		maxAmmo = 0;
 		numBars=10;
 		isReloading = false;
+		isAlive = true;
 		//	this.s=s;
 		visSpace = new Rectangle2D.Double();
 
@@ -186,6 +186,7 @@ public class HUD implements Drawable{
 
 		isReloading = h.isReloading();
 
+		isAlive = h.isAlive();
 
 	}
 
