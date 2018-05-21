@@ -98,7 +98,7 @@ reloadTime = 1000
 BasicZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -116,7 +116,7 @@ reloadTime = 1000
 SkirtZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -134,7 +134,7 @@ reloadTime = 1000
 BoneZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1

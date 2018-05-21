@@ -186,7 +186,8 @@ public class BattleField extends Scene {
 	}
 
 	public void generateMobs() {
-	//	int[] mobTypes = new int[]
+		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
+	
 		
 		int numMobs = 10;
 
