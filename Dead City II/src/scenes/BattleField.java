@@ -215,7 +215,7 @@ public class BattleField extends Scene {
 			add(plat);
 		}
 	}
-
+ 
 	public void generateMobs(int amtToSpawn) {
 		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
 
