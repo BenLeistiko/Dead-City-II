@@ -31,7 +31,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private HUD display; 
 	
 
-	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
 		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
