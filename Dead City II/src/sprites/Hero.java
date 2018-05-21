@@ -25,19 +25,20 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	private ArrayList<Integer> keysPressed;
 	private ArrayList<Integer> mouseButtonsPressed;
+	private boolean hasClicked;
 	private Weapon weapon;
 	//private Scene s;
 	private HUD display; 
 	
 
-	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
 		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
 		//this.s=s;
 		display = new HUD();
-		
+		hasClicked = false;
 	}
 
 
@@ -53,11 +54,12 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void mousePressed(Point clickPoint, int button) {
 		if(!mouseButtonsPressed.contains(button))
-			mouseButtonsPressed.add(button);	
+			mouseButtonsPressed.add(button);			
 	}
 
 	public void mouseReleased(Point clickPoint, int button) {
 		mouseButtonsPressed.remove(new Integer(button));
+		hasClicked = false;
 	}
 
 	public void draw(PApplet marker) {
