@@ -67,21 +67,24 @@ public class BattleField extends Scene {
 		joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings());
-		setup(joe);
+		
 		display = joe.getHUD();
 		this.add(display);
+		setup(joe);
 
 	}
 
 	public void draw() {
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
-
+		//System.out.println(joe.isAlive());
+		
 		super.draw();
 		
-		
+
 		if(joe.isAlive()) {
-			joe.draw(this);
+		//	joe.act();
+		//	joe.draw(this);
 		}
 		
 		
@@ -140,7 +143,7 @@ public class BattleField extends Scene {
 		for(int i = 0; i < numOfHills; i++) {
 			boolean generate = false;
 			while(generate == false) {
-				//System.out.println("generating...");
+				
 				double a1 = Math.toRadians(Math.random()*30+45);
 				double a2 = Math.toRadians(Math.random()*30+45);
 				double x = getWorldSpace().getX() + getWorldSpace().getWidth()*Math.random();
@@ -180,10 +183,10 @@ public class BattleField extends Scene {
 			double x2 = x+h*Math.tan(a2);
 			double startX = x1+100*Math.tan(a1);
 			double endX = x2-100*Math.tan(a2);
-			//System.out.println("Varibles: " + h +", " + x1 + ", " + x2 + ", " + startX + ", " + endX);
+			
 			for(int  i = (int) startX;i<=endX;i=i+100) {
 				DamageableBarrier grass = new DamageableBarrier(i-50,floor-100,100,100,Main.resources.getImage("Grass").width,Main.resources.getImage("Grass").height,"Grass",5,0);
-				//System.out.println("added dirt" + (i-50) + ", " + (floor -100));
+			
 				if(!grass.collides(getWorldlyThings())) {
 					add(grass);
 				}

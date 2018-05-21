@@ -132,7 +132,7 @@ public abstract class Scene extends PApplet {
 
 	public void setup(Sprite focusedSprite) {
 		this.focusedSprite = focusedSprite;
-	//	addAtEnd(focusedSprite);
+		addAtEnd(focusedSprite);
 	}
 
 
@@ -184,11 +184,11 @@ public abstract class Scene extends PApplet {
 	public boolean slideWorldToImage() {
 		if(SideScroll) {
 			Point2D.Double center = focusedSprite.getCenter();
-			//System.out.println(center + "    :    " + characterSpace);
+		
 			double xTrans = 0,yTrans = 0;
 
 			if (!characterSpace.contains(center)) {
-				//System.out.println("NOT CONTAINED\n\t" + characterSpace + " ___ " + center);
+		
 				if(center.x>characterSpace.getWidth()+characterSpace.getX() && characterSpace.getX()+characterSpace.getWidth()<getWorldSpace().getX()+getWorldSpace().getWidth()) {
 					xTrans = (characterSpace.getWidth()+characterSpace.getX()) - center.x;
 				}else if (center.x<characterSpace.getX() && getWorldSpace().getX() < characterSpace.getX()) {
@@ -200,11 +200,11 @@ public abstract class Scene extends PApplet {
 				}else if (center.y<characterSpace.getY()&& getWorldSpace().getY() < characterSpace.getY()) {
 					yTrans = characterSpace.getY() - center.y;
 				}
-				//System.out.println("\t" + xTrans + ", " + yTrans);
+		
 				this.translateRect(characterSpace, -xTrans, -yTrans);
 				this.translateRect(screenSpace, -xTrans, -yTrans);
 				this.translateRect(renderSpace, -xTrans, -yTrans);
-				//System.out.println(characterSpace + "\n\t" + screenSpace + "\n\t" + worldSpace + "\n\t" + focusedSprite);
+		
 				return true;
 			}
 		}

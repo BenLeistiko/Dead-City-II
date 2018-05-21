@@ -144,7 +144,7 @@ public class Main {
 	}
 	
 	public void manageMusic() {
-		System.out.println(isBattle);
+		
 		if(isBattle) {
 			battleVolume = Math.min(battleVolume + 0.005, 1);
 			chillVolume = Math.max(chillVolume - 0.005, 0);
