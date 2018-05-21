@@ -81,7 +81,6 @@ public class Main {
 				Component x = (Component)arg0.getSource();
 				fixProcessingPanelSizes(x);
 			}
-
 		});
 		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
