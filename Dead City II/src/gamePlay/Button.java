@@ -5,12 +5,15 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
+import java.util.ArrayList;
 
 import interfaces.Clickable;
 import interfaces.Drawable;
 import processing.core.PApplet;
 import processing.core.PImage;
+import scenes.BattleField;
 import scenes.Scene;
+import sprites.Sprite;
 /**
  * This is a button that is in scenes.  It could open other scenes or do other suff.
  * @author bleistiko405
@@ -72,7 +75,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		return false;
 	}
 
-	public void act() {
+	public void act(Scene s) {
 		
 	}
 	
@@ -154,6 +157,8 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		if(mouseInside(clickPoint)) {
 			if(target.equalsIgnoreCase("exit")) {
 				System.exit(0);
+			}
+			if(target.contains("NEW")) {
 			}
 			scene.changePanelAndPause(target);
 		}

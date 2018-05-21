@@ -83,10 +83,12 @@ public class Main {
 			}
 
 		});
-		Hero joe  = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,1000,null),null);
+		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
+				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
+						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME)));
 		this.addScene(new TitleScreen(this), "TitleScreen"); 
 		this.addScene(new BattleField(this, joe), "BattleField");
-		this.addScene(new Camp(this), "Camp");
+		this.addScene(new Camp(this,joe), "Camp");
 		this.addScene(new Pause(this), "Pause");
 		this.addScene(new Death(this), "Death");
 

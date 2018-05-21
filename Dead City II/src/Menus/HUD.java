@@ -209,7 +209,7 @@ private boolean isAlive;
 		return false;
 	}
 
-	public void act() {
+	public void act(Scene s) {
 
 	}
 

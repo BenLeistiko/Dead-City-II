@@ -5,6 +5,7 @@ import java.awt.Point;
 import gamePlay.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
+import scenes.Scene;
 /**
  * An rectangle that can't take damage but can collide with sprites. 
  * @author bleistiko405
@@ -88,7 +89,7 @@ public class Barrier extends Sprite {
 	}
 
 	@Override
-	public void act() {
+	public void act(Scene s) {
 		// TODO Auto-generated method stub
 		
 	}

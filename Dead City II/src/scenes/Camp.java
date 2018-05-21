@@ -8,12 +8,13 @@ import gamePlay.Button;
 import gamePlay.Main;
 import processing.core.PApplet;
 import sprites.Barrier;
+import sprites.Sprite;
 
 public class Camp extends Scene {
 
-	public Camp(Main m) {
+	public Camp(Main m, Sprite hero) {
 		super(m);
-		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/2, 400, 50, "Next Day", new Color(0,0,0), this, "BattleField"));
+		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/2, 400, 50, "Next Day", new Color(0,0,0), this, "BattleField-NEW"));
 	}
 
 	public void draw() {

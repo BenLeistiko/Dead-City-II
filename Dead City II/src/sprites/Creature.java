@@ -9,6 +9,7 @@ import interfaces.Damageable;
 import interfaces.Destructive;
 import processing.core.PApplet;
 import processing.core.PImage;
+import scenes.Scene;
 
 /**	Represents a creature class, with the help of Shelby's Animation Demo for collision detection
  * 
@@ -62,8 +63,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private boolean isSprinting;
 	private boolean onASurface;
 	private boolean isAttacking;
-
-	private ArrayList<Sprite> worldlyThings;
 	
 	private String animationKey;
 
@@ -76,7 +75,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	 * @param worldlyThings - everything that this sprite can collide with
 	 * @param animationKey - what pictures you want to load
 	 */
-	public Creature(double x, double y, double w, double h, ArrayList<Sprite> worldlyThings, String animationKey) {
+	public Creature(double x, double y, double w, double h, String animationKey) {
 		super(x, y, w, h);
 		onASurface = false;
 		isSprinting = false;
@@ -124,7 +123,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 		direction = 1;
 
-		this.worldlyThings =  worldlyThings;
 
 		ranOutOfStamina =false;
 		
@@ -133,8 +131,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 
 
-	public void act() {
-
+	public void act(Scene scene) {
+		ArrayList<Sprite> worldlyThings = scene.getWorldlyThings();
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
@@ -430,10 +428,6 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public void setDirection(int direction) {
 		this.direction = direction;
 	}
-
-	public ArrayList<Sprite> getWorldlyThings() {
-		return worldlyThings;
-	}	
 
 	public double getHealth() {
 		return health;

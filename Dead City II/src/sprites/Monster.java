@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import gamePlay.Main;
 import processing.core.PApplet;
+import scenes.Scene;
 /**
  * CPU controlled monster that attacks heros.
  * @author bleistiko405
@@ -16,8 +17,8 @@ public class Monster extends Creature {
 	private long timeLastUpdated;
 	private double attackRate;
 
-	public Monster(String animationKey,double x, double y, double w, double h, ArrayList<Sprite> worldlyThings) {
-		super(x, y, w, h,worldlyThings, animationKey);
+	public Monster(String animationKey,double x, double y, double w, double h) {
+		super(x, y, w, h, animationKey);
 		damage = Main.resources.getStat(animationKey, Main.resources.DAMAGE);
 		attackRate = Main.resources.getStat(animationKey, Main.resources.FIRERATE);
 	}
@@ -26,8 +27,9 @@ public class Monster extends Creature {
 		super.draw(marker);
 	}
 
-	public void act(Hero h) {
-		super.act();
+	public void act(Scene s) {
+		Hero h = (Hero) s.getFocusedSprite();
+		super.act(s);
 
 		double distance = this.getCenter().distance(h.getCenter());
 		if(distance <1000) {
@@ -51,14 +53,6 @@ public class Monster extends Creature {
 				h.takeDamage(damage);
 				timeLastUpdated = System.currentTimeMillis();
 			}
-
-
-
-
 		}
-
 	}
-
-
-
 }

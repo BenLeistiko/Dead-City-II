@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import interfaces.Damageable;
 import interfaces.Slotable;
+import scenes.Scene;
 import sprites.Bullet;
 import sprites.Creature;
 import sprites.Sprite;
@@ -27,7 +28,7 @@ public abstract class Weapon implements Slotable {
 	
 	}
 
-	public abstract void perform(Creature c, int dir, ArrayList<Sprite> sprites); 
+	public abstract void perform(Creature c, int dir, Scene s); 
 
 
 	public void upgrade(double upgradeAmt) {

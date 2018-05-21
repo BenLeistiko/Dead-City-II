@@ -22,33 +22,31 @@ public class RangedWeapon extends Weapon {
 	private final int MAX_AMMO;
 	private int currentAmmo;
 	private long timeLastUpdated;
-	private Scene s;
 	private boolean isReloading;
 	private long reloadTime;
 
 
 
 
-	public RangedWeapon(double damage, double attackRate, double bulletSpeed, int ammo,double reloadTime, Scene s) {
+	public RangedWeapon(double damage, double attackRate, double bulletSpeed, int ammo,double reloadTime) {
 		super(damage,attackRate,bulletSpeed);
 		MAX_AMMO = ammo;
 		this.currentAmmo = ammo;
 		this.reloadTime = (long) reloadTime;
-		this.s=s;
 	}
 
 
 
-	public void perform(Creature hero, int dir, ArrayList<Sprite> sprites) {
+	public void perform(Creature hero, int dir, Scene s) {
 		if(currentAmmo>0 && !isReloading && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 
 			Bullet bull;
 			if(dir == 1) {
 				bull = new Bullet(hero.getX()+hero.getWidth(),
-						hero.getY()+hero.getHeight()/3,30,20, getDamage(),sprites,dir);
+						hero.getY()+hero.getHeight()/3,30,20, getDamage(),dir);
 			}else {
 				bull = new Bullet(hero.getX(),
-						hero.getY()+hero.getHeight()/3,30,20, getDamage(),sprites,dir);
+						hero.getY()+hero.getHeight()/3,30,20, getDamage(),dir);
 			}
 			bull.setvX(hero.getvX()+dir*getRange());
 			bull.setvY(hero.getvY());

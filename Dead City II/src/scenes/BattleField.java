@@ -43,9 +43,9 @@ public class BattleField extends Scene {
 	//private boolean paused;
 
 
-	public BattleField(Main m, Sprite hero) {
+	public BattleField(Main m, Hero hero) {
 		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
-
+		joe = hero;
 		groundThickness = 1000;
 
 
@@ -64,10 +64,6 @@ public class BattleField extends Scene {
 		generatePlatforms(80,100);
 		generateMobs(mobsSpawn);
 
-		joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
-				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
-						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings());
-		
 		display = joe.getHUD();
 		this.add(display);
 		setup(joe);
@@ -89,10 +85,10 @@ public class BattleField extends Scene {
 		
 		
 		display.update(this,(Hero)super.getFocusedSprite());
-
-		for(Monster m: super.getMonsters()) {
-			m.act((Hero)super.getFocusedSprite());
-		}
+ 
+		//for(Monster m: super.getMonsters()) {
+			//m.act(this);
+		//}
 		
 		
 		System.out.println(getMonsters().size());
@@ -225,7 +221,7 @@ public class BattleField extends Scene {
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
-			Monster zomb = new Monster(mobTypes.get(rand),49000*Math.random(),100,100,100,super.getWorldlyThings());
+			Monster zomb = new Monster(mobTypes.get(rand),49000*Math.random(),100,100,100);
 
 			add(zomb);
 			super.getMonsters().add(zomb);

@@ -155,10 +155,10 @@ public abstract class Scene extends PApplet {
 			if(toDraw.get(i).shouldRemove()) {  
 				toDraw.remove(i);
 			}else if(toDraw.get(i).getHitBox().intersects(renderSpace)) {
-				toDraw.get(i).act();
+				toDraw.get(i).act(this);
 				toDraw.get(i).draw(this);
 			}else {
-				toDraw.get(i).act();
+				toDraw.get(i).act(this);
 			}
 		}
 		this.popMatrix();
@@ -211,6 +211,10 @@ public abstract class Scene extends PApplet {
 		return false;
 	}
 
+	public ArrayList<Sprite> getWorldyThings(){
+		return this.worldlyThings;
+	}
+	
 	private void translateRect(Rectangle2D.Double r, double x, double y) {
 		r.setRect(r.getX()+x, r.getY()+y, r.getWidth(), r.getHeight());
 	}
@@ -336,7 +340,9 @@ public abstract class Scene extends PApplet {
 		return false;
 	}
 
+	public void newBattleField() {
 
+	}
 
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;

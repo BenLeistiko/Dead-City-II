@@ -32,8 +32,8 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private HUD display; 
 
 
-	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
-		super(x, y, w, h, worldlyThings, animationKey);
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon) {
+		super(x, y, w, h, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
@@ -69,8 +69,8 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	}
 
-	public void act() {
-		super.act();
+	public void act(Scene s) {
+		super.act(s);
 		if(super.getHealth()<=0) {
 			isAlive=false;
 		}
@@ -118,7 +118,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 				RangedWeapon rw = ((RangedWeapon) weapon);
 				if(rw.getCurrentAmmo()>0) {
 					attack();
-					weapon.perform(this, super.getDirection(), super.getWorldlyThings());
+					weapon.perform(this, super.getDirection(),s);
 				} else {
 					if(!hasClicked) {
 						new BetterSound(Main.resources.getSound("EmptyClick"),true,false);
@@ -127,7 +127,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 				}
 			}else {
 				attack();
-				weapon.perform(this, super.getDirection(), super.getWorldlyThings());
+				weapon.perform(this, super.getDirection(),s);
 			}
 		}
 

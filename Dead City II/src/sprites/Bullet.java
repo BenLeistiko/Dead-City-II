@@ -13,6 +13,7 @@ import interfaces.Damageable;
 import interfaces.Destructive;
 import processing.core.PApplet;
 import processing.core.PImage;
+import scenes.Scene;
 
 /**
  * Something that a gun generates.  Deals damage to damageables.
@@ -23,25 +24,23 @@ public class Bullet extends MovingSprite implements Destructive {
 
 	private double damage;
 	private PImage image;
-	private ArrayList<Sprite> sprites;
 	private boolean alive;
 	private final int dir;
 
 
 
-	public Bullet(double x, double y, double w, double h, double damage, ArrayList<Sprite> sprites, int dir) {
+	public Bullet(double x, double y, double w, double h, double damage, int dir) {
 		super(x, y, w, h);
 		this.damage = damage;
 		image = Main.resources.getImage("Bullet");
-		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
 		BetterSound b = new BetterSound(Main.resources.getSound("Shoot"), true,false);
  
 	}
 
-	public void act() {
-		if(detectHit()) {
+	public void act(Scene scene) {
+		if(detectHit(scene.getWorldlyThings())) {
 			setAlive(false);
 		}
 		setvY(getvY() + Main.GRAVITY);
@@ -56,9 +55,9 @@ public class Bullet extends MovingSprite implements Destructive {
 	 * @return true if the bullet has hit something false otherwise
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
-	public boolean detectHit() {
+	public boolean detectHit(ArrayList<Sprite> worldlyThings) {
 
-		for(Sprite s: sprites) {
+		for(Sprite s: worldlyThings) {
 			if(s!=this && !(s instanceof Hero)) {
 				if(this.intersects(s.getHitBox())) {//if intersects with something
 					if(s instanceof Damageable) {//if damageable do damage
