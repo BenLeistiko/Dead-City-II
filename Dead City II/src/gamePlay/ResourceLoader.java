@@ -184,9 +184,8 @@ public class ResourceLoader {
 			images.put("Dirt", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Dirt.png")))));
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
 			
-			PImage bg = new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif"))));
-			bg.resize(1594, 865);
-			images.put("BattleFieldBackground", bg);
+			
+			images.put("BattleFieldBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif")))));
 			
 			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
 

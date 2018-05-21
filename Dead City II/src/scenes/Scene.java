@@ -147,6 +147,7 @@ public abstract class Scene extends PApplet {
 		//scale((float)xRatio, (float)yRatio);
 		slideWorldToImage();
 		
+		
 		this.translate((float)(-this.screenSpace.getX()), (float) -this.screenSpace.getY());
 		for(int i = 0; i < toDraw.size(); i++) {
 			if(toDraw.get(i).shouldRemove()) {  
@@ -176,6 +177,7 @@ public abstract class Scene extends PApplet {
 			if(zombies.get(i).shouldRemove())
 				zombies.remove(i);
 		}
+		//image(Main.resources.getImage("BattleFieldBackground"),(float)getVisSpace().getX(),(float) getVisSpace().getY());
 	}
 
 	public boolean slideWorldToImage() {

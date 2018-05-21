@@ -64,7 +64,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-		System.out.println(super.getHealth());
+		//System.out.println(super.getHealth());
 		super.draw(marker);
 
 	}

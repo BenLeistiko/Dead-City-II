@@ -38,7 +38,7 @@ public class BattleField extends Scene {
 	private int mobsSpawn;
 
 	private HUD display;
-	
+
 	private Hero joe;
 	//private boolean paused;
 
@@ -74,11 +74,11 @@ public class BattleField extends Scene {
 	}
 
 	public void draw() {
-		//background(255, 255, 255);
-		Main.resources.getImage("BattleFieldBackground").resize(width, height);
-		background(Main.resources.getImage("BattleFieldBackground"));
-		super.draw();
+		
+		background(255);
+		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 
+		super.draw();
 		display.update(this,(Hero)super.getFocusedSprite());
 
 		for(Monster m: super.getMonsters()) {
