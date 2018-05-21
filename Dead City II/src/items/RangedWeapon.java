@@ -39,7 +39,7 @@ public class RangedWeapon extends Weapon {
 
 
 	public void perform(Creature hero, int dir, ArrayList<Sprite> sprites) {
-		 if(currentAmmo>0 && !isReloading && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
+		if(currentAmmo>0 && !isReloading && System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 
 			Bullet bull;
 			if(dir == 1) {
@@ -70,8 +70,10 @@ public class RangedWeapon extends Weapon {
 	}
 
 	public void reload() {
-		isReloading = true;
-		timeLastUpdated = System.currentTimeMillis();
+		if(currentAmmo != MAX_AMMO) {
+			isReloading = true;
+			timeLastUpdated = System.currentTimeMillis();
+		}
 		//currentAmmo = MAX_AMMO;
 	}
 
@@ -83,6 +85,10 @@ public class RangedWeapon extends Weapon {
 
 	public int getMaxAmmo() {
 		return MAX_AMMO;
+	}
+
+	public boolean isReloading() {
+		return isReloading;
 	}
 
 

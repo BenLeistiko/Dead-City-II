@@ -129,5 +129,14 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public HUD getHUD() {
 		return display;
 	}
+	
+	public boolean isReloading() {
+		if(weapon instanceof RangedWeapon) {
+			RangedWeapon rw = ((RangedWeapon) weapon);
+			return rw.isReloading();
+		}else {
+			return false;
+		}
+	}
 
 }

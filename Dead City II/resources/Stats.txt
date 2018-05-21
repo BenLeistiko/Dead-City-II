@@ -4,6 +4,7 @@
 //****accuracy ranges from low-med-high from 0-1-2****//
 //****weapon types - 0 is melee, 1 is ranged****//
 //****projectile types - 0 is bullet, 1 is lazer****//
+//****AGILITY AND ARMOUR SHOULD BE BELOW 1****//
 
 Trooper
 health=100
@@ -14,7 +15,7 @@ stamina=10
 staminaRegen=.6
 weaponType=1
 damage=8
-firerate=1000
+firerate=500
 ammo=16
 projectiletype=0
 projectilespeed=50
@@ -44,7 +45,7 @@ reloadTime = 1000
 Thug
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -98,7 +99,7 @@ reloadTime = 1000
 BasicZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -109,14 +110,14 @@ ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.5
+agility=.1
 jumpPower = 25
 reloadTime = 1000
 
 SkirtZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -127,14 +128,14 @@ ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.5
+agility=.1
 jumpPower = 25
 reloadTime = 1000
 
 BoneZombie
 health=1
 healthRegen=1
-armour=1
+armour=.1
 speed=1
 stamina=1
 staminaRegen=1
@@ -145,7 +146,7 @@ ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.5
+agility=.1
 jumpPower = 25
 reloadTime = 1000
 
