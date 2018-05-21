@@ -8,6 +8,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 
+import Menus.HUD;
 import gamePlay.Button;
 import gamePlay.Main;
 import gamePlay.ResourceLoader;
@@ -34,16 +35,15 @@ public class BattleField extends Scene {
 	private int groundThickness;
 	private double groundHeight;
 
-	private boolean paused;
+	private HUD display;
+	//private boolean paused;
 
 
 	public BattleField(Main m, Sprite hero) {
 		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
 
-
-
 		groundThickness = 1000;
-		paused = false;
+	
 
 	}
 
@@ -62,15 +62,22 @@ public class BattleField extends Scene {
 
 		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
-						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings(), this);
+						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings());
 		setup(joe);
-		this.add(joe.getHUD());
+		display = joe.getHUD();
+		this.add(display);
 
 	}
 
 	public void draw() {
 		background(255, 255, 255);
 		super.draw();
+		
+		display.update(this,(Hero)super.getFocusedSprite());
+		
+		for(Monster m: super.getMonsters()) {
+			m.act(super.getFocusedSprite());
+		}
 
 	}
 
@@ -187,22 +194,15 @@ public class BattleField extends Scene {
 
 	public void generateMobs() {
 		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
-	
-		
-		int numMobs = 10;
+		int amtToSpawn = 100;
 
-		
-		
-		for(int i =0; i <numMobs;i++) {
-			double rand = Math.random();
-			Monster zomb = new Monster(Main.resources.BONEZOMBIE,49000-300*i,100,100,100,super.getWorldlyThings());
+		for(int i =0; i <amtToSpawn;i++) {
+			int rand = (int)(Math.random()*3);
+			Monster zomb = new Monster(mobTypes.get(rand),49000-300*i,100,100,100,super.getWorldlyThings());
+			
 			add(zomb);
+			super.getMonsters().add(zomb);
 		}
-
-
-
-
-
 
 
 	}

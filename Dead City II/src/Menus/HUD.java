@@ -16,7 +16,7 @@ import sprites.Hero;
 
 public class HUD implements Drawable{
 
-	private Scene s;
+	//private Scene s;
 	private Rectangle2D.Double visSpace;
 	private double healthRatio;
 	private double ammoRatio;
@@ -43,7 +43,7 @@ public class HUD implements Drawable{
 
 	private final int numBars;
 
-	public HUD(Scene s) {
+	public HUD() {
 		
 		health = 0;
 		maxHealth = 0;
@@ -53,7 +53,7 @@ public class HUD implements Drawable{
 		maxAmmo = 0;
 		numBars=10;
 		isReloading = false;
-		this.s=s;
+	//	this.s=s;
 		visSpace = new Rectangle2D.Double();
 
 		HUD = Main.resources.getImage("HUD");
@@ -133,18 +133,10 @@ public class HUD implements Drawable{
 			marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 			
 			
-			
-			
-			
 			if(isReloading) {
 				Color c = new Color(255,0,0);
 				marker.fill(0);
-				
-				
-				
 
-				
-				
 				marker.rect((float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)),numBars*bulletBar.width,bulletBar.height);
 				
 				marker.fill(255);
@@ -153,17 +145,13 @@ public class HUD implements Drawable{
 				marker.text("RELOADING", (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
 			}
 			
-			
 		
-
 			marker.popMatrix();
 		}
 
 
-	
-
 	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
-	public void update(Hero h) {
+	public void update(Scene s, Hero h) {
 		visSpace = s.getVisSpace();
 
 		health = h.getHealth();

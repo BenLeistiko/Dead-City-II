@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import gamePlay.Main;
 import interfaces.*;
 import processing.core.PApplet;
+import sprites.Monster;
 import sprites.Sprite;
 
 
@@ -22,6 +23,7 @@ public abstract class Scene extends PApplet {
 	private ArrayList<Clickable> mouseInput;
 	private ArrayList<Typeable> keyInput;
 	private ArrayList<Sprite> worldlyThings;
+	private ArrayList<Monster> zombies;
 
 	private Main m;
 
@@ -53,6 +55,7 @@ public abstract class Scene extends PApplet {
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
 		worldlyThings = new ArrayList<Sprite>();
+		zombies = new ArrayList<Monster>();
 
 		
 		this.setWorldSpace(worldSpace);
@@ -85,6 +88,7 @@ public abstract class Scene extends PApplet {
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
 		worldlyThings = new ArrayList<Sprite>();
+		zombies = new ArrayList<Monster>();
 
 		this.setWorldSpace(worldSpace);
 		this.screenSpace = new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT);
@@ -114,6 +118,7 @@ public abstract class Scene extends PApplet {
 		mouseInput = new ArrayList<Clickable>();
 		keyInput = new ArrayList<Typeable>();
 		worldlyThings = new ArrayList<Sprite>();
+		zombies = new ArrayList<Monster>();
 
 		this.setWorldSpace(new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT));
 		this.screenSpace = worldSpace;
@@ -165,6 +170,11 @@ public abstract class Scene extends PApplet {
 		for(int i = 0; i < worldlyThings.size();i++) {
 			if(worldlyThings.get(i).shouldRemove())
 				worldlyThings.remove(i);
+		}
+		
+		for(int i = 0; i < zombies.size();i++) {
+			if(zombies.get(i).shouldRemove())
+				zombies.remove(i);
 		}
 	}
 
@@ -373,5 +383,13 @@ public abstract class Scene extends PApplet {
 
 	public void setScreenSpace(Rectangle2D.Double screenSpace) {
 		this.screenSpace = screenSpace;
+	}
+	
+	public Sprite getFocusedSprite() {
+		return focusedSprite;
+	}
+	
+	public ArrayList<Monster> getMonsters(){
+		return zombies;
 	}
 }

@@ -26,17 +26,17 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private ArrayList<Integer> keysPressed;
 	private ArrayList<Integer> mouseButtonsPressed;
 	private Weapon weapon;
-	private Scene s;
+	//private Scene s;
 	private HUD display; 
 	
 
-	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
+	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
 		super(x, y, w, h, worldlyThings, animationKey);
 		this.weapon = weapon;
 		keysPressed = new ArrayList<Integer>();
 		mouseButtonsPressed = new ArrayList<Integer>();
-		this.s=s;
-		display = new HUD(s);
+		//this.s=s;
+		display = new HUD();
 		
 	}
 
@@ -69,7 +69,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public void act() {
 		super.act();
 
-		display.update(this);
+		//display.update(this);
 		weapon.act();
 
 		double vX = 0;
