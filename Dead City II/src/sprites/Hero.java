@@ -25,10 +25,12 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	private ArrayList<Integer> keysPressed;
 	private ArrayList<Integer> mouseButtonsPressed;
+	private boolean hasClicked;
 	private Weapon weapon;
 	private Scene s;
 	private HUD display; 
-	
+
+
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
 		super(x, y, w, h, worldlyThings, animationKey);
@@ -37,7 +39,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		mouseButtonsPressed = new ArrayList<Integer>();
 		this.s=s;
 		display = new HUD(s);
-		
+		hasClicked = false;
 	}
 
 
@@ -53,11 +55,12 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void mousePressed(Point clickPoint, int button) {
 		if(!mouseButtonsPressed.contains(button))
-			mouseButtonsPressed.add(button);	
+			mouseButtonsPressed.add(button);			
 	}
 
 	public void mouseReleased(Point clickPoint, int button) {
 		mouseButtonsPressed.remove(new Integer(button));
+		hasClicked = false;
 	}
 
 	public void draw(PApplet marker) {
@@ -92,7 +95,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 					super.setSprint(true);
 					setRanOutOfStamina(false);
 				}
-				
+
 			} else if(super.getStamina()>0) {
 				vX = vX*getSprintSpeed();
 				super.setSprint(true);
@@ -114,8 +117,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 				if(rw.getCurrentAmmo()>0) {
 					attack();
 					weapon.perform(this, super.getDirection(), super.getWorldlyThings());
-				} else {
+				} else if(!hasClicked){
 					new BetterSound(Main.resources.getSound("EmptyClick"),true,false);
+					hasClicked = true;
 				}
 			}else {
 				attack();
@@ -131,7 +135,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public HUD getHUD() {
 		return display;
 	}
-	
+
 	public boolean isReloading() {
 		if(weapon instanceof RangedWeapon) {
 			RangedWeapon rw = ((RangedWeapon) weapon);

@@ -40,4 +40,8 @@ public class BetterSound extends Thread {
 			c.loop(c.LOOP_CONTINUOUSLY);
 		c.start();
 	}
+	
+	public boolean isRunning() {
+		return c.isRunning();
+	}
 }
