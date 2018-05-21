@@ -183,6 +183,12 @@ public class ResourceLoader {
 			images.put("Bedrock", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bedrock.png")))));
 			images.put("Dirt", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Dirt.png")))));
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
+			
+			PImage bg = new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif"))));
+			bg.resize(1594, 865);
+			images.put("BattleFieldBackground", bg);
+			
+			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
 
 			//****Loading Sounds****
 			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
@@ -215,7 +221,7 @@ public class ResourceLoader {
 			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
 		}
 		if(textures.get(name).get(bounds).get(cropBounds) == null) {
-		//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
+			//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);

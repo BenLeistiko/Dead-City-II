@@ -25,7 +25,6 @@ public class HUD implements Drawable{
 	private double health,maxHealth;
 	private double stamina,maxStamina;
 	private int ammo,maxAmmo;
-	private float HUDWidth;
 	private PImage hero;
 
 	private boolean isReloading;
@@ -36,7 +35,7 @@ public class HUD implements Drawable{
 	public static final float xScaleFactor = 2;
 	public static final float yScaleFactor = 2;
 
-
+private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
 	bulletBarCap,healthBarCap,staminaBarCap;
@@ -53,6 +52,7 @@ public class HUD implements Drawable{
 		maxAmmo = 0;
 		numBars=10;
 		isReloading = false;
+		isAlive = true;
 		//	this.s=s;
 		visSpace = new Rectangle2D.Double();
 
@@ -136,9 +136,11 @@ public class HUD implements Drawable{
 		
 		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
 
-		//marker.image(Main.resources.getAnimation(Main.resources.TROOPER, 1),(float) visSpace.getX(), (float) visSpace.getY());
 		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
+		
+		
+		
 		/*
 			if(isReloading) {
 				Color c = new Color(255,0,0);
@@ -186,6 +188,7 @@ public class HUD implements Drawable{
 
 		isReloading = h.isReloading();
 
+		isAlive = h.isAlive();
 
 	}
 
