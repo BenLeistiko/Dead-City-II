@@ -27,6 +27,8 @@ public class HUD implements Drawable{
 	private int ammo,maxAmmo;
 	private PImage hero;
 
+	private Color red = new Color(255,0,0);
+	
 	private boolean isReloading;
 
 	private static final float healthBarOffset = 4;
@@ -140,6 +142,13 @@ private boolean isAlive;
 
 		
 		
+		if(!isAlive) {
+		
+			marker.fill(red.getRGB());
+			marker.textAlign(marker.CENTER, marker.CENTER);
+			marker.textSize(40);
+			marker.text("YOU DIED", (float) ((visSpace.getX()/2)), (float) (visSpace.getY()/2));
+		}
 		
 		/*
 			if(isReloading) {

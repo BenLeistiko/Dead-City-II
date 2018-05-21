@@ -28,9 +28,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private boolean hasClicked;
 	private Weapon weapon;
 	private boolean isAlive;
-	
+
 	private HUD display; 
-	
+
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings) {
 		super(x, y, w, h, worldlyThings, animationKey);
@@ -64,14 +64,16 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-//System.out.println(super.getHealth());
+		System.out.println(super.getHealth());
 		super.draw(marker);
 
 	}
 
 	public void act() {
 		super.act();
-
+		if(super.getHealth()<=0) {
+			isAlive=false;
+		}
 		//display.update(this);
 		weapon.act();
 
@@ -95,7 +97,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 					super.setSprint(true);
 					setRanOutOfStamina(false);
 				}
-				
+
 			} else if(super.getStamina()>0) {
 				vX = vX*getSprintSpeed();
 				super.setSprint(true);
@@ -137,7 +139,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public HUD getHUD() {
 		return display;
 	}
-	
+
 	public boolean isReloading() {
 		if(weapon instanceof RangedWeapon) {
 			RangedWeapon rw = ((RangedWeapon) weapon);
@@ -157,6 +159,10 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+	}
+	
+	public boolean shouldRemove() {
+		return false;
 	}
 
 }
