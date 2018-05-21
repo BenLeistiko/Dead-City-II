@@ -1,27 +1,27 @@
 //****stamina is in seconds****//
 //****staminaRegen is in stamina/second****//
-//****fireRate is in rounds/second****//
+//****fireRate is in milliseconds****//
 //****accuracy ranges from low-med-high from 0-1-2****//
 //****weapon types - 0 is melee, 1 is ranged****//
 //****projectile types - 0 is bullet, 1 is lazer****//
 
 Trooper
 health=100
-healthRegen=1
+healthRegen=3
 armour=.3
 speed=10
 stamina=10
 staminaRegen=.6
 weaponType=1
-damage=8
+damage=9
 firerate=500
-ammo=1
+ammo=10
 projectiletype=0
 projectilespeed=50
 accuracy=1
 agility=.5
 jumpPower = 25
-reloadTime = 1000
+reloadTime = 850
 
 Commander
 health=1
@@ -96,51 +96,51 @@ jumpPower = 25
 reloadTime = 1000
 
 BasicZombie
-health=1
+health=10
 healthRegen=1
 armour=.1
-speed=1
+speed=1.9
 stamina=1
 staminaRegen=1
-weaponType=1
-damage=1
-firerate=1
+weaponType=-1
+damage=10
+firerate=900
 ammo=1
 projectiletype=1
 projectilespeed=1
 accuracy=1
-agility=.5
+agility=.1
 jumpPower = 25
 reloadTime = 1000
 
 SkirtZombie
-health=1
+health=15
 healthRegen=1
 armour=.1
-speed=1
+speed=2.8
 stamina=1
 staminaRegen=1
-weaponType=1
-damage=1
-firerate=1
-ammo=1
-projectiletype=1
-projectilespeed=1
+weaponType=-1
+damage=9
+firerate=600
+ammo=-1
+projectiletype=-1
+projectilespeed=-1
 accuracy=1
 agility=.5
 jumpPower = 25
 reloadTime = 1000
 
 BoneZombie
-health=1
+health=9
 healthRegen=1
 armour=.1
-speed=1
+speed=1.5
 stamina=1
 staminaRegen=1
 weaponType=1
-damage=1
-firerate=1
+damage=9
+firerate=800
 ammo=1
 projectiletype=1
 projectilespeed=1

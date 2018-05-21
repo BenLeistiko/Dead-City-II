@@ -64,6 +64,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private boolean isAttacking;
 
 	private ArrayList<Sprite> worldlyThings;
+	
+	private String animationKey;
 
 	/**
 	 * Creates a new creature.  It's state is currently standing when created.  It will stay 2 frames on each picture by defualt.
@@ -125,6 +127,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		this.worldlyThings =  worldlyThings;
 
 		ranOutOfStamina =false;
+		
+		this.animationKey = animationKey;
 	}
 
 
@@ -243,7 +247,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		if(stamina <0) {
 			stamina = 0;
 			ranOutOfStamina = true;
-		}else if(isSprinting && super.getvX()!= 0) {
+		}else if(isSprinting && super.getvX() != 0) {
 			stamina -= Main.frameTime;
 		} else if(stamina < maxStamina) {
 			stamina +=this.regenStamina*Main.frameTime;
@@ -473,5 +477,17 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	public void setRanOutOfStamina(boolean ranOutOfStamina) {
 		this.ranOutOfStamina = ranOutOfStamina;
+	}
+
+
+
+	public String getAnimationKey() {
+		return animationKey;
+	}
+
+
+
+	public void setAnimationKey(String animationKey) {
+		this.animationKey = animationKey;
 	}
 }

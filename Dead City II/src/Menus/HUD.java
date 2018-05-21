@@ -27,16 +27,16 @@ public class HUD implements Drawable{
 	private int ammo,maxAmmo;
 	private float HUDWidth;
 	private PImage hero;
-	
+
 	private boolean isReloading;
-	
+
 	private static final float healthBarOffset = 4;
 	private static final float staminaBarOffset = 24;
 	private static final float bulletBarOffset = 44;
 	public static final float xScaleFactor = 2;
 	public static final float yScaleFactor = 2;
-	
-	
+
+
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
 	bulletBarCap,healthBarCap,staminaBarCap;
@@ -44,7 +44,7 @@ public class HUD implements Drawable{
 	private final int numBars;
 
 	public HUD() {
-		
+
 		health = 0;
 		maxHealth = 0;
 		stamina = 0;
@@ -53,7 +53,7 @@ public class HUD implements Drawable{
 		maxAmmo = 0;
 		numBars=10;
 		isReloading = false;
-	//	this.s=s;
+		//	this.s=s;
 		visSpace = new Rectangle2D.Double();
 
 		HUD = Main.resources.getImage("HUD");
@@ -74,51 +74,51 @@ public class HUD implements Drawable{
 
 
 	public void draw(PApplet marker) {
-	
 
-			marker.pushMatrix();
+
+		marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
-			marker.image(HUD, (float)visSpace.getX(), (float)visSpace.getY());
+		marker.image(HUD, (float)visSpace.getX(), (float)visSpace.getY());
 
-			//empty bars
-			for(int i = 0;i <numBars;i++) {	
-				if(i==0) {
-					marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*healthBarOffset));
-					marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*staminaBarOffset));
-					marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*bulletBarOffset));
-				}else {
+		//empty bars
+		for(int i = 0;i <numBars;i++) {	
+			if(i==0) {
+				marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*healthBarOffset));
+				marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*staminaBarOffset));
+				marker.image(firstEmptyBar, (float)(visSpace.getX()+1*(HUD.width-.5)), (float)(visSpace.getY()+yScaleFactor*bulletBarOffset));
+			}else {
 
-					marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*healthBarOffset));
-					marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*staminaBarOffset));
-					marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*bulletBarOffset));
-				}
+				marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*healthBarOffset));
+				marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*staminaBarOffset));
+				marker.image(emptyBar, (float) (visSpace.getX()+1*(HUD.width+firstEmptyBar.width*i-.5)), (float) (visSpace.getY()+yScaleFactor*bulletBarOffset));
 			}
+		}
 
-			//health bars
-			for(int i = 0;i <healthRatio*numBars;i++) {	
-				if(i==0) {
-					marker.image(firstHealthBar, (float)(1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
-				}else {
-					marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
-				}
+		//health bars
+		for(int i = 0;i <healthRatio*numBars;i++) {	
+			if(i==0) {
+				marker.image(firstHealthBar, (float)(1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
+			}else {
+				marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
 			}
-			marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-2)));
+		}
+		marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-2)));
 
 
-			//stamina bars
+		//stamina bars
 
-			for(int i = 0;i <staminaRatio*numBars;i++) {	
-				if(i==0) {
-					marker.image(firstStaminaBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
-				}else {
-					marker.image(staminaBar, (float) (1*(visSpace.getX()+HUD.width+firstStaminaBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
-				}
+		for(int i = 0;i <staminaRatio*numBars;i++) {	
+			if(i==0) {
+				marker.image(firstStaminaBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
+			}else {
+				marker.image(staminaBar, (float) (1*(visSpace.getX()+HUD.width+firstStaminaBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
 			}
+		}
 
-			marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*numBars-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-2f)));
+		marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*numBars-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-2f)));
 
-			//bullet bars
-
+		//bullet bars
+		if(!isReloading) {
 			for(int i = 0;i <ammoRatio*numBars;i++) {	
 				if(i==0) {
 					marker.image(firstBulletBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
@@ -126,28 +126,35 @@ public class HUD implements Drawable{
 					marker.image(bulletBar, (float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
 				}
 			}
+		}else {
+			marker.fill(255);
+			marker.textAlign(marker.LEFT, marker.TOP);
+			marker.textSize(20);
+			marker.text("RELOADING...", (float) (1*(visSpace.getX()+HUD.width+20)), (float) (visSpace.getY()+(yScaleFactor*(bulletBarOffset+2))));
+		}
+		
+		
+		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
 
-			marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
+		//marker.image(Main.resources.getAnimation(Main.resources.TROOPER, 1),(float) visSpace.getX(), (float) visSpace.getY());
+		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
-			//marker.image(Main.resources.getAnimation(Main.resources.TROOPER, 1),(float) visSpace.getX(), (float) visSpace.getY());
-			marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
-			
-			
+		/*
 			if(isReloading) {
 				Color c = new Color(255,0,0);
 				marker.fill(0);
 
 				marker.rect((float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)),numBars*bulletBar.width,bulletBar.height);
-				
+
 				marker.fill(255);
 				marker.textAlign(marker.LEFT, marker.TOP);
 				marker.textSize(20);
 				marker.text("RELOADING", (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
 			}
-			
-		
-			marker.popMatrix();
-		}
+
+		 */
+		marker.popMatrix();
+	}
 
 
 	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
@@ -176,10 +183,10 @@ public class HUD implements Drawable{
 		ammoRatio = ammo/(double)maxAmmo;
 
 		this.hero = h.getStanding().get(0);
-		
+
 		isReloading = h.isReloading();
-		
-		
+
+
 	}
 
 	public Rectangle2D.Double getHitBox() {

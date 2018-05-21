@@ -64,7 +64,6 @@ public class Bullet extends MovingSprite implements Destructive {
 					if(s instanceof Damageable) {//if damageable do damage
 						Damageable damageableSprite = ((Damageable) s);
 						damageableSprite.takeDamage(getDamage());
-						System.out.println("Damage Dealt: "+ getDamage());
 					}
 				
 					return true;//still means it hit something
