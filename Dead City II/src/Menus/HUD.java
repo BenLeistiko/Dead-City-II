@@ -136,9 +136,11 @@ private boolean isAlive;
 		
 		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
 
-		//marker.image(Main.resources.getAnimation(Main.resources.TROOPER, 1),(float) visSpace.getX(), (float) visSpace.getY());
 		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
+		
+		
+		
 		/*
 			if(isReloading) {
 				Color c = new Color(255,0,0);
