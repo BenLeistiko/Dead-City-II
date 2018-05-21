@@ -104,7 +104,7 @@ private boolean isAlive;
 				marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
 			}
 		}
-		marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-2)));
+		marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-4)));
 
 
 		//stamina bars
@@ -117,7 +117,7 @@ private boolean isAlive;
 			}
 		}
 
-		marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*numBars-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-2f)));
+		marker.image(staminaBarCap,(float) (1*((visSpace.getX()+HUD.width+firstStaminaBar.width*numBars-.5))), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset-4f)));
 
 		//bullet bars
 		if(!isReloading) {
@@ -136,7 +136,7 @@ private boolean isAlive;
 		}
 		
 		
-		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-3)));
+		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-4)));
 
 		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
