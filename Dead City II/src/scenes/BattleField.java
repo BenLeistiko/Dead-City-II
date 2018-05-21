@@ -74,11 +74,17 @@ public class BattleField extends Scene {
 	}
 
 	public void draw() {
-		
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 
 		super.draw();
+		
+		
+		if(joe.isAlive()) {
+			joe.draw(this);
+		}
+		
+		
 		display.update(this,(Hero)super.getFocusedSprite());
 
 		for(Monster m: super.getMonsters()) {
@@ -99,7 +105,14 @@ public class BattleField extends Scene {
 			super.changePanelAndPause("Pause");
 		}
 
+		joe.keyPressed(this);
 
+	}
+	
+	public void keyReleased() {
+		super.keyReleased();
+		
+		joe.keyReleased(this);
 	}
 
 

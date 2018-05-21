@@ -132,7 +132,7 @@ public abstract class Scene extends PApplet {
 
 	public void setup(Sprite focusedSprite) {
 		this.focusedSprite = focusedSprite;
-		addAtEnd(focusedSprite);
+	//	addAtEnd(focusedSprite);
 	}
 
 
