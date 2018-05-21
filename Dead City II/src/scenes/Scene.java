@@ -141,6 +141,7 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void draw() {
+		Main.isBattle = false;
 		//background(255,255,255);
 		this.pushMatrix();
 		updateRatios();
