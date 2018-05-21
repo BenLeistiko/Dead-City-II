@@ -22,7 +22,7 @@ public class Supplies implements Drawable {
 		return null;
 	}
 
-	@Override 
+	@Override
 	public void act(Scene s) {
 		// TODO Auto-generated method stub
 		
