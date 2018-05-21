@@ -208,7 +208,7 @@ public class ResourceLoader {
 			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
 		}
 		if(textures.get(name).get(bounds).get(cropBounds) == null) {
-			System.out.println("x: " + bounds.x + " y: " + bounds.y);
+		//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);

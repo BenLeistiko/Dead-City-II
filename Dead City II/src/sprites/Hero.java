@@ -28,6 +28,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private Weapon weapon;
 	private Scene s;
 	private HUD display; 
+	
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon,ArrayList<Sprite> worldlyThings, Scene s) {
 		super(x, y, w, h, worldlyThings, animationKey);
@@ -36,10 +37,11 @@ public class Hero extends Creature implements Clickable, Typeable {
 		mouseButtonsPressed = new ArrayList<Integer>();
 		this.s=s;
 		display = new HUD(s);
+		
 	}
-	
-	
-	
+
+
+
 	public void keyPressed(PApplet marker) {
 		if(!keysPressed.contains(marker.keyCode))
 			keysPressed.add(marker.keyCode);
@@ -59,11 +61,17 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-		display.update(this);
-		display.draw(marker);
 
+		super.draw(marker);
+
+	}
+
+	public void act() {
+		super.act();
+
+		display.update(this);
 		weapon.act();
-		
+
 		double vX = 0;
 		if(keysPressed.contains(KeyEvent.VK_W)) {//w
 			super.jump();
@@ -78,11 +86,21 @@ public class Hero extends Creature implements Clickable, Typeable {
 			vX = vX + super.getSpeed();
 		}
 		if(keysPressed.contains(KeyEvent.VK_SHIFT)  && isOnSurface()) {//shift
-			vX = vX*getSprintSpeed();
-			super.setSprint(true);
+			if(super.didRunOutOfStamina() ) {
+				if(super.getStamina()>super.getMaxStamina()/4) {
+					vX = vX*getSprintSpeed();
+					super.setSprint(true);
+					setRanOutOfStamina(false);
+				}
+				
+			} else if(super.getStamina()>0) {
+				vX = vX*getSprintSpeed();
+				super.setSprint(true);
+			}
 		}else {
 			super.setSprint(false);
 		}
+
 		if(keysPressed.contains(KeyEvent.VK_R)) {//r for reloading
 			if(weapon instanceof RangedWeapon) {
 				((RangedWeapon) weapon).reload();
@@ -104,12 +122,14 @@ public class Hero extends Creature implements Clickable, Typeable {
 				weapon.perform(this, super.getDirection(), super.getWorldlyThings());
 			}
 		}
-		super.draw(marker);
-	}
 
+	}
 	public Weapon getWeapon() {
 		return weapon;
 
+	}
+	public HUD getHUD() {
+		return display;
 	}
 
 }

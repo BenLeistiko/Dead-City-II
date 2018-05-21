@@ -26,10 +26,11 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double stamina;
 	private double speed;
 	private double jumpPower;
-	
+	private boolean ranOutOfStamina;
+
 	private final double maxHealth;
 	private final double maxStamina;
-	
+
 	private double regenHealth;//in Health per second
 	private double regenStamina;//in Stamina per second
 
@@ -98,36 +99,38 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		framesPerJumping = 4;
 		framesPerMovingAndAttacking = 2;
 
-	//	health = 100;
+		//	health = 100;
 		health = Main.resources.getStat(animationKey, Main.resources.HEALTH);
 		//defense = .5;
 		defense = Main.resources.getStat(animationKey, Main.resources.ARMOUR);
-		
-	//	agility = 0;
+
+		//	agility = 0;
 		agility = Main.resources.getStat(animationKey, Main.resources.AGILITY);
 		stamina = Main.resources.getStat(animationKey, Main.resources.STAMINA);
 		//speed = 10;
 		speed = Main.resources.getStat(animationKey, Main.resources.SPEED);
-	//	jumpPower = 25;
+		//	jumpPower = 25;
 		jumpPower = Main.resources.getStat(animationKey, Main.resources.JUMPPOWER);
-		
+
 		maxHealth = health;
 		maxStamina = stamina;
-		
-//		regenHealth = 1;
+
+		//		regenHealth = 1;
 		regenHealth = Main.resources.getStat(animationKey, Main.resources.HEALTHREGEN);
-	//	regenStamina = 1;
+		//	regenStamina = 1;
 		regenStamina = Main.resources.getStat(animationKey, Main.resources.STAMINAREGEN);
 
 		direction = 1;
 
 		this.worldlyThings =  worldlyThings;
+
+		ranOutOfStamina =false;
 	}
 
 
 
 	public void act() {
-		
+
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
@@ -211,8 +214,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 			setvX(0);
 
 		moveToLocation(xCoord2,yCoord2);
-		
-		
+
+
 		if(isAttacking) {
 			if(Math.abs(getvX()) < 0.000001 || !isOnSurface()) {
 				state = State.ATTACKING;
@@ -224,21 +227,31 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		}else if(!isOnSurface()) {
 			state = State.JUMPING;
 		}else if(isSprinting) {
-			state = State.RUNNING;		
+			state = State.RUNNING;
+
 		}else {
 			state = State.WALKING;
 		}
-		
+
 		if(health < maxHealth) {
 			health = health + this.regenHealth*Main.frameTime;
 		}else {
 			health = maxHealth; 
 		}
-		
-		if(stamina < maxStamina) {
-			stamina = stamina + this.regenStamina*Main.frameTime;
-		}else {
-			stamina = maxStamina; 
+
+		System.out.println(stamina);
+		System.out.println("ran out? " + ranOutOfStamina);
+
+		if(stamina <0) {
+			stamina = 0;
+			ranOutOfStamina = true;
+		}else if(isSprinting && super.getvX()!= 0) {
+			stamina -= Main.frameTime;
+		} else if(stamina < maxStamina) {
+			stamina +=this.regenStamina*Main.frameTime;
+
+		} else {
+			stamina = maxStamina;
 		}
 	}
 
@@ -353,9 +366,22 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	}
 
 	public void jump() {
-		if(state != State.JUMPING && isOnSurface()) {
-			setvY(-jumpPower);
+		if(state != State.JUMPING && isOnSurface() && stamina>=1) {
+			if(ranOutOfStamina) {
+				if(stamina > maxStamina/4) {
+					setvY(-jumpPower);
+					stamina--;
+					ranOutOfStamina = false;
+				}
+			}else {
+				setvY(-jumpPower);
+				stamina--;
+			}
 		}
+
+		
+
+
 	}
 
 	public boolean isOnSurface() {
@@ -412,15 +438,15 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	public boolean shouldRemove(){
 		return health<=0;
 	}
-	
+
 	public double getMaxHealth() {
 		return maxHealth;
 	}
-	
+
 	public void setMaxHealth() {
-		 health = maxHealth;
+		health = maxHealth;
 	}
-	
+
 	public double getMaxStamina() {
 		return maxStamina;
 	}
@@ -435,5 +461,17 @@ public abstract class Creature extends MovingSprite implements Damageable {
 
 	public void setStanding(ArrayList<PImage> standing) {
 		this.standing = standing;
+	}
+
+
+
+	public boolean didRunOutOfStamina() {
+		return ranOutOfStamina;
+	}
+
+
+
+	public void setRanOutOfStamina(boolean ranOutOfStamina) {
+		this.ranOutOfStamina = ranOutOfStamina;
 	}
 }

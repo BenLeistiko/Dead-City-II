@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 
 import gamePlay.Main;
+import interfaces.Drawable;
 import items.RangedWeapon;
 import items.Weapon;
 import processing.core.PApplet;
@@ -13,7 +14,7 @@ import scenes.BattleField;
 import scenes.Scene;
 import sprites.Hero;
 
-public class HUD extends Menu{
+public class HUD implements Drawable{
 
 	private Scene s;
 	private Rectangle2D.Double visSpace;
@@ -32,8 +33,8 @@ public class HUD extends Menu{
 	private static final float bulletBarOffset = 44;
 	public static final float xScaleFactor = 2;
 	public static final float yScaleFactor = 2;
-
-
+	
+	
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
 	bulletBarCap,healthBarCap,staminaBarCap;
@@ -41,14 +42,14 @@ public class HUD extends Menu{
 	private final int numBars;
 
 	public HUD(Scene s) {
-		super(true);
+		
 		health = 0;
 		maxHealth = 0;
 		stamina = 0;
 		maxStamina=0;
 		ammo = 0;
 		maxAmmo = 0;
-		numBars=20;
+		numBars=10;
 		this.s=s;
 		visSpace = new Rectangle2D.Double();
 
@@ -70,8 +71,8 @@ public class HUD extends Menu{
 
 
 	public void draw(PApplet marker) {
-	if(super.isVisible()) {
-System.out.println(ammo);
+	
+
 			marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
 			marker.image(HUD, (float)visSpace.getX(), (float)visSpace.getY());
@@ -161,7 +162,7 @@ System.out.println(ammo);
 		}
 
 
-	}
+	
 
 	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 	public void update(Hero h) {
@@ -192,8 +193,8 @@ System.out.println(ammo);
 		
 	}
 
-	public Double getHitBox() {
-		return null;
+	public Rectangle2D.Double getHitBox() {
+		return visSpace;
 	}
 
 	public boolean shouldRemove() {
