@@ -37,7 +37,13 @@ public class Main {
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = 1;
 	public static boolean isBattle;
+	
+	private double battleVolume = 0;
+	private double chillVolume = 0;
 
+	BetterSound battle;
+	BetterSound chill;
+	
 	public static ResourceLoader resources;
 
 	private JFrame window;
@@ -99,9 +105,8 @@ public class Main {
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
-		BetterSound b = new BetterSound(this.resources.getSound("Chill"), false, true);
-		b.setVolume(0);
-		b.start();
+		chill = new BetterSound(this.resources.getSound("Chill"), true, true);
+		battle = new BetterSound(this.resources.getSound("Battle"), true, true);
 	}
 
 	/**
@@ -136,6 +141,16 @@ public class Main {
 	}
 	
 	public void manageMusic() {
+		if(isBattle) {
+			battleVolume = Math.min(battleVolume + 0.01, 1);
+			chillVolume = Math.min(chillVolume - 0.01, 0);
+		}else {
+			battleVolume = Math.min(battleVolume - 0.01, 0);
+			chillVolume = Math.min(chillVolume + 0.01, 1);
+		}
+		
+		battle.setVolume(battleVolume);
+		chill.setVolume(chillVolume);
 		
 	}
 }

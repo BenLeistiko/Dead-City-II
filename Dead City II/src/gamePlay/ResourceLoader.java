@@ -195,6 +195,7 @@ public class ResourceLoader {
 			sounds.put("EmptyClick",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
 			sounds.put("Reload",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "reload.wav"));
 			sounds.put("Chill",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "ChillMusic_Small.wav"));
+			sounds.put("Battle",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "BattleMusic_Small.wav"));
 
 
 		} catch (IOException e) {

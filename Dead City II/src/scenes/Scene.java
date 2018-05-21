@@ -141,6 +141,7 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void draw() {
+		Main.isBattle = false;
 		//background(255,255,255);
 		this.pushMatrix();
 		updateRatios();
@@ -176,6 +177,7 @@ public abstract class Scene extends PApplet {
 			if(zombies.get(i).shouldRemove())
 				zombies.remove(i);
 		}
+		m.manageMusic();
 	}
 
 	public boolean slideWorldToImage() {
