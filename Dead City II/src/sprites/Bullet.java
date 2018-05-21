@@ -2,8 +2,12 @@ package sprites;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioFormat;
+
+import gamePlay.BetterSound;
 import gamePlay.Main;
 import interfaces.Damageable;
 import interfaces.Destructive;
@@ -32,7 +36,8 @@ public class Bullet extends MovingSprite implements Destructive {
 		this.sprites = sprites;
 		alive = true;
 		this.dir = dir;
-		Main.resources.getSound("Shoot").play();
+		BetterSound b = new BetterSound(Main.resources.getSound("Shoot"), true,false);
+
 	}
 
 	public void act() {

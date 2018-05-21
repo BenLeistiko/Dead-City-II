@@ -3,9 +3,11 @@ package sprites;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.ArrayList;
 
 import Menus.HUD;
+import gamePlay.BetterSound;
 import gamePlay.Main;
 import interfaces.Clickable;
 import interfaces.Typeable;
@@ -95,7 +97,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 					attack();
 					weapon.perform(this, super.getDirection(), super.getWorldlyThings());
 				} else {
-					Main.resources.getSound("emptyClick").play();
+					new BetterSound(Main.resources.getSound("EmptyClick"),true,false);
 				}
 			}else {
 				attack();

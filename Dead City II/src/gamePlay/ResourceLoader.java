@@ -15,6 +15,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Menus.HUD;
 import processing.core.PApplet;
@@ -39,6 +42,7 @@ public class ResourceLoader {
 	private HashMap<String,  HashMap<String,Double>> statistics;
 	private HashMap<String, ArrayList<Point>> Offsets;
 	private HashMap<String, Integer> framesPerAnimation;
+	private HashMap<String, Double> ScaleFactor;
 	private ArrayList<String> characters;
 	private ArrayList<String> attributes;
 	public static final String TROOPER = "Trooper";
@@ -70,19 +74,13 @@ public class ResourceLoader {
 	public static final String JUMPPOWER = "jumpPower";
 	public static final String RELOADTIME = "reloadTime";
 	
-
-
-	private HashMap<String,EasySound2> sounds;
-
-
-
-
-
+	private HashMap<String,File> sounds;
+	
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
 		textures = new HashMap<String, HashMap<Point, HashMap<Point, PImage>>>();
-		sounds = new HashMap<String, EasySound2>();
+		sounds = new HashMap<String, File>();
 
 		statistics = new HashMap<String,  HashMap<String,Double>>();
 
@@ -149,7 +147,7 @@ public class ResourceLoader {
 		animationNames.add("BoneZombie");
 		animationNames.add("SkirtZombie");
 		animationNames.add("Trooper");
-
+		//parseAnimations();
 		try {
 			for(String name: animationNames) {
 				for(String state:states) {
@@ -183,8 +181,8 @@ public class ResourceLoader {
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
 
 			//****Loading Sounds****
-			sounds.put("Shoot", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
-			sounds.put("emptyClick", new EasySound2("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
+			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
+			sounds.put("EmptyClick",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "emptyClick.wav"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -235,7 +233,7 @@ public class ResourceLoader {
 		return images.get(key); 
 	}
 
-	public EasySound2 getSound(String key) {
+	public File getSound(String key) {
 		return sounds.get(key);
 	}
 
@@ -256,7 +254,48 @@ public class ResourceLoader {
 
 	public void parseAnimations() {
 		ArrayList<String> Animations = FileIO.readFile("resources" + fileSeparator + "Animations.txt");
-
+		String currentCreature = null;
+		String currentAnimationState = null;
+		ArrayList<PImage> animations = null;
+		int width = 0;
+		int height = 0;
+		for(int i = 0 ; i < Animations.size(); i++) {
+			String s = Animations.get(i);
+			char one = s.charAt(0);
+			if(one != '/') {
+				if(one == '#') {
+					currentCreature = s.substring(1,s.indexOf("="));
+					s = s.substring(s.indexOf("="));
+					width = Integer.parseInt(s.substring(s.indexOf(',')+1,s.lastIndexOf(',')));
+					s=s.substring(s.indexOf(',')+1);
+					height = Integer.parseInt(s.substring(0,s.indexOf(',')));
+					s=s.substring(s.indexOf(',')+1);
+					System.out.println(s);
+					ScaleFactor.put(currentCreature, Double.parseDouble(s));
+					animations = new ArrayList<PImage>();
+				}else if(one == '*') {
+					currentAnimationState = s.substring(s.indexOf("*")+1, s.indexOf("="));
+					s = s.substring(s.indexOf("=")+1);
+					this.framesPerAnimation.put(currentCreature+currentAnimationState, Integer.parseInt(s));
+				}else {
+					String num = s.substring(0,s.indexOf("="));
+					int x = Integer.parseInt(s.substring(s.indexOf("=")+1,s.indexOf(",")));
+					int y = Integer.parseInt(s.substring(s.lastIndexOf(",")));
+					ArrayList<Point> off = Offsets.get(currentCreature+currentAnimationState);
+					if(off == null) {
+						Offsets.put(currentCreature+currentAnimationState, new ArrayList<Point>());
+						off = Offsets.get(currentCreature+currentAnimationState);
+					}
+					off.add(new Point(x,y));
+					try {
+						animations.add(new PImage(ImageIO.read(new File("resources" +fileSeparator + currentCreature + fileSeparator + currentAnimationState + fileSeparator + num + ".png"))));
+						System.out.println("added:" + "resources" +fileSeparator + currentCreature + fileSeparator + currentAnimationState + fileSeparator + num + ".png");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 	
 	public void parseStats(ArrayList<String> statsFile) {
