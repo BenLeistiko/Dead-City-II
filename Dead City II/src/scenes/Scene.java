@@ -177,7 +177,7 @@ public abstract class Scene extends PApplet {
 			if(zombies.get(i).shouldRemove())
 				zombies.remove(i);
 		}
-		//image(Main.resources.getImage("BattleFieldBackground"),(float)getVisSpace().getX(),(float) getVisSpace().getY());
+		m.manageMusic();
 	}
 
 	public boolean slideWorldToImage() {
