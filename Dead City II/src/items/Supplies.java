@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D.Double;
 
 import interfaces.Drawable;
 import processing.core.PApplet;
+import scenes.Scene;
 
 public class Supplies implements Drawable {
 
@@ -22,7 +23,7 @@ public class Supplies implements Drawable {
 	}
 
 	@Override
-	public void act() {
+	public void act(Scene s) {
 		// TODO Auto-generated method stub
 		
 	}

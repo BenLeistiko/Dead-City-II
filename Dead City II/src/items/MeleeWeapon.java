@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import interfaces.Damageable;
 import interfaces.Destructive;
+import scenes.Scene;
 import sprites.Creature;
 import sprites.Sprite;
 /**
@@ -27,8 +28,8 @@ public class MeleeWeapon extends Weapon implements Destructive {
 	}
 
 
-	public void perform(Creature hero, int dir, ArrayList<Sprite> sprites) {
-
+	public void perform(Creature hero, int dir, Scene scene) {
+		ArrayList<Sprite> sprites = scene.getWorldlyThings();
 		if(System.currentTimeMillis()-timeLastUpdated>getAttackRate()) {
 			Rectangle2D target;
 			for(Sprite s: sprites) {
