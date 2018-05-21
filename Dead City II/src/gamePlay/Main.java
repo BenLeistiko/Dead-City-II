@@ -36,6 +36,7 @@ public class Main {
 	public static final double frameTime = 1/40.0;
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = 1;
+	public static boolean isBattle;
 
 	public static ResourceLoader resources;
 
@@ -98,6 +99,9 @@ public class Main {
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
+		BetterSound b = new BetterSound(this.resources.getSound("Chill"), false, true);
+		b.setVolume(0);
+		b.start();
 	}
 
 	/**
@@ -129,5 +133,9 @@ public class Main {
 		for(PSurfaceAWT surf:c) {
 			surf.setSize(match.getWidth(),match.getHeight());
 		}
+	}
+	
+	public void manageMusic() {
+		
 	}
 }

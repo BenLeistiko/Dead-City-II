@@ -3,22 +3,23 @@ package gamePlay;
 import java.io.File;
 import java.io.IOException;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class BetterSound extends Thread {
 	Clip c;
 	boolean loop;
+	FloatControl volume;
 
 	public BetterSound(File f, boolean runWhenCreated, boolean loop) {
 		this.loop = loop;
 		try {
 			c = AudioSystem.getClip();
 			c.open(AudioSystem.getAudioInputStream(f));
+			volume = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
 		} catch (LineUnavailableException e) {
 			System.out.println("ERROR, line unavalible");
 		} catch (IOException e) {
@@ -40,7 +41,15 @@ public class BetterSound extends Thread {
 			c.loop(c.LOOP_CONTINUOUSLY);
 		c.start();
 	}
-	
+
+	/**
+	 * Sets the volume of this clip
+	 * @param vol - 0 to 1
+	 */
+	public void setVolume(double vol) {
+		volume.setValue((float) ((volume.getMaximum() - volume.getMinimum())*vol+volume.getMinimum()));
+	}
+
 	public boolean isRunning() {
 		return c.isRunning();
 	}
