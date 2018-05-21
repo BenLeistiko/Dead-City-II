@@ -38,6 +38,8 @@ public class BattleField extends Scene {
 	private int mobsSpawn;
 
 	private HUD display;
+	
+	private Hero joe;
 	//private boolean paused;
 
 
@@ -53,7 +55,7 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-		mobsSpawn = 10;
+		mobsSpawn = 30;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
@@ -62,7 +64,7 @@ public class BattleField extends Scene {
 		generatePlatforms(80,100);
 		generateMobs(mobsSpawn);
 
-		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
+		joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME),this),super.getWorldlyThings());
 		setup(joe);
@@ -73,7 +75,7 @@ public class BattleField extends Scene {
 
 	public void draw() {
 		//background(255, 255, 255);
-
+		Main.resources.getImage("BattleFieldBackground").resize(width, height);
 		background(Main.resources.getImage("BattleFieldBackground"));
 		super.draw();
 
