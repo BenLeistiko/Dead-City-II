@@ -83,9 +83,9 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	public void act(Scene scene) {
 		if(swapToTarget){
-			System.out.println(target);
+			
 			if(makeNewScene) {
-				System.out.println("\tNewScene");
+			
 				scene.newBattleField();
 			}
 			scene.changePanelAndPause(target);
