@@ -7,7 +7,7 @@
 
 Trooper
 health=100
-healthRegen=3
+healthRegen=0
 armour=.3
 speed=10
 stamina=10

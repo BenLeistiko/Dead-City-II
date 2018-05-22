@@ -184,8 +184,15 @@ public class ResourceLoader {
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
 			images.put("BattleFieldBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif")))));
 			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
-			images.put("Health", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Health.png")))));
-			images.put("StaminaBoost", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"StaminaBoost.png")))));
+			
+			PImage health =new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Health.png"))));
+			health.resize(30, 30);
+			images.put("Health",health );
+			
+			
+			PImage stamina =new PImage(ImageIO.read(new File(("resources"+fileSeparator+"StaminaBoost.png"))));
+			stamina.resize(50, 50);
+			images.put("StaminaBoost",stamina );
 
 			//****Loading Sounds****
 			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));

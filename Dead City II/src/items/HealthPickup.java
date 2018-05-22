@@ -1,5 +1,6 @@
 package items;
 
+import gamePlay.Main;
 import processing.core.PApplet;
 import scenes.Scene;
 import sprites.Creature;
@@ -11,8 +12,8 @@ public class HealthPickup extends Pickup{
 
 	private double healthBoost;
 
-	public HealthPickup(double x, double y, double width, double height, double boostAmount) {
-		super(x,y,width,height,"Health");
+	public HealthPickup(double x, double y, double boostAmount) {
+		super(x,y,Main.resources.getImage("Health").width,Main.resources.getImage("Health").height,"Health");
 		this.healthBoost=boostAmount;
 	}
 

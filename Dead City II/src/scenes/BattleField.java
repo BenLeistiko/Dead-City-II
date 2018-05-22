@@ -8,24 +8,12 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 
-import Menus.HUD;
-import gamePlay.Button;
-import gamePlay.Main;
-import gamePlay.ResourceLoader;
-import interfaces.Clickable;
-import interfaces.Damageable;
-import interfaces.Destructive;
-import interfaces.Drawable;
-import interfaces.Typeable;
-import items.RangedWeapon;
+import Menus.*;
+import gamePlay.*;
+import interfaces.*;
+import items.*;
 import processing.core.PApplet;
-import sprites.Barrier;
-import sprites.Bullet;
-import sprites.Creature;
-import sprites.DamageableBarrier;
-import sprites.Hero;
-import sprites.Monster;
-import sprites.Sprite;
+import sprites.*;
 
 public class BattleField extends Scene {
 
@@ -35,14 +23,15 @@ public class BattleField extends Scene {
 	private int groundThickness;
 	private double groundHeight;
 
-	private int mobsSpawn;
+	private int amtOfMobsSpawn;
+	private int amtOfPowerUpsSpawn;
 
 	private HUD display;
 
 
 
 	public BattleField(Main m, Hero hero) {
-		super(m, hero, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
+		super(m, hero, new Rectangle2D.Double(0,0,25000,2000), 200, 400, 100);	
 		groundThickness = 1000;
 
 
@@ -52,14 +41,19 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-		mobsSpawn = 30;
+		amtOfMobsSpawn = 30;
+		amtOfPowerUpsSpawn = 30;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
 		generateHill(10);
 		generatePlatforms(80,100);
-		generateMobs(mobsSpawn);
+		generateMobs(amtOfMobsSpawn);
+		generatePowerUps(amtOfPowerUpsSpawn);
+
+		Pickup wow = new StaminaPickup(12700,50,2);
+		this.add(wow);
 
 		display = super.getFocusedSprite().getHUD();
 		this.add(display);
@@ -68,28 +62,24 @@ public class BattleField extends Scene {
 	public void draw() {
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
-		
-		System.out.println(width +", " + height);
+
+		display.update(this,(Hero)super.getFocusedSprite());	
+		System.out.println(((Hero)(super.getFocusedSprite())).getStamina());
+
+
 		super.draw();
-	
-		if(!super.getFocusedSprite().isAlive()) {
+
+		if(!super.getFocusedSprite().isAlive()) {//lose condition
 			super.changePanelAndPause("Death");
-			//	joe.act();
-		//	joe.draw(this);
+
 		}
-		
-		
-		display.update(this,(Hero)super.getFocusedSprite());
- 
-		//for(Monster m: super.getMonsters()) {
-			//m.act(this);
-		//}
-		
-		
-	//	System.out.println(getMonsters().size());
-		if(super.getMonsters().size() == 0) {
+
+		if(super.getMonsters().size() == 0) {//win conditions
 			super.changePanelAndPause("Camp");
 		}
+
+
+
 
 	}
 
@@ -108,10 +98,10 @@ public class BattleField extends Scene {
 		super.getFocusedSprite().keyPressed(this);
 
 	}
-	
+
 	public void keyReleased() {
 		super.keyReleased();
-		
+
 		super.getFocusedSprite().keyReleased(this);
 	}
 
@@ -140,7 +130,7 @@ public class BattleField extends Scene {
 		for(int i = 0; i < numOfHills; i++) {
 			boolean generate = false;
 			while(generate == false) {
-				
+
 				double a1 = Math.toRadians(Math.random()*30+45);
 				double a2 = Math.toRadians(Math.random()*30+45);
 				double x = getWorldSpace().getX() + getWorldSpace().getWidth()*Math.random();
@@ -172,7 +162,7 @@ public class BattleField extends Scene {
 		generateGround();
 		generateHill(10);
 		generatePlatforms(80,100);
-		generateMobs(mobsSpawn);
+		generateMobs(amtOfMobsSpawn);
 		super.getFocusedSprite().setRect(250000, 0, super.getFocusedSprite().getWidth(), super.getFocusedSprite().getHeight());
 		super.addAtEnd(super.getFocusedSprite());
 		display = super.getFocusedSprite().getHUD();
@@ -194,10 +184,10 @@ public class BattleField extends Scene {
 			double x2 = x+h*Math.tan(a2);
 			double startX = x1+100*Math.tan(a1);
 			double endX = x2-100*Math.tan(a2);
-			
+
 			for(int  i = (int) startX;i<=endX;i=i+100) {
 				DamageableBarrier grass = new DamageableBarrier(i-50,floor-100,100,100,Main.resources.getImage("Grass").width,Main.resources.getImage("Grass").height,"Grass",5,0);
-			
+
 				if(!grass.collides(getWorldlyThings())) {
 					add(grass);
 				}
@@ -224,19 +214,26 @@ public class BattleField extends Scene {
 			add(plat);
 		}
 	}
- 
+
 	public void generateMobs(int amtToSpawn) {
 		ArrayList<String> mobTypes = Main.resources.getBadMobNames();
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
-			Monster zomb = new Monster(mobTypes.get(rand),49000*Math.random(),100,100,100);
+			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getHeight()-2000)*Math.random()+1000,100,100,100);
 
 			add(zomb);
 			super.getMonsters().add(zomb);
 		}
-
-
+	}
+	
+	public void generatePowerUps(int amtToSpawn) {
+		
+		for(int i =0; i <amtToSpawn;i++) {
+			
+		}
+		
+		
 	}
 
 
