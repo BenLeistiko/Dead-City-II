@@ -36,6 +36,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	public Button(double x, double y, double w, double h, String name,Color textColor, String target) {
 		super(x-(w/2),y-(h/2),w,h);
+		
 		this.name = name;
 		this.textColor = textColor;
 		left = Main.resources.getImage("ButtonLeft");
@@ -85,6 +86,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	private boolean mouseInside(Point point) {
 		if(this.contains(point.x, point.y)) {
+		
 			return true;
 		}
 		return false;
@@ -103,7 +105,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 			Hero joe = (Hero)scene.getFocusedSprite();
 			int upgradeTokens = joe.getUpgradeTokens();
 			if(upgradeTokens>0) {
-				System.out.println("safretrdsfgsdfg");
+				
 				joe.decrementUpgradeTokens();
 				if(target.equals("actionIncreaseHealth")) {
 					joe.increaseMaxHealth(20);
@@ -111,7 +113,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 				}else if(target.equals("actionIncreaseStamina")) {
 					joe.increaseMaxStamina(5);
 				}else if(target.equals("actionIncreaseDamage")) {
-					joe.increaseDamage(8);
+					joe.increaseDamage(4);
 				}
 			}
 			timeLastUpdated = System.currentTimeMillis();
@@ -121,6 +123,10 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	public void draw(PApplet marker) {
 		marker.pushMatrix();
 
+		marker.fill(0);
+		marker.rect((float)super.getX(), (float)super.getY(), (float)super.width, (float)super.height);
+		
+		
 		if(!isPressed) {
 			marker.image(left, (float)(x), (float) y);
 			int j = 0;
@@ -187,6 +193,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void mousePressed(Point clickPoint, int button) {
+	
 		if(mouseInside(clickPoint)) {
 			isPressed = true;
 		}
