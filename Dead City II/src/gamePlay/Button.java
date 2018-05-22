@@ -20,7 +20,7 @@ import sprites.Sprite;
  * Reacts to user input and appears as a drawn image
  * 
  * @author bleistiko405
- * @version 5/17/18 5:31
+ * @version 5/21/18 5:31
  */
 public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
@@ -124,7 +124,6 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		marker.pushMatrix();
 
 		marker.fill(0);
-		marker.rect((float)super.getX(), (float)super.getY(), (float)super.width, (float)super.height);
 		
 		
 		if(!isPressed) {
