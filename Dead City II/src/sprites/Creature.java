@@ -29,8 +29,8 @@ public abstract class Creature extends MovingSprite implements Damageable {
 	private double jumpPower;
 	private boolean ranOutOfStamina;
 
-	private final double maxHealth;
-	private final double maxStamina;
+	private double maxHealth;
+	private double maxStamina;
 
 	private double regenHealth;//in Health per second
 	private double regenStamina;//in Stamina per second
@@ -445,7 +445,7 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return maxHealth;
 	}
 
-	public void setMaxHealth() {
+	public void fullHealth() {
 		health = maxHealth;
 	}
 
@@ -453,7 +453,13 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return maxStamina;
 	}
 
-
+	public void increaseMaxHealth(double amount) {
+		maxHealth+=amount;
+	}
+	
+	public void increaseMaxStamina(double amount) {
+		maxStamina+=amount;
+	}
 
 	public ArrayList<PImage> getStanding() {
 		return standing;

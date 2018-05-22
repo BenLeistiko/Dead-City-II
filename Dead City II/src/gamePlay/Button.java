@@ -13,6 +13,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import scenes.BattleField;
 import scenes.Scene;
+import sprites.Hero;
 import sprites.Sprite;
 /**
  * This is a button that is in scenes.  It could open other scenes or do other stuff.
@@ -30,6 +31,9 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	private boolean isPressed = false;
 	private boolean swapToTarget;
 	private boolean makeNewScene;
+
+	private long timeLastUpdated;
+
 	public Button(double x, double y, double w, double h, String name,Color textColor, String target) {
 		super(x-(w/2),y-(h/2),w,h);
 		this.name = name;
@@ -69,6 +73,9 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 			makeNewScene = true;
 		}else
 			makeNewScene = false;
+
+
+		timeLastUpdated = System.currentTimeMillis();
 	}
 
 
@@ -84,7 +91,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void act(Scene scene) {
-		if(!target.equals("nothing")) {
+		if(!target.contains("action")) {
 			if(swapToTarget){
 				if(makeNewScene) {
 					scene.newBattleField();
@@ -92,6 +99,21 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 				scene.changePanelAndPause(target);
 				this.swapToTarget = false;
 			}
+		}else if(isPressed && System.currentTimeMillis()-timeLastUpdated > 400) {
+			Hero joe = (Hero)scene.getFocusedSprite();
+			int upgradeTokens = joe.getUpgradeTokens();
+			if(upgradeTokens>0) {
+				joe.decrementUpgradeTokens();
+				if(target.equals("actionIncreaseHealth")) {
+					joe.increaseMaxHealth(20);
+					
+				}else if(target.equals("actionIncreaseStamina")) {
+					joe.increaseMaxStamina(5);
+				}else if(target.equals("actionIncreaseDamage")) {
+					joe.increaseDamage(8);
+				}
+			}
+			timeLastUpdated = System.currentTimeMillis();
 		}
 	}
 
