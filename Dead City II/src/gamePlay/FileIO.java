@@ -8,14 +8,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/** The Netflix prize fileIO class reads and writes to text files, putting each line of the file
+ * into an element of the arrayList
+ * 
+ * @author Jo-ze
+ * @version sometime in Marchish
+ *
+ */
 public class FileIO {
 
 	public static final String fileSeparator = System.getProperty("file.separator");
 	public static final String lineSeparator = System.getProperty("line.separator");
-
-
-
-
 
 
 	public static ArrayList<String> readFile(String filename){

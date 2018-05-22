@@ -7,6 +7,16 @@ import gamePlay.Button;
 import gamePlay.Main;
 import sprites.Hero;
 
+
+
+
+/**represents the death screen for when your hero dies
+ * 
+ * @author Jose
+ * 
+ * @version 8/21/18 8:52
+ *
+ */
 public class Death extends Scene {
 
 	BetterSound death;

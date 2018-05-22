@@ -34,6 +34,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private double xp;
 	private int level;
 	private double initialXPCondition;
+	private int upgradeTokens;
 
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon) {
@@ -47,6 +48,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		level = 1;
 		xp = 0;
 		initialXPCondition =150;
+		upgradeTokens = 0;
 	}
 
 
@@ -172,11 +174,17 @@ public class Hero extends Creature implements Clickable, Typeable {
 		return false;
 	}
 
+	/**adds xp to be gained and levels up the Hero if he has enough xp
+	 * if he levels up his upgradeTokens increases by 1
+	 * 
+	 * @param xp xp that should be added
+	 */
 	public void experience(double xp) {
 		this.xp+=xp;
 		if(this.xp > Math.pow(1.2, level)*initialXPCondition) {
 			level++;
 			this.xp=0;
+			upgradeTokens++;
 		}
 	}
 	
@@ -196,6 +204,17 @@ public class Hero extends Creature implements Clickable, Typeable {
 		return Math.pow(1.2, level)*initialXPCondition-xp;
 	}
 	
+	public int getUpgradeTokens() {
+		return upgradeTokens;
+	}
+	
+	public void setUpgradeTokens(int num) {
+		upgradeTokens = num;
+	}
+	
+	public void incrementUpgradeTokens() {
+		upgradeTokens++;
+	}
 	
 
 

@@ -27,8 +27,10 @@ import sprites.Creature;
 import sprites.Sprite;
 
 /**
- * This class loads all of our resources and allows different classes to easily access picture sounds etc.
+ * This class loads all of our resources and allows different classes to easily access resources
+ * Has the ability to access images, sounds, textures
  * @author bleistiko405
+ * @version 5/21/18 9:31
  *
  */
 public class ResourceLoader {

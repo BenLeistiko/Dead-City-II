@@ -9,6 +9,14 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+
+/**Represents a sound object that can play sounds simultaneously, loops sounds, and play sounds a single time
+ * 
+ * @author Ben
+ * 
+ * @version 5/20/18 7:51 
+ *
+ */
 public class BetterSound extends Thread {
 	Clip c;
 	boolean loop;

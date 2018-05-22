@@ -12,6 +12,13 @@ import gamePlay.*;
 import processing.core.PApplet;
 import sprites.Hero;
 
+/**
+ * 
+ * @author Jose
+ * 
+ * @version 8/21/18 8:51
+ *
+ */
 public class TitleScreen extends Scene {
 
 	public TitleScreen(Main m, Hero joe) {

@@ -22,7 +22,9 @@ import processing.core.PApplet;
 import scenes.*;
 import sprites.Hero;
 /**
- * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
+ * This class holds the main method and all of the scene that could be played during the game. 
+ *  It also has structure to swap the scene that is currently being played.
+ * 
  * @author Jose
  * @version 5/5/2018 5:30
  *

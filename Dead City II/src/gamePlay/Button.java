@@ -15,9 +15,11 @@ import scenes.BattleField;
 import scenes.Scene;
 import sprites.Sprite;
 /**
- * This is a button that is in scenes.  It could open other scenes or do other suff.
- * @author bleistiko405
+ * This is a button that is in scenes.  It could open other scenes or do other stuff.
+ * Reacts to user input and appears as a drawn image
  * 
+ * @author bleistiko405
+ * @version 5/17/18 5:31
  */
 public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
@@ -54,7 +56,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 		centerCrop = Main.resources.getImage("Button");
 		centerCrop = Main.resources.getTexture("Button", new Point((int) (centerCrop.width*(h/centerCrop.height)),(int)h-4), new Point(cropX,(int)h-4));
-		
+
 		int cropXP = (int) (centerWidth-(Math.ceil(centerWidth/centerP.width)-1.0001)*centerP.width);
 
 		centerCropP = Main.resources.getImage("ButtonPressed");
@@ -82,17 +84,17 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void act(Scene scene) {
-		if(swapToTarget){
-			
-			if(makeNewScene) {
-			
-				scene.newBattleField();
+		if(!target.equals("nothing")) {
+			if(swapToTarget){
+				if(makeNewScene) {
+					scene.newBattleField();
+				}
+				scene.changePanelAndPause(target);
+				this.swapToTarget = false;
 			}
-			scene.changePanelAndPause(target);
-			this.swapToTarget = false;
 		}
 	}
-	
+
 	public void draw(PApplet marker) {
 		marker.pushMatrix();
 
@@ -125,7 +127,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 		marker.popMatrix();
 	}
-	
+
 	/*private void reSizeImages() {
 		//private PImage left,center,right,leftP,centerP,rightP,centerCrop,centerCropP;
 		if(Scene.reSized) {
@@ -143,12 +145,12 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 		}
 	}
-	
+
 	private void resizeImage(PImage p,double xRatio,double yRatio) {
 		System.out.println(p.width + ", " + p.height + " : " + xRatio + ", " + yRatio);
 		p.resize((int)(p.width*xRatio), (int)(p.height*yRatio));
 	}*/
-	
+
 	public void setX(double x) {
 		this.x = x-super.getWidth();
 	}

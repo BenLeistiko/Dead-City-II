@@ -167,6 +167,8 @@ public class BattleField extends Scene {
 		amtOfMobsSpawn+=5;
 		amtOfPowerUpsSpawn+=2;
 		mobHealthUpgrade+=mobHealthUpgradeAmountPerDay;
+		Hero joe = ((Hero)super.getFocusedSprite());
+		joe.incrementUpgradeTokens();
 		generateEdges();
 		generateGround();
 		generateHill(10);
