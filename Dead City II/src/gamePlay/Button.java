@@ -86,7 +86,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 
 	private boolean mouseInside(Point point) {
 		if(this.contains(point.x, point.y)) {
-		//	System.out.println("MOUSE INSIDE");
+		
 			return true;
 		}
 		return false;
@@ -193,8 +193,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	}
 
 	public void mousePressed(Point clickPoint, int button) {
-	//	System.out.println(clickPoint);
-	//	System.out.println(this);
+	
 		if(mouseInside(clickPoint)) {
 			isPressed = true;
 		}
