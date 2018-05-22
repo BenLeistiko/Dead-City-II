@@ -11,10 +11,10 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import scenes.Scene;
 
-/**	Represents a creature class, with the help of Shelby's Animation Demo for collision detection
+/**	Represents a creature class, with the help of Shelby's Animation Demo for collision detection.  It also animates the creatures.
  * 
  * @author Ben
- *
+ * @version 5/21/18
  */
 public abstract class Creature extends MovingSprite implements Damageable {
 	private static final double SPRINT_SPEED = 2;//the number of times faster that sprint speed is

@@ -11,8 +11,8 @@ import sprites.Creature;
 import sprites.Sprite;
 /**
  * A common superclass for anything that will do damage directly or indirectly.
- * @author Ben
- *
+ * @author Jose
+ * @version 5/10/18
  */
 public abstract class Weapon implements Slotable {
 

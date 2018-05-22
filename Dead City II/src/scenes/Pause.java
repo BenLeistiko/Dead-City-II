@@ -6,6 +6,11 @@ import gamePlay.Button;
 import gamePlay.Main;
 import sprites.Hero;
 
+/**
+ * A quick scene that allows temporary stoppage of the battle in battlefeild
+ * @author Jose
+ * @version 5/20/18
+ */
 public class Pause extends Scene{	
 	public Pause(Main m,Hero joe) {
 		super(m, joe);

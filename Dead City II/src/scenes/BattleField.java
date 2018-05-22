@@ -14,7 +14,11 @@ import interfaces.*;
 import items.*;
 import processing.core.PApplet;
 import sprites.*;
-
+/**
+ * A scene where heros fight monsters
+ * @author Ben
+ * @version 5/21/18
+ */
 public class BattleField extends Scene {
 
 	private int xEdge = 200;

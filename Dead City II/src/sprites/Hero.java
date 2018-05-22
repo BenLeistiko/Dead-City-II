@@ -18,7 +18,8 @@ import scenes.Scene;
 
 /**
  * Any character that the player controls
- * @author bleistiko405
+ * @author ben
+ * @version 5/21/18
  *
  */
 public class Hero extends Creature implements Clickable, Typeable {

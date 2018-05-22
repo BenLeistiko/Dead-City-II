@@ -3,7 +3,11 @@ package items;
 import gamePlay.Main;
 import sprites.Creature;
 import sprites.Hero;
-
+/**
+ * A pickup that gives a hero more stamina.
+ * @author Jose
+ * @version 5/21/18
+ */
 public class StaminaPickup extends Pickup{
 
 	

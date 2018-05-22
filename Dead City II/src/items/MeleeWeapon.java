@@ -10,9 +10,9 @@ import scenes.Scene;
 import sprites.Creature;
 import sprites.Sprite;
 /**
- * A short ranged melee weapon that deals damage.
- * @author bleistiko405
- *
+ * A short ranged melee weapon that deals damage. To be implemented.
+ * @author Jose
+ * @version 5/12/18
  */
 public class MeleeWeapon extends Weapon implements Destructive {
 

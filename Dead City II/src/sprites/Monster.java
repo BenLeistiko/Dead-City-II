@@ -8,7 +8,8 @@ import processing.core.PApplet;
 import scenes.Scene;
 /**
  * CPU controlled monster that attacks heros.
- * @author bleistiko405
+ * @author jose
+ * @version 5/21/18
  *
  */
 public class Monster extends Creature {

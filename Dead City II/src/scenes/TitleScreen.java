@@ -13,6 +13,7 @@ import processing.core.PApplet;
 import sprites.Hero;
 
 /**
+ * The main screen that players see when the game starts.  it gives them multiple options via buttons.
  * 
  * @author Jose
  * 

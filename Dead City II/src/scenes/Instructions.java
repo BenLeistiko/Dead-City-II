@@ -10,7 +10,8 @@ import sprites.Hero;
 
 /**
  * 
- * @author Jose
+ * The place where player's can learn about the game.
+ * @author Ben
  * 
  * @version 8/21/18 8:51
  *

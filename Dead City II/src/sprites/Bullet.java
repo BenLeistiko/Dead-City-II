@@ -17,7 +17,8 @@ import scenes.Scene;
 
 /**
  * Something that a gun generates.  Deals damage to damageables.
- * @author bleistiko405
+ * @author ben
+ * @version 5/21/18
  *
  */
 public class Bullet extends MovingSprite implements Destructive {

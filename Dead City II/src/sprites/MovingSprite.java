@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import gamePlay.Main;
 import processing.core.PApplet;
 /**
- * Any sprite that can be moved.
- * @author bleistiko405
+ * Any sprite that can be moved and has a velocity.
+ * @author ben
+ * @version 5/16/18
  *
  */
 public abstract class MovingSprite extends Sprite {

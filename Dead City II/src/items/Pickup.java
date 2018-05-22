@@ -12,6 +12,11 @@ import processing.core.PImage;
 import scenes.Scene;
 import sprites.*;
 
+/**
+ * Anything that is used as soon as it is picked up.
+ * @author Jose
+ * @version 5/21/18
+ */
 public abstract class Pickup extends MovingSprite implements Drawable{
 
 	PImage image;

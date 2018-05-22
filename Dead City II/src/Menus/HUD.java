@@ -14,7 +14,11 @@ import scenes.BattleField;
 import scenes.Scene;
 import sprites.Barrier;
 import sprites.Hero;
-
+/**
+ * 
+ * @author Jose
+ * @version 5/19/18
+ */
 public class HUD implements Drawable{
 
 	//private Scene s;
