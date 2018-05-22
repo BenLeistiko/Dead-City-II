@@ -158,11 +158,11 @@ public class Main {
 	public void manageMusic() {
 
 		if(isBattle) {
-			battleVolume = Math.min(battleVolume + 0.005, 1);
+			battleVolume = Math.min(battleVolume + 0.005, 0.75);
 			chillVolume = Math.max(chillVolume - 0.005, 0);
 		}else {
 			battleVolume = Math.max(battleVolume - 0.005, 0);
-			chillVolume = Math.min(chillVolume + 0.005, 1);
+			chillVolume = Math.min(chillVolume + 0.005, 0.75);
 		}
 		if(playMusic) {
 			battle.setVolume(battleVolume);

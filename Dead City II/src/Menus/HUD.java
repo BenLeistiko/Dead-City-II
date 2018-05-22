@@ -26,6 +26,7 @@ public class HUD implements Drawable{
 	private double health,maxHealth;
 	private double stamina,maxStamina;
 	private int ammo,maxAmmo;
+	private int mobsLeft;
 	
 	private Color red = new Color(255,0,0);
 
@@ -169,6 +170,9 @@ public class HUD implements Drawable{
 			}
 
 		 */
+		marker.fill(255);
+		marker.textSize(30);
+		marker.text("Undead Left: " + this.mobsLeft, (float)visSpace.getX()+1300, (float) (visSpace.getY()+40));
 		marker.popMatrix();
 	}
 
@@ -176,6 +180,8 @@ public class HUD implements Drawable{
 	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
 	public void update(Scene s, Hero h) {
 		visSpace = s.getVisSpace();
+		
+		mobsLeft = s.getMonsters().size();
 
 		health = h.getHealth();
 		maxHealth = h.getMaxHealth();
