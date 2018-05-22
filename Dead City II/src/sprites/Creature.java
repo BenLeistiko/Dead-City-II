@@ -484,9 +484,25 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return animationKey;
 	}
 
-
-
 	public void setAnimationKey(String animationKey) {
 		this.animationKey = animationKey;
+	}
+	
+	public void addHealth(double amount) {
+		if(health+amount > maxHealth) {
+			health = maxHealth;
+		}
+		else {
+			health+=amount;
+		}
+	}
+	
+	public void addStamina(double amount) {
+		if(stamina+amount > maxStamina) {
+			stamina = maxStamina;
+		}
+		else {
+			stamina+=amount;
+		}
 	}
 }
