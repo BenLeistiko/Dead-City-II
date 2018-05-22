@@ -12,6 +12,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import scenes.BattleField;
 import scenes.Scene;
+import sprites.Barrier;
 import sprites.Hero;
 
 public class HUD implements Drawable{
@@ -39,11 +40,15 @@ public class HUD implements Drawable{
 	private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
-	bulletBarCap,healthBarCap,staminaBarCap,hero,xpBarLeft,xpBarFill,xpBarRight,centerBar,rightBar,leftBar;
+	bulletBarCap,healthBarCap,staminaBarCap,hero,xpBarLeft,xpBarRight,rightBar,leftBar;
 
 	private final int numBars;
 
+	private Barrier XPCenter, XPFill;
+	
 	public HUD() {
+		
+		XPCenter = new Barrier(100, 100, 200, 50, ammoRatio, ammoRatio, null);
 
 		health = 0;
 		maxHealth = 0;
