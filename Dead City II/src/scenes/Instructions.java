@@ -24,8 +24,9 @@ public class Instructions extends Scene{
 	}
 
 	public void draw() {
-		image(instr, 330,0,840,800);
 		background(255);
+		image(instr, 330,0,840,800);
+		
 		
 		
 		super.draw();
