@@ -45,7 +45,7 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-		amtOfMobsSpawn = 20;
+		amtOfMobsSpawn = 1;
 		amtOfPowerUpsSpawn = 8;
 		mobHealthUpgrade=0;
 		mobHealthUpgradeAmountPerDay=15;
@@ -83,6 +83,8 @@ public class BattleField extends Scene {
 		}
 
 		if(super.getMonsters().size() == 0) {//win conditions
+			Hero joe = ((Hero)super.getFocusedSprite());
+			joe.incrementUpgradeTokens();
 			super.changePanelAndPause("Camp");
 		}
 
@@ -169,8 +171,6 @@ public class BattleField extends Scene {
 		amtOfMobsSpawn+=5;
 		amtOfPowerUpsSpawn+=2;
 		mobHealthUpgrade+=mobHealthUpgradeAmountPerDay;
-		Hero joe = ((Hero)super.getFocusedSprite());
-		joe.incrementUpgradeTokens();
 		generateEdges();
 		generateGround();
 		generateHill(10);
