@@ -21,6 +21,7 @@ import sprites.Sprite;
  */
 public class Camp extends Scene {
 
+	
 	public Camp(Main m, Hero joe) {
 		super(m, joe);
 		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/6, 400, 50, "Next Day", new Color(0,0,0), "*BattleField"));
@@ -32,8 +33,10 @@ public class Camp extends Scene {
 	public void draw() {
 		background(255);
 		super.draw();
-		
-		
+		Hero joe = super.getFocusedSprite();
+		int tokens = joe.getUpgradeTokens();
+		text("Upgrade Tokens: " + tokens,ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/12);
+		text("Each Upgrade Takes 1 Token",ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/9);
 		
 		
 		

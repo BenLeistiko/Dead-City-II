@@ -103,6 +103,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 			Hero joe = (Hero)scene.getFocusedSprite();
 			int upgradeTokens = joe.getUpgradeTokens();
 			if(upgradeTokens>0) {
+				System.out.println("safretrdsfgsdfg");
 				joe.decrementUpgradeTokens();
 				if(target.equals("actionIncreaseHealth")) {
 					joe.increaseMaxHealth(20);
