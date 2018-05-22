@@ -33,7 +33,9 @@ public class Main {
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = 1;
 	public static boolean isBattle;
+	public static boolean playMusic;
 
+	
 	private double battleVolume = 0;
 	private double chillVolume = 1;
 
@@ -58,7 +60,8 @@ public class Main {
 
 		chill = new BetterSound(Main.resources.getSound("Chill"), true, true);
 		battle = new BetterSound(Main.resources.getSound("Battle"), true, true);
-
+		playMusic = true;
+		
 		battle.setVolume(battleVolume);
 		chill.setVolume(chillVolume);
 		
@@ -158,9 +161,14 @@ public class Main {
 			battleVolume = Math.max(battleVolume - 0.005, 0);
 			chillVolume = Math.min(chillVolume + 0.005, 1);
 		}
+		if(playMusic) {
+			battle.setVolume(battleVolume);
+			chill.setVolume(chillVolume);
+		}else {
+			battle.setVolume(0);
+			chill.setVolume(0);
+		}
 
-		battle.setVolume(battleVolume);
-		chill.setVolume(chillVolume);
 
 	}
 }
