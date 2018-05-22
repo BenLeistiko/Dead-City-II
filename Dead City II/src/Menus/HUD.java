@@ -12,6 +12,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import scenes.BattleField;
 import scenes.Scene;
+import sprites.Barrier;
 import sprites.Hero;
 
 public class HUD implements Drawable{
@@ -39,12 +40,13 @@ public class HUD implements Drawable{
 	private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
-	bulletBarCap,healthBarCap,staminaBarCap,hero,xpBarLeft,xpBarFill,xpBarRight,centerBar,rightBar,leftBar;
+	bulletBarCap,healthBarCap,staminaBarCap,hero;
 
 	private final int numBars;
 
+	
 	public HUD() {
-
+		
 		health = 0;
 		maxHealth = 0;
 		stamina = 0;
@@ -76,7 +78,6 @@ public class HUD implements Drawable{
 
 
 	public void draw(PApplet marker) {
-
 
 		marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
