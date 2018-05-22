@@ -46,7 +46,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		hasClicked = false;
 		level = 1;
 		xp = 0;
-		initialXPCondition =200;
+		initialXPCondition =150;
 	}
 
 
@@ -71,7 +71,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-		System.out.println("Current XP: " + xp + " Current Level: "+ level);
+	//	System.out.println("Current XP: " + xp + " Current Level: "+ level);
 		super.draw(marker);
 
 	}
@@ -176,9 +176,11 @@ public class Hero extends Creature implements Clickable, Typeable {
 		this.xp+=xp;
 		if(this.xp > Math.pow(1.2, level)*initialXPCondition) {
 			level++;
+			this.xp=0;
 		}
-
 	}
+	
+	
 
 
 }
