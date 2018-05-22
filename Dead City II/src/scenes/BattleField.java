@@ -28,6 +28,10 @@ public class BattleField extends Scene {
 
 	private HUD display;
 
+	private double mobHealthUpgrade;
+	private double mobHealthUpgradeAmountPerDay;
+	private int day;
+
 
 
 	public BattleField(Main m, Hero hero) {
@@ -43,6 +47,9 @@ public class BattleField extends Scene {
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
 		amtOfMobsSpawn = 20;
 		amtOfPowerUpsSpawn = 8;
+		mobHealthUpgrade=0;
+		mobHealthUpgradeAmountPerDay=15;
+		day = 1;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
@@ -157,15 +164,20 @@ public class BattleField extends Scene {
 
 	public void resetScene() {
 		super.resetScene();
+		amtOfMobsSpawn+=5;
+		amtOfPowerUpsSpawn+=2;
+		mobHealthUpgrade+=mobHealthUpgradeAmountPerDay;
 		generateEdges();
 		generateGround();
 		generateHill(10);
 		generatePlatforms(80,100);
 		generateMobs(amtOfMobsSpawn);
-		super.getFocusedSprite().setRect(250000, 0, super.getFocusedSprite().getWidth(), super.getFocusedSprite().getHeight());
+		generatePowerUps(amtOfPowerUpsSpawn);
+		super.getFocusedSprite().setRect(super.getWorldSpace().getWidth()/2, 0, super.getFocusedSprite().getWidth(), super.getFocusedSprite().getHeight());
 		super.addAtEnd(super.getFocusedSprite());
 		display = super.getFocusedSprite().getHUD();
 		this.add(display);
+		day++;
 	}
 
 	private boolean overlaps(double a1, double a2, double b1, double b2) {
@@ -220,7 +232,8 @@ public class BattleField extends Scene {
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
 			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getWidth()-2000)*Math.random()+1000,100,80,80);
-
+			zomb.addHealth(mobHealthUpgrade);
+			
 			add(zomb);
 			super.getMonsters().add(zomb);
 		}
@@ -231,16 +244,16 @@ public class BattleField extends Scene {
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*2);
 			double randomX = (getWorldSpace().getWidth()-2000)*Math.random()+1000;
-			
+
 			Pickup pick = null;
-		//	System.out.println("rand= " + rand);
+			//	System.out.println("rand= " + rand);
 			if(rand ==0) {
 				pick = new HealthPickup(randomX,50,75);
 			}else {
 				pick = new StaminaPickup(randomX,50,10);
 			}
-			
-				this.add(pick);
+
+			this.add(pick);
 		}
 
 

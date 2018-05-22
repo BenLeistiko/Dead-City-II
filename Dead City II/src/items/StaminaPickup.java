@@ -2,6 +2,7 @@ package items;
 
 import gamePlay.Main;
 import sprites.Creature;
+import sprites.Hero;
 
 public class StaminaPickup extends Pickup{
 
@@ -15,7 +16,7 @@ public class StaminaPickup extends Pickup{
 		}
 
 
-		public void power(Creature target) {
+		public void power(Hero target) {
 			target.addStamina(staminaBoost);
 		}
 

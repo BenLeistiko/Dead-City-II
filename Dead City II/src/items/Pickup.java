@@ -36,7 +36,7 @@ public abstract class Pickup extends MovingSprite implements Drawable{
 	public void act(Scene scene) {
 		if(scene.getFocusedSprite().intersects(this)) {
 			pickedUp = true;
-			power((Creature)scene.getFocusedSprite());
+			power((Hero)scene.getFocusedSprite());
 		}else {
 			 
 			//***********Y AXIS***********
@@ -91,7 +91,7 @@ public abstract class Pickup extends MovingSprite implements Drawable{
 
 	}
 
-	public abstract void power(Creature target);
+	public abstract void power(Hero target);
 
 	public Double getHitBox() {
 		return this;
