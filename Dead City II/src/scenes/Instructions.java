@@ -19,7 +19,7 @@ public class Instructions extends Scene{
 	PImage instr;
 	public Instructions(Main m, Hero joe) {
 		super(m, joe);
-		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT-75, 400, 50, "Next Day", new Color(0,0,0), "Main"));
+		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT-75, 400, 50, "Main Menu", new Color(0,0,0), "TitleScreen"));
 		instr = Main.resources.getImage("instr");
 	}
 
