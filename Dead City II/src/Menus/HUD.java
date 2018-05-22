@@ -40,16 +40,13 @@ public class HUD implements Drawable{
 	private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
-	bulletBarCap,healthBarCap,staminaBarCap,hero,xpBarLeft,xpBarRight,rightBar,leftBar;
+	bulletBarCap,healthBarCap,staminaBarCap,hero;
 
 	private final int numBars;
 
-	private Barrier XPCenter, XPFill;
 	
 	public HUD() {
 		
-		XPCenter = new Barrier(100, 100, 200, 50, ammoRatio, ammoRatio, null);
-
 		health = 0;
 		maxHealth = 0;
 		stamina = 0;
@@ -81,7 +78,6 @@ public class HUD implements Drawable{
 
 
 	public void draw(PApplet marker) {
-
 
 		marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
