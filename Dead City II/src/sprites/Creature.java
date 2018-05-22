@@ -353,18 +353,23 @@ public abstract class Creature extends MovingSprite implements Damageable {
 		return false;
 	}
 
-	public void takeDamage(Destructive d) {
+	public double takeDamage(Destructive d) {
 		if(Math.random()>agility) {
-			health = health - d.getDamage()* (1-defense);
+			double damageDone =  d.getDamage()*(1-defense);
+			health -= damageDone;
+			return damageDone;
 		}
+		return 0;
 	}
 
-	public void takeDamage(double damage) {
-	
+	public double takeDamage(double damage) {
 		if(Math.random()>agility) {
-		
-			health -= damage* (1-defense);
+			double damageDone = damage*(1-defense);
+			health -= damageDone;
+			
+			return damageDone;
 		}
+		return 0;
 	}
 
 	public void jump() {

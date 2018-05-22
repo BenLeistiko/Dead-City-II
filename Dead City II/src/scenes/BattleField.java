@@ -91,7 +91,7 @@ public class BattleField extends Scene {
 		//}
 		
 		
-		System.out.println(getMonsters().size());
+	//	System.out.println(getMonsters().size());
 		if(super.getMonsters().size() == 0) {
 			super.changePanelAndPause("Camp");
 		}
