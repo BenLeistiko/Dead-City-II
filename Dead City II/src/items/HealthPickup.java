@@ -18,9 +18,10 @@ public class HealthPickup extends Pickup{
 	}
 
 
-	public void power(Creature target) {
+	public void power(Hero target) {
 		target.addHealth(healthBoost);
 	}
+
 
 
 

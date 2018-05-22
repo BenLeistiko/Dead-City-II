@@ -25,7 +25,9 @@ public class Death extends Scene {
 
 	public void draw() {
 		background(100);
+		//image(Main.resources.getImage("DeathBackground"),0,0);
 		super.draw();
+		
 		pushMatrix();
 		
 		scale((float) super.getxRatio(), (float) super.getyRatio());

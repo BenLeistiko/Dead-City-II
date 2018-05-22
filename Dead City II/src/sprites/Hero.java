@@ -180,6 +180,22 @@ public class Hero extends Creature implements Clickable, Typeable {
 		}
 	}
 	
+	public int getLevel() {
+		return level;
+	}
+	
+	public double getXP() {
+		return xp;
+	}
+	
+	public double getTotalXPToNextLevel() {
+		return Math.pow(1.2, level)*initialXPCondition;
+	}
+	
+	public double getXPToNextLevel() {
+		return Math.pow(1.2, level)*initialXPCondition-xp;
+	}
+	
 	
 
 

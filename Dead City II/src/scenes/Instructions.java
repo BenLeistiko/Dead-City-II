@@ -2,18 +2,16 @@ package scenes;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Rectangle2D;
 
 import gamePlay.Button;
 import gamePlay.Main;
-import processing.core.PApplet;
-import sprites.Barrier;
 import sprites.Hero;
-import sprites.Sprite;
 
-public class Camp extends Scene {
+public class Instructions extends Scene{
 
-	public Camp(Main m, Hero joe) {
+	
+	
+	public Instructions(Main m, Hero joe) {
 		super(m, joe);
 		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/2, 400, 50, "Next Day", new Color(0,0,0), "*BattleField"));
 	}
@@ -34,4 +32,11 @@ public class Camp extends Scene {
 			super.changePanelAndPause("TitleScreen");
 		}
 	}	
+	
+	
+	
+	
+	
+	
+	
 }
