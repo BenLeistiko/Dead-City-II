@@ -41,19 +41,18 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-		amtOfMobsSpawn = 30;
-		amtOfPowerUpsSpawn = 30;
+		amtOfMobsSpawn = 20;
+		amtOfPowerUpsSpawn = 15;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
 		generateGround();
-		generateHill(10);
+		generateHill(5);
 		generatePlatforms(80,100);
 		generateMobs(amtOfMobsSpawn);
 		generatePowerUps(amtOfPowerUpsSpawn);
 
-		Pickup wow = new StaminaPickup(12700,50,2);
-		this.add(wow);
+
 
 		display = super.getFocusedSprite().getHUD();
 		this.add(display);
@@ -64,7 +63,7 @@ public class BattleField extends Scene {
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 
 		display.update(this,(Hero)super.getFocusedSprite());	
-		System.out.println(((Hero)(super.getFocusedSprite())).getStamina());
+		//System.out.println(((Hero)(super.getFocusedSprite())).getStamina());
 
 
 		super.draw();
@@ -220,20 +219,31 @@ public class BattleField extends Scene {
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
-			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getHeight()-2000)*Math.random()+1000,100,100,100);
+			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getWidth()-2000)*Math.random()+1000,100,100,100);
 
 			add(zomb);
 			super.getMonsters().add(zomb);
 		}
 	}
-	
+
 	public void generatePowerUps(int amtToSpawn) {
-		
+
 		for(int i =0; i <amtToSpawn;i++) {
+			int rand = (int)(Math.random()*2);
+			double randomX = (getWorldSpace().getWidth()-2000)*Math.random()+1000;
 			
+			Pickup pick = null;
+		//	System.out.println("rand= " + rand);
+			if(rand ==0) {
+				pick = new HealthPickup(randomX,50,75);
+			}else {
+				pick = new StaminaPickup(randomX,50,10);
+			}
+			
+				this.add(pick);
 		}
-		
-		
+
+
 	}
 
 
