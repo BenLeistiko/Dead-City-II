@@ -25,6 +25,9 @@ public class Pause extends Scene{
 		textAlign(CENTER,CENTER);
 		textSize(100);
 		text("PAUSED",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
+		textSize(40);
+		text("\n\n\n Push 'p' to return to the fight!",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
+		//text("Push 'p' to play again",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
 		popMatrix();
 	}
 }

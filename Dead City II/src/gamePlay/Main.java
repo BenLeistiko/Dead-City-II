@@ -98,6 +98,7 @@ public class Main {
 		this.addScene(new Camp(this,joe), "Camp");
 		this.addScene(new Pause(this,joe), "Pause");
 		this.addScene(new Death(this,joe), "Death");
+		this.addScene(new Instructions(this,joe), "Instructions");
 
 		changePanel("TitleScreen");
 

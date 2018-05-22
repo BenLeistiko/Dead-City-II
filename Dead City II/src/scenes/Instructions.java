@@ -7,9 +7,6 @@ import gamePlay.Button;
 import gamePlay.Main;
 import sprites.Hero;
 
-
-
-
 /**
  * 
  * @author Jose
@@ -26,6 +23,8 @@ public class Instructions extends Scene{
 
 	public void draw() {
 		background(255);
+		
+		
 		super.draw();
 
 

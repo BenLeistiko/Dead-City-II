@@ -70,7 +70,9 @@ public class BattleField extends Scene {
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 
 		display.update(this,(Hero)super.getFocusedSprite());	
-		//System.out.println(((Hero)(super.getFocusedSprite())).getStamina());
+//		System.out.println("STAMINA: " +((Hero)(super.getFocusedSprite())).getStamina());
+//		System.out.println("HEALTH: " + ((Hero)(super.getFocusedSprite())).getHealth());
+//		System.out.println("DAMAGE: " + ((Hero)(super.getFocusedSprite())).getDamage());
 
 
 		super.draw();
@@ -250,7 +252,7 @@ public class BattleField extends Scene {
 			Pickup pick = null;
 			//	System.out.println("rand= " + rand);
 			if(rand ==0) {
-				pick = new HealthPickup(randomX,50,75);
+				pick = new HealthPickup(randomX,50,100);
 			}else {
 				pick = new StaminaPickup(randomX,50,10);
 			}

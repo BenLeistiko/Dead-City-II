@@ -19,13 +19,13 @@ public abstract class Weapon implements Slotable {
 	private double damage;
 	private double attackRate;
 	private double range;
-	
+
 
 	public Weapon(double damage, double attackRate, double range) {
 		this.damage = damage;
 		this.attackRate = attackRate;
 		this.range = range;
-	
+
 	}
 
 	public abstract void perform(Creature c, int dir, Scene s); 
@@ -66,10 +66,12 @@ public abstract class Weapon implements Slotable {
 
 
 	public void act() {
-		
+
 	}
 
-
+	public void increaseDamage(double amount) {
+		damage+=amount;
+	}
 
 
 

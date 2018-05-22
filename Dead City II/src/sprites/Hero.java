@@ -48,7 +48,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 		level = 1;
 		xp = 0;
 		initialXPCondition =150;
-		upgradeTokens = 0;
+		upgradeTokens = 10;
 	}
 
 
@@ -73,7 +73,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-	//	System.out.println("Current XP: " + xp + " Current Level: "+ level);
+	
 		super.draw(marker);
 
 	}
@@ -215,7 +215,17 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public void incrementUpgradeTokens() {
 		upgradeTokens++;
 	}
+	public void decrementUpgradeTokens() {
+		upgradeTokens--;
+	}
 	
+	public void increaseDamage(double amount) {
+		weapon.increaseDamage(amount);
+	}
+	
+	public double getDamage() {
+		return weapon.getDamage();
+	}
 
 
 }
