@@ -1,6 +1,7 @@
 package sprites;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import gamePlay.Main;
 import processing.core.PApplet;
@@ -92,6 +93,15 @@ public class Barrier extends Sprite {
 	public void act(Scene s) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean colliedsWithMovingSprite(ArrayList<Sprite> worldlyThings) {
+		for(Sprite s: worldlyThings) {
+			if(s.intersects(this) && s instanceof Creature) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -36,6 +36,12 @@ public class Hero extends Creature implements Clickable, Typeable {
 	private double initialXPCondition;
 	private int upgradeTokens;
 
+	private Point clickPoint;
+	private boolean clicked;
+	
+	ArrayList<Barrier> spawnedBarries;
+	private int maxBarriers;
+
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon) {
 		super(x, y, w, h, animationKey);
@@ -49,6 +55,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 		xp = 0;
 		initialXPCondition =150;
 		upgradeTokens = 0;
+		clicked = false;
+		spawnedBarries = new ArrayList<Barrier>();
+		maxBarriers = 4;
 	}
 
 
@@ -64,16 +73,20 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	public void mousePressed(Point clickPoint, int button) {
 		if(!mouseButtonsPressed.contains(button))
-			mouseButtonsPressed.add(button);			
+			mouseButtonsPressed.add(button);	
+		this.clickPoint = clickPoint;
+		if(button == PApplet.RIGHT)
+			this.clicked = true;
 	}
 
 	public void mouseReleased(Point clickPoint, int button) {
 		mouseButtonsPressed.remove(new Integer(button));
 		hasClicked = false;
+		this.clickPoint = null;
 	}
 
 	public void draw(PApplet marker) {
-	//	System.out.println("Current XP: " + xp + " Current Level: "+ level);
+		//	System.out.println("Current XP: " + xp + " Current Level: "+ level);
 		super.draw(marker);
 
 	}
@@ -139,6 +152,23 @@ public class Hero extends Creature implements Clickable, Typeable {
 				weapon.perform(this, super.getDirection(),s);
 			}
 		}
+		if(this.clickPoint != null && clicked) {
+			Barrier dirt = new DamageableBarrier(clickPoint.getX()-50,clickPoint.getY()-50,100,100,100,100,"Force",10,0);
+			if(!dirt.colliedsWithMovingSprite(s.getWorldlyThings()) && this.getCenter().distance(clickPoint) < 500) {
+				s.add(dirt);
+				if(this.spawnedBarries.size() >= this.maxBarriers) {
+					spawnedBarries.get(0).remove();
+					spawnedBarries.remove(0);
+				}
+				spawnedBarries.add(dirt);
+			}
+			this.clicked = false;
+		}
+		for(int i = 0; i < spawnedBarries.size(); i++) {
+			if(spawnedBarries.get(i).shouldRemove()) {
+				spawnedBarries.remove(i);
+			}
+		}
 
 	}
 	public Weapon getWeapon() {
@@ -187,35 +217,35 @@ public class Hero extends Creature implements Clickable, Typeable {
 			upgradeTokens++;
 		}
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}
-	
+
 	public double getXP() {
 		return xp;
 	}
-	
+
 	public double getTotalXPToNextLevel() {
 		return Math.pow(1.2, level)*initialXPCondition;
 	}
-	
+
 	public double getXPToNextLevel() {
 		return Math.pow(1.2, level)*initialXPCondition-xp;
 	}
-	
+
 	public int getUpgradeTokens() {
 		return upgradeTokens;
 	}
-	
+
 	public void setUpgradeTokens(int num) {
 		upgradeTokens = num;
 	}
-	
+
 	public void incrementUpgradeTokens() {
 		upgradeTokens++;
 	}
-	
+
 
 
 }
