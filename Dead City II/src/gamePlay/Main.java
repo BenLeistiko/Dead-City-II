@@ -33,13 +33,13 @@ public class Main {
 	public static final double GRAVITY = 1;//PIXLES per second^2
 	public static final double FRICTION = 1;
 	public static boolean isBattle;
-	
+
 	private double battleVolume = 0;
-	private double chillVolume = 0;
+	private double chillVolume = 1;
 
 	BetterSound battle;
 	BetterSound chill;
-	
+
 	public static ResourceLoader resources;
 
 	private JFrame window;
@@ -53,11 +53,15 @@ public class Main {
 	public Main() {
 		resources = new ResourceLoader();
 		resources.load();
-		
+
 		isBattle = false;
-		
+
 		chill = new BetterSound(Main.resources.getSound("Chill"), true, true);
 		battle = new BetterSound(Main.resources.getSound("Battle"), true, true);
+
+		battle.setVolume(battleVolume);
+		chill.setVolume(chillVolume);
+		
 		
 		window = new JFrame();
 
@@ -81,7 +85,7 @@ public class Main {
 				fixProcessingPanelSizes(x);
 			}
 		});
-		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
+		Hero joe = new Hero(Main.resources.TROOPER, 25000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME)));
 		this.addScene(new TitleScreen(this, joe), "TitleScreen"); 
@@ -92,24 +96,24 @@ public class Main {
 
 		changePanel("TitleScreen");
 
-		
+
 		window.setLayout(new BorderLayout());
 
 		window.add(cardPanel);
-				
+
 		window.setVisible(true);
 
 		window.setName("Dead City II");
 
 		window.setSize(Scene.ASSUMED_DRAWING_WIDTH, Scene.ASSUMED_DRAWING_HEIGHT);
 		window.setResizable(false);
-		
+
 		Image icon = (new ImageIcon("resources/Dead-City-II-Icon.jpg")).getImage();
 		window.setIconImage(icon);
 
 
 	}
- 
+
 	/**
 	 * adds and sets up a scene
 	 * s - the scene to add
@@ -123,13 +127,10 @@ public class Main {
 		cardPanel.add(processingCanvases.get(name), name);
 	}
 
-	public void clearScene(String name) {
-		cardPanel.remove(processingCanvases.get(name));
-		processingCanvases.remove(name);
-		surfaces.remove(name);
-		panels.remove(name);
+	public Scene getScene(String name) {
+		return panels.get(name);
 	}
-	
+
 	public static void main(String args[]) {
 		Main m = new Main();
 	}
@@ -147,9 +148,9 @@ public class Main {
 			surf.setSize(match.getWidth(),match.getHeight());
 		}
 	}
-	
+
 	public void manageMusic() {
-		
+
 		if(isBattle) {
 			battleVolume = Math.min(battleVolume + 0.005, 1);
 			chillVolume = Math.max(chillVolume - 0.005, 0);
@@ -157,9 +158,9 @@ public class Main {
 			battleVolume = Math.max(battleVolume - 0.005, 0);
 			chillVolume = Math.min(chillVolume + 0.005, 1);
 		}
-		
+
 		battle.setVolume(battleVolume);
 		chill.setVolume(chillVolume);
-		
+
 	}
 }
