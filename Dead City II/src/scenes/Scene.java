@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import gamePlay.Main;
 import interfaces.*;
 import processing.core.PApplet;
+import sprites.Hero;
 import sprites.Monster;
 import sprites.Sprite;
 
@@ -35,7 +36,7 @@ public abstract class Scene extends PApplet {
 
 	double xRatio, yRatio;
 	
-	private Sprite focusedSprite;
+	private Hero focusedSprite;
 
 	private boolean SideScroll;
 
@@ -48,7 +49,7 @@ public abstract class Scene extends PApplet {
 	 * @param yPadding - the distance from each side on the y axis that the focused sprite can not reach
 	 * @param renderDistance - the distance off the screen that is drawn
 	 */
-	public Scene (Main m, Sprite focusedSprite, Rectangle2D.Double worldSpace, int xPadding, int yPadding, int renderDistance) {
+	public Scene (Main m, Hero focusedSprite, Rectangle2D.Double worldSpace, int xPadding, int yPadding, int renderDistance) {
 		this.m=m;
 
 		toDraw = new ArrayList<Drawable>();
@@ -63,37 +64,7 @@ public abstract class Scene extends PApplet {
 		this.characterSpace = new Rectangle2D.Double(xPadding, yPadding, ASSUMED_DRAWING_WIDTH-2*xPadding, ASSUMED_DRAWING_HEIGHT-2*yPadding);
 		renderSpace = new Rectangle2D.Double(-renderDistance,-renderDistance,ASSUMED_DRAWING_WIDTH+2*renderDistance,ASSUMED_DRAWING_HEIGHT+2*renderDistance);
 		this.focusedSprite = focusedSprite;
-
-		updateRatios();
-
-		this.SideScroll = true;
-	}
-
-
-	/**
-	 * This creates a new scene.  If you don't want it to side scroll, just set the world space to the the assumed drawing width and height
-	 * If using this constructor, setup(Sprite) must be called.
-	 * @param m - the main method
-	 * @param worldSpace - the size of the level
-	 * @param xPadding - the distance from each side on the x axis that the focused sprite can not reach
-	 * @param yPadding - the distance from each side on the y axis that the focused sprite can not reach
-	 * @param renderDistance - the distance off the screen that is drawn
-	 */
-	public Scene (Main m, Rectangle2D.Double worldSpace, int xPadding, int yPadding, int renderDistance) {
-		this.m=m;
-
-		focusedSprite = null;
-
-		toDraw = new ArrayList<Drawable>();
-		mouseInput = new ArrayList<Clickable>();
-		keyInput = new ArrayList<Typeable>();
-		worldlyThings = new ArrayList<Sprite>();
-		zombies = new ArrayList<Monster>();
-
-		this.setWorldSpace(worldSpace);
-		this.screenSpace = new Rectangle2D.Double(0,0, ASSUMED_DRAWING_WIDTH, ASSUMED_DRAWING_HEIGHT);
-		this.characterSpace = new Rectangle2D.Double(xPadding, yPadding, ASSUMED_DRAWING_WIDTH-2*xPadding, ASSUMED_DRAWING_HEIGHT-2*yPadding);
-		renderSpace = new Rectangle2D.Double(-renderDistance,-renderDistance,ASSUMED_DRAWING_WIDTH+2*renderDistance,ASSUMED_DRAWING_HEIGHT+2*renderDistance);
+		addAtEnd(this.focusedSprite);
 
 		updateRatios();
 
@@ -109,10 +80,10 @@ public abstract class Scene extends PApplet {
 	 * @param yPadding - the distance from each side on the y axis that the focused sprite can not reach
 	 * @param renderDistance - the distance off the screen that is drawn
 	 */
-	public Scene (Main m) {
+	public Scene (Main m, Hero joe) {
 		this.m=m;
 
-		focusedSprite = null;
+		focusedSprite = joe;
 
 		toDraw = new ArrayList<Drawable>();
 		mouseInput = new ArrayList<Clickable>();
@@ -130,7 +101,7 @@ public abstract class Scene extends PApplet {
 		this.SideScroll = false;
 	}
 
-	public void setup(Sprite focusedSprite) {
+	public void setup(Hero focusedSprite) {
 		this.focusedSprite = focusedSprite;
 		addAtEnd(focusedSprite);
 	}
@@ -341,7 +312,8 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void newBattleField() {
-
+		m.clearScene("BattleField");
+		m.addScene(new BattleField(m, focusedSprite), "BattleField");
 	}
 
 	public ArrayList<Sprite> getWorldlyThings() {

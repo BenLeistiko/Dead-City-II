@@ -24,10 +24,11 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	private String name;
 	private Color textColor;
 	private PImage left,center,right,leftP,centerP,rightP,centerCrop,centerCropP;
-	private Scene scene;
 	private String target;
 	private boolean isPressed = false;
-	public Button(double x, double y, double w, double h, String name,Color textColor, Scene scene, String target) {
+	private boolean swapToTarget;
+	private boolean makeNewScene;
+	public Button(double x, double y, double w, double h, String name,Color textColor, String target) {
 		super(x-(w/2),y-(h/2),w,h);
 		this.name = name;
 		this.textColor = textColor;
@@ -59,8 +60,13 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		centerCropP = Main.resources.getImage("ButtonPressed");
 		centerCropP = Main.resources.getTexture("ButtonPressed", new Point((int) (centerCropP.width*(h/centerCropP.height)),(int)h-4), new Point(cropXP,(int)h-4));
 
-		this.scene = scene;
 		this.target = target;
+		swapToTarget = false;
+		if(target.charAt(0) == '*') {
+			this.target = target.substring(1);
+			makeNewScene = true;
+		}else
+			makeNewScene = false;
 	}
 
 
@@ -75,8 +81,16 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		return false;
 	}
 
-	public void act(Scene s) {
-		
+	public void act(Scene scene) {
+		if(swapToTarget){
+			System.out.println(target);
+			if(makeNewScene) {
+				System.out.println("\tNewScene");
+				scene.newBattleField();
+			}
+			scene.changePanelAndPause(target);
+			this.swapToTarget = false;
+		}
 	}
 	
 	public void draw(PApplet marker) {
@@ -158,9 +172,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 			if(target.equalsIgnoreCase("exit")) {
 				System.exit(0);
 			}
-			if(target.contains("NEW")) {
-			}
-			scene.changePanelAndPause(target);
+			this.swapToTarget = true;
 		}
 		isPressed = false;
 	}

@@ -44,7 +44,7 @@ public class BattleField extends Scene {
 
 
 	public BattleField(Main m, Hero hero) {
-		super(m, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
+		super(m, hero, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
 		joe = hero;
 		groundThickness = 1000;
 
@@ -66,15 +66,13 @@ public class BattleField extends Scene {
 
 		display = joe.getHUD();
 		this.add(display);
-		setup(joe);
-
 	}
 
 	public void draw() {
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 		
-		
+		System.out.println(width +", " + height);
 		super.draw();
 	
 		if(!joe.isAlive()) {

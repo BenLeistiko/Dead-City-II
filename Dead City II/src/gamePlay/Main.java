@@ -20,7 +20,6 @@ import items.RangedWeapon;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import scenes.*;
-import scenes.TitleScreen;
 import sprites.Hero;
 /**
  * This class holds the main method and all of the scene that could be played during the game.  It also has structure to swap the scene that is currently being played.
@@ -57,13 +56,13 @@ public class Main {
 		
 		isBattle = false;
 		
-		chill = new BetterSound(this.resources.getSound("Chill"), true, true);
-		battle = new BetterSound(this.resources.getSound("Battle"), true, true);
+		chill = new BetterSound(Main.resources.getSound("Chill"), true, true);
+		battle = new BetterSound(Main.resources.getSound("Battle"), true, true);
 		
 		window = new JFrame();
 
 		window.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-		window.setMinimumSize(new Dimension(100,100));
+		window.setMinimumSize(new Dimension(Scene.ASSUMED_DRAWING_WIDTH,Scene.ASSUMED_DRAWING_HEIGHT));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 
@@ -85,11 +84,11 @@ public class Main {
 		Hero joe = new Hero(Main.resources.TROOPER, 49000,100,100,100,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME)));
-		this.addScene(new TitleScreen(this), "TitleScreen"); 
+		this.addScene(new TitleScreen(this, joe), "TitleScreen"); 
 		this.addScene(new BattleField(this, joe), "BattleField");
 		this.addScene(new Camp(this,joe), "Camp");
-		this.addScene(new Pause(this), "Pause");
-		this.addScene(new Death(this), "Death");
+		this.addScene(new Pause(this,joe), "Pause");
+		this.addScene(new Death(this,joe), "Death");
 
 		changePanel("TitleScreen");
 
@@ -124,6 +123,13 @@ public class Main {
 		cardPanel.add(processingCanvases.get(name), name);
 	}
 
+	public void clearScene(String name) {
+		cardPanel.remove(processingCanvases.get(name));
+		processingCanvases.remove(name);
+		surfaces.remove(name);
+		panels.remove(name);
+	}
+	
 	public static void main(String args[]) {
 		Main m = new Main();
 	}
