@@ -21,22 +21,18 @@ public class TitleScreen extends Scene {
 	public void setup() {
 
 		Button startGame = new Button(Scene.ASSUMED_DRAWING_WIDTH/2, Scene.ASSUMED_DRAWING_HEIGHT/4, 400, 50,"START",new Color(0,0,0), "BattleField");
-		Button camp = new Button(Scene.ASSUMED_DRAWING_WIDTH/2, 2*Scene.ASSUMED_DRAWING_HEIGHT/4, 400, 50,"CAMP",new Color(0,0,0), "Camp");
+		//Button camp = new Button(Scene.ASSUMED_DRAWING_WIDTH/2, 2*Scene.ASSUMED_DRAWING_HEIGHT/4, 400, 50,"CAMP",new Color(0,0,0), "Camp");
 		Button exitGame = new Button(Scene.ASSUMED_DRAWING_WIDTH/2, 3*Scene.ASSUMED_DRAWING_HEIGHT/4, 400, 50,"EXIT",new Color(0,0,0), "Exit");
 
-		super.add(startGame,exitGame,camp);
+		super.add(startGame,exitGame);
 	}
 
 
 	public void draw() {
-
 		background(255);
 		image(Main.resources.getImage("TitleScreenBackground"),0,0);
 		super.draw();
-		//image(Main.resources.getAnimation("TrooperRunning",0),100,100);
-
-		//	textAlign(CENTER,CENTER);
-		//	rectMode(this.CENTER);
+		
 
 
 	}
