@@ -212,36 +212,36 @@ public class ResourceLoader {
 	 * This will return a cropped image.  bounds of (0, 0) are for raw scaled images
 	 * 
 	 * @param name - the name of the key for the image
-	 * @param bounds - the bounds of the texture you want to get
+	 * @param size - the size of the texture you want to get
 	 * @return the cropped image
 	 */
-	public PImage getTexture(String name, Point bounds, Point cropBounds) {
+	public PImage getTexture(String name, Point size, Point cropBounds) {
 		PImage img = this.getImage(name); 
-		if(img != null && img.width == bounds.x && img.height == bounds.y && bounds.equals(cropBounds)) {
+		if(img != null && img.width == size.x && img.height == size.y && size.equals(cropBounds)) {
 			return img;
 		}
 		if(textures.get(name) == null) {
 			textures.put(name, new HashMap<Point, HashMap<Point, PImage>>());
 		}
-		if (textures.get(name).get(bounds) == null) {
-			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
+		if (textures.get(name).get(size) == null) {
+			textures.get(name).put(size, new HashMap<Point, PImage>());				
 		}
-		if(textures.get(name).get(bounds).get(cropBounds) == null) {
+		if(textures.get(name).get(size).get(cropBounds) == null) {
 			//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			//System.out.println(bounds.x + ", " + bounds.y);
 			boolean hasLoaded = false;
 			while(!hasLoaded) {
 				try {
-					img.resize(bounds.x, bounds.y);
+					img.resize(size.x, size.y);
 					hasLoaded = true;
 				}catch(ArrayIndexOutOfBoundsException e) {
-					System.out.println(bounds.x + ", " + bounds.y + ", " + img.height + ", " + img.width);
+					System.out.println(size.x + ", " + size.y + ", " + img.height + ", " + img.width);
 				}
 			}
-			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
+			textures.get(name).get(size).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);
 		}
-		return textures.get(name).get(bounds).get(cropBounds);
+		return textures.get(name).get(size).get(cropBounds);
 	}
 
 	public ArrayList<PImage> getAnimationList(String key){

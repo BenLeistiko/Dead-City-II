@@ -219,7 +219,7 @@ public class BattleField extends Scene {
 
 		for(int i =0; i <amtToSpawn;i++) {
 			int rand = (int)(Math.random()*3);
-			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getWidth()-2000)*Math.random()+1000,100,100,100);
+			Monster zomb = new Monster(mobTypes.get(rand),(getWorldSpace().getWidth()-2000)*Math.random()+1000,100,80,80);
 
 			add(zomb);
 			super.getMonsters().add(zomb);
