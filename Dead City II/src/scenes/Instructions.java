@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import gamePlay.Button;
 import gamePlay.Main;
+import processing.core.PImage;
 import sprites.Hero;
 
 /**
@@ -15,22 +16,19 @@ import sprites.Hero;
  *
  */
 public class Instructions extends Scene{
-
+	PImage instr;
 	public Instructions(Main m, Hero joe) {
 		super(m, joe);
-		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT/2, 400, 50, "Next Day", new Color(0,0,0), "*BattleField"));
+		add(new Button(ASSUMED_DRAWING_WIDTH/2, ASSUMED_DRAWING_HEIGHT-75, 400, 50, "Main Menu", new Color(0,0,0), "TitleScreen"));
+		instr = Main.resources.getImage("Instr");
 	}
 
 	public void draw() {
+		image(instr, 330,0,840,800);
 		background(255);
 		
 		
 		super.draw();
-
-
-
-
-
 	}	
 
 	public void keyPressed() {
