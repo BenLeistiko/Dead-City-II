@@ -25,8 +25,12 @@ public class Instructions extends Scene{
 
 	public void draw() {
 		background(255);
+<<<<<<< HEAD
 		image(instr, 330,0,840,800);
 		
+=======
+		image(instr, 390,0,840,800);
+>>>>>>> branch 'master' of https://github.com/BenLeistiko/Dead-City-II
 		
 		
 		super.draw();
