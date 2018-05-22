@@ -28,12 +28,9 @@ import processing.core.PImage;
  */
 public abstract class Sprite extends Rectangle2D.Double implements Drawable {
 	// FIELDS
-	private String imageKey;
 	
-	public Sprite(String imageKey,double x, double y, double w, double h, ArrayList<Sprite> sprites) {
-		super(x,y,w,h);
-		this.imageKey = imageKey;		
-	}
+	
+	
 	public Sprite(double x, double y, double w, double h, boolean visiblity) {
 		super(x,y,w,h);
 	}

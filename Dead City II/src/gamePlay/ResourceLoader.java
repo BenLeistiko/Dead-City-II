@@ -177,17 +177,15 @@ public class ResourceLoader {
 			this.loadFromFolder("resources" + fileSeparator+"GUI",HUD.xScaleFactor,HUD.yScaleFactor);
 
 			//****Loading Normal Images****
-
 			images.put("Bullet", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bullet.png")))));
 			images.put("Bricks", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bricks.jpg")))));
 			images.put("Bedrock", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Bedrock.png")))));
 			images.put("Dirt", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Dirt.png")))));
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
-			
-			
 			images.put("BattleFieldBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif")))));
-			
 			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
+			images.put("Health", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Health.png")))));
+			images.put("StaminaBoost", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"StaminaBoost.png")))));
 
 			//****Loading Sounds****
 			sounds.put("Shoot",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "shoot.wav"));
