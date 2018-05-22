@@ -25,10 +25,9 @@ public class HUD implements Drawable{
 	private double health,maxHealth;
 	private double stamina,maxStamina;
 	private int ammo,maxAmmo;
-	private PImage hero;
-
-	private Color red = new Color(255,0,0);
 	
+	private Color red = new Color(255,0,0);
+
 	private boolean isReloading;
 
 	private static final float healthBarOffset = 4;
@@ -37,10 +36,10 @@ public class HUD implements Drawable{
 	public static final float xScaleFactor = 2;
 	public static final float yScaleFactor = 2;
 
-private boolean isAlive;
+	private boolean isAlive;
 
 	private PImage HUD, firstBulletBar, bulletBar, firstHealthBar,healthBar,firstStaminaBar,staminaBar,firstEmptyBar,emptyBar,
-	bulletBarCap,healthBarCap,staminaBarCap;
+	bulletBarCap,healthBarCap,staminaBarCap,hero,xpBarLeft,xpBarFill,xpBarRight,centerBar,rightBar,leftBar;
 
 	private final int numBars;
 
@@ -70,6 +69,7 @@ private boolean isAlive;
 		bulletBarCap=Main.resources.getImage("BulletBarCap");
 		healthBarCap=Main.resources.getImage("HealthBarCap");
 		staminaBarCap=Main.resources.getImage("StaminaBarCap");
+		
 
 	}
 
@@ -134,22 +134,26 @@ private boolean isAlive;
 			marker.textSize(20);
 			marker.text("RELOADING...", (float) (1*(visSpace.getX()+HUD.width+20)), (float) (visSpace.getY()+(yScaleFactor*(bulletBarOffset+2))));
 		}
-		
-		
+
+
 		marker.image(bulletBarCap,(float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*numBars-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset-4)));
 
+		//hero image
 		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
+		//xp bar
 		
 		
+
+
 		if(!isAlive) {
-		
+
 			marker.fill(red.getRGB());
 			marker.textAlign(marker.CENTER, marker.CENTER);
 			marker.textSize(40);
 			marker.text("YOU DIED", (float) ((visSpace.getX()/2)), (float) (visSpace.getY()/2));
 		}
-		
+
 		/*
 			if(isReloading) {
 				Color c = new Color(255,0,0);
