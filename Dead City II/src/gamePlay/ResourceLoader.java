@@ -233,12 +233,12 @@ public class ResourceLoader {
 			while(!hasLoaded) {
 				try {
 					img.resize(size.x, size.y);
+					textures.get(name).get(size).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 					hasLoaded = true;
 				}catch(ArrayIndexOutOfBoundsException e) {
 					System.out.println(size.x + ", " + size.y + ", " + img.height + ", " + img.width);
 				}
 			}
-			textures.get(name).get(size).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);
 		}
 		return textures.get(name).get(size).get(cropBounds);

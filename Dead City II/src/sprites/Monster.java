@@ -25,7 +25,14 @@ public class Monster extends Creature {
 
 	public void draw(PApplet marker) {
 		super.draw(marker);
-		
+		marker.noFill();
+		marker.stroke(255,255,255);
+		marker.strokeWeight(2);
+		marker.rect((float)x, (float)y-15, (float)width, 10);
+		float dist = (float) (super.getHealth()/super.getMaxHealth()*width);
+		marker.fill(255, 0, 0);
+		marker.strokeWeight(0);
+		marker.rect((float)x+1, (float)y-14, (float)dist-1, 9);
 	}
 
 	public void act(Scene s) {
