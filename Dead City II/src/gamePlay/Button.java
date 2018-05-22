@@ -46,9 +46,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 		center = Main.resources.getTexture("Button", new Point((int) (center.width*(h/center.height)),(int)h-4), new Point((int) (center.width*(h/center.height)),(int)h-4));
 
 		centerP = Main.resources.getImage("ButtonPressed");
-		Point p = new Point((int) (centerP.width*(h/centerP.height)),(int)h-4);
-		System.out.println(p);
-		centerP = Main.resources.getTexture("ButtonPressed", p, new Point((int) (centerP.width*(h/centerP.height)),(int)h-4));
+		centerP = Main.resources.getTexture("ButtonPressed", new Point((int) (centerP.width*(h/centerP.height)),(int)h-4), new Point((int) (centerP.width*(h/centerP.height)),(int)h-4));
 
 		double centerWidth = getWidth() - left.width - right.width;
 

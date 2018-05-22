@@ -74,9 +74,9 @@ public class ResourceLoader {
 	public static final String AGILITY = "agility";
 	public static final String JUMPPOWER = "jumpPower";
 	public static final String RELOADTIME = "reloadTime";
-	
+
 	private HashMap<String,File> sounds;
-	
+
 	public ResourceLoader() {
 		animations = new HashMap<String, ArrayList<PImage>>();
 		images = new HashMap<String, PImage>();
@@ -98,7 +98,7 @@ public class ResourceLoader {
 		characters.add(MOHAWKZOMBIE);
 
 
-		
+
 		attributes = new ArrayList<String>();
 		attributes.add(HEALTH);
 		attributes.add(HEALTHREGEN);
@@ -116,8 +116,8 @@ public class ResourceLoader {
 		attributes.add(AGILITY);
 		attributes.add(JUMPPOWER);
 		attributes.add(RELOADTIME);
-	
-		
+
+
 		badMobs = new ArrayList<String>();
 		badMobs.add(BASICZOMBIE);
 		badMobs.add(BONEZOMBIE);
@@ -126,7 +126,7 @@ public class ResourceLoader {
 	}
 
 	public void load() {
-		
+
 		//****Loading Stats of everything*****
 		ArrayList<String> stats = new ArrayList<String>();
 
@@ -184,12 +184,12 @@ public class ResourceLoader {
 			images.put("Grass", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Grass.png")))));
 			images.put("BattleFieldBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"BattleFieldBackground.gif")))));
 			images.put("TitleScreenBackground", new PImage(ImageIO.read(new File(("resources"+fileSeparator+"TitleScreenBackground.jpg")))));
-			
+
 			PImage health =new PImage(ImageIO.read(new File(("resources"+fileSeparator+"Health.png"))));
 			health.resize(30, 30);
 			images.put("Health",health );
-			
-			
+
+
 			PImage stamina =new PImage(ImageIO.read(new File(("resources"+fileSeparator+"StaminaBoost.png"))));
 			stamina.resize(50, 50);
 			images.put("StaminaBoost",stamina );
@@ -212,28 +212,36 @@ public class ResourceLoader {
 	 * This will return a cropped image.  bounds of (0, 0) are for raw scaled images
 	 * 
 	 * @param name - the name of the key for the image
-	 * @param bounds - the bounds of the texture you want to get
+	 * @param size - the size of the texture you want to get
 	 * @return the cropped image
 	 */
-	public PImage getTexture(String name, Point bounds, Point cropBounds) {
+	public PImage getTexture(String name, Point size, Point cropBounds) {
 		PImage img = this.getImage(name); 
-		if(img != null && img.width == bounds.x && img.height == bounds.y && bounds.equals(cropBounds)) {
+		if(img != null && img.width == size.x && img.height == size.y && size.equals(cropBounds)) {
 			return img;
 		}
 		if(textures.get(name) == null) {
 			textures.put(name, new HashMap<Point, HashMap<Point, PImage>>());
 		}
-		if (textures.get(name).get(bounds) == null) {
-			textures.get(name).put(bounds, new HashMap<Point, PImage>());				
+		if (textures.get(name).get(size) == null) {
+			textures.get(name).put(size, new HashMap<Point, PImage>());				
 		}
-		if(textures.get(name).get(bounds).get(cropBounds) == null) {
+		if(textures.get(name).get(size).get(cropBounds) == null) {
 			//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
 			//System.out.println(bounds.x + ", " + bounds.y);
-			img.resize(bounds.x, bounds.y);
-			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
+			boolean hasLoaded = false;
+			while(!hasLoaded) {
+				try {
+					img.resize(size.x, size.y);
+					hasLoaded = true;
+				}catch(ArrayIndexOutOfBoundsException e) {
+					System.out.println(size.x + ", " + size.y + ", " + img.height + ", " + img.width);
+				}
+			}
+			textures.get(name).get(size).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);
 		}
-		return textures.get(name).get(bounds).get(cropBounds);
+		return textures.get(name).get(size).get(cropBounds);
 	}
 
 	public ArrayList<PImage> getAnimationList(String key){
@@ -317,7 +325,7 @@ public class ResourceLoader {
 			}
 		}
 	}
-	
+
 	public void parseStats(ArrayList<String> statsFile) {
 		//statsFile is all the lines from the txt file
 
@@ -338,18 +346,18 @@ public class ResourceLoader {
 						atts.put(attributes.get(j), num);
 					}
 				}
-				
+
 				statistics.put(line, atts);//put the new atts hash with the corresponding chracter
 				i+=attributes.size();//save some time
 
 			}
 		}	
 	}
-	
+
 	public double getStat(String name, String attribute) {
 		return statistics.get(name).get(attribute);
 	}
-	
+
 	public ArrayList<String> getBadMobNames(){
 		return badMobs;
 	}

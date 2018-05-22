@@ -25,6 +25,7 @@ public class Monster extends Creature {
 
 	public void draw(PApplet marker) {
 		super.draw(marker);
+		
 	}
 
 	public void act(Scene s) {
@@ -32,7 +33,7 @@ public class Monster extends Creature {
 		super.act(s);
 
 		double distance = this.getCenter().distance(h.getCenter());
-		if(distance <1000) {
+		if(distance <1600) {
 			Main.isBattle = true;
 			//System.out.println("Monsters are here");
 			//System.out.print(Main.isBattle);

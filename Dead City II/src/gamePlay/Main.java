@@ -88,7 +88,7 @@ public class Main {
 				fixProcessingPanelSizes(x);
 			}
 		});
-		Hero joe = new Hero(Main.resources.TROOPER, 12500,100,100,100,
+		Hero joe = new Hero(Main.resources.TROOPER, 12500,100,90,90,
 				new RangedWeapon(Main.resources.getStat(Main.resources.TROOPER, Main.resources.DAMAGE),Main.resources.getStat(Main.resources.TROOPER, Main.resources.FIRERATE),
 						Main.resources.getStat(Main.resources.TROOPER, Main.resources.PROJECTILESPEED),(int)Main.resources.getStat(Main.resources.TROOPER, Main.resources.AMMO),Main.resources.getStat(Main.resources.TROOPER, Main.resources.RELOADTIME)));
 		this.addScene(new TitleScreen(this, joe), "TitleScreen"); 
