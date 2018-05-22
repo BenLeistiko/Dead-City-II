@@ -150,6 +150,8 @@ public abstract class Scene extends PApplet {
 			if(zombies.get(i).shouldRemove())
 				zombies.remove(i);
 		}
+		
+		
 	}
 
 	public boolean slideWorldToImage() {
@@ -256,6 +258,14 @@ public abstract class Scene extends PApplet {
 		toDraw.add(d);
 	}
 
+	public void clearAllLists() {
+		toDraw = new ArrayList<Drawable>();
+		mouseInput = new ArrayList<Clickable>();
+		keyInput = new ArrayList<Typeable>();
+		worldlyThings = new ArrayList<Sprite>();
+		zombies = new ArrayList<Monster>();
+	}
+	
 	public void addClickable(Clickable c) {
 		mouseInput.add(c);
 	}
@@ -268,6 +278,20 @@ public abstract class Scene extends PApplet {
 	 * Only use if you have to, this is much slower
 	 * @param o - the object to 
 	 */
+	public Object addBeforeEnd(Object ... objects) {
+		for(Object o:objects) {
+			if(o instanceof Drawable)
+				toDraw.add(Math.max(0, toDraw.size()-1),(Drawable)o);
+			if(o instanceof Clickable)
+				mouseInput.add(Math.max(0, mouseInput.size()-1),(Clickable)o);
+			if(o instanceof Typeable)
+				keyInput.add(Math.max(0, keyInput.size()-1),(Typeable)o);
+			if(o instanceof Sprite) 
+				worldlyThings.add(Math.max(0, worldlyThings.size()-1),(Sprite) o);
+		}
+		return objects[0];
+	}
+	
 	public Object add(Object ... objects) {
 		for(Object o:objects) {
 			if(o instanceof Drawable)
@@ -312,10 +336,13 @@ public abstract class Scene extends PApplet {
 	}
 
 	public void newBattleField() {
-		m.clearScene("BattleField");
-		m.addScene(new BattleField(m, focusedSprite), "BattleField");
+		m.getScene("BattleField").resetScene();;
 	}
 
+	public void resetScene() {
+		clearAllLists();
+	}
+	
 	public ArrayList<Sprite> getWorldlyThings() {
 		return worldlyThings;
 	}
@@ -366,7 +393,7 @@ public abstract class Scene extends PApplet {
 		this.screenSpace = screenSpace;
 	}
 	
-	public Sprite getFocusedSprite() {
+	public Hero getFocusedSprite() {
 		return focusedSprite;
 	}
 	

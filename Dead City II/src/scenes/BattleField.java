@@ -39,13 +39,10 @@ public class BattleField extends Scene {
 
 	private HUD display;
 
-	private Hero joe;
-	//private boolean paused;
 
 
 	public BattleField(Main m, Hero hero) {
 		super(m, hero, new Rectangle2D.Double(0,0,50000,2000), 200, 400, 100);	
-		joe = hero;
 		groundThickness = 1000;
 
 
@@ -64,7 +61,7 @@ public class BattleField extends Scene {
 		generatePlatforms(80,100);
 		generateMobs(mobsSpawn);
 
-		display = joe.getHUD();
+		display = super.getFocusedSprite().getHUD();
 		this.add(display);
 	}
 
@@ -75,7 +72,7 @@ public class BattleField extends Scene {
 		System.out.println(width +", " + height);
 		super.draw();
 	
-		if(!joe.isAlive()) {
+		if(!super.getFocusedSprite().isAlive()) {
 			super.changePanelAndPause("Death");
 			//	joe.act();
 		//	joe.draw(this);
@@ -108,22 +105,22 @@ public class BattleField extends Scene {
 			super.changePanelAndPause("Pause");
 		}
 
-		joe.keyPressed(this);
+		super.getFocusedSprite().keyPressed(this);
 
 	}
 	
 	public void keyReleased() {
 		super.keyReleased();
 		
-		joe.keyReleased(this);
+		super.getFocusedSprite().keyReleased(this);
 	}
 
 
 
 	public void generateEdges() {
 		Barrier bottom= new Barrier(getWorldSpace().getX(), getWorldSpace().getHeight()-100, getWorldSpace().getWidth(), 100,Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
-		Barrier left = new Barrier(getWorldSpace().getX()-100, getWorldSpace().getY(), 100, getWorldSpace().getHeight(),Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
-		Barrier right = new Barrier(getWorldSpace().getWidth(), getWorldSpace().getY(), 100, getWorldSpace().getHeight(),Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
+		Barrier left = new Barrier(getWorldSpace().getX()-100, getWorldSpace().getY()-800, 100, getWorldSpace().getHeight()+800,Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
+		Barrier right = new Barrier(getWorldSpace().getWidth(), getWorldSpace().getY()-800, 100, getWorldSpace().getHeight()+800,Main.resources.getImage("Bedrock").width,Main.resources.getImage("Bedrock").height,"Bedrock");
 		add(bottom,left,right);
 	}
 
@@ -169,9 +166,23 @@ public class BattleField extends Scene {
 
 	}
 
+	public void resetScene() {
+		super.resetScene();
+		generateEdges();
+		generateGround();
+		generateHill(10);
+		generatePlatforms(80,100);
+		generateMobs(mobsSpawn);
+		super.getFocusedSprite().setRect(250000, 0, super.getFocusedSprite().getWidth(), super.getFocusedSprite().getHeight());
+		super.addAtEnd(super.getFocusedSprite());
+		display = super.getFocusedSprite().getHUD();
+		this.add(display);
+	}
 
 	private boolean overlaps(double a1, double a2, double b1, double b2) {
 		if((a1 < b2 && a1>b1)||(a2 < b2 && a2>b1) || (b1<a2 &&b1>a1) ||(b2<a2 &&b2>a1) ) {
+			return true;
+		}else if(a2>super.getWorldSpace().getX()+super.getWorldSpace().getWidth() || a1 < super.getWorldSpace().getX()) {
 			return true;
 		}return false;
 	}
