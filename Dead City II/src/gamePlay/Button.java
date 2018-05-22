@@ -113,7 +113,7 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 				}else if(target.equals("actionIncreaseStamina")) {
 					joe.increaseMaxStamina(5);
 				}else if(target.equals("actionIncreaseDamage")) {
-					joe.increaseDamage(8);
+					joe.increaseDamage(4);
 				}
 			}
 			timeLastUpdated = System.currentTimeMillis();
