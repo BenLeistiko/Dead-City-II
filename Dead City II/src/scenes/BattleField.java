@@ -45,7 +45,7 @@ public class BattleField extends Scene {
 	public void setup() {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
-		amtOfMobsSpawn = 1;
+		amtOfMobsSpawn = 20;
 		amtOfPowerUpsSpawn = 8;
 		mobHealthUpgrade=0;
 		mobHealthUpgradeAmountPerDay=15;
