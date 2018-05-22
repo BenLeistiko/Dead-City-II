@@ -31,6 +31,10 @@ public class Hero extends Creature implements Clickable, Typeable {
 
 	private HUD display; 
 
+	private double xp;
+	private int level;
+	private double initialXPCondition;
+
 
 	public Hero(String animationKey, double x, double y, double w, double h, Weapon weapon) {
 		super(x, y, w, h, animationKey);
@@ -40,6 +44,9 @@ public class Hero extends Creature implements Clickable, Typeable {
 		isAlive = true;
 		display = new HUD();
 		hasClicked = false;
+		level = 1;
+		xp = 0;
+		initialXPCondition =200;
 	}
 
 
@@ -64,7 +71,7 @@ public class Hero extends Creature implements Clickable, Typeable {
 	}
 
 	public void draw(PApplet marker) {
-		//System.out.println(super.getHealth());
+		System.out.println("Current XP: " + xp + " Current Level: "+ level);
 		super.draw(marker);
 
 	}
@@ -160,9 +167,18 @@ public class Hero extends Creature implements Clickable, Typeable {
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-	
+
 	public boolean shouldRemove() {
 		return false;
 	}
+
+	public void experience(double xp) {
+		this.xp+=xp;
+		if(this.xp > Math.pow(1.2, level)*initialXPCondition) {
+			level++;
+		}
+
+	}
+
 
 }

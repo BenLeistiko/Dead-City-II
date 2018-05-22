@@ -29,14 +29,18 @@ public class DamageableBarrier extends Barrier implements Damageable {
 			super.draw(marker);
 	}
 
-	public void takeDamage(Destructive d) {
-		health = health-(d.getDamage()-d.getDamage()*armor);
+	public double takeDamage(Destructive d) {
+		double dmg =(d.getDamage()-d.getDamage()*armor);
+		health -= dmg;
 		checkAlive();
+		return dmg;
 	}
 
-	public void takeDamage(double damage) {
-		health = health-(damage-damage*armor);
+	public double takeDamage(double damage) {
+		double dmg =damage-damage*armor;
+		health -= dmg;
 		checkAlive();
+		return dmg;
 	}
 
 

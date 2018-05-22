@@ -36,11 +36,11 @@ public class Bullet extends MovingSprite implements Destructive {
 		alive = true;
 		this.dir = dir;
 		BetterSound b = new BetterSound(Main.resources.getSound("Shoot"), true,false);
- 
+
 	}
 
 	public void act(Scene scene) {
-		if(detectHit(scene.getWorldlyThings())) {
+		if(detectHit(scene.getWorldlyThings(),(Hero)scene.getFocusedSprite())) {
 			setAlive(false);
 		}
 		setvY(getvY() + Main.GRAVITY);
@@ -52,19 +52,21 @@ public class Bullet extends MovingSprite implements Destructive {
 	/**can only detect hits if alive because the method is called in draw(PApplet marker)
 	 * 
 	 * @param worldlyThings damageables in the world with which to check the collisions
+	 * @param h Hero to give XP to
 	 * @return true if the bullet has hit something false otherwise
 	 * @post if the bullet does hit something, the proper amount of damage is done to the damageable if the thing hit is damageable
 	 */
-	public boolean detectHit(ArrayList<Sprite> worldlyThings) {
+	private boolean detectHit(ArrayList<Sprite> worldlyThings, Hero h) {
 
 		for(Sprite s: worldlyThings) {
 			if(s!=this && !(s instanceof Hero)) {
 				if(this.intersects(s.getHitBox())) {//if intersects with something
 					if(s instanceof Damageable) {//if damageable do damage
 						Damageable damageableSprite = ((Damageable) s);
-						damageableSprite.takeDamage(getDamage());
+						double dmg = damageableSprite.takeDamage(getDamage()); 
+						h.experience(dmg);
 					}
-				
+
 					return true;//still means it hit something
 				}
 			}
