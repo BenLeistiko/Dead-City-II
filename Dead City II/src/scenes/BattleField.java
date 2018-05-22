@@ -42,7 +42,7 @@ public class BattleField extends Scene {
 		super.setup();
 		//Hero joe = new Hero("Trooper", 49000,100,100,100,new RangedWeapon(50,1000,20,10,this),super.getWorldlyThings(), this);
 		amtOfMobsSpawn = 20;
-		amtOfPowerUpsSpawn = 15;
+		amtOfPowerUpsSpawn = 8;
 
 		groundHeight = getWorldSpace().getY()+getWorldSpace().getHeight()-groundThickness;
 		generateEdges();
