@@ -99,9 +99,9 @@ private boolean isAlive;
 		//health bars
 		for(int i = 0;i <healthRatio*numBars;i++) {	
 			if(i==0) {
-				marker.image(firstHealthBar, (float)(1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
+				marker.image(firstHealthBar, (float)(1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*(healthBarOffset+2))));
 			}else {
-				marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*healthBarOffset)));
+				marker.image(healthBar, (float) (1*(visSpace.getX()+HUD.width+firstHealthBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*(healthBarOffset+2))));
 			}
 		}
 		marker.image(healthBarCap, ((float)(1*(visSpace.getX()+HUD.width+firstHealthBar.width*numBars-.5))), (float)(visSpace.getY()+(yScaleFactor*healthBarOffset-4)));
@@ -111,9 +111,9 @@ private boolean isAlive;
 
 		for(int i = 0;i <staminaRatio*numBars;i++) {	
 			if(i==0) {
-				marker.image(firstStaminaBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
+				marker.image(firstStaminaBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*(staminaBarOffset+2))));
 			}else {
-				marker.image(staminaBar, (float) (1*(visSpace.getX()+HUD.width+firstStaminaBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*staminaBarOffset)));
+				marker.image(staminaBar, (float) (1*(visSpace.getX()+HUD.width+firstStaminaBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*(staminaBarOffset+2))));
 			}
 		}
 
@@ -123,9 +123,9 @@ private boolean isAlive;
 		if(!isReloading) {
 			for(int i = 0;i <ammoRatio*numBars;i++) {	
 				if(i==0) {
-					marker.image(firstBulletBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
+					marker.image(firstBulletBar, (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*(bulletBarOffset+2))));
 				}else {
-					marker.image(bulletBar, (float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
+					marker.image(bulletBar, (float) (1*(visSpace.getX()+HUD.width+firstBulletBar.width*i-.5)), (float) (visSpace.getY()+(yScaleFactor*(bulletBarOffset+2))));
 				}
 			}
 		}else {
