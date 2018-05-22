@@ -195,6 +195,7 @@ public class ResourceLoader {
 			sounds.put("Reload",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "reload.wav"));
 			sounds.put("Chill",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "ChillMusic_Small.wav"));
 			sounds.put("Battle",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "BattleMusic_Small.wav"));
+			sounds.put("Death",new File("resources" +fileSeparator +"Sounds"+fileSeparator + "Death.wav"));
 
 
 		} catch (IOException e) {
@@ -222,6 +223,7 @@ public class ResourceLoader {
 		}
 		if(textures.get(name).get(bounds).get(cropBounds) == null) {
 			//	System.out.println("x: " + bounds.x + " y: " + bounds.y);
+			//System.out.println(bounds.x + ", " + bounds.y);
 			img.resize(bounds.x, bounds.y);
 			textures.get(name).get(bounds).put(cropBounds, img.get(0,0,cropBounds.x,cropBounds.y));
 			//System.out.println(++numberOfImages);

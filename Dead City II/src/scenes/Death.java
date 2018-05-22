@@ -2,16 +2,20 @@ package scenes;
 
 import java.awt.Color;
 
+import gamePlay.BetterSound;
 import gamePlay.Button;
 import gamePlay.Main;
 import sprites.Hero;
 
 public class Death extends Scene {
 
-	
+	BetterSound death;
+	private boolean hasStarted;
 	
 	public Death(Main m, Hero joe) {
 		super(m, joe);
+		death = new BetterSound(Main.resources.getSound("Death"),false, true);
+		hasStarted = false;
 	}
 
 	public void setup() {
@@ -31,6 +35,11 @@ public class Death extends Scene {
 		fill(255,0,0);
 		text("YOU DIED",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
 		popMatrix();
+		if(!super.getFocusedSprite().isAlive() && !hasStarted) {
+			death.start();
+			Main.playMusic = false;
+			hasStarted = true;
+		}
 	}
 	
 	
