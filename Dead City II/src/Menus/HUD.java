@@ -15,7 +15,7 @@ import scenes.Scene;
 import sprites.Barrier;
 import sprites.Hero;
 /**
- * 
+ * Displays the characters current stats
  * @author Jose
  * @version 5/19/18
  */
