@@ -5,8 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 
-import gamePlay.Button;
-import gamePlay.Main;
+import Menus.Button;
 //import gifAnimation.*;
 import gamePlay.*;
 import processing.core.PApplet;

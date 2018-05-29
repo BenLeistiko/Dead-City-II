@@ -26,7 +26,7 @@ public class BattleField extends Scene {
 	private int amtOfMobsSpawn;
 	private int amtOfPowerUpsSpawn;
 
-	private HUD display;
+	
 
 	private double mobHealthUpgrade;
 	private double mobHealthUpgradeAmountPerDay;
@@ -61,7 +61,7 @@ public class BattleField extends Scene {
 
 
 
-		display = super.getFocusedSprite().getHUD();
+		HUD display = super.getFocusedSprite().getHUD();
 		this.add(display);
 	}
 
@@ -69,10 +69,8 @@ public class BattleField extends Scene {
 		background(255);
 		image(Main.resources.getImage("BattleFieldBackground"),0, 0);
 
-		display.update(this,(Hero)super.getFocusedSprite());	
-//		System.out.println("STAMINA: " +((Hero)(super.getFocusedSprite())).getStamina());
-//		System.out.println("HEALTH: " + ((Hero)(super.getFocusedSprite())).getHealth());
-//		System.out.println("DAMAGE: " + ((Hero)(super.getFocusedSprite())).getDamage());
+	
+	
 
 
 		super.draw();
@@ -179,7 +177,7 @@ public class BattleField extends Scene {
 		generatePowerUps(amtOfPowerUpsSpawn);
 		super.getFocusedSprite().setRect(super.getWorldSpace().getWidth()/2, 0, super.getFocusedSprite().getWidth(), super.getFocusedSprite().getHeight());
 		super.addAtEnd(super.getFocusedSprite());
-		display = super.getFocusedSprite().getHUD();
+		HUD display = super.getFocusedSprite().getHUD();
 		this.add(display);
 		day++;
 	}
@@ -250,7 +248,6 @@ public class BattleField extends Scene {
 			double randomX = (getWorldSpace().getWidth()-2000)*Math.random()+1000;
 
 			Pickup pick = null;
-			//	System.out.println("rand= " + rand);
 			if(rand ==0) {
 				pick = new HealthPickup(randomX,50,100);
 			}else {

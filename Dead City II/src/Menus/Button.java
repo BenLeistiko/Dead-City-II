@@ -1,4 +1,4 @@
-package gamePlay;
+package Menus;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 
+import gamePlay.Main;
 import interfaces.Clickable;
 import interfaces.Drawable;
 import processing.core.PApplet;
@@ -123,8 +124,8 @@ public class Button extends Rectangle2D.Double implements Drawable, Clickable {
 	public void draw(PApplet marker) {
 		marker.pushMatrix();
 
-		marker.fill(0);
-		marker.rect((float)super.getX(), (float)super.getY(), (float)super.width, (float)super.height);
+	//	marker.fill(0);
+	//	marker.rect((float)super.getX(), (float)super.getY(), (float)super.width, (float)super.height);
 		
 		
 		if(!isPressed) {

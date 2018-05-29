@@ -22,12 +22,12 @@ public class HUD implements Drawable{
 	private double healthRatio;
 	private double ammoRatio;
 	private double staminaRatio;
-	private Weapon weapon;
+
 	private double health,maxHealth;
 	private double stamina,maxStamina;
 	private int ammo,maxAmmo;
 	private int mobsLeft;
-	
+
 	private Color red = new Color(255,0,0);
 
 	private boolean isReloading;
@@ -45,9 +45,9 @@ public class HUD implements Drawable{
 
 	private final int numBars;
 
-	
+
 	public HUD() {
-		
+
 		health = 0;
 		maxHealth = 0;
 		stamina = 0;
@@ -72,18 +72,22 @@ public class HUD implements Drawable{
 		bulletBarCap=Main.resources.getImage("BulletBarCap");
 		healthBarCap=Main.resources.getImage("HealthBarCap");
 		staminaBarCap=Main.resources.getImage("StaminaBarCap");
-		
+		hero = Main.resources.getAnimation("TrooperWalking", 0);	
+
 
 	}
 
 
 
 	public void draw(PApplet marker) {
-
+		//System.out.println("HUD DRAWING");
+		
 		marker.pushMatrix();
 		//	marker.scale(xScaleFactor, yScaleFactor);
 		marker.image(HUD, (float)visSpace.getX(), (float)visSpace.getY());
-
+		
+	//	System.out.println("\t\tVISSPACE FROM HUD DRAW: " + visSpace.getX());
+		
 		//empty bars
 		for(int i = 0;i <numBars;i++) {	
 			if(i==0) {
@@ -144,8 +148,8 @@ public class HUD implements Drawable{
 		marker.image(hero, (float)visSpace.getX()+xScaleFactor*13, (float) visSpace.getY()+yScaleFactor*12,xScaleFactor*37,yScaleFactor*39);
 
 		//xp bar
-		
-		
+
+
 
 
 		if(!isAlive) {
@@ -156,20 +160,7 @@ public class HUD implements Drawable{
 			marker.text("YOU DIED", (float) ((visSpace.getX()/2)), (float) (visSpace.getY()/2));
 		}
 
-		/*
-			if(isReloading) {
-				Color c = new Color(255,0,0);
-				marker.fill(0);
-
-				marker.rect((float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)),numBars*bulletBar.width,bulletBar.height);
-
-				marker.fill(255);
-				marker.textAlign(marker.LEFT, marker.TOP);
-				marker.textSize(20);
-				marker.text("RELOADING", (float) (1*(visSpace.getX()+HUD.width-.5)), (float) (visSpace.getY()+(yScaleFactor*bulletBarOffset)));
-			}
-
-		 */
+	
 		marker.fill(255);
 		marker.textSize(30);
 		marker.text("Undead Left: " + this.mobsLeft, (float)visSpace.getX()+1300, (float) (visSpace.getY()+40));
@@ -178,9 +169,22 @@ public class HUD implements Drawable{
 
 
 	//characterSpace = new Rectangle2D.Double(xEdge, yEdge, width-2*xEdge, height - 2*yEdge);
-	public void update(Scene s, Hero h) {
-		visSpace = s.getVisSpace();
+	
+
+	public Rectangle2D.Double getHitBox() {
+		return visSpace;
+	}
+
+	public boolean shouldRemove() {
+		return false;
+	}
+
+	public void act(Scene s) {
 		
+		Hero h = s.getFocusedSprite();
+		
+		visSpace = s.getVisSpace();
+	
 		mobsLeft = s.getMonsters().size();
 
 		health = h.getHealth();
@@ -189,10 +193,10 @@ public class HUD implements Drawable{
 		stamina=h.getStamina();
 		maxStamina=h.getMaxStamina();
 
-		weapon = h.getWeapon();
 
-		if(weapon instanceof RangedWeapon) {
-			RangedWeapon rw = ((RangedWeapon) weapon);
+
+		if(h.getWeapon() instanceof RangedWeapon) {
+			RangedWeapon rw = ((RangedWeapon) h.getWeapon());
 			ammo = rw.getCurrentAmmo();
 			maxAmmo =rw.getMaxAmmo(); 
 		}else {
@@ -210,17 +214,6 @@ public class HUD implements Drawable{
 
 		isAlive = h.isAlive();
 
-	}
-
-	public Rectangle2D.Double getHitBox() {
-		return visSpace;
-	}
-
-	public boolean shouldRemove() {
-		return false;
-	}
-
-	public void act(Scene s) {
 
 	}
 

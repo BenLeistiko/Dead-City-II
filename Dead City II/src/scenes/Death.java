@@ -2,8 +2,8 @@ package scenes;
 
 import java.awt.Color;
 
+import Menus.Button;
 import gamePlay.BetterSound;
-import gamePlay.Button;
 import gamePlay.Main;
 import sprites.Hero;
 

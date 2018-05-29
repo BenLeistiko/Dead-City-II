@@ -3,7 +3,7 @@ package scenes;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-import gamePlay.Button;
+import Menus.Button;
 import gamePlay.Main;
 import processing.core.PImage;
 import sprites.Hero;
@@ -29,7 +29,7 @@ public class Instructions extends Scene{
 		image(instr, 330,0,840,800);
 		
 
-		image(instr, 390,0,840,800);
+		
 
 		
 		

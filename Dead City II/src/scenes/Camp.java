@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 
-import gamePlay.Button;
+import Menus.Button;
 import gamePlay.Main;
 import processing.core.PApplet;
 import sprites.Barrier;

@@ -1,8 +1,9 @@
 package scenes;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
-import gamePlay.Button;
+import Menus.Button;
 import gamePlay.Main;
 import sprites.Hero;
 
@@ -30,4 +31,17 @@ public class Pause extends Scene{
 		//text("Push 'p' to play again",(float)(ASSUMED_DRAWING_WIDTH/2),(float)(ASSUMED_DRAWING_HEIGHT/2-ASSUMED_DRAWING_HEIGHT/4));
 		popMatrix();
 	}
+	
+	
+	
+	
+	
+	
+	
+	public void keyPressed() {
+		super.keyPressed();
+		if(keyCode == KeyEvent.VK_P) {
+			super.changePanelAndPause("BattleField");
+		}
+	}	
 }
