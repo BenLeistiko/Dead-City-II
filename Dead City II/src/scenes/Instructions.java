@@ -10,7 +10,8 @@ import sprites.Hero;
 
 /**
  * 
- * @author Jose
+ * The place where player's can learn about the game.
+ * @author Ben
  * 
  * @version 8/21/18 8:51
  *
@@ -25,8 +26,6 @@ public class Instructions extends Scene{
 
 	public void draw() {
 		background(255);
-
-		image(instr, 330,0,840,800);
 		
 
 		

@@ -13,7 +13,7 @@ import sprites.Sprite;
 
 /**
  * 
- * 
+ * A place where hero's can upgrade their weapons health etc. and move onto the next day
  *
  *@author Jose
  * 

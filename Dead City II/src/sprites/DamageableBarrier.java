@@ -11,7 +11,8 @@ import processing.core.PImage;
 
 /**
  * A barrier that can be destroyed.
- * @author bleistiko405
+ * @author ben
+ * @version 5/15/18
  *
  */
 public class DamageableBarrier extends Barrier implements Damageable {

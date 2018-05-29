@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * Anything that can take damage.
  * @author bleistiko405
- *
+ * @version 5/10/18
  */
 public interface Damageable {
 	

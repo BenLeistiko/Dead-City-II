@@ -14,7 +14,11 @@ import sprites.Monster;
 import sprites.Sprite;
 
 
-
+/**
+ * A common superclass for everything PApplet that stores all of the objects in the screen.  It also handles side scrolling and keeps track of the main hero.
+ * @author Ben
+ * @version 5/21/18
+ */
 public abstract class Scene extends PApplet {
 	//****We pretend the screen is this size, then later scale everything up/down to the correct size.  This way it doen't matter what size the windows are when they are created o resized.  It is 1/4 the old scale.
 	public static final int ASSUMED_DRAWING_WIDTH = 1600;

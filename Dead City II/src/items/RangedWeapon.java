@@ -14,8 +14,8 @@ import sprites.Sprite;
 
 /**
  * Something generates bullets.
- * @author bleistiko405
- *
+ * @author Jose
+ * @version 5/13/18
  */
 public class RangedWeapon extends Weapon {
 

@@ -6,6 +6,11 @@ import interfaces.Drawable;
 import processing.core.PApplet;
 import scenes.Scene;
 
+/**
+ * To be implemented.  Heros would need this to survive a day.
+ * @author Ben
+ * @version 5/16/18
+ */
 public class Supplies implements Drawable {
 
 	private boolean remove;

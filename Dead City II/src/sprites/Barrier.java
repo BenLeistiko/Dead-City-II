@@ -8,9 +8,9 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import scenes.Scene;
 /**
- * An rectangle that can't take damage but can collide with sprites. 
- * @author bleistiko405
- *
+ * An rectangle that can't take damage but can collide with sprites.  They are textured.
+ * @author ben
+ * @version 5/21/18
  */
 public class Barrier extends Sprite {
 
